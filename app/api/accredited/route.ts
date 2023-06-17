@@ -1,13 +1,13 @@
-import bcrypt from 'bcrypt'
 import { NextResponse } from 'next/server'
+import bcrypt from 'bcrypt'
 
 import prisma from '@/libs/prismadb'
 
 export async function POST(request: Request) {
     const body = await request.json()
-    const {firstName, lastName, company, job, accreditationId, email, password} = body
+    const {accreditationId, firstName, lastName, email, company, job, password } = body
 
-    if (!firstName || !lastName || !company || !job || !accreditationId || !email || !password) {
+    if (!accreditationId || !firstName || !lastName || !email || !company || !job || !password) {
         return new NextResponse('Invalid Request', { status: 400 })
     }
 
@@ -22,7 +22,7 @@ export async function POST(request: Request) {
     const hashedPassword = await bcrypt.hash(password, 12)
 
     const user = await prisma.user.create({
-        data: {firstName, lastName, company, job, accreditationId, email, hashedPassword}
+        data: {accreditationId, firstName, lastName, email, company, job, hashedPassword}
     })
 
     return NextResponse.json(user)

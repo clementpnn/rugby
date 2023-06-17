@@ -2,7 +2,7 @@
 
 import { FieldErrors, FieldValues, UseFormRegister } from 'react-hook-form'
 
-interface InputProps {
+interface InputProperties {
     label: string
     id: string
     type?: string
@@ -12,7 +12,7 @@ interface InputProps {
     disabled?: boolean
 }
 
-const Input: React.FC<InputProps> = ({label, id, type = 'text' , required, register, errors, disabled}) => {
+const Input: React.FC<InputProperties> = ({label, id, type = 'text' , required, register, errors, disabled}) => {
   return (
     <div>
         <label htmlFor={id}>{label}</label>

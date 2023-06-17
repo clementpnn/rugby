@@ -11,14 +11,14 @@ export async function POST(request: Request) {
         auth: {
           user: process.env.SMTP_EMAIL,
           pass: process.env.SMTP_PASSWORD
-        }
+        },
       })
 
       let mailOptions = {
         from: process.env.SMTP_EMAIL,
         to: email,
         subject: 'Hello',
-        text: 'Hello world?'
+        text: 'Hello world?',
       }
   
       let info = await transporter.sendMail(mailOptions)

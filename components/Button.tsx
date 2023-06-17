@@ -1,6 +1,6 @@
 'use client'
 
-interface ButtonProps {
+interface ButtonProperties {
   type?: 'button' | 'submit'
   fullWidth?: boolean
   children?: React.ReactNode
@@ -10,7 +10,7 @@ interface ButtonProps {
   disabled?: boolean
 }
 
-const Button: React.FC<ButtonProps> = ({type= 'button', fullWidth, children, onclick, secondary, danger, disabled}) => {
+const Button: React.FC<ButtonProperties> = ({type= 'button', fullWidth, children, onclick, secondary, danger, disabled}) => {
   return (
     <button
       onClick={onclick}

@@ -4,7 +4,7 @@ import { signOut } from 'next-auth/react'
 
 const Out = () => {
   return (
-    <div onClick={() => signOut()} className='cursor-pointer'>sign out</div>
+    <div className='cursor-pointer' onClick={() => signOut()}>sign out</div>
   )
 }
 

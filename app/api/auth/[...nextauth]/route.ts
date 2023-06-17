@@ -1,7 +1,7 @@
-import bcrypt from 'bcrypt'
-import NextAuth, { AuthOptions } from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import { PrismaAdapter } from '@next-auth/prisma-adapter'
+import NextAuth, { AuthOptions } from 'next-auth'
+import bcrypt from 'bcrypt'
 
 import prisma from '@/libs/prismadb'
 
@@ -20,9 +20,7 @@ export const authOptions: AuthOptions = {
                 }
 
                 const user = await prisma.user.findUnique({
-                    where: {
-                        email: credentials.email
-                    }
+                    where: {email: credentials.email}
                 })
 
                 if (!user) {
