@@ -8,12 +8,12 @@ declare global {
     var cloudinary: any
 }
 
-interface ImageUploadProps {
+interface ImageUploadProperties {
     onChange: (value: string) => void
     value: string
 }
 
-const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, value }) => {
+const ImageUpload: React.FC<ImageUploadProperties> = ({ onChange, value }) => {
     const handleUpload = useCallback((result: any) => {
         onChange(result.info.secure_url)
     }, [onChange])

@@ -23,7 +23,7 @@ const AccreditedForm = () => {
 
         axios.post('/api/email', data)
         .then((callback) => toast.success('ok'))
-        .catch((callback) => toast.error('error'))
+        .catch((error) => toast.error('error'))
         .finally(() => setIsloading(false))
     }
 

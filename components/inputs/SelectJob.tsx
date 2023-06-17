@@ -7,13 +7,13 @@ export type SelectValue = {
     value?: string
 }
 
-interface SelectProps {
+interface SelectProperties {
     label: string
     value?: SelectValue
     onChange: (value: SelectValue) => void
 }
 
-const SelectJob: React.FC<SelectProps> = ({ label, value, onChange }) => {
+const SelectJob: React.FC<SelectProperties> = ({ label, value, onChange }) => {
     const JOB_OPTIONS: SelectValue[] = [
         { label: 'Journaliste', value: 'JOURNALIST' },
         { label: 'Photographe', value: 'PHOTOGRAPHER' }

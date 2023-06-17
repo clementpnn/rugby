@@ -3,15 +3,15 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 
-import useCSVFileReader from '@/hooks/useCSVFileReader'
 import useCSVToArray, { FileRow } from '@/hooks/useCSVToArray'
 import useCreatePassword from '@/hooks/useCreatePassword'
+import useCSVFileReader from '@/hooks/useCSVFileReader'
 
 const Upload = () => {
 
-  const [file, setFile] = useState<File | null>(null)
+  const [file, setFile] = useState<File | undefined>()
   const [isLoading, setIsloading] = useState(false)
-  const { readCSVFile, error: fileReaderError } = useCSVFileReader()
+  const { error: fileReaderError, readCSVFile } = useCSVFileReader()
   const { csvFileToArray } = useCSVToArray()
 
   const sendDataToBackend = async (data: FileRow[]) => {
@@ -22,7 +22,7 @@ const Upload = () => {
             console.log({...items, password});
             await axios.post('/api/accredited', {...items, password})
             .then((callback) => console.log(callback))
-            .catch((callback) => console.log(callback))
+            .catch((error) => console.log(error))
             .finally(() => setIsloading(false))
         } catch (error) {
           console.error('Error:', error)
@@ -40,8 +40,9 @@ const Upload = () => {
     }
   };
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = event.target.files
     if (files) {
       setFile(files[0])
     }
@@ -52,16 +53,16 @@ const Upload = () => {
       <h1>REACTJS CSV IMPORT EXAMPLE </h1>
       <form>
         <input
-          type={'file'}
+          onChange={handleFileChange}
+          disabled={isLoading}
           id={'csvFileInput'}
           accept={'.csv'}
-          disabled={isLoading}
-          onChange={handleFileChange}
+          type={'file'}
         />
 
         <button
-          onClick={(e) => {
-            e.preventDefault()
+          onClick={(event) => {
+            event.preventDefault()
             if (file) {
               handleOnFileSubmit(file)
             }
