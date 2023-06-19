@@ -1,4 +1,6 @@
-<img alt='loglo' align='center' src='https://resources.world.rugby/photo-resources/2021/06/02/24d18609-7981-4119-a787-d4fdbfdee195/Negative-on-a-blue-background.png?width=416&height=234'>
+<p align='center'>
+<img alt='loglo' src='https://resources.world.rugby/photo-resources/2021/06/02/24d18609-7981-4119-a787-d4fdbfdee195/Negative-on-a-blue-background.png?width=416&height=234'>
+<p>
 
 <h1 align='center'>Rugby Projet</h1>
 
@@ -7,7 +9,7 @@
 <p align='center'>
 <a href='#tech-stack'><strong>Tech Stack</strong></a> .
 <a href='#runing-locally'><strong>Runing locally</strong></a> .
-<a href=''><strong></strong></a>
+<a href='#authors'><strong>Authors</strong></a>
 </p>
 <br/>
 
