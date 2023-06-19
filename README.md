@@ -1,34 +1,43 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<img alt='loglo' src='https://resources.world.rugby/photo-resources/2021/11/10/36802292-60c3-41a7-9418-aea81c6889f7/RWC2023_generic.PNG?width=416'>
 
-## Getting Started
+<h1 align='center'>Rugby Projet</h1>
 
-First, run the development server:
+<p align='center'>An open source seat reservation application for journalists during rugby matches</p>
+
+<p align=''center>
+<a href='#tech-stack'><strong>Tech Stack</strong></a> .
+<a href='#runing-locally'><strong>Runing locally</strong></a> .
+<a href=''><strong></strong></a>
+</p>
+<br/>
+
+## Tech Stack
+
+- [Next.js](https://nextjs.org) Framework
+- [shadcn/ui](https://ui.shadcn.com)
+  - Styling with [Tailwind CSS](https://tailwindcss.com)
+  - [Radix UI](https://www.radix-ui.com) for headless component primitives
+  - Icons from [...](...)
+- [Next Auth](https://next-auth.js.org/) for authentification
+- [Nodemailer](https://nodemailer.com/about) for sending emails
+- [React Hook Form](https://react-hook-form.com) for forms
+
+## Runing locally
+
+You will need to use the environement variables [defined in `.env.example`](.env.example) to run Rugby Project. But for that, you have to rename the `.env.example` file in to `.env`.
 
 ```bash
+npm i
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Your app should now be running on [localhost:3000](http://localhost:3000/)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Authors
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Victor Huang [@theVicoH](https://github.com/theVicoH)
+- Abdramane Diara [@AbdeDev](https://github.com/AbdeDev)
+- Vitomir laces [vitolinho](https://github.com/vitolinho)
+- Salma Wadouachi [@wadouachi](https://github.com/wadouachi)
+- Morgane Dassonville [@Jun080](https://github.com/Jun080)
+- Clément Phlipponneau [clementpnn](https://github.com/clementpnn)
