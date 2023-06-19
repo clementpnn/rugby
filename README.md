@@ -1,10 +1,10 @@
-<img alt='loglo' src='https://resources.world.rugby/photo-resources/2021/11/10/36802292-60c3-41a7-9418-aea81c6889f7/RWC2023_generic.PNG?width=416'>
+<img alt='loglo' align='center' src='https://resources.world.rugby/photo-resources/2021/06/02/24d18609-7981-4119-a787-d4fdbfdee195/Negative-on-a-blue-background.png?width=416&height=234'>
 
 <h1 align='center'>Rugby Projet</h1>
 
 <p align='center'>An open source seat reservation application for journalists during rugby matches</p>
 
-<p align=''center>
+<p align='center'>
 <a href='#tech-stack'><strong>Tech Stack</strong></a> .
 <a href='#runing-locally'><strong>Runing locally</strong></a> .
 <a href=''><strong></strong></a>
