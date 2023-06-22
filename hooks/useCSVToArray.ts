@@ -1,7 +1,7 @@
-import Papa from 'papaparse';
+import Papa from 'papaparse'
 
 export interface FileRow {
-  [key: string]: string;
+  [key: string]: string
 }
 
 const useCSVToArray = () => {
@@ -17,7 +17,7 @@ const useCSVToArray = () => {
     })
   }
 
-  return { csvFileToArray };
-};
+  return { csvFileToArray }
+}
 
-export default useCSVToArray;
+export default useCSVToArray
