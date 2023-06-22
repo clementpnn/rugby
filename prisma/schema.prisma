@@ -15,19 +15,28 @@ enum Job {
   PHOTOGRAPHER
 }
 
+enum Role {
+  DEV
+  ADMIN
+  USER
+}
+
 model User {
   id               String   @id @default(auto()) @map("_id") @db.ObjectId
-  accreditationId  String
+  accreditationId  String?
   firstName        String
   lastName         String
   email            String   @unique
   emailVerified    Boolean  @default(false)
+  role             Role     @default(USER)
   accreditation    String?
   hashedPassword   String
-  company          String
-  job              Job
+  company          String?
+  job              Job?
 
-  accounts  Account[]
+  accounts   Account[]
+  sessions   Session[]
+  sentEmail  SentEmail[]
 }
 
 model Account {
@@ -47,4 +56,40 @@ model Account {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String    @id @default(auto()) @map("_id") @db.ObjectId
+  sessionToken String    @unique
+  userId       String    @db.ObjectId
+  expires      DateTime
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model VerificationToken {
+  id           String    @id @default(auto()) @map("_id") @db.ObjectId
+  identifier   String
+  token        String    @unique
+  expires      DateTime
+
+  @@unique([identifier, token])
+}
+
+enum Type {
+  RESET
+  MFA
+}
+
+model SentEmail {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  type Type
+  userId      String    @db.ObjectId
+  createdAt   DateTime  @default(now())
+  resetToken  String?
+  mfaToken    String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
