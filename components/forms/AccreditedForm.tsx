@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import axios from 'axios'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import { toast } from 'react-hot-toast'
 
@@ -20,11 +19,16 @@ const AccreditedForm = () => {
 
     const onSubmit: SubmitHandler<FieldValues> = (data) => {
         setIsloading(true)
-
-        axios.post('/api/email', data)
-        .then((callback) => toast.success('ok'))
-        .catch((error) => toast.error('error'))
-        .finally(() => setIsloading(false))
+        fetch('/api/email', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+          })
+          .then(() => {
+            toast.success('Sign in')
+          })
+          .catch(error => toast.error(`${error}`))
+          .finally(() => setIsloading(false))
     }
 
   return (
