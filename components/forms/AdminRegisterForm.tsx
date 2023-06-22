@@ -9,35 +9,46 @@ import { z } from 'zod'
 import ky from 'ky'
 import { toast } from 'react-hot-toast'
 
-import { SchemaAuthAdmin } from '@/types/AuthAdmin'
+import { SchemaAdminRegister } from '@/types/Auth'
 import Input from '../inputs/Input'
 import Select from '../inputs/Select'
 import Button from '../Button'
+import { User } from '@prisma/client'
 
-const AdminForm = () => {
+interface AdminRegisterFormProperties {
+  currentUser?: User | null
+}
+
+const AdminRegisterForm: React.FC<AdminRegisterFormProperties> = ({ currentUser }) => {
     const session = useSession()
     const router = useRouter()
     const [isLoading, setIsloading] = useState(false)
 
     useEffect(() => {
-        if (session?.status === 'authenticated') {
-            router.push('/user')
+      if (session?.status === 'authenticated') {
+        if (currentUser?.role === 'ADMIN') {
+          router.push('/adminDashboard')
         }
-    }, [session?.status, router])
 
-    type FormData = z.infer<typeof SchemaAuthAdmin>
+        if (currentUser?.role === 'DEV') {
+          router.push('/page') //this page don't exist
+        }
+      }
+    }, [session?.status,currentUser?.role, router])
+
+    type FormData = z.infer<typeof SchemaAdminRegister>
 
     const { handleSubmit, control, formState: { errors } } = useForm<FormData>({
-        resolver: zodResolver(SchemaAuthAdmin),
-        defaultValues: { firstName: '', lastName: '', email: '', role: 'ADMIN', password: '', confirmPassword:'' },
-        mode: 'onChange'
+      resolver: zodResolver(SchemaAdminRegister),
+      defaultValues: { firstName: '', lastName: '', email: '', role: 'ADMIN', password: '', confirmPassword:'' },
+      mode: 'onChange'
     })
 
     // eslint-disable-next-line unicorn/consistent-function-scoping
     const onSubmit: SubmitHandler<FieldValues> = async (data) => {
         setIsloading(true)
 
-        fetch('/api/adminRegister', {
+        await fetch('/api/adminRegister', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
@@ -45,6 +56,7 @@ const AdminForm = () => {
           .then(() => {
             signIn('credentials', data)
             toast.success('Sign in')
+            router.refresh()
           })
           .catch(error => toast.error(`${error}`))
           .finally(() => setIsloading(false))
@@ -78,4 +90,4 @@ const AdminForm = () => {
   )
 }
 
-export default AdminForm
+export default AdminRegisterForm
