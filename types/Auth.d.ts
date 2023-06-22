@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-export const SchemaAuthAdmin = z.object({
+export const SchemaAdminRegister = z.object({
     firstName: z.string().nonempty({ message: 'Prénom est obligatoire' }),
     lastName: z.string().nonempty({ message: 'Nom est obligatoire' }),
     role: z.string().nonempty({ message: 'Role est obligatoire' }),
@@ -21,7 +21,12 @@ export const SchemaAuthAdmin = z.object({
         { message: 'Mot de passe doit contenir au moins un caractère spécial' }
         ),
         confirmPassword: z.string().nonempty({ message: 'Confirm Password est obligatoire' })
-    }).refine((data) => data.password === data.confirmPassword, {
-        message: 'Les mots de passe doivent correspondre',
-        path: ['confirmPassword']
-    })
+}).refine((data) => data.password === data.confirmPassword, {
+    message: 'Les mots de passe doivent correspondre',
+    path: ['confirmPassword']
+})
+
+export const SchemaLogin = z.object({
+    email: z.string().email({ message: 'Email non valide' }),
+    password: z.string().nonempty({ message: 'Password est obligatoire' })
+})
