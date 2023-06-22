@@ -10,14 +10,13 @@ const useCSVFileReader = () => {
       fileReader.addEventListener('load', function (event) {
         const text = event.target?.result as string
         resolve(text)
-      });
+      })
 
-      // eslint-disable-next-line unicorn/prefer-add-event-listener
-      fileReader.onerror = function (event) {
-        const errorMessage = `Error reading file: ${event.target?.error}`
+      fileReader.addEventListener('error', function (event) {
+        const errorMessage = event.target ? `Error reading file: ${event.target.error}` : 'Error reading file'
         setError(errorMessage)
         reject(errorMessage)
-      };
+      })
 
       // eslint-disable-next-line unicorn/prefer-blob-reading-methods
       fileReader.readAsText(file)
