@@ -3,7 +3,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { signIn, useSession } from 'next-auth/react'
-import axios from 'axios'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 
 import Input from '../inputs/Input'
