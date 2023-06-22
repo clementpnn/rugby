@@ -1,10 +1,11 @@
-import AuthForm from '@/components/forms/LoginForm' 
+import LoginForm from '@/components/forms/LoginForm'
+import getCurrentUser from '@/actions/getCurrentUser'
 
-export default function Home() {
+export default async function Home() {
+  const currentUser = await getCurrentUser()
   return (
     <>
-      <h1>Sign in</h1>
-      <AuthForm />
+      <LoginForm currentUser={currentUser} />
     </>
   )
 }
