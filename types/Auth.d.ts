@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-export const SchemaAdminRegister = z.object({
+export const AdminRegisterSchema = z.object({
     firstName: z.string().nonempty({ message: 'Prénom est obligatoire' }),
     lastName: z.string().nonempty({ message: 'Nom est obligatoire' }),
     role: z.string().nonempty({ message: 'Role est obligatoire' }),
@@ -26,7 +26,16 @@ export const SchemaAdminRegister = z.object({
     path: ['confirmPassword']
 })
 
-export const SchemaLogin = z.object({
+export const LoginSchema = z.object({
     email: z.string().email({ message: 'Email non valide' }),
     password: z.string().nonempty({ message: 'Password est obligatoire' })
+})
+
+export const UserRegisterShema = z.object({
+    accreditationId: z.string().nonempty({ message: 'AccreditationId est obligatoire' }),
+    firstName: z.string().nonempty({ message: 'FirstName est obligatoire' }),
+    lastName: z.string().nonempty({ message: 'LastName est obligatoire' }),
+    company: z.string().nonempty({ message: 'Company est obligatoire' }),
+    job: z.string().refine(value => value === 'JOURNALIST' || value === 'PHOTOGRAPHER', { message: 'Job non valide'}),
+    email: z.string().email({ message: 'Email non valide' })
 })

@@ -9,10 +9,10 @@ import { z } from 'zod'
 import ky from 'ky'
 import { toast } from 'react-hot-toast'
 
-import { SchemaAdminRegister } from '@/types/Auth'
+import { AdminRegisterSchema } from '@/types/Auth.d'
 import Input from '../inputs/Input'
 import Select from '../inputs/Select'
-import Button from '../Button'
+import Button from '../buttons/Button'
 import { User } from '@prisma/client'
 
 interface AdminRegisterFormProperties {
@@ -31,15 +31,15 @@ const AdminRegisterForm: React.FC<AdminRegisterFormProperties> = ({ currentUser 
         }
 
         if (currentUser?.role === 'DEV') {
-          router.push('/page') //this page don't exist
+          router.push('/adminDashboard') //this page don't exist
         }
       }
     }, [session?.status,currentUser?.role, router])
 
-    type FormData = z.infer<typeof SchemaAdminRegister>
+    type FormData = z.infer<typeof AdminRegisterSchema>
 
     const { handleSubmit, control, formState: { errors } } = useForm<FormData>({
-      resolver: zodResolver(SchemaAdminRegister),
+      resolver: zodResolver(AdminRegisterSchema),
       defaultValues: { firstName: '', lastName: '', email: '', role: 'ADMIN', password: '', confirmPassword:'' },
       mode: 'onChange'
     })

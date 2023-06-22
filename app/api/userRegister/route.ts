@@ -27,22 +27,22 @@ export async function POST(request: Request) {
             data: {accreditationId, firstName, lastName, email, company, job, hashedPassword}
         })
 
-        const transporter = nodemailer.createTransport({
-            service: 'gmail',
-            auth: {
-              user: process.env.SMTP_EMAIL,
-              pass: process.env.SMTP_PASSWORD
-            }
-        })
+        // const transporter = nodemailer.createTransport({
+        //     service: 'gmail',
+        //     auth: {
+        //       user: process.env.SMTP_EMAIL,
+        //       pass: process.env.SMTP_PASSWORD
+        //     }
+        // })
     
-        const mailOptions = {
-        from: process.env.SMTP_EMAIL,
-        to: email,
-        subject: 'Hello',
-        text: 'Hello world?'
-        }
+        // const mailOptions = {
+        // from: process.env.SMTP_EMAIL,
+        // to: email,
+        // subject: 'Hello',
+        // text: 'Hello world?'
+        // }
 
-        await transporter.sendMail(mailOptions)
+        // await transporter.sendMail(mailOptions)
 
         return NextResponse.json(user)
     } catch {

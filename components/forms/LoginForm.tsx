@@ -8,10 +8,9 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
 import Input from '../inputs/Input'
-import Button from '../Button'
+import Button from '../buttons/Button'
 import ImageUpload from '../inputs/ImageUpload'
-import SelectJob from '../inputs/SelectJob'
-import { SchemaLogin } from '@/types/Auth'
+import { LoginSchema } from '@/types/Auth.d'
 import { toast } from 'react-hot-toast'
 import { User } from '@prisma/client'
 
@@ -27,7 +26,7 @@ const LoginForm: React.FC<LoginFormProperties> = ({ currentUser }) => {
     useEffect(() => {
         if (session?.status === 'authenticated') {
             if (currentUser?.role === 'USER') {
-                router.push('/user') //this page don't exist
+                router.push('/userDashboard')
             }
 
             if (currentUser?.role === 'ADMIN') {
@@ -35,15 +34,15 @@ const LoginForm: React.FC<LoginFormProperties> = ({ currentUser }) => {
             }
 
             if (currentUser?.role === 'DEV') {
-                router.push('/page') //this page don't exist
+                router.push('/adminDashboard')
             }
         }
     }, [session?.status, currentUser?.role, router])
 
-    type FormData = z.infer<typeof SchemaLogin>
+    type FormData = z.infer<typeof LoginSchema>
 
     const { handleSubmit, control, formState: { errors } } = useForm<FormData>({
-      resolver: zodResolver(SchemaLogin),
+      resolver: zodResolver(LoginSchema),
       defaultValues: { email: '', password: '' },
       mode: 'onChange'
     })
