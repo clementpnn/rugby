@@ -1,9 +1,7 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import { useRouter } from 'next/navigation'
-import { signIn, useSession } from 'next-auth/react'
-import { FieldValues, SubmitHandler, useForm, Controller } from 'react-hook-form'
+import { useState } from 'react'
+import { SubmitHandler, useForm, Controller } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import ky from 'ky'
@@ -13,65 +11,51 @@ import { AdminRegisterSchema } from '@/types/Auth.d'
 import Input from '../inputs/Input'
 import Select from '../inputs/Select'
 import Button from '../buttons/Button'
-import { User } from '@prisma/client'
+import useStep, { STEPS } from '@/hooks/useStep'
+import useUser from '@/hooks/useUser'
 
-interface AdminRegisterFormProperties {
-  currentUser?: User | null
-}
+const AdminRegisterForm = () => {
+  const [isLoading, setIsloading] = useState(false)
+  const { step, setStep } = useStep()
+  const { setEmail, setPassword } = useUser()
 
-const AdminRegisterForm: React.FC<AdminRegisterFormProperties> = ({ currentUser }) => {
-    const session = useSession()
-    const router = useRouter()
-    const [isLoading, setIsloading] = useState(false)
+  type FormData = z.infer<typeof AdminRegisterSchema>
 
-    useEffect(() => {
-      if (session?.status === 'authenticated') {
-        if (currentUser?.role === 'ADMIN') {
-          router.push('/adminDashboard')
-        }
+  const { handleSubmit, control, formState: { errors } } = useForm<FormData>({
+    resolver: zodResolver(AdminRegisterSchema),
+    defaultValues: { firstName: '', lastName: '', email: '', role: 'ADMIN', password: '', confirmPassword:'' },
+    mode: 'onChange'
+  })
 
-        if (currentUser?.role === 'DEV') {
-          router.push('/adminDashboard') //this page don't exist
-        }
-      }
-    }, [session?.status,currentUser?.role, router])
+  // eslint-disable-next-line unicorn/consistent-function-scoping
+  const onSubmit: SubmitHandler<FormData> = async (data) => {
+      setIsloading(true)
 
-    type FormData = z.infer<typeof AdminRegisterSchema>
-
-    const { handleSubmit, control, formState: { errors } } = useForm<FormData>({
-      resolver: zodResolver(AdminRegisterSchema),
-      defaultValues: { firstName: '', lastName: '', email: '', role: 'ADMIN', password: '', confirmPassword:'' },
-      mode: 'onChange'
-    })
-
-    // eslint-disable-next-line unicorn/consistent-function-scoping
-    const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-        setIsloading(true)
-
-        await fetch('/api/adminRegister', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
-          })
-          .then(() => {
-            signIn('credentials', data)
-            toast.success('Sign in')
-            router.refresh()
-          })
-          .catch(error => toast.error(`${error}`))
-          .finally(() => setIsloading(false))
-        
-        // try {
-        //     await ky.post('/api/adminRegister', data).json()
-        //     console.log('ok')
-        //     // signIn('credentials', data)
-        // } catch (error: any) {
-        //     const errorData = await error.response.json()
-        //     toast.error(`${errorData.message}`)
-        // } finally {
-        //     setIsloading(false);
-        // }
-    }
+      await fetch('/api/adminRegister', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        })
+        .then(() => {
+          toast.success('Email send')
+          setStep(step + 1 as STEPS)
+          setEmail(data.email)
+          setPassword(data.password)
+        })
+        .catch(error => toast.error(`${error}`))
+        .finally(() => setIsloading(false))
+      
+      // try {
+      //     await ky.post('/api/adminRegister', data).json()
+      //     console.log('ok')
+      //     // signIn('credentials', data)
+      // } catch (error: any) {
+      //     const errorData = await error.response.json()
+      //     toast.error(`${errorData.message}`)
+      // } finally {
+      //     setIsloading(false);
+      // }
+  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

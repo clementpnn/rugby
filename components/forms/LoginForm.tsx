@@ -1,43 +1,23 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { signIn, useSession } from 'next-auth/react'
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { toast } from 'react-hot-toast'
 import { z } from 'zod'
 
 import Input from '../inputs/Input'
 import Button from '../buttons/Button'
-import ImageUpload from '../inputs/ImageUpload'
 import { LoginSchema } from '@/types/Auth.d'
-import { toast } from 'react-hot-toast'
-import { User } from '@prisma/client'
+import useUser from '@/hooks/useUser'
+import useStep, { STEPS } from '@/hooks/useStep'
 
-interface LoginFormProperties {
-    currentUser?: User | null
-}
-
-const LoginForm: React.FC<LoginFormProperties> = ({ currentUser }) => {
-    const session = useSession()
+const LoginForm = () => {
     const router = useRouter()
     const [isLoading, setIsloading] = useState(false)
-
-    useEffect(() => {
-        if (session?.status === 'authenticated') {
-            if (currentUser?.role === 'USER') {
-                router.push('/userDashboard')
-            }
-
-            if (currentUser?.role === 'ADMIN') {
-                router.push('/adminDashboard')
-            }
-
-            if (currentUser?.role === 'DEV') {
-                router.push('/adminDashboard')
-            }
-        }
-    }, [session?.status, currentUser?.role, router])
+    const { step, setStep } = useStep()
+    const { setEmail, setPassword } = useUser()
 
     type FormData = z.infer<typeof LoginSchema>
 
@@ -50,35 +30,25 @@ const LoginForm: React.FC<LoginFormProperties> = ({ currentUser }) => {
     const onSubmit: SubmitHandler<FormData> = async (data) => {
         setIsloading(true)
 
-        try {
-            await signIn('credentials', data)
-            router.refresh()
-        } catch (error) {
-            toast.error(`${error}`)
-        } finally {
-            setIsloading(true) 
-        }
+        await fetch('/api/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+          })
+          .then(() => {
+            toast.success('Email send')
+            setStep(step + 1 as STEPS)
+            setEmail(data.email)
+            setPassword(data.password)
+          })
+          .catch(error => toast.error(`${error}`))
+          .finally(() => setIsloading(false))
     }
-
-    // useEffect(() => {
-    //     if (session?.status === 'authenticated') {
-    //         if (!currentUser?.accreditation) {
-    //             return (
-    //                 <div>azerty</div>
-    //             )
-    //         }
-
-    //         if (currentUser) {
-
-    //         }
-    //     }
-    // }, [session?.status, currentUser, router])
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <Controller name="email" control={control} render={({ field }) => <Input id='email' label='email' type='email' {...field} errors={errors} disabled={isLoading} />} />
             <Controller name="password" control={control} render={({ field }) => <Input id='password' label='Mot de passe' type='password' {...field} errors={errors} disabled={isLoading} />} />
-            {/* <ImageUpload onChange={(value) => setCustomValue('accreditation', value)} value={accreditation}/> */}
             <div>
                 <Button disabled={isLoading} type='submit'>
                     Register 

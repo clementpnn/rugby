@@ -7,25 +7,28 @@ import prisma from '@/libs/prismadb'
 export async function POST(request: Request) {
     try{
         const body = await request.json()
-        const { firstName, lastName, email, role, password } = body
+        const { email, password } = body
 
-        if (!firstName || !lastName || !email || !role || !password) {
+        if (!email || !password) {
             return new NextResponse('Invalid Request', { status: 400 })
         }
 
-        const isExist = await prisma.user.findUnique({
+        const user = await prisma.user.findUnique({
             where: {email}
         })
 
-        if (isExist) {
-            return new NextResponse('User Existing', { status: 500 })
+        if (!user) {
+            return new NextResponse('User Not Existing', { status: 500 })
         }
 
-        const hashedPassword = await bcrypt.hash(password, 12)
+        const isCorrectPassword = await bcrypt.compare(
+            password,
+            user.hashedPassword
+        )
 
-        const user = await prisma.user.create({
-            data: {firstName, lastName, email, role, hashedPassword}
-        })
+        if (!isCorrectPassword) {
+            return new NextResponse('Server Error', { status: 500 })
+        }
 
         const mfaToken = Math.floor(100_000 + Math.random() * 900_000).toString()
 
@@ -45,7 +48,7 @@ export async function POST(request: Request) {
         from: process.env.SMTP_EMAIL,
         to: email,
         subject: 'Your MFA Token',
-        html: `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+        html:  `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
                 <meta http-equiv="Content-Type" content="text/html charset=UTF-8" />
                 <html lang="en">
                 
