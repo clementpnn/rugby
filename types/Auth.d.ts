@@ -39,3 +39,12 @@ export const UserRegisterShema = z.object({
     job: z.string().refine(value => value === 'JOURNALIST' || value === 'PHOTOGRAPHER', { message: 'Job non valide'}),
     email: z.string().email({ message: 'Email non valide' })
 })
+
+export const MFASchema = z.object({
+    numberOne: z.string().transform(Number),
+    numberTwo: z.string().transform(Number),
+    numberThree: z.string().transform(Number),
+    numberFour: z.string().transform(Number),
+    numberFive: z.string().transform(Number),
+    numberSix: z.string().transform(Number)
+})
