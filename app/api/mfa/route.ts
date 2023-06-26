@@ -19,18 +19,22 @@ export async function POST(request: Request) {
             return new NextResponse('User Not Existing', { status: 500 })
         }
 
-        const sentEmails = await prisma.sentEmail.findMany({
-            where: {userId: user.id}
-        })
+        const sentEmail = await prisma.sentEmail.findFirst({
+            where: {
+              userId: user.id,
+              type: 'MFA'
+            },
+            orderBy: {
+              createdAt: 'desc'
+            }
+          })
 
-        const emailRecord = sentEmails.find(sentEmail => sentEmail.mfaToken === mfaToken)
-
-        if (!emailRecord) {
+        if (!sentEmail) {
             return new NextResponse('Invalid MFA Token', { status: 400 })
         }
 
         await prisma.sentEmail.delete({
-            where: {id: emailRecord.id}
+            where: {id: sentEmail.id}
         })
 
         return NextResponse.json(user)
