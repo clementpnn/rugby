@@ -38,7 +38,7 @@ Your app should now be running on [localhost:3000](http://localhost:3000/)
 ## Authors
 
 - Victor Huang ([@theVicoH](https://github.com/theVicoH))
-- Abdramane Diara ([@AbdeDev](https://github.com/AbdeDev))
+- Abdramane Diarra ([@AbdeDev](https://github.com/AbdeDev))
 - Vitomir Laces ([@vitolinho](https://github.com/vitolinho))
 - Salma Wadouachi ([@wadouachi](https://github.com/wadouachi))
 - Morgane Dassonville ([@Jun080](https://github.com/Jun080))
