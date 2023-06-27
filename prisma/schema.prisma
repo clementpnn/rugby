@@ -37,6 +37,7 @@ model User {
   accounts   Account[]
   sessions   Session[]
   sentEmail  SentEmail[]
+  demandes   Demand[]
 }
 
 model Account {
@@ -78,18 +79,92 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
-enum Type {
+enum EmailType {
   RESET
   MFA
 }
 
 model SentEmail {
   id          String    @id @default(auto()) @map("_id") @db.ObjectId
-  type Type
+  type        EmailType
   userId      String    @db.ObjectId
-  createdAt   DateTime  @default(now())
+  createdAt   DateTime
   resetToken  String?
   mfaToken    String?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Stadium {
+  id      String  @id @default(auto()) @map("_id") @db.ObjectId
+  name    String
+  gameId  String  @db.ObjectId
+  adress  String
+
+  games   Game[]
+  spaces  Space[]
+}
+
+model Space {
+  id         String  @id @default(auto()) @map("_id") @db.ObjectId
+  stadiumId  String  @db.ObjectId
+  type       Job
+  places     Int
+
+  stadium Stadium @relation(fields: [stadiumId], references: [id], onDelete: Cascade)
+
+  demands Demand[] 
+}
+
+enum GameType {
+  POULE
+  QUARTERFINAL
+  SEMI_FINAL
+  FINAL
+}
+
+model Game {
+  id         String    @id @default(auto()) @map("_id") @db.ObjectId
+  date       DateTime  @default(now())
+  type       GameType  
+  stadiumId  String    @db.ObjectId
+
+  stadium Stadium @relation(fields: [stadiumId], references: [id])
+
+  teams Team[]
+  demands Demand[]
+}
+
+enum POULE {
+  A
+  B
+  C
+  D
+}
+
+model Team {
+  id       String  @id @default(auto()) @map("_id") @db.ObjectId
+  country  String
+  gameId   String  @db.ObjectId
+  poule    POULE
+
+  game Game @relation(fields: [gameId], references: [id], onDelete: Cascade)
+}
+
+enum STATE {
+  ACCEPTED
+  IN_PROGRESS
+  REJECTED
+}
+
+model Demand {
+  id       String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId   String   @db.ObjectId
+  gameId   String   @db.ObjectId
+  spaceId  String?  @db.ObjectId
+  state    STATE
+
+  user  User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  game  Game    @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  space Space?  @relation(fields: [spaceId], references: [id], onDelete: Cascade)
 }
