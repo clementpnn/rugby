@@ -10,28 +10,28 @@ const buttonVariants = cva(
     variants: {
       variant: {
         s_fill:
-          "bg-blue2 text-white hover:bg-red-100",
+          "bg-blue7 text-neutral0 hover:bg-blue5",
         m_fill:
-          "bg-red-500 text-destructive-foreground hover:bg-destructive/90",
+          "bg-blue7 text-neutral0 hover:bg-blue5",
         l_fill:
-          "bg-red-900 text-destructive-foreground hover:bg-destructive/90",
+          "bg-blue7 text-neutral0 hover:bg-blue5",
         s_outline:
-          "bg-green-300 text-destructive-foreground hover:bg-destructive/90",
+          "bg-neutral0 text-neutral11 border border-neutral4 hover:bg-neutral4",
         m_outline:
-          "bg-green-500 text-destructive-foreground hover:bg-destructive/90",
+          "bg-neutral0 text-neutral11 border border-neutral4 hover:bg-neutral4",
         l_outline:
-          "bg-green-900 text-destructive-foreground hover:bg-destructive/90",
+          "bg-neutral0 text-neutral11 border border-neutral4 hover:bg-neutral4",
         s_disable:
-          "bg-blue-300 text-destructive-foreground hover:bg-destructive/90",
+          "bg-neutral4 text-neutral6",
         m_disable:
-          "bg-blue-500 text-destructive-foreground hover:bg-destructive/90",
+          "bg-neutral4 text-neutral6",
         l_disable:
-          "bg-blue-900 text-destructive-foreground hover:bg-destructive/90",
+          "bg-neutral4 text-neutral6",
       },
       size: {
-        sm: "h-[36px] rounded-md px-[8px] py-[16px]",
-        me: "h-[48px] rounded-md px-[12px] py-[20px]",
-        lg: "h-[52px] rounded-md px-[12px] py-[24px]",
+        sm: "h-[36px] rounded-md px-[8px] py-[16px] mx-[4px]",
+        me: "h-[48px] rounded-md px-[12px] py-[20px] mx-[4px]",
+        lg: "h-[52px] rounded-md px-[12px] py-[24px] mx-[4px]",
       },
     },
   }
