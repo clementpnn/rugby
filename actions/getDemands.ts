@@ -4,7 +4,7 @@ interface IParameters {
     userId?: string
 }
 
-export default async function getReservations(parameters: IParameters) {
+export default async function getDemands(parameters: IParameters) {
     try {
         const { userId } = parameters
 

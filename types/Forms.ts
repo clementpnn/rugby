@@ -48,3 +48,8 @@ export const MFASchema = z.object({
     numberFive: z.string().transform(Number),
     numberSix: z.string().transform(Number)
 })
+
+export const StadiumSchema = z.object({
+    name: z.string().nonempty({ message: 'Name est obligatoire' }),
+    address: z.string().nonempty({ message: 'Adresse est obligatoire' }),
+  })

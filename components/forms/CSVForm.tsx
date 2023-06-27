@@ -6,7 +6,7 @@ import useCSVToArray, { FileRow } from '@/hooks/useCSVToArray'
 import useCreatePassword from '@/hooks/useCreatePassword'
 import useCSVFileReader from '@/hooks/useCSVFileReader'
 import toast from 'react-hot-toast'
-import { UserRegisterShema } from '@/types/Auth.d'
+import { UserRegisterShema } from '@/types/Forms'
 
 const CSVForm = () => {
 

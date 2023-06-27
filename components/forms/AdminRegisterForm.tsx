@@ -7,7 +7,7 @@ import { z } from 'zod'
 import ky from 'ky'
 import { toast } from 'react-hot-toast'
 
-import { AdminRegisterSchema } from '@/types/Auth.d'
+import { AdminRegisterSchema } from '@/types/Forms'
 import Input from '../inputs/Input'
 import Select from '../inputs/Select'
 import Button from '../buttons/Button'
