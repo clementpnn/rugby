@@ -12,9 +12,9 @@ const buttonVariants = cva(
         s_fill:
           "bg-blue2 text-white hover:bg-red-100",
         m_fill:
-          "bg-blue6 text-neutral0 hover:bg-blue4",
+          "bg-blue7 text-neutral0 hover:bg-blue5",
         l_fill:
-          "bg-blue6 text-neutral0 hover:bg-blue4",
+          "bg-blue7 text-neutral0 hover:bg-blue5",
         s_outline:
           "bg-neutral0 text-neutral1 border-neutral3 hover:bg-neutral3",
         m_outline:
