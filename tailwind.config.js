@@ -1,12 +1,10 @@
 /** @type {import('tailwindcss').Config} */
-// eslint-disable-next-line import/no-anonymous-default-export
+
 export default {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx}',
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
 	],
   theme: {
     container: {
@@ -295,6 +293,6 @@ export default {
       },
     },
   },
-  // eslint-disable-next-line unicorn/prefer-module
+  
   plugins: [require("tailwindcss-animate")],
 }
