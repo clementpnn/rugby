@@ -12,21 +12,21 @@ const buttonVariants = cva(
         s_fill:
           "bg-blue2 text-white hover:bg-red-100",
         m_fill:
-          "bg-red-500 text-destructive-foreground hover:bg-destructive/90",
+          "bg-blue6 text-neutral0 hover:bg-blue4",
         l_fill:
-          "bg-red-900 text-destructive-foreground hover:bg-destructive/90",
+          "bg-blue6 text-neutral0 hover:bg-blue4",
         s_outline:
-          "bg-green-300 text-destructive-foreground hover:bg-destructive/90",
+          "bg-neutral0 text-neutral1 border-neutral3 hover:bg-neutral3",
         m_outline:
-          "bg-green-500 text-destructive-foreground hover:bg-destructive/90",
+          "bg-neutral0 text-neutral1 border-neutral3 hover:bg-neutral3",
         l_outline:
-          "bg-green-900 text-destructive-foreground hover:bg-destructive/90",
+          "bg-neutral0 text-neutral1 border-neutral3 hover:bg-neutral3",
         s_disable:
-          "bg-blue-300 text-destructive-foreground hover:bg-destructive/90",
+          "bg-neutral3 text-neutral5",
         m_disable:
-          "bg-blue-500 text-destructive-foreground hover:bg-destructive/90",
+          "bg-neutral3 text-neutral5",
         l_disable:
-          "bg-blue-900 text-destructive-foreground hover:bg-destructive/90",
+          "bg-neutral3 text-neutral5",
       },
       size: {
         sm: "h-[36px] rounded-md px-[8px] py-[16px]",
