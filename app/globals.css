@@ -22,220 +22,223 @@
     --primary: 0 0% 9%;
     --primary-foreground: 0 0% 98%;
 
-    --neutral-0: 0 250% 250%;
+    --neutral0: 0 0% 98%;
     --neutral-foreground: 0 0% 98%;
 
-    --neutral-50: 245 245% 245%;
+    --neutral1: 0 0% 96%;
     --neutral-foreground: 0 0% 98%;
 
-    --neutral-100: 238 238% 238%;
+    --neutral2: 0 0% 93%;
     --neutral-foreground: 0 0% 98%;
 
-    --neutral-200: 224% 224% 224%;
+    --neutral3: 0 0% 88%;
     --neutral-foreground: 0 0% 98%;
 
-    --neutral-300: 189 189% 189%;
+    --neutral400: 0 0% 74%;
     --neutral-foreground: 0 0% 98%;
 
-    --neutral-400: 158 158% 158%;
+    --neutral5: 0 0% 62%;
     --neutral-foreground: 0 0% 98%;
 
-    --neutral-500: 117 117% 117%;
+    --neutral6: 0 0% 46%;
     --neutral-foreground: 0 0% 98%;
 
-    --neutral-600: 97 97% 97%;
+    --neutral7: 0 0% 38%;
     --neutral-foreground: 0 0% 98%;
 
-    --neutral-700: 66 66% 66%;
+    --neutral8: 0 0% 26%;
     --neutral-foreground: 0 0% 98%;
 
-    --neutral-800: 45 45% 45%;
+    --neutral9: 0 0% 17%;
     --neutral-foreground: 0 0% 98%;
 
-    --neutral-900: 36 35% 35%;
+    --neutral10: 0 2% 14%;
     --neutral-foreground: 0 0% 98%;
 
-    --neutral-1000: 26 26% 26%;
+    --neutral11: 0 0% 10%;
     --neutral-foreground: 0 0% 98%;
 
-    --red-50: 252 234% 230%;
+    --red1: 11 79% 95%;
     --red-foreground: 0 0% 98%;
 
-    --red-100: 246 189% 176%;
+    --red2: 11 80% 83%;
     --red-foreground: 0 0% 98%;
 
-    --red-200: 242 157% 138%;
+    --red3: 11 80% 75%;
     --red-foreground: 0 0% 98%;
 
-    --red-300: 236 113% 84%;
+    --red4: 11 80% 63%;
     --red-foreground: 0 0% 98%;
 
-    --red-400: 233 85% 51%;
+    --red5: 11 81% 56%;
     --red-foreground: 0 0% 98%;
 
-    --red-500: 227 43% 0%;
+    --red6: 11 100% 45%;
     --red-foreground: 0 0% 98%;
 
-    --red-600: 207 39% 0%;
+    --red7: 11 100% 41%;
     --red-foreground: 0 0% 98%;
 
-    --red-700: 161 31% 0%;
+    --red8: 12 100% 32%;
     --red-foreground: 0 0% 98%;
 
-    --red-800: 125 24% 0%;
+    --red9: 12 100% 25%;
     --red-foreground: 0 0% 98%;
 
-    --red-900: 95 18% 0%;
+    --red10: 11 100% 19%;
     --red-foreground: 0 0% 98%;
 
-    --blue-50: 233 235% 255%;
+    --blue1: 235 100% 96%;
     --blue-foreground: 0 0% 98%;
 
-    --blue-100: 187 192% 255%;
+    --blue2: 236 100% 87%;
     --blue-foreground: 0 0% 98%;
 
-    --blue-200: 154 161% 255%;
+    --blue3: 236 100% 80%;
     --blue-foreground: 0 0% 98%;
 
-    --blue-300: 108 118% 255%;
+    --blue4: 236 100% 71%;
     --blue-foreground: 0 0% 98%;
 
-    --blue-400: 79 92% 255%;
+    --blue5: 236 100% 65%;
     --blue-foreground: 0 0% 98%;
 
-    --blue-500: 35 51% 255%;
+    --blue6: 236 100% 57%;
     --blue-foreground: 0 0% 98%;
 
-    --blue-600: 32 46% 232%;
+    --blue7: 236 81% 52%;
     --blue-foreground: 0 0% 98%;
 
-    --blue-700: 25 36% 181%;
+    --blue8: 236 76% 40%;
     --blue-foreground: 0 0% 98%;
 
-    --blue-800: 19 28% 140%;
+    --blue9: 236 76% 31%;
     --blue-foreground: 0 0% 98%;
 
-    --blue-900: 15 21% 107%;
+    --blue10: 236 75% 24%;
     --blue-foreground: 0 0% 98%;
 
-    --warning-50: 255 249% 230%;
+    --warning1: 46 100% 95%;
     --warning-foreground: 0 0% 98%;
 
-    --warning-100: 255 236% 178%;
+    --warning2: 46 100% 95%;
     --warning-foreground: 0 0% 98%;
 
-    --warning-200: 255 226% 141%;
+    --warning2: 45 100% 85%;
     --Warning-foreground: 0 0% 98%;
 
-    --warning-300: 255 213% 89%;
+    --warning3: 45 100% 78%;
     --warning-foreground: 0 0% 98%;
 
-    --warning-400: 255 205% 57%;
+    --warning4: 45 100% 67%;
     --warning-foreground: 0 0% 98%;
 
-    --warning-500: 255 193% 7%;
+    --warning5: 45 100% 61%;
     --warning-foreground: 0 0% 98%;
 
-    --warning-600: 232 176% 6%;
+    --warning6: 45 100% 51%;
     --warning-foreground: 0 0% 98%;
 
-    --warning-700: 181 137% 5%;
+    --warning7: 45 95% 47%;
     --warning-foreground: 0 0% 98%;
 
-    --warning-800: 140 106% 4%;
+    --warning8: 45 95% 36%;
     --warning-foreground: 0 0% 98%;
 
-    --warning-900: 107 81% 3%;
+    --warning9: 45 94% 28%;
     --warning-foreground: 0 0% 98%;
 
-    --error-50: 254 236% 235%;
+    --warning10: 45 95% 22%;
+    --warning-foreground: 0 0% 98%;
+
+    --error1: 3 90% 96%;
     --error-foreground: 0 0% 98%;
 
-    --error-100: 252 197% 193%;
+    --error2: 4 91% 87%;
     --error-foreground: 0 0% 98%;
 
-    --error-200: 250 169% 163%;
+    --error3: 4 90% 81%;
     --error-foreground: 0 0% 98%;
 
-    --error-300: 248 129% 120%;
+    --error4: 4 90% 72%;
     --error-foreground: 0 0% 98%;
 
-    --error-400: 246 105% 94%;
+    --error5: 4 89% 67%;
     --error-foreground: 0 0% 98%;
 
-    --error-500: 244 67% 54%;
+    --error6: 4 90% 58%;
     --error-foreground: 0 0% 98%;
 
-    --error-600: 222 61% 49%;
+    --error7: 4 72% 53%;
     --error-foreground: 0 0% 98%;
 
-    --error-700: 173 48% 38%;
+    --error8: 4 64% 41%;
     --error-foreground: 0 0% 98%;
 
-    --error-800: 134 37% 30%;
+    --error9: 4 63% 32%;
     --error-foreground: 0 0% 98%;
 
-    --error-900: 102 28% 23%;
+    --error10: 4 63% 25%;
     --error-foreground: 0 0% 98%;
 
-    --info-50: 233 245% 254%;
+    --info1: 206 91% 95%;
     --info-foreground: 0 0% 98%;
 
-    --info-100: 186 222% 251%;
+    --info2: 207 89% 86%;
     --info-foreground: 0 0% 98%;
 
-    --info-200: 153 207% 249%;
+    --info3: 206 89% 79%;
     --info-foreground: 0 0% 98%;
 
-    --info-300: 106 185% 247%;
+    --info4: 206 90% 69%;
     --info-foreground: 0 0% 98%;
 
-    --info-400: 77 171% 245%;
+    --info5: 206 89% 63%;
     --info-foreground: 0 0% 98%;
 
-    --info-500: 33 150% 243%;
+    --info6: 207 90% 54%;
     --info-foreground: 0 0% 98%;
 
-    --info-600: 30 137% 221%;
+    --info7: 206 76% 49%;
     --info-foreground: 0 0% 98%;
 
-    --info-700: 23 107% 173%;
+    --info8: 206 77% 38%;
     --info-foreground: 0 0% 98%;
 
-    --info-800: 18 83% 134%;
+    --info9: 206 76% 30%;
     --info-foreground: 0 0% 98%;
 
-    --info-900: 14 63% 102%;
+    --info10: 207 76% 23%;
     --info-foreground: 0 0% 98%;
 
-    --success-50: 237 247% 238%;
+    --success1: 126 38% 95%;
     --success-foreground: 0 0% 98%;
 
-    --success-100: 200 230% 201%;
+    --success2: 122 38% 84%;
     --success-foreground: 0 0% 98%;
 
-    --success-200: 173 218% 175%;
+    --success3: 123 38% 77%;
     --success-foreground: 0 0% 98%;
 
-    --success-300: 135 201% 138%;
+    --success4: 123 38% 66%;
     --success-foreground: 0 0% 98%;
 
-    --success-400: 112 191% 115%;
+    --success5: 122 38% 59%;
     --success-foreground: 0 0% 98%;
 
-    --success-500: 76 175% 80%;
+    --success6: 122 39% 49%;
     --success-foreground: 0 0% 98%;
 
-    --success-600: 69 159% 73%;
+    --success7: 123 39% 45%;
     --success-foreground: 0 0% 98%;
 
-    --success-700: 54 124% 57%;
+    --success8: 123 39% 35%;
     --success-foreground: 0 0% 98%;
 
-    --success-800: 42 96% 44%;
+    --success9: 122 39% 27%;
     --success-foreground: 0 0% 98%;
 
-    --success-900: 32 74% 34%;
+    --success10: 123 40% 21%;
     --success-foreground: 0 0% 98%;
 
     --secondary: 0 0% 96.1%;
