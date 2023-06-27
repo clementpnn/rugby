@@ -18,7 +18,6 @@ const useCSVFileReader = () => {
         reject(errorMessage)
       })
 
-      // eslint-disable-next-line unicorn/prefer-blob-reading-methods
       fileReader.readAsText(file)
     })
   }
