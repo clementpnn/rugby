@@ -1,6 +1,7 @@
 import getCurrentUser from '@/actions/getCurrentUser'
 import SignInModal from '@/components/modals/SignInModal'
 import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge";
 
 export default async function Home() {
   const currentUser = await getCurrentUser()
@@ -16,6 +17,11 @@ export default async function Home() {
       <Button variant={'s_disable'} size={'sm'}>Alohomora</Button>
       <Button variant={'m_disable'} size={'me'}>Morsmordre</Button>
       <Button variant={'l_disable'} size={'lg'}>Accio</Button>
+        <div>
+            <Badge variant='progress'>progress</Badge>
+            <Badge variant='rejected'>rejected</Badge>
+            <Badge variant='accepted'>accepted</Badge>
+        </div>
     </>
   )
 }
