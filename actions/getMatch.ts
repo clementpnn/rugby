@@ -23,7 +23,7 @@ export default async function getGame(parameters: IParameters) {
             }
         })
 
-        const games = await prisma.game.findMany({
+        const games = await prisma.match.findMany({
             where: { id },
             include: {
                 teams: true

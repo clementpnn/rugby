@@ -18,7 +18,7 @@ export default async function getDemands(parameters: IParameters) {
                 createdAt: 'desc'
             },
             include: {
-                game: {
+                match: {
                   include: {
                     stadium: true,
                     teams: true
