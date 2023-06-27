@@ -15,35 +15,35 @@ const StadiumForm = () => {
 
   const { handleSubmit, control, formState: { errors } } = useForm<Stadium>({
     resolver: zodResolver(StadiumSchema),
-    defaultValues: { name: '', adress: ''},
+    defaultValues: { name: '', adress: '' },
     mode: 'onChange'
   })
 
   // eslint-disable-next-line unicorn/consistent-function-scoping
   const onSubmit: SubmitHandler<Stadium> = async (data) => {
-      setIsloading(true)
+    setIsloading(true)
 
-      await fetch('/api/...', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data)
-        })
-        .then(() => {
-          toast.success('ok')
-        })
-        .catch(error => toast.error(`${error}`))
-        .finally(() => setIsloading(false))
+    await fetch('/api/...', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    })
+      .then(() => {
+        toast.success('ok')
+      })
+      .catch(error => toast.error(`${error}`))
+      .finally(() => setIsloading(false))
   }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-        <Controller name="name" control={control} render={({ field }) => <Input id='name' label='Nom du stade' {...field} errors={errors} disabled={isLoading} />} />
-        <Controller name="adress" control={control} render={({ field }) => <Input id='adress' label='Adresse' {...field} errors={errors} disabled={isLoading} />} />
-        <div>
-            <Button disabled={isLoading} type='submit'>
+      <Controller name="name" control={control} render={({ field }) => <Input id='name' label='Nom du stade' {...field} errors={errors} disabled={isLoading} />} />
+      <Controller name="adress" control={control} render={({ field }) => <Input id='adress' label='Adresse' {...field} errors={errors} disabled={isLoading} />} />
+      <div>
+        <Button disabled={isLoading} type='submit'>
                 Ajouter un stade
-            </Button>
-        </div>
+        </Button>
+      </div>
     </form>
   )
 }

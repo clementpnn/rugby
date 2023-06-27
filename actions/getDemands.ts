@@ -5,31 +5,31 @@ interface IParameters {
 }
 
 export default async function getDemands(parameters: IParameters) {
-    try {
-        const { userId } = parameters
+  try {
+    const { userId } = parameters
 
-        if (!userId) {
-            return
-        }
-
-        const demands = await prisma.demand.findMany({
-            where: { userId },
-            orderBy: {
-                createdAt: 'desc'
-            },
-            include: {
-                match: {
-                  include: {
-                    stadium: true,
-                    teams: true
-                  }
-                }
-            }
-        })
-
-        return demands
-
-    } catch (error: any) {
-        throw new Error(error)
+    if (!userId) {
+      return
     }
+
+    const demands = await prisma.demand.findMany({
+      where: { userId },
+      orderBy: {
+        createdAt: 'desc'
+      },
+      include: {
+        match: {
+          include: {
+            stadium: true,
+            teams: true
+          }
+        }
+      }
+    })
+
+    return demands
+
+  } catch (error: any) {
+    throw new Error(error)
+  }
 }
