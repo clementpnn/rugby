@@ -2,7 +2,7 @@ const useCreatePassword = (length = 8) => {
   const lowerCase = 'abcdefghijklmnopqrstuvwxyz'
   const upperCase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
   const numbers = '0123456789'
-  const specialChars = '!@#$%^&*()-_=+'
+  const specialChars = '!#$%&()-_'
 
   const getRandom = (charset: string) => charset.charAt(Math.floor(Math.random() * charset.length))
   let password = getRandom(lowerCase) + getRandom(upperCase) + getRandom(numbers) + getRandom(specialChars)
