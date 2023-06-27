@@ -83,6 +83,9 @@ export default {
 
         neutral10 : "hsl(var(--neutral10))",
           foreground: "hsl(var(--neutral-foreground))", 
+        
+        neutral11 : "hsl(var(--neutral11))",
+          foreground: "hsl(var(--neutral-foreground))",
 
         
         red1: "hsl(var(--red1))",

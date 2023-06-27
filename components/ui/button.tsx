@@ -10,28 +10,28 @@ const buttonVariants = cva(
     variants: {
       variant: {
         s_fill:
-          "bg-blue2 text-white hover:bg-red-100",
+          "bg-blue7 text-neutral0 hover:bg-blue5",
         m_fill:
           "bg-blue7 text-neutral0 hover:bg-blue5",
         l_fill:
           "bg-blue7 text-neutral0 hover:bg-blue5",
         s_outline:
-          "bg-neutral0 text-neutral1 border-neutral3 hover:bg-neutral3",
+          "bg-neutral0 text-neutral11 border border-neutral4 hover:bg-neutral4",
         m_outline:
-          "bg-neutral0 text-neutral1 border-neutral3 hover:bg-neutral3",
+          "bg-neutral0 text-neutral11 border border-neutral4 hover:bg-neutral4",
         l_outline:
-          "bg-neutral0 text-neutral1 border-neutral3 hover:bg-neutral3",
+          "bg-neutral0 text-neutral11 border border-neutral4 hover:bg-neutral4",
         s_disable:
-          "bg-neutral3 text-neutral5",
+          "bg-neutral4 text-neutral6",
         m_disable:
-          "bg-neutral3 text-neutral5",
+          "bg-neutral4 text-neutral6",
         l_disable:
-          "bg-neutral3 text-neutral5",
+          "bg-neutral4 text-neutral6",
       },
       size: {
-        sm: "h-[36px] rounded-md px-[8px] py-[16px]",
-        me: "h-[48px] rounded-md px-[12px] py-[20px]",
-        lg: "h-[52px] rounded-md px-[12px] py-[24px]",
+        sm: "h-[36px] rounded-md px-[8px] py-[16px] mx-[4px]",
+        me: "h-[48px] rounded-md px-[12px] py-[20px] mx-[4px]",
+        lg: "h-[52px] rounded-md px-[12px] py-[24px] mx-[4px]",
       },
     },
   }
