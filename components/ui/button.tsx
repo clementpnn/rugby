@@ -10,7 +10,7 @@ const buttonVariants = cva(
     variants: {
       variant: {
         s_fill:
-          "bg-Blue-800 text-white hover:bg-red-100",
+          "bg-blue2 text-white hover:bg-red-100",
         m_fill:
           "bg-red-500 text-destructive-foreground hover:bg-destructive/90",
         l_fill:
