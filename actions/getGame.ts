@@ -5,7 +5,7 @@ interface IParameters {
     userId?: string
 }
 
-export default async function getReservations(parameters: IParameters) {
+export default async function getGame(parameters: IParameters) {
     try {
         const { id, userId } = parameters
 

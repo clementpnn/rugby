@@ -1,6 +1,6 @@
 import prisma from '@/libs/prismadb'
 
-export default async function getListings() {
+export default async function getAllTeams() {
     try {
         const teams = await prisma.team.findMany()
 

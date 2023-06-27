@@ -7,7 +7,7 @@ import { z } from 'zod'
 import ky from 'ky'
 import { toast } from 'react-hot-toast'
 
-import { MFASchema } from '@/types/Auth.d'
+import { MFASchema } from '@/types/Forms'
 import Input from '../inputs/Input'
 import useUser from '@/hooks/useUser'
 import { signIn } from 'next-auth/react'

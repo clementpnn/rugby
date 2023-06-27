@@ -9,7 +9,7 @@ import { z } from 'zod'
 
 import Input from '../inputs/Input'
 import Button from '../buttons/Button'
-import { LoginSchema } from '@/types/Auth.d'
+import { LoginSchema } from '@/types/Forms'
 import useUser from '@/hooks/useUser'
 import useStep, { STEPS } from '@/hooks/useStep'
 
