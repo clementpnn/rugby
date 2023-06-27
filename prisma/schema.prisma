@@ -158,11 +158,12 @@ enum STATE {
 }
 
 model Demand {
-  id       String   @id @default(auto()) @map("_id") @db.ObjectId
-  userId   String   @db.ObjectId
-  gameId   String   @db.ObjectId
-  spaceId  String?  @db.ObjectId
-  state    STATE
+  id         String    @id @default(auto()) @map("_id") @db.ObjectId
+  userId     String    @db.ObjectId
+  gameId     String    @db.ObjectId
+  spaceId    String?   @db.ObjectId
+  state      STATE
+  createdAt  DateTime  @default(now())
 
   user  User    @relation(fields: [userId], references: [id], onDelete: Cascade)
   game  Game    @relation(fields: [gameId], references: [id], onDelete: Cascade)
