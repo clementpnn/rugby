@@ -30,7 +30,7 @@ const MFAForm = () => {
     setIsloading(true)
     const mfaToken = `${Number(data.numberOne)}${Number(data.numberTwo)}${Number(data.numberThree)}${Number(data.numberFour)}${Number(data.numberFive)}${Number(data.numberSix)}`
 
-    await fetch('/api/mfa', {
+    await fetch('/api//create/mfa', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ mfaToken })

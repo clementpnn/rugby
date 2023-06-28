@@ -20,7 +20,7 @@ const CSVForm = () => {
       try {
         // eslint-disable-next-line react-hooks/rules-of-hooks
         const password = useCreatePassword()
-        fetch('/api/userRegister', {
+        fetch('/api//create/user', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ ...items, password })
