@@ -6,23 +6,23 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { toast } from 'react-hot-toast'
 
 import { StadiumSchema } from '@/types/forms'
-import Input from '../inputs/Input'
 import Button from '../buttons/Button'
-import { Stadium } from '@prisma/client'
+import { Team } from '@prisma/client'
+import Select from '../inputs/Select'
 
-const StadiumForm = () => {
+const TeamForm = () => {
   const [isLoading, setIsloading] = useState(false)
 
-  const { handleSubmit, control, formState: { errors } } = useForm<Stadium>({
+  const { handleSubmit, control } = useForm<Team>({
     resolver: zodResolver(StadiumSchema),
-    defaultValues: { name: '', adress: '' },
+    defaultValues: { country: '', poule: 'A' },
     mode: 'onChange'
   })
 
-  const onSubmit: SubmitHandler<Stadium> = async (data) => {
+  const onSubmit: SubmitHandler<Team> = async (data) => {
     setIsloading(true)
 
-    await fetch('/api/create/stadium', {
+    await fetch('/api/create/team', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
@@ -36,15 +36,15 @@ const StadiumForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Controller name="name" control={control} render={({ field }) => <Input id='name' label='Nom du stade' {...field} errors={errors} disabled={isLoading} />} />
-      <Controller name="adress" control={control} render={({ field }) => <Input id='adress' label='Adresse' {...field} errors={errors} disabled={isLoading} />} />
+      <Controller name="poule" control={control} render={({ field }) => <Select label='poule' {...field} disabled={isLoading} options={[{ value: 'A', label: 'Poule A' }, { value: 'B', label: 'Poule B' }, { value: 'C', label: 'Poule C' }, { value: 'D', label: 'Poule D' }]} />} />
+      {/* attendre lib pour country */}
       <div>
         <Button disabled={isLoading} type='submit'>
-                Ajouter un stade
+                Ajouter une team
         </Button>
       </div>
     </form>
   )
 }
 
-export default StadiumForm
+export default TeamForm

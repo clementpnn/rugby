@@ -4,11 +4,11 @@ import { useRouter, usePathname } from 'next/navigation'
 import { useEffect } from 'react'
 import { useSession } from 'next-auth/react'
 
-import AdminRegisterForm from '../forms/AdminRegisterForm'
 import useStep, { STEPS } from '@/hooks/useStep'
 import { User } from '@prisma/client'
-import LoginForm from '../forms/LoginForm'
-import MFAForm from '../forms/MFAForm'
+import LoginForm from '../forms/loginForm'
+import MFAForm from '../forms/mfaForm'
+import AdminForm from '../forms/adminForm'
 
 interface SignInModalProperties {
   currentUser?: User | null
@@ -35,7 +35,7 @@ const SignInModal: React.FC<SignInModalProperties> = ({ currentUser }) => {
     }
   }, [session?.status,currentUser?.role, router])
 
-  const { step, setStep } = useStep()
+  const { step } = useStep()
 
   let bodyContent = (
     <div>Loading...</div>
@@ -43,7 +43,7 @@ const SignInModal: React.FC<SignInModalProperties> = ({ currentUser }) => {
 
   if (step === STEPS.SIGNIN && pathname === '/adminRegister') {
     bodyContent = (
-      <AdminRegisterForm />
+      <AdminForm />
     )
   }
 

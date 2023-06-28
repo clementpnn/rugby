@@ -1,4 +1,4 @@
-import CSVForm from '@/components/forms/CSVForm'
+import CSVForm from '@/components/forms/csvForm'
 import SignOutButton from '@/components/buttons/SignOutButton'
 import getCurrentUser from '@/actions/getCurrentUser'
 
