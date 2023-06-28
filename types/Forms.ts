@@ -1,43 +1,47 @@
 import { z } from 'zod'
 
-export const AdminRegisterSchema = z.object({
-  firstName: z.string().nonempty({ message: 'Prénom est obligatoire' }),
-  lastName: z.string().nonempty({ message: 'Nom est obligatoire' }),
-  role: z.string().nonempty({ message: 'Role est obligatoire' }),
-  email: z.string().email({ message: 'Email non valide' }),
+export const AdminSchema = z.object({
+  firstName: z.string().nonempty({ message: 'Required' }),
+  lastName: z.string().nonempty({ message: 'Required' }),
+  role: z.string().nonempty({ message: 'Required' }),
+  email: z.string().email({ message: 'Invalid email format' }),
   password: z.string()
-    .nonempty({ message: 'Password est obligatoire' })
+    .nonempty({ message: 'Required' })
     .min(8, { message: 'Mot de passe doit contenir au moins 8 caractères' })
     .refine(
+      (value) => /[a-z]/.test(value),
+      { message: 'Password must contain at least one lowercase letter' }
+    )
+    .refine(
       (value) => /[A-Z]/.test(value),
-      { message: 'Mot de passe doit contenir au moins une majuscule' }
+      { message: 'Password must contain at least one capital letter' }
     )
     .refine(
       (value) => /\d/.test(value),
-      { message: 'Mot de passe doit contenir au moins un chiffre' }
+      { message: 'Password must contain at least one number' }
     )
     .refine(
       (value) => /[\W_]/.test(value),
-      { message: 'Mot de passe doit contenir au moins un caractère spécial' }
+      { message: 'Password must contain at least one special character' }
     ),
-  confirmPassword: z.string().nonempty({ message: 'Confirm Password est obligatoire' })
+  confirmPassword: z.string().nonempty({ message: 'Required' })
 }).refine((data) => data.password === data.confirmPassword, {
-  message: 'Les mots de passe doivent correspondre',
+  message: 'Passwords must match',
   path: ['confirmPassword']
 })
 
 export const LoginSchema = z.object({
-  email: z.string().email({ message: 'Email non valide' }),
+  email: z.string().email({ message: 'Invalid email format' }),
   password: z.string().nonempty({ message: 'Password est obligatoire' })
 })
 
-export const UserRegisterShema = z.object({
-  accreditationId: z.string().nonempty({ message: 'AccreditationId est obligatoire' }),
-  firstName: z.string().nonempty({ message: 'FirstName est obligatoire' }),
-  lastName: z.string().nonempty({ message: 'LastName est obligatoire' }),
-  company: z.string().nonempty({ message: 'Company est obligatoire' }),
-  job: z.string().refine(value => value === 'JOURNALIST' || value === 'PHOTOGRAPHER', { message: 'Job non valide' }),
-  email: z.string().email({ message: 'Email non valide' })
+export const UserSchema = z.object({
+  accreditationId: z.string().nonempty({ message: 'Required' }),
+  firstName: z.string().nonempty({ message: 'Required' }),
+  lastName: z.string().nonempty({ message: 'Required' }),
+  company: z.string().nonempty({ message: 'Required' }),
+  job: z.string().refine(value => value === 'JOURNALIST' || value === 'PHOTOGRAPHER', { message: 'Invalid Job' }),
+  email: z.string().email({ message: 'Invalid email format' })
 })
 
 export const MFASchema = z.object({
@@ -50,6 +54,29 @@ export const MFASchema = z.object({
 })
 
 export const StadiumSchema = z.object({
-  name: z.string().nonempty({ message: 'Name est obligatoire' }),
-  address: z.string().nonempty({ message: 'Adresse est obligatoire' })
+  name: z.string().nonempty({ message: 'Required' }),
+  address: z.string().nonempty({ message: 'Required' })
+})
+
+export const SpaceSchema = z.object({
+  stadiumId: z.string().nonempty({ message: 'Required' }),
+  type: z.string().refine(value => value === 'JOURNALIST' || value === 'PHOTOGRAPHER', { message: 'Invalid Job' }),
+  places: z.string().transform(Number)
+})
+
+export const TeamSchema = z.object({
+  country: z.string().nonempty({ message: 'Required' }),
+  poule: z.string().refine(value => value === 'A' || value === 'B' || value === 'C' || value === 'D', { message: 'Invalid Poule' })
+})
+
+export const MatchSchema = z.object({
+  date: z.string().transform(value => new Date(value)),
+  type: z.string().refine(value => value === 'POULE' || value === 'QUARTERFINAL' || value === 'SEMI_FINAL' || value === 'FINAL', { message: 'Invalid Type' }),
+  stadiumId: z.string().nonempty({ message: 'Required' })
+})
+
+export const DemandSchema = z.object({
+  userId: z.string().nonempty({ message: 'Required' }),
+  matchId: z.string().nonempty({ message: 'Required' }),
+  state: z.string().refine(value => value === 'ACCEPTED' || value === 'IN_PROGRESS' || value === 'REJECTED', { message: 'Invalid State' })
 })
