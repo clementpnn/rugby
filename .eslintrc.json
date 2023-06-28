@@ -4,9 +4,6 @@
     "plugin:unicorn/all"
   ],
   "rules": {
-    "unicorn/filename-case": [
-      "off"
-    ],
     "unicorn/no-keyword-prefix": [
       "off"
     ],
@@ -15,13 +12,13 @@
     ],
     "unicorn/prefer-blob-reading-methods": [
       "off"
+    ],
+    "unicorn/filename-case": [
+      "error",
+      {
+        "case": "camelCase"
+      }
     ]
-    // "unicorn/filename-case": [
-    //   "error",
-    //   {
-    //     "case": "camelCase"
-    //   }
-    // ]
     // "quotes": ["error", "single"],
     // "semi": ["error", "never"],
     // "no-var": "error",

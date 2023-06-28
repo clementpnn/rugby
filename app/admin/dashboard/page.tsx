@@ -1,5 +1,5 @@
 import CSVForm from '@/components/forms/csvForm'
-import SignOutButton from '@/components/buttons/SignOutButton'
+import SignOutButton from '@/components/buttons/signOutButton'
 import getCurrentUser from '@/actions/getCurrentUser'
 
 const page = async () => {

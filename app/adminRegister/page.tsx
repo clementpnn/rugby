@@ -1,5 +1,5 @@
 import getCurrentUser from '@/actions/getCurrentUser'
-import SignInModal from '@/components/modals/SignInModal'
+import SignInModal from '@/components/modals/signInModal'
 
 const page = async () => {
   const currentUser = await getCurrentUser()

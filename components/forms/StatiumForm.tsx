@@ -6,8 +6,8 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { toast } from 'react-hot-toast'
 
 import { StadiumSchema } from '@/types/forms'
-import Input from '../inputs/Input'
-import Button from '../buttons/Button'
+import Input from '../inputs/input'
+import Button from '../buttons/button'
 import { Stadium } from '@prisma/client'
 
 const StadiumForm = () => {

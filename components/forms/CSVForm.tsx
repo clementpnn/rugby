@@ -2,9 +2,9 @@
 
 import { ChangeEvent, useState } from 'react'
 
-import useCSVToArray, { FileRow } from '@/hooks/useCSVToArray'
+import useCSVToArray, { FileRow } from '@/hooks/useCsvToArray'
 import useCreatePassword from '@/hooks/useCreatePassword'
-import useCSVFileReader from '@/hooks/useCSVFileReader'
+import useCSVFileReader from '@/hooks/useCsvFileReader'
 import toast from 'react-hot-toast'
 import { UserSchema } from '@/types/forms'
 

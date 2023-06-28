@@ -5,10 +5,10 @@ import { SubmitHandler, useForm, Controller } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { toast } from 'react-hot-toast'
 
-import Button from '../buttons/Button'
+import Button from '../buttons/button'
 import { AdminSchema } from '@/types/forms'
-import Input from '../inputs/Input'
-import Select from '../inputs/Select'
+import Input from '../inputs/input'
+import Select from '../inputs/select'
 import { User } from '@prisma/client'
 import useStep, { STEPS } from '@/hooks/useStep'
 import useUser from '@/hooks/useUser'
@@ -33,10 +33,10 @@ const AdminForm = () => {
       body: JSON.stringify(data)
     })
       .then((callback) => {
-          toast.success('Email send')
-          setStep(step + 1 as STEPS)
-          setEmail(data.email)
-          setPassword(data.password)
+        toast.success('Email send')
+        setStep(step + 1 as STEPS)
+        setEmail(data.email)
+        setPassword(data.password)
       })
       .catch(error => toast.error(`${error}`))
       .finally(() => setIsloading(false))
@@ -45,11 +45,11 @@ const AdminForm = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Controller name="firstName" control={control} render={({ field }) => <Input id='firstName' label='Prénom' {...field} errors={errors} disabled={isLoading} />} />
-        <Controller name="lastName" control={control} render={({ field }) => <Input id='lastName' label='Nom' {...field} errors={errors} disabled={isLoading} />} />
-        <Controller name="role" control={control} render={({ field }) => <Select label='role' {...field} disabled={isLoading} options={[{ value: 'ADMIN', label: 'Admin' }, { value: 'DEV', label: 'Dev' }]} />} />
-        <Controller name="email" control={control} render={({ field }) => <Input id='email' label='email' type='email' {...field} errors={errors} disabled={isLoading} />} />
-        <Controller name="password" control={control} render={({ field }) => <Input id='password' label='Mot de passe' type='password' {...field} errors={errors} disabled={isLoading} />} />
-        <Controller name="confirmPassword" control={control} render={({ field }) => <Input id='confirmPassword' label='Confirmez le mot de passe' type='password' {...field} errors={errors} disabled={isLoading} />} />
+      <Controller name="lastName" control={control} render={({ field }) => <Input id='lastName' label='Nom' {...field} errors={errors} disabled={isLoading} />} />
+      <Controller name="role" control={control} render={({ field }) => <Select label='role' {...field} disabled={isLoading} options={[{ value: 'ADMIN', label: 'Admin' }, { value: 'DEV', label: 'Dev' }]} />} />
+      <Controller name="email" control={control} render={({ field }) => <Input id='email' label='email' type='email' {...field} errors={errors} disabled={isLoading} />} />
+      <Controller name="password" control={control} render={({ field }) => <Input id='password' label='Mot de passe' type='password' {...field} errors={errors} disabled={isLoading} />} />
+      <Controller name="confirmPassword" control={control} render={({ field }) => <Input id='confirmPassword' label='Confirmez le mot de passe' type='password' {...field} errors={errors} disabled={isLoading} />} />
       <div>
         <Button disabled={isLoading} type='submit'>
                 Register

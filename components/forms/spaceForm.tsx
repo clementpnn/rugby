@@ -6,10 +6,10 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { toast } from 'react-hot-toast'
 
 import { SpaceSchema } from '@/types/forms'
-import Button from '../buttons/Button'
+import Button from '../buttons/button'
 import { Space } from '@prisma/client'
-import Select from '../inputs/Select'
-import Input from '../inputs/Input'
+import Select from '../inputs/select'
+import Input from '../inputs/input'
 
 const SpaceForm = () => {
   const [isLoading, setIsloading] = useState(false)
@@ -37,7 +37,7 @@ const SpaceForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-        {/* ajouter un select avec tous les sades */}
+      {/* ajouter un select avec tous les sades */}
       <Controller name="type" control={control} render={({ field }) => <Select label='type' {...field} disabled={isLoading} options={[{ value: 'JOURNALIST', label: 'journalist' }, { value: 'PHOTOGRAPHER', label: 'photographer' }]} />} />
       <Controller name="places" control={control} render={({ field }) => <Input id='numberFour' type='number' {...field} errors={errors} maxLength={1} disabled={isLoading} />} />
 

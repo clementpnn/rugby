@@ -6,9 +6,9 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { toast } from 'react-hot-toast'
 
 import { StadiumSchema } from '@/types/forms'
-import Button from '../buttons/Button'
+import Button from '../buttons/button'
 import { Team } from '@prisma/client'
-import Select from '../inputs/Select'
+import Select from '../inputs/select'
 
 const TeamForm = () => {
   const [isLoading, setIsloading] = useState(false)

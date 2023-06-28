@@ -6,11 +6,11 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { toast } from 'react-hot-toast'
 
 import { MFASchema } from '@/types/forms'
-import Input from '../inputs/Input'
+import Input from '../inputs/input'
 import useUser from '@/hooks/useUser'
 import { signIn } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
-import Button from '../buttons/Button'
+import Button from '../buttons/button'
 
 const MFAForm = () => {
   const router = useRouter()
@@ -33,16 +33,16 @@ const MFAForm = () => {
     })
       .then(() => {
         signIn('credentials', { email, password })
-        .then((callback) => {
-          if (callback?.ok) {
-            toast.success('Logged in !')
-            router.refresh()
+          .then((callback) => {
+            if (callback?.ok) {
+              toast.success('Logged in !')
+              router.refresh()
 
-          if (callback?.error) {
-              toast.error('Invalid credentials')
-          }
-          }
-      })
+              if (callback?.error) {
+                toast.error('Invalid credentials')
+              }
+            }
+          })
         toast.success('Sign In')
         router.refresh()
       })
