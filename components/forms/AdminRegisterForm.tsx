@@ -29,7 +29,7 @@ const AdminRegisterForm = () => {
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     setIsloading(true)
 
-    await fetch('/api/adminRegister', {
+    await fetch('/api/create/admin', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
