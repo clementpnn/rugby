@@ -18,7 +18,7 @@ const SignInModal: React.FC<SignInModalProperties> = ({ currentUser }) => {
   const router = useRouter()
   const session = useSession()
   const pathname = usePathname()
-  
+
   useEffect(() => {
     if (session?.status === 'authenticated') {
       if (currentUser?.role === 'USER') {
@@ -36,7 +36,7 @@ const SignInModal: React.FC<SignInModalProperties> = ({ currentUser }) => {
   }, [session?.status,currentUser?.role, router])
 
   const { step, setStep } = useStep()
-  
+
   let bodyContent = (
     <div>Loading...</div>
   )
