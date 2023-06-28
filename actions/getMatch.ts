@@ -14,12 +14,9 @@ export default async function getGame(parameters: IParameters) {
     }
 
     const existingDemand = await prisma.demand.findFirst({
-      where: {
-        userId: userId,
-        gameId: id,
-        state: {
-          in: ['ACCEPTED', 'IN_PROGRESS']
-        }
+      where: { userId: userId, matchId: id, state: {
+        in: ['ACCEPTED', 'IN_PROGRESS']
+      }
       }
     })
 

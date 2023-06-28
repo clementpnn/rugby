@@ -27,6 +27,10 @@ export default async function getDemands(parameters: IParameters) {
       }
     })
 
+    if (!demands) {
+      return
+    }
+
     return demands
 
   } catch (error: any) {
