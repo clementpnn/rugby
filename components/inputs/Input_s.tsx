@@ -1,6 +1,6 @@
 
-import {InputHTMLAttributes} from "react";
-import {FieldError, FieldErrors} from "react-hook-form";
+import {InputHTMLAttributes} from 'react'
+import {FieldError, FieldErrors} from 'react-hook-form'
 
 interface InputProperties extends InputHTMLAttributes<HTMLInputElement> {
     label?: string
@@ -8,11 +8,11 @@ interface InputProperties extends InputHTMLAttributes<HTMLInputElement> {
     errors?: FieldErrors
     maxLength?: number
 }
-const Input_s: React.FC<InputProperties> = ({ label,icon, id, type = 'text', errors, disabled, maxLength = 200, ...rest }) => {
+const Input_s: React.FC<InputProperties> = ({ label, id, type = 'text', errors, disabled, maxLength = 200, ...rest }) => {
     const error = errors ? errors[id] as FieldError : undefined
     return (
         <>
-            {label && <label className={`text-gray-400`} htmlFor={id}>{label}</label>}
+            {label && <label className={`text-gray-400 py-4`} htmlFor={id}>{label}</label>}
             <div>
                 <input
                     id={id}
@@ -23,7 +23,7 @@ const Input_s: React.FC<InputProperties> = ({ label,icon, id, type = 'text', err
                     {...rest}
                     className={`block ring-1 ring-inset ring-gray-300 h-[36px] w-[100%] ${disabled && 'opacity-50 cursor-default'}`}
                 />
-                {error && <p className="text-red-500 mt-2">{error.message}</p>}
+                {error && <p className='text-red-500 mt-2'>{error.message}</p>}
             </div>
         </>
     )
