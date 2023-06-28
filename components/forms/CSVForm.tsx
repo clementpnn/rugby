@@ -6,7 +6,7 @@ import useCSVToArray, { FileRow } from '@/hooks/useCSVToArray'
 import useCreatePassword from '@/hooks/useCreatePassword'
 import useCSVFileReader from '@/hooks/useCSVFileReader'
 import toast from 'react-hot-toast'
-import { UserRegisterShema } from '@/types/Auth.d'
+import { UserRegisterShema } from '@/types/Forms'
 
 const CSVForm = () => {
 
@@ -14,24 +14,22 @@ const CSVForm = () => {
   const [isLoading, setIsloading] = useState(false)
   const { error: fileReaderError, readCSVFile } = useCSVFileReader()
   const { csvFileToArray } = useCSVToArray()
-  
-  // eslint-disable-next-line unicorn/consistent-function-scoping
+
   const sendDataToBackend = async (data: FileRow[]) => {
     for (let items of data) {
-        try {
-            // eslint-disable-next-line react-hooks/rules-of-hooks
-            const password = useCreatePassword()
-            console.log({...items, password})
-            fetch('/api/userRegister', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({...items, password})
-              })
-              .catch(error => toast.error(`${error}`))
-              .finally(() => setIsloading(false))
-        } catch (error) {
-          toast.error(`${error}`)
-        }
+      try {
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        const password = useCreatePassword()
+        fetch('/api//create/user', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ ...items, password })
+        })
+          .catch(error => toast.error(`${error}`))
+          .finally(() => setIsloading(false))
+      } catch (error) {
+        toast.error(`${error}`)
+      }
     }
   }
 
@@ -49,7 +47,7 @@ const CSVForm = () => {
           const validatedRow = UserRegisterShema.parse(row)
           validatedRows.push(validatedRow)
         } catch (error: any) {
-          toast.error(`Validation error: ${error.message}`);
+          toast.error(`Validation error: ${error.message}`)
           return
         }
       }
@@ -67,17 +65,17 @@ const CSVForm = () => {
   }
 
   return (
-      <form>
-        <input onChange={handleFileChange} disabled={isLoading} id={'csvFileInput'} accept={'.csv'} type={'file'} />
-        <button onClick={(event) => {
-            event.preventDefault()
-            if (file) {
-              handleOnFileSubmit(file)
-            }
-        }}>
+    <form>
+      <input onChange={handleFileChange} disabled={isLoading} id={'csvFileInput'} accept={'.csv'} type={'file'} />
+      <button onClick={(event) => {
+        event.preventDefault()
+        if (file) {
+          handleOnFileSubmit(file)
+        }
+      }}>
           IMPORT CSV
-        </button>
-      </form>
+      </button>
+    </form>
   )
 }
 

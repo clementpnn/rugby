@@ -10,7 +10,7 @@ interface ButtonProperties {
   disabled?: boolean
 }
 
-const Button: React.FC<ButtonProperties> = ({type= 'button', fullWidth, children, onclick, secondary, danger, disabled}) => {
+const Button: React.FC<ButtonProperties> = ({ type= 'button', fullWidth, children, onclick, secondary, danger, disabled }) => {
   return (
     <button
       onClick={onclick}
