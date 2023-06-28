@@ -5,9 +5,9 @@ import { SubmitHandler, useForm, Controller } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { toast } from 'react-hot-toast'
 
-import Button from '../buttons/Button'
+import Button from '../buttons/button'
 import { LoginSchema } from '@/types/forms'
-import Input from '../inputs/Input'
+import Input from '../inputs/input'
 import useStep, { STEPS } from '@/hooks/useStep'
 import useUser from '@/hooks/useUser'
 
@@ -43,9 +43,9 @@ const LoginForm = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>      
-        <Controller name="email" control={control} render={({ field }) => <Input id='email' label='email' type='email' {...field} errors={errors} disabled={isLoading} />} />
-        <Controller name="password" control={control} render={({ field }) => <Input id='password' label='Mot de passe' type='password' {...field} errors={errors} disabled={isLoading} />} />
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <Controller name="email" control={control} render={({ field }) => <Input id='email' label='email' type='email' {...field} errors={errors} disabled={isLoading} />} />
+      <Controller name="password" control={control} render={({ field }) => <Input id='password' label='Mot de passe' type='password' {...field} errors={errors} disabled={isLoading} />} />
       <div>
         <Button disabled={isLoading} type='submit'>
                 Login

@@ -14,7 +14,7 @@ const buttonVariants = cva(
         outline:
           'bg-neutral0 text-neutral11 border border-neutral4 hover:bg-neutral4',
         disable:
-          'bg-neutral4 text-neutral6',
+          'bg-neutral4 text-neutral6'
       },
       size: {
         sm: 'h-[36px] rounded-md px-[8px] py-[16px] mx-[4px]',

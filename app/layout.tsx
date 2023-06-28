@@ -1,5 +1,5 @@
-import AuthProvider from '@/providers/AuthProvider'
-import ToasterProvider from '@/providers/ToasterProvider'
+import AuthProvider from '@/providers/authProvider'
+import ToasterProvider from '@/providers/toasterProvider'
 import './globals.css'
 
 import { Inter } from 'next/font/google'

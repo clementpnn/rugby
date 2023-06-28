@@ -19,11 +19,11 @@ const Select: React.FC<SelectProperties> = ({ label, name, value, onChange, opti
   <div className='block'>
     <label>{label}</label>
     <select name={name} disabled={disabled} onChange={onChange} value={value}>
-    {options.map((option, index) => (
+      {options.map((option, index) => (
         <option key={index} value={option.value}>
           {option.label}
         </option>
-    ))}
+      ))}
     </select>
   </div>
 )
