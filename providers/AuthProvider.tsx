@@ -7,5 +7,5 @@ interface AuthProviderProperties {
 }
 
 export default function AuthProvider({ children }: AuthProviderProperties) {
-    return <SessionProvider>{children}</SessionProvider>
+  return <SessionProvider>{children}</SessionProvider>
 }
