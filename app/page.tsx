@@ -34,7 +34,7 @@ export default async function Home() {
             <h3 className="text-neutral0 text-lg font-semibold">Tournament Pass</h3>
           </div>
           <div className="flex items-center">
-            <img src="logo.png" alt="Logo" className="h-6 w-6 ml-2" />
+            {/* <img src="logo.png" alt="Logo" className="h-6 w-6 ml-2" /> */}
           </div>
         </div>
         <CardHeader className='flex items-center'>
@@ -56,7 +56,7 @@ export default async function Home() {
         <CardContent>
         </CardContent>
         <CardFooter className='flex justify-between'>
-          <Button variant='s_outline' size={'sm'}>[ => Logoutx</Button>
+          <Button variant='s_outline' size={'sm'}>Logout</Button>
         </CardFooter>
       </Card>
 
