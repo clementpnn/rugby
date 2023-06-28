@@ -4,5 +4,4 @@ export default function AdminRegisterLayout({ children }: { children: React.Reac
       {children}
     </div>
   )
-  }
-  
+}

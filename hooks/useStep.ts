@@ -12,7 +12,7 @@ interface StepsStore {
 
 const useStep = create<StepsStore>((set) => ({
   step: STEPS.SIGNIN,
-  setStep: (_newStep: STEPS) => set({ step: _newStep }),
+  setStep: (_newStep: STEPS) => set({ step: _newStep })
 }))
 
 export default useStep

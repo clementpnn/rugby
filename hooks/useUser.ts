@@ -2,16 +2,16 @@ import { create } from 'zustand'
 
 interface UserStore {
   email: string
-  setEmail: (_newEmail: string) => void
+  setEmail: (newEmail: string) => void
   password: string
-  setPassword: (_newPassword: string) => void
+  setPassword: (newPassword: string) => void
 }
 
 const useUser = create<UserStore>(set => ({
   email: '',
-  setEmail: (_newEmail: string) => set({ email: _newEmail }),
+  setEmail: (newEmail: string) => set({ email: newEmail }),
   password: '',
-  setPassword: (_newPassword: string) => set({ password: _newPassword })
+  setPassword: (newPassword: string) => set({ password: newPassword })
 }))
 
 export default useUser
