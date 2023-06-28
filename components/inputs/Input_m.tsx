@@ -12,7 +12,7 @@ const Input_m: React.FC<InputProperties> = ({ label, id, type = 'text', errors, 
     const error = errors ? errors[id] as FieldError : undefined
     return (
         <>
-            {label && <label className={`text-gray-400`} htmlFor={id}>{label}</label>}
+            {label && <label className={`text-gray-400 py-4`} htmlFor={id}>{label}</label>}
             <div>
                 <input
                     id={id}
