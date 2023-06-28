@@ -1,12 +1,11 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { SubmitHandler, useForm, Controller } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { z } from 'zod'
 import { toast } from 'react-hot-toast'
 
-import { MFASchema } from '@/types/Forms'
+import { MFASchema } from '@/types/forms'
 import Input from '../inputs/Input'
 import useUser from '@/hooks/useUser'
 import { signIn } from 'next-auth/react'
@@ -18,25 +17,32 @@ const MFAForm = () => {
   const [isLoading, setIsloading] = useState(false)
   const { email, password } = useUser()
 
-  type FormData = z.infer<typeof MFASchema>
-
-  const { handleSubmit, control, formState: { errors } } = useForm<FormData>({
+  const { handleSubmit, control, formState: { errors } } = useForm({
     resolver: zodResolver(MFASchema),
     mode: 'onChange'
   })
 
-  // eslint-disable-next-line unicorn/consistent-function-scoping
-  const onSubmit: SubmitHandler<FormData> = async (data) => {
+  const onSubmit: SubmitHandler<any> = async (data) => {
     setIsloading(true)
     const mfaToken = `${Number(data.numberOne)}${Number(data.numberTwo)}${Number(data.numberThree)}${Number(data.numberFour)}${Number(data.numberFive)}${Number(data.numberSix)}`
 
-    await fetch('/api//create/mfa', {
+    await fetch('/api/create/mfa', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ mfaToken })
     })
       .then(() => {
         signIn('credentials', { email, password })
+        .then((callback) => {
+          if (callback?.ok) {
+            toast.success('Logged in !')
+            router.refresh()
+
+          if (callback?.error) {
+              toast.error('Invalid credentials')
+          }
+          }
+      })
         toast.success('Sign In')
         router.refresh()
       })

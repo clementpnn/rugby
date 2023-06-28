@@ -6,10 +6,9 @@ import useCSVToArray, { FileRow } from '@/hooks/useCSVToArray'
 import useCreatePassword from '@/hooks/useCreatePassword'
 import useCSVFileReader from '@/hooks/useCSVFileReader'
 import toast from 'react-hot-toast'
-import { UserRegisterShema } from '@/types/Forms'
+import { UserSchema } from '@/types/forms'
 
 const CSVForm = () => {
-
   const [file, setFile] = useState<File | undefined>()
   const [isLoading, setIsloading] = useState(false)
   const { error: fileReaderError, readCSVFile } = useCSVFileReader()
@@ -20,7 +19,7 @@ const CSVForm = () => {
       try {
         // eslint-disable-next-line react-hooks/rules-of-hooks
         const password = useCreatePassword()
-        fetch('/api//create/user', {
+        fetch('/api/create/user', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ ...items, password })
@@ -44,7 +43,7 @@ const CSVForm = () => {
       let validatedRows = []
       for (let row of await array) {
         try {
-          const validatedRow = UserRegisterShema.parse(row)
+          const validatedRow = UserSchema.parse(row)
           validatedRows.push(validatedRow)
         } catch (error: any) {
           toast.error(`Validation error: ${error.message}`)
