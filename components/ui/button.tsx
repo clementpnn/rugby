@@ -9,24 +9,12 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        s_fill:
+        fill:
           'bg-blue7 text-neutral0 hover:bg-blue5',
-        m_fill:
-          'bg-blue7 text-neutral0 hover:bg-blue5',
-        l_fill:
-          'bg-blue7 text-neutral0 hover:bg-blue5',
-        s_outline:
+        outline:
           'bg-neutral0 text-neutral11 border border-neutral4 hover:bg-neutral4',
-        m_outline:
-          'bg-neutral0 text-neutral11 border border-neutral4 hover:bg-neutral4',
-        l_outline:
-          'bg-neutral0 text-neutral11 border border-neutral4 hover:bg-neutral4',
-        s_disable:
+        disable:
           'bg-neutral4 text-neutral6',
-        m_disable:
-          'bg-neutral4 text-neutral6',
-        l_disable:
-          'bg-neutral4 text-neutral6'
       },
       size: {
         sm: 'h-[36px] rounded-md px-[8px] py-[16px] mx-[4px]',
