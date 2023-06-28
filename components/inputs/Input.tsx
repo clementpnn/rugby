@@ -2,7 +2,7 @@
 
 import { InputHTMLAttributes } from 'react'
 import { FieldErrors, FieldError } from 'react-hook-form'
-import button from "@/components/buttons/Button";
+
 
 
 interface InputProperties extends InputHTMLAttributes<HTMLInputElement> {
@@ -10,10 +10,9 @@ interface InputProperties extends InputHTMLAttributes<HTMLInputElement> {
     id: string
     errors?: FieldErrors
     maxLength?: number
-    button?: button
-    icon?: icon
+
 }
-const Input: React.FC<InputProperties> = ({ label, id, type = 'text', errors, disabled,icon, maxLength = 200, ...rest }) => {
+const Input: React.FC<InputProperties> = ({ label, id, type = 'text', errors, disabled, maxLength = 200, ...rest }) => {
   const error = errors ? errors[id] as FieldError : undefined 
   return (
     <>
@@ -28,8 +27,7 @@ const Input: React.FC<InputProperties> = ({ label, id, type = 'text', errors, di
               {...rest}
               className={`block ring-1 ring-inset ring-gray-300 ${disabled && 'opacity-50 cursor-default'}`}
           />
-          {icon && <button>{icon}</button>}
-          {error && <p className="text-red-500 mt-2">{error.message}</p>}
+          {error && <p className='text-red-500 mt-2'>{error.message}</p>}
       </div>
     </>
   )
