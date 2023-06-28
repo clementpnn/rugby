@@ -23,7 +23,7 @@ const StadiumForm = () => {
   const onSubmit: SubmitHandler<Stadium> = async (data) => {
     setIsloading(true)
 
-    await fetch('/api/...', {
+    await fetch('/api//create/stadium', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
