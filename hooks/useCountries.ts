@@ -1,21 +1,30 @@
-import countries from 'world-countries'
-
-function getFlagEmoji(countryCode: string) {
-    const codePoints = [...countryCode.toUpperCase()].map(char => {
-      const code = char.codePointAt(0)
-      if (code === undefined) {
-        throw new Error('Invalid country code')
-      }
-      return 127_397 + code
-    })
-    return String.fromCodePoint(...codePoints)
-}
+const countries = [
+  'NEW_ZEALAND',
+  'FRANCE',
+  'ITALY',
+  'URUGUAY',
+  'NAMIBIA',
+  'SOUTH_AFRICA',
+  'IRELAND',
+  'SCOTLAND',
+  'TONGA',
+  'ROMANIA',
+  'WALES',
+  'AUSTRALIA',
+  'FIJI',
+  'GEORGIA',
+  'PORTUGAL',
+  'ENGLAND',
+  'JAPAN',
+  'ARGENTINA',
+  'SAMOA',
+  'CHILI'
+]
 
 const formattedCountries = countries.map((country) => ({
-    value: country.cca3,
-    label: country.name.common,
-    flag: getFlagEmoji(country.cca2),
-    region: country.region
+    value: country.replaceAll('_', " "),
+    label: country.slice(0, 3),
+    flag: `/flags/${country.slice(0, 3).toLowerCase()}.svg`,
 }))
 
 const useCountries = () => {
