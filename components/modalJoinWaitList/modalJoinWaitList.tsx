@@ -1,8 +1,14 @@
 'use client'
 
-import { Button } from "../ui/button"
+import useCountries from '@/hooks/useCountries';
+import { Button } from '../ui/button'
+import Image from 'next/image'
+
 
 const ModalJoinWaitList = () => {
+    const { getByValue } = useCountries();
+    const country1 = getByValue('FRANCE');
+    const country2 = getByValue('PORTUGAL');
     return (
         <div className="h-screen w-screen flex justify-center items-center box-border">
             <div className='w-[535px] h-[416px] bg-blue1 rounded-[12px]'>
@@ -25,13 +31,13 @@ const ModalJoinWaitList = () => {
                         </div>
                         <div className="h-[44px] flex flex-row gap-[16px] items-center">
                             <div className="bg-blue2 w-[203px] flex flex-row gap-[12px] px-[16px] py-[8px] items-center rounded-lg">
-                                <div>FLAG</div>
-                                <span>New Zealand</span>
+                            <Image src={country1?.flag || '/placeholder-image.png'} alt="Flag" width={'28'} height={'28'}/>
+                                <span className='text-blue6'>{country1?.value}</span>
                             </div>
                             <span className="text-blue6">VS</span>
                             <div className="bg-blue2 w-[203px] flex flex-row gap-[12px] px-[16px] py-[8px] items-center rounded-lg">
-                                <div>FLAG</div>
-                                <span>New Zealand</span>
+                            <Image src={country2?.flag || '/placeholder-image.png'} alt="Flag" width={'28'} height={'28'}/>
+                                <span className='text-blue6'>{country2?.value}</span>
                             </div>
                         </div>
                     </div>
