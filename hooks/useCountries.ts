@@ -1,10 +1,21 @@
 import countries from 'world-countries'
-import emojiFlags from 'emoji-flags'
+
+function getFlagEmoji(countryCode: string) {
+    const codePoints = [...countryCode.toUpperCase()].map(char => {
+      const code = char.codePointAt(0)
+      if (code === undefined) {
+        throw new Error('Invalid country code')
+      }
+      return 127_397 + code
+    })
+    return String.fromCodePoint(...codePoints)
+}
 
 const formattedCountries = countries.map((country) => ({
     value: country.cca3,
     label: country.name.common,
-    flag: emojiFlags.countryCode(country.cca2).emoji
+    flag: getFlagEmoji(country.cca2),
+    region: country.region
 }))
 
 const useCountries = () => {
