@@ -1,10 +1,10 @@
 import countries from 'world-countries'
+import emojiFlags from 'emoji-flags'
 
 const formattedCountries = countries.map((country) => ({
     value: country.cca3,
     label: country.name.common,
-    flag: country.flag,
-    region: country.region
+    flag: emojiFlags.countryCode(country.cca2).emoji
 }))
 
 const useCountries = () => {
