@@ -22,9 +22,9 @@ const countries = [
 ]
 
 const formattedCountries = countries.map((country) => ({
-    value: country.replaceAll('_', " "),
+    value: country.replaceAll('_', ' '),
     label: country.slice(0, 3),
-    flag: `/flags/${country.slice(0, 3).toLowerCase()}.svg`,
+    flag: `/flags/${country.slice(0, 3).toLowerCase()}.svg`
 }))
 
 const useCountries = () => {
