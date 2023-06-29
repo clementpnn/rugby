@@ -6,8 +6,8 @@ import { AiOutlineClose } from 'react-icons/ai'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { useState } from 'react'
-import autoAnimate from '@formkit/auto-animate'
-import { useAutoAnimate } from '@formkit/auto-animate/react'
+// import autoAnimate from '@formkit/auto-animate'
+// import { useAutoAnimate } from '@formkit/auto-animate/react'
 
 function Menu() {
   const [showDrawer, setShowDrawer] = useState(false)
@@ -30,7 +30,7 @@ function Menu() {
         }
         <div className="flex justify-between">
           <Image
-            src="/logoWhiteInline.svg"
+            src="/image/logoWhiteInline.svg"
             width={100}
             height={36}
             alt="Picture of the author"

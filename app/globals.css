@@ -290,8 +290,128 @@
 @layer base {
   * {
     @apply border-border;
-  }
+  }  
+  
   body {
     @apply bg-background text-foreground;
+  }
+
+}
+
+@layer utilities {
+  .h1-barlow-d {
+    @apply text-9xl font-barlow font-bold tracking-[-1px];
+  }
+
+  .h2-barlow-d  {
+    @apply text-8xl font-barlow font-bold tracking-[-1px];
+  }
+
+  .h3-barlow-d  {
+    @apply text-7xl font-barlow font-bold tracking-[-1px];
+  }
+
+  .h4-barlow-d  {
+    @apply text-6xl font-barlow font-bold tracking-[-1px];
+  }
+
+  .h5-barlow-d  {
+    @apply text-5xl font-barlow font-bold tracking-[-1px];
+  }
+
+  .h6-barlow-d  {
+    @apply text-4xl font-barlow font-bold tracking-[-1px];
+  }
+
+  .h1-barlow-m {
+    @apply text-7xl font-barlow font-bold tracking-[-1px];
+  }
+
+  .h2-barlow-m  {
+    @apply text-6xl font-barlow font-bold tracking-[-1px];
+  }
+
+  .h3-barlow-m  {
+    @apply text-5xl font-barlow font-bold tracking-[-1px];
+  }
+
+  .h4-barlow-m  {
+    @apply text-4xl font-barlow font-bold tracking-[-1px];
+  }
+
+  .h5-barlow-m  {
+    @apply text-3xl font-barlow font-bold tracking-[-1px];
+  }
+
+  .h6-barlow-m  {
+    @apply text-2xl font-barlow font-bold tracking-[-1px];
+  }
+
+  .h1-lato-d {
+    @apply text-6xl font-lato font-bold;
+  }
+
+  .h2-lato-d  {
+    @apply text-5xl font-lato font-bold;
+  }
+
+  .h3-lato-d  {
+    @apply text-4xl font-lato font-bold;
+  }
+
+  .h4-lato-d  {
+    @apply text-3xl font-lato font-bold;
+  }
+
+  .h5-lato-d  {
+    @apply text-2xl font-lato font-bold;
+  }
+
+  .h6-lato-d  {
+    @apply text-xl font-lato font-bold;
+  }
+
+  .h1-lato-m {
+    @apply text-5xl font-lato font-bold;
+  }
+
+  .h2-lato-m  {
+    @apply text-4xl font-lato font-bold;
+  }
+
+  .h3-lato-m  {
+    @apply text-3xl font-lato font-bold;
+  }
+
+  .h4-lato-m  {
+    @apply text-2xl font-lato font-bold;
+  }
+
+  .h5-lato-m  {
+    @apply text-xl font-lato font-bold;
+  }
+
+  .label-lg {
+    @apply text-lg font-lato font-bold;
+  }
+
+  .label-md {
+    @apply text-base font-lato font-bold;
+  }
+
+  .label-sm {
+    @apply text-md font-lato font-bold;
+  }
+
+  .base-lg {
+    @apply text-lg font-lato font-normal;
+  }
+
+  .base-md {
+    @apply text-base font-lato font-normal;
+  }
+
+  .base-sm {
+    @apply text-md font-lato font-normal;
   }
 }
