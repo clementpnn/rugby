@@ -19,7 +19,10 @@ const buttonVariants = cva(
       size: {
         sm: 'h-[36px] rounded-md px-[8px] py-[16px] mx-[4px]',
         me: 'h-[48px] rounded-md px-[12px] py-[20px] mx-[4px]',
-        lg: 'h-[52px] rounded-md px-[12px] py-[24px] mx-[4px]'
+        lg: 'h-[52px] rounded-md px-[12px] py-[24px] mx-[4px]',
+        sIcon: 'h-[36px] w-[36px] px-[8px] py-[16px] mx-[4px]',
+        mIcon: 'h-[48px] w-[48px] px-[12px] py-[20px] mx-[4px]',
+        lIcon: 'h-[52px] w-[52px] px-[12px] py-[24px] mx-[4px]'
       }
     }
   }
