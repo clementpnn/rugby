@@ -412,6 +412,6 @@
   }
 
   .base-sm {
-    @apply text-md font-lato font-normal;
+    @apply text-sm font-lato font-normal;
   }
 }
