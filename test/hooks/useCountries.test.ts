@@ -14,7 +14,7 @@ describe('useCountries hook', () => {
     expect(result).toEqual({
       value: 'NEW ZEALAND',
       label: 'NEW',
-      flag: '/flags/new.svg',
+      flag: '/flags/new.svg'
     })
   })
 })

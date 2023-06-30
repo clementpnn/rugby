@@ -16,7 +16,7 @@ import localFont from 'next/font/local'
 //       variable: '--font-barlow'
 //     }
 //   ]
-// });
+// })
 
 // const inter = Inter({ subsets: ['latin'] })
 
@@ -31,7 +31,7 @@ const lato = Lato({
 // const barlow = localFont({
 //   src: "/fonts/Barlow/BarlowCondensed-Bold.woff2",
 //   variable: "--font-barlow-condensed",
-// });
+// })
 
 const barlow = Barlow_Condensed({
   subsets: ['latin'],

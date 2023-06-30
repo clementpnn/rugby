@@ -6,7 +6,7 @@ test('useModal store', () => {
 
   useModal.getState().onOpen()
   expect(useModal.getState().isOpen).toBe(true)
-  
+
   useModal.getState().onClose()
   expect(useModal.getState().isOpen).toBe(false)
 })
