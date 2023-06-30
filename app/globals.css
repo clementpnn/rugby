@@ -400,7 +400,7 @@
   }
 
   .label-sm {
-    @apply text-md font-lato font-bold;
+    @apply text-sm font-lato font-bold;
   }
 
   .base-lg {
