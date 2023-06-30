@@ -2,8 +2,8 @@ import * as React from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 
 import { cn } from '@/libs/utils'
-import {InputHTMLAttributes} from "react";
-import {FieldErrors} from "react-hook-form";
+import { InputHTMLAttributes } from 'react'
+import { FieldErrors } from 'react-hook-form'
 
 const badgeVariants = cva(
   'inline-flex items-center rounded-full border rounded-2xl border-transparent font-semibold justify-around',
@@ -74,10 +74,10 @@ interface InputProperties extends InputHTMLAttributes<HTMLInputElement> {
 
 function Badge({ className, label, variant, circle, circle_size, size, ...properties }: BadgeProperties) {
   return (
-      <div className={cn(badgeVariants({ variant, size, className }))} {...properties}>
-        <div className={cn(circleVariants({circle, circle_size }))} {...properties}/>
-        { label }
-      </div>
+    <div className={cn(badgeVariants({ variant, size, className }))} {...properties}>
+      <div className={cn(circleVariants({ circle, circle_size }))} {...properties}/>
+      { label }
+    </div>
   )
 }
 export { Badge, badgeVariants }

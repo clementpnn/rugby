@@ -12,6 +12,4 @@ const useModal = create<ModalStore>((set) => ({
   onClose: () => set({ isOpen: false })
 }))
 
-g
-
 export default useModal
