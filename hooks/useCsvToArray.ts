@@ -5,7 +5,6 @@ export interface FileRow {
 }
 
 const useCSVToArray = () => {
-  // eslint-disable-next-line unicorn/consistent-function-scoping
   const csvFileToArray = (csvString: string): Promise<FileRow[]> => {
     return new Promise((resolve) => {
       Papa.parse(csvString, {

@@ -1,9 +1,6 @@
-import Component from '@/components/Filters/filter';
-
 export default async function Home() {
-  return(
+  return (
     <div>
-      <Component />
     </div>
   )
 }
