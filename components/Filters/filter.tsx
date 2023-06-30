@@ -16,7 +16,7 @@ type PoolCategory = {
   teams: string[];
 };
 
-const Component: React.FC = () => {
+const FilterComponent: React.FC = () => {
   const [phase, setPhase] = useState<'Pool' | 'Knockout'>('Pool');
   const [selectedPool, setSelectedPool] = useState<string>('');
   const [selectedTeam, setSelectedTeam] = useState<string>('');
@@ -153,4 +153,4 @@ const Component: React.FC = () => {
   );
 };
 
-export default Component;
+export default FilterComponent;
