@@ -5,6 +5,7 @@ import { ChangeEvent, SelectHTMLAttributes } from 'react'
 interface SelectOption {
   value: string
   label: string
+  disabled: boolean
 }
 
 interface SelectProperties extends SelectHTMLAttributes<HTMLSelectElement> {
@@ -20,7 +21,7 @@ const Select: React.FC<SelectProperties> = ({ label, name, value, onChange, opti
     <label>{label}</label>
     <select name={name} disabled={disabled} onChange={onChange} value={value}>
       {options.map((option, index) => (
-        <option key={index} value={option.value}>
+        <option key={index} value={option.value} disabled={option.disabled}>
           {option.label}
         </option>
       ))}
