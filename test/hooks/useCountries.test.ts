@@ -10,9 +10,9 @@ describe('useCountries hook', () => {
 
   test('should return correct country by value', () => {
     const { getByValue } = useCountries()
-    const result = getByValue('NEW ZEALAND')
+    const result = getByValue('NEW_ZEALAND')
     expect(result).toEqual({
-      value: 'NEW ZEALAND',
+      value: 'NEW_ZEALAND',
       label: 'NEW',
       flag: '/flags/new.svg'
     })
