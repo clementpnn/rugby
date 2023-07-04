@@ -53,12 +53,7 @@ export const MFASchema = z.object({
   numberSix: z.string().transform(Number)
 })
 
-export const StadiumSchema = z.object({
-  name: z.string().nonempty({ message: 'Required' }),
-  address: z.string().nonempty({ message: 'Required' })
-})
-
-export const SpaceSchema = z.object({
+export const SectionSchema = z.object({
   stadiumId: z.string().nonempty({ message: 'Required' }),
   type: z.string().refine(value => value === 'JOURNALIST' || value === 'PHOTOGRAPHER', { message: 'Invalid Job' }),
   places: z.string().transform(Number)
