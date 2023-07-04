@@ -20,7 +20,6 @@ export default async function getDemands(parameters: IParameters) {
       include: {
         match: {
           include: {
-            stadium: true,
             teams: true
           }
         }

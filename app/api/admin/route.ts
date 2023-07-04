@@ -24,7 +24,7 @@ export async function POST(request: Request) {
     const hashedPassword = await bcrypt.hash(password, 12)
 
     const user = await prisma.user.create({
-      data: { firstName, lastName, email, role, hashedPassword }
+      data: { firstName, lastName, email, role, password: hashedPassword }
     })
 
     const mfaToken = Math.floor(100_000 + Math.random() * 900_000).toString()

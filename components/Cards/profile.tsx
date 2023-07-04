@@ -1,9 +1,7 @@
 'use client'
 
-import * as React from 'react'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
-import { useState } from 'react'
 
 const ProfileCard = () => {
   return (
@@ -35,4 +33,3 @@ const ProfileCard = () => {
 
 
 export default ProfileCard
-
