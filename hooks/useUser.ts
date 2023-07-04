@@ -2,9 +2,9 @@ import { create } from 'zustand'
 
 interface UserStore {
   email: string
-  setEmail: (newEmail: string) => void
+  setEmail: (_newEmail: string) => void
   password: string
-  setPassword: (newPassword: string) => void
+  setPassword: (_newPassword: string) => void
 }
 
 const useUser = create<UserStore>(set => ({

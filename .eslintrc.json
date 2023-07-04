@@ -3,6 +3,10 @@
     "next/core-web-vitals",
     "plugin:unicorn/all"
   ],
+  "plugins": [
+    "check-file",
+    "unused-imports"
+  ],
   "rules": {
     "unicorn/no-keyword-prefix": [
       "off"
@@ -13,12 +17,48 @@
     "unicorn/prefer-blob-reading-methods": [
       "off"
     ],
+    "unicorn/no-process-exit": [
+      "off"
+    ],
+    "unicorn/prefer-top-level-await": [
+      "off"
+    ],
     "unicorn/filename-case": [
+      "off"
+    ],
+    "check-file/folder-match-with-fex": [
       "error",
       {
-        "case": "camelCase"
+        "*.test.{js,jsx,ts,tsx}": "**/tests/*"
       }
-    ]
+    ],
+    "check-file/filename-naming-convention": [
+      "error",
+      {
+        "**/*.{jsx,tsx}": "CAMEL_CASE",
+        "**/*.{js,ts}": "CAMEL_CASE"
+      },
+      {
+        "ignoreMiddleExtensions": true
+      }
+    ],
+    "check-file/no-index": "error",
+    "check-file/folder-naming-convention": [
+      "error",
+      {
+        "app/**/": "CAMEL_CASE",
+        "components/**/": "CAMEL_CASE"
+      }
+    ],
+    "check-file/filename-blocklist": [
+      "error",
+      {
+        "**/*.model.ts": "*.models.ts",
+        "**/*.util.ts": "*.utils.ts"
+      }
+    ],
+    "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
+    "unused-imports/no-unused-imports": "error"
     // "quotes": ["error", "single"],
     // "semi": ["error", "never"],
     // "no-var": "error",

@@ -10,17 +10,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-enum Job {
-  JOURNALIST
-  PHOTOGRAPHER
-}
-
-enum Role {
-  DEV
-  ADMIN
-  USER
-}
-
 model User {
   id               String   @id @default(auto()) @map("_id") @db.ObjectId
   accreditationId  String?
@@ -38,6 +27,69 @@ model User {
   sessions   Session[]
   sentEmail  SentEmail[]
   demandes   Demand[]
+}
+
+model SentEmail {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  type        EmailType
+  userId      String    @db.ObjectId
+  createdAt   DateTime  @default(now())
+  resetToken  String?
+  mfaToken    String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Section {
+  id         String  @id @default(auto()) @map("_id") @db.ObjectId
+  name       String
+  matchId    String  @db.ObjectId
+  type       Job
+  places     Int
+  image      String
+
+  match Match @relation(fields: [matchId], references: [id], onDelete: Cascade)
+
+  demands Demand[]
+
+  @@unique([matchId, name])
+}
+
+model Match {
+  id         String     @id @default(auto()) @map("_id") @db.ObjectId
+  date       DateTime
+  type       MatchType  
+  stadium    String
+
+  teams    Team[]
+  demands  Demand[]
+  spaces   Section[]
+
+  @@unique([date, stadium])
+}
+
+model Team {
+  id       String    @id @default(auto()) @map("_id") @db.ObjectId
+  country  COUNTIES  @unique
+  matchId  String?   @db.ObjectId
+  poule    POULE
+
+  match Match? @relation(fields: [matchId], references: [id], onDelete: Cascade)
+}
+
+model Demand {
+  id         String    @id @default(auto()) @map("_id") @db.ObjectId
+  userId     String    @db.ObjectId
+  matchId    String    @db.ObjectId
+  sectionId    String   @db.ObjectId
+  state      STATE
+  createdAt  DateTime  @default(now())
+
+  user   User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  match  Match    @relation(fields: [matchId], references: [id], onDelete: Cascade)
+  space  Section  @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, matchId])
 }
 
 model Account {
@@ -79,42 +131,15 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
-enum EmailType {
-  RESET
-  MFA
+enum Job {
+  JOURNALIST
+  PHOTOGRAPHER
 }
 
-model SentEmail {
-  id          String    @id @default(auto()) @map("_id") @db.ObjectId
-  type        EmailType
-  userId      String    @db.ObjectId
-  createdAt   DateTime  @default(now())
-  resetToken  String?
-  mfaToken    String?
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-}
-
-model Stadium {
-  id      String  @id @default(auto()) @map("_id") @db.ObjectId
-  name    String  @unique
-  adress  String  @unique
-
-  matchs  Match[]
-  spaces  Space[]
-}
-
-model Space {
-  id         String  @id @default(auto()) @map("_id") @db.ObjectId
-  stadiumId  String  @db.ObjectId
-  type       Job
-  places     Int
-
-  stadium Stadium @relation(fields: [stadiumId], references: [id], onDelete: Cascade)
-
-  demands Demand[]
-
-  @@unique([stadiumId, type])
+enum Role {
+  DEV
+  ADMIN
+  USER
 }
 
 enum MatchType {
@@ -124,18 +149,15 @@ enum MatchType {
   FINAL
 }
 
-model Match {
-  id         String    @id @default(auto()) @map("_id") @db.ObjectId
-  date       DateTime
-  type       MatchType  
-  stadiumId  String    @db.ObjectId
+enum EmailType {
+  RESET
+  MFA
+}
 
-  stadium Stadium @relation(fields: [stadiumId], references: [id])
-
-  teams Team[]
-  demands Demand[]
-
-  @@unique([date, stadiumId])
+enum STATE {
+  ACCEPTED
+  IN_PROGRESS
+  REJECTED
 }
 
 enum POULE {
@@ -166,34 +188,4 @@ enum COUNTIES {
   ARGENTINA
   SAMOA
   CHILI
-}
-
-model Team {
-  id       String    @id @default(auto()) @map("_id") @db.ObjectId
-  country  COUNTIES  @unique
-  matchId  String?   @db.ObjectId
-  poule    POULE
-
-  match Match? @relation(fields: [matchId], references: [id], onDelete: Cascade)
-}
-
-enum STATE {
-  ACCEPTED
-  IN_PROGRESS
-  REJECTED
-}
-
-model Demand {
-  id         String    @id @default(auto()) @map("_id") @db.ObjectId
-  userId     String    @db.ObjectId
-  matchId    String    @db.ObjectId
-  spaceId    String?   @db.ObjectId
-  state      STATE
-  createdAt  DateTime  @default(now())
-
-  user   User    @relation(fields: [userId], references: [id], onDelete: Cascade)
-  match  Match   @relation(fields: [matchId], references: [id], onDelete: Cascade)
-  space  Space?  @relation(fields: [spaceId], references: [id], onDelete: Cascade)
-
-  @@unique([userId, matchId])
 }

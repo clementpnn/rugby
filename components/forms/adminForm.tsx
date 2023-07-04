@@ -32,7 +32,7 @@ const AdminForm = () => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
     })
-      .then((callback) => {
+      .then(() => {
         toast.success('Email send')
         setStep(step + 1 as STEPS)
         setEmail(data.email)

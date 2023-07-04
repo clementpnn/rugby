@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { create } from 'zustand'
 
 export enum STEPS {
@@ -12,7 +13,7 @@ interface StepsStore {
 
 const useStep = create<StepsStore>((set) => ({
   step: STEPS.SIGNIN,
-  setStep: (_newStep: STEPS) => set({ step: _newStep })
+  setStep: (newStep: STEPS) => set({ step: newStep })
 }))
 
 export default useStep

@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useState } from 'react'
 
-import Button from '../buttons/button'
+// import Button from '../buttons/button'
 
 interface ModalProperties {
   isOpen?: boolean

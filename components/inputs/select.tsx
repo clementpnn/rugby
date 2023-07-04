@@ -13,7 +13,7 @@ interface SelectProperties extends SelectHTMLAttributes<HTMLSelectElement> {
   name: string
   value: string
   options: SelectOption[]
-  onChange: (event: ChangeEvent<HTMLSelectElement>) => void
+  onChange: (_event: ChangeEvent<HTMLSelectElement>) => void
 }
 
 const Select: React.FC<SelectProperties> = ({ label, name, value, onChange, options, disabled }) => (

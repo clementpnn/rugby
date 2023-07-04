@@ -44,6 +44,7 @@ const TeamForm: React.FC<TeamFormProperties> = ({ allTeams }) => {
   
   const onSubmit: SubmitHandler<Team> = async (data) => {
     setIsloading(true)
+    
     await fetch('/api/create/team', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -56,11 +57,11 @@ const TeamForm: React.FC<TeamFormProperties> = ({ allTeams }) => {
         }
 
         if (callback.status !== 200) {
-          toast.error(`${callback.status} ${callback.statusText}`)
+          toast.error(`${callback.statusText}`)
         }
+
+        setIsloading(false)
       })
-      .catch(error => toast.error(`${error}`))
-      .finally(() => setIsloading(false))
   }
 
   return (
