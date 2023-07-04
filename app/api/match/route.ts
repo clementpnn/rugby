@@ -3,29 +3,32 @@ import { NextResponse } from 'next/server'
 import prisma from '@/libs/prismadb'
 
 export async function POST(request: Request) {
-  try{
-    const body = await request.json()
-    const { type, date, stadiumId, teamOneId, teamTwoId } = body
+  const body = await request.json()
+  const { type, date, time, stadium, teamOne, teamTwo } = body
 
-    if (!type || !date || !stadiumId || !teamOneId || !teamTwoId) {
-      return new NextResponse('Invalid Request', { status: 400 })
-    }
-
-    const isExist = await prisma.match.findFirst({
-      where: { stadiumId, date }
-    })
-
-    if (!isExist) {
-      return new NextResponse('Stadium not Existing', { status: 500 })
-    }
-
-    const match = await prisma.match.create({
-      data: { stadiumId, type, date }
-    })
-
-    return NextResponse.json(match)
-
-  } catch {
-    return new NextResponse('Server Error', { status: 500 })
+  if (!type || !date || !stadium || !teamOne || !teamTwo || !time || teamOne === teamTwo) {
+    return new NextResponse('Invalid Request', { status: 400 })
   }
+  
+  const isExist = await prisma.match.findFirst({
+    where: { stadium, date }
+  })
+  
+  if (isExist) {
+    return new NextResponse('A match already exists at the stadium and date.', { status: 400 })
+  }
+  
+  const match = await prisma.match.create({
+    data: { date, time, stadium, type }
+  })
+
+  await prisma.matchTeam.create({
+    data: { matchId: match.id, team: teamOne }
+  })
+
+  await prisma.matchTeam.create({ 
+    data: { matchId: match.id, team: teamTwo }
+  })
+
+  return new NextResponse('Team Created', { status: 200 })
 }
