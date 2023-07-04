@@ -57,39 +57,46 @@ model Section {
 
 model Match {
   id         String     @id @default(auto()) @map("_id") @db.ObjectId
-  date       DateTime
+  // date       DateTime
+  date       String
+  time       String
   type       MatchType  
   stadium    String
 
-  teams    Team[]
-  demands  Demand[]
-  spaces   Section[]
+  sections    Section[]
+  matchTeams  MatchTeam[]
 
   @@unique([date, stadium])
+}
+
+model MatchTeam {
+  id       String   @id @default(auto()) @map("_id") @db.ObjectId
+  matchId  String   @db.ObjectId
+  team     String
+  result   RESULT?
+
+  match Match @relation(fields: [matchId], references: [id], onDelete: Cascade)
+
+  @@unique([matchId, team])
 }
 
 model Team {
   id       String    @id @default(auto()) @map("_id") @db.ObjectId
   country  COUNTIES  @unique
-  matchId  String?   @db.ObjectId
   poule    POULE
-
-  match Match? @relation(fields: [matchId], references: [id], onDelete: Cascade)
 }
 
 model Demand {
   id         String    @id @default(auto()) @map("_id") @db.ObjectId
   userId     String    @db.ObjectId
-  matchId    String    @db.ObjectId
-  sectionId    String   @db.ObjectId
+  sectionId  String   @db.ObjectId
   state      STATE
   createdAt  DateTime  @default(now())
 
-  user   User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  match  Match    @relation(fields: [matchId], references: [id], onDelete: Cascade)
-  space  Section  @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  section  Section  @relation(fields: [sectionId], references: [id], onDelete: Cascade)
 
-  @@unique([userId, matchId])
+  @@unique([userId, sectionId])
 }
 
 model Account {
@@ -158,6 +165,12 @@ enum STATE {
   ACCEPTED
   IN_PROGRESS
   REJECTED
+}
+
+enum RESULT {
+  WINNER
+  LOSER
+  NULL
 }
 
 enum POULE {

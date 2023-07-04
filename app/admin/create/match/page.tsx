@@ -1,8 +1,10 @@
+import MatchForm from "@/components/forms/matchForm"
+
 const page = async () => {
 
   return (
     <> 
-        
+       <MatchForm /> 
     </>
   )
 }

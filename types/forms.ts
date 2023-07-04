@@ -65,9 +65,13 @@ export const TeamSchema = z.object({
 })
 
 export const MatchSchema = z.object({
-  date: z.string().transform(value => new Date(value)),
+  // date: z.string().transform(value => new Date(value)),
+  date: z.string().nonempty({ message: 'Required' }),
+  time: z.string().nonempty({ message: 'Required' }),
   type: z.string().refine(value => value === 'POULE' || value === 'QUARTERFINAL' || value === 'SEMI_FINAL' || value === 'FINAL', { message: 'Invalid Type' }),
-  stadiumId: z.string().nonempty({ message: 'Required' })
+  stadium: z.string().nonempty({ message: 'Required' }),
+  teamOne: z.string().nonempty({ message: 'Required' }),
+  teamTwo: z.string().nonempty({ message: 'Required' })
 })
 
 export const DemandSchema = z.object({
