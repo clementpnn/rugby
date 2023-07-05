@@ -15,14 +15,20 @@
 
 ## Tech Stack
 
-- [Next.js](https://nextjs.org) Framework
+- [Next.js](https://nextjs.org) framework
 - [shadcn/ui](https://ui.shadcn.com)
   - Styling with [Tailwind CSS](https://tailwindcss.com)
   - [Radix UI](https://www.radix-ui.com) for headless component primitives
-  - Icons from [...](...)
-- [Next Auth](https://next-auth.js.org/) for authentification
-- [Nodemailer](https://nodemailer.com/about) for sending emails
+  - Icons from [React Icons](https://react-icons.github.io/react-icons)
+- [Next Auth](https://next-auth.js.org/) for secure authentication
+- Send emails with [Nodemailer](https://nodemailer.com/about)
 - [React Hook Form](https://react-hook-form.com) for forms
+- [Zod](https://zod.dev) for type safety
+- Images stored on[Cloudinary](https://cloudinary.com)
+- [Vitest](https://vitest.dev) for test
+- global state management with[Zustand](https://zustand-demo.pmnd.rs)
+- [Mongodb](https://www.mongodb.com/fr-fr) database
+- [ESlint](https://eslint.org) for good practice
 
 ## Runing locally
 
@@ -30,10 +36,16 @@ You will need to use the environement variables [defined in `.env.example`](.env
 
 ```bash
 npm i
+npm run db
 npm run dev
 ```
+> npm i for install all dependencies
+> 
+> npm run db for delete the old database, generate client prisma types and recreate the database with default data
+> 
+> npm run dev for starte server
 
-Your app should now be running on [localhost:3000](http://localhost:3000/)
+**Your app should now be running on [localhost:3000](http://localhost:3000/)**
 
 ## Authors
 
