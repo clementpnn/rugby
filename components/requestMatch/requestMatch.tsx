@@ -1,13 +1,13 @@
 'use client'
 
 import * as React from 'react'
-import { AiOutlineMenu } from 'react-icons/ai'
-import { AiOutlineClose } from 'react-icons/ai'
+// import { AiOutlineMenu } from 'react-icons/ai'
+// import { AiOutlineCklose } from 'react-icons/ai'
 import Image from 'next/image'
-import { Button } from '@/components/ui/button'
+// import { Button } from '@/components/ui/button'
 import { useState } from 'react'
-import autoAnimate from '@formkit/auto-animate'
-import { useAutoAnimate } from '@formkit/auto-animate/react'
+// import autoAnimate from '@formkit/auto-animate'
+// import { useAutoAnimate } from '@formkit/auto-animate/react'
 import { Badge } from '@/components/ui/badge'
 import useCountries from '@/hooks/useCountries'
 
@@ -17,24 +17,24 @@ function RequestMatch() {
   const { getByValue } = useCountries()
 
   const NEW_ZEALAND = getByValue('NEW ZEALAND')
-  const FRANCE = getByValue('FRANCE')
+  // const FRANCE = getByValue('FRANCE')
   const ITALY = getByValue('ITALY')
-  const NAMIBIA = getByValue('NAMIBIA')
-  const SOUTH_AFRICA = getByValue('SOUTH AFRICA')
-  const IRELAND = getByValue('IRELAND') //flag
-  const SCOTLAND = getByValue('SCOTLAND') //flag
-  const TONGA = getByValue('TONGA') //flag
-  const ROMANIA = getByValue('ROMANIA')
-  const WALES = getByValue('WALES') //flag
-  const AUSTRALIA = getByValue('AUSTRALIA')
-  const FIJI = getByValue('FIJI') //flag
-  const GEORGIA = getByValue('GEORGIA')
-  const PORTUGAL = getByValue('PORTUGAL') //flag
-  const ENGLAND = getByValue('ENGLAND')
-  const JAPAN = getByValue('JAPAN') //flag
-  const ARGENTINA = getByValue('ARGENTINA')
-  const SAMOA = getByValue('SAMOA') //flag
-  const CHILI = getByValue('CHILI') //flag
+  // const NAMIBIA = getByValue('NAMIBIA')
+  // const SOUTH_AFRICA = getByValue('SOUTH AFRICA')
+  // const IRELAND = getByValue('IRELAND') //flag
+  // const SCOTLAND = getByValue('SCOTLAND') //flag
+  // const TONGA = getByValue('TONGA') //flag
+  // const ROMANIA = getByValue('ROMANIA')
+  // const WALES = getByValue('WALES') //flag
+  // const AUSTRALIA = getByValue('AUSTRALIA')
+  // const FIJI = getByValue('FIJI') //flag
+  // const GEORGIA = getByValue('GEORGIA')
+  // const PORTUGAL = getByValue('PORTUGAL') //flag
+  // const ENGLAND = getByValue('ENGLAND')
+  // const JAPAN = getByValue('JAPAN') //flag
+  // const ARGENTINA = getByValue('ARGENTINA')
+  // const SAMOA = getByValue('SAMOA') //flag
+  // const CHILI = getByValue('CHILI') //flag
 
   const handleShowDrawer = () => {
     setShowDrawer(!showDrawer)

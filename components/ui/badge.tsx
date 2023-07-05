@@ -1,9 +1,8 @@
-import * as React from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 
 import { cn } from '@/libs/utils'
 import { InputHTMLAttributes } from 'react'
-import { FieldErrors } from 'react-hook-form'
+// import { FieldErrors } from 'react-hook-form'
 
 const badgeVariants = cva(
   'inline-flex items-center rounded-full border rounded-2xl border-transparent font-semibold justify-around',

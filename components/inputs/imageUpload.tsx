@@ -5,12 +5,12 @@ import Image from 'next/image'
 import { useCallback } from 'react'
 
 declare global {
-    // eslint-disable-next-line no-var
+    // eslint-disable-next-line no-var, no-unused-vars
     var cloudinary: any
 }
 
 interface ImageUploadProperties {
-    onChange: (value: string) => void
+    onChange: (_value: string) => void
     value: string
 }
 

@@ -3,7 +3,7 @@ export const metadata = {
   description: 'End of school year project'
 }
 
-export default function AdminRegisterLayout({ children }: { children: React.ReactNode }) {
+export default function AdminCreateLayout({ children }: { children: React.ReactNode }) {
   return (
     <div>
       {children}

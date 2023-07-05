@@ -53,13 +53,9 @@ export const MFASchema = z.object({
   numberSix: z.string().transform(Number)
 })
 
-export const StadiumSchema = z.object({
+export const SectionSchema = z.object({
   name: z.string().nonempty({ message: 'Required' }),
-  address: z.string().nonempty({ message: 'Required' })
-})
-
-export const SpaceSchema = z.object({
-  stadiumId: z.string().nonempty({ message: 'Required' }),
+  matchId: z.string().nonempty({ message: 'Required' }),
   type: z.string().refine(value => value === 'JOURNALIST' || value === 'PHOTOGRAPHER', { message: 'Invalid Job' }),
   places: z.string().transform(Number)
 })
@@ -70,9 +66,14 @@ export const TeamSchema = z.object({
 })
 
 export const MatchSchema = z.object({
-  date: z.string().transform(value => new Date(value)),
+  // date: z.string().transform(value => new Date(value)),
+  date: z.string().nonempty({ message: 'Required' }),
+  hour: z.string().nonempty({ message: 'Required' }),
+  minute: z.string().nonempty({ message: 'Required' }),
   type: z.string().refine(value => value === 'POULE' || value === 'QUARTERFINAL' || value === 'SEMI_FINAL' || value === 'FINAL', { message: 'Invalid Type' }),
-  stadiumId: z.string().nonempty({ message: 'Required' })
+  stadium: z.string().nonempty({ message: 'Required' }),
+  teamOne: z.string().nonempty({ message: 'Required' }),
+  teamTwo: z.string().nonempty({ message: 'Required' })
 })
 
 export const DemandSchema = z.object({
