@@ -89,7 +89,7 @@ model Team {
 model Demand {
   id         String    @id @default(auto()) @map("_id") @db.ObjectId
   userId     String    @db.ObjectId
-  sectionId  String   @db.ObjectId
+  sectionId  String    @db.ObjectId
   state      STATE
   createdAt  DateTime  @default(now())
 

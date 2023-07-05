@@ -4,9 +4,9 @@ import prisma from '@/libs/prismadb'
 
 export async function POST(request: Request) {
   const body = await request.json()
-  const { type, date, time, stadium, teamOne, teamTwo } = body
+  const { type, date, hour, minute, stadium, teamOne, teamTwo } = body
 
-  if (!type || !date || !stadium || !teamOne || !teamTwo || !time || teamOne === teamTwo) {
+  if (!type || !date || !stadium || !teamOne || !teamTwo || !hour || !minute || teamOne === teamTwo) {
     return new NextResponse('Invalid Request', { status: 400 })
   }
   
@@ -19,7 +19,7 @@ export async function POST(request: Request) {
   }
   
   const match = await prisma.match.create({
-    data: { date, time, stadium, type }
+    data: { date, time: `${hour} : ${minute}`, stadium, type }
   })
 
   await prisma.matchTeam.create({
