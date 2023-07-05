@@ -10,8 +10,8 @@ export async function POST(request: Request) {
     return new NextResponse('Invalid Request', { status: 400 })
   }
   
-  const isExist = await prisma.match.findFirst({
-    where: { stadium, date }
+  const isExist = await prisma.match.findUnique({
+    where: { date_stadium: {date, stadium} }
   })
   
   if (isExist) {
