@@ -20,7 +20,7 @@ const TeamForm = () => {
 
   const { handleSubmit, control, formState: { errors } } = useForm<z.infer<typeof MatchSchema>>({
       resolver: zodResolver(MatchSchema),
-      defaultValues: {  date: '', time: '', type: 'POULE', stadium: '', teamOne: 'NEW_ZEALAND', teamTwo: 'NEW_ZEALAND' },
+      defaultValues: {  date: '', hour: '00', minute: '00', type: 'POULE', stadium: '', teamOne: 'NEW_ZEALAND', teamTwo: 'NEW_ZEALAND' },
       mode: 'onChange'
   })
   
@@ -47,17 +47,24 @@ const TeamForm = () => {
       })
   }
 
-  const countries = getAll().map((country) => {return { value: country.value, label: country.value.replaceAll('_', ' ')}})
-  const types = [{value: 'POULE', label: 'POULE'}, {value: 'QUARTERFINAL', label: 'QUARTERFINAL'}, {value: 'SEMI_FINAL', label: 'SEMI FINAL'}, {value: 'FINAL', label: 'FINAL'}]
+  const hours = Array.from({ length: 24 }, (_v, index) => index)
+  const hourOptions = hours.map(hour => { return { value: hour.toString().padStart(2, '0'), label: hour.toString().padStart(2, '0') } })
+
+  const minutes = Array.from({ length: 12 }, (_v, index) => index * 5)
+  const minuteOptions = minutes.map(minute => { return { value: minute.toString().padStart(2, '0'), label: minute.toString().padStart(2, '0') } })
+
+  const countryOptions = getAll().map((country) => {return { value: country.value, label: country.value.replaceAll('_', ' ')}})
+  const typeOptions = [{value: 'POULE', label: 'POULE'}, {value: 'QUARTERFINAL', label: 'QUARTERFINAL'}, {value: 'SEMI_FINAL', label: 'SEMI FINAL'}, {value: 'FINAL', label: 'FINAL'}]
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-        <Controller name="date" control={control} render={({ field }) => <Input id='date' {...field} errors={errors} disabled={isLoading} />} />
-        <Controller name="time" control={control} render={({ field }) => <Input id='time' {...field} errors={errors} disabled={isLoading} />} />
-        <Controller name="type" control={control} render={({ field }) => <Select id='type' label='type' {...field} errors={errors} disabled={isLoading} options={types} />} />
-        <Controller name="stadium" control={control} render={({ field }) => <Input id='stadium' {...field} errors={errors} disabled={isLoading} />} />
-        <Controller name="teamOne" control={control} render={({ field }) => <Select id='teamOne' label='teamOne' {...field} errors={errors} disabled={isLoading} options={countries} />} />
-        <Controller name="teamTwo" control={control} render={({ field }) => <Select id='teamTwo' label='teamTwo' {...field} errors={errors} disabled={isLoading} options={countries} />} />
+    <form className='bg-rose-500' onSubmit={handleSubmit(onSubmit)}>
+        <Controller name="date" control={control} render={({ field }) => <Input id='date' label='date' {...field} errors={errors} disabled={isLoading} />} />
+        <Controller name="hour" control={control} render={({ field }) => <Select id='hour' label='hour' {...field} disabled={isLoading} options={hourOptions} />} />
+        <Controller name="minute" control={control} render={({ field }) => <Select id='minute' label='minute' {...field} disabled={isLoading} options={minuteOptions} />} />
+        <Controller name="type" control={control} render={({ field }) => <Select id='type' label='type' {...field} errors={errors} disabled={isLoading} options={typeOptions} />} />
+        <Controller name="stadium" control={control} render={({ field }) => <Input id='stadium' label='stadium' {...field} errors={errors} disabled={isLoading} />} />
+        <Controller name="teamOne" control={control} render={({ field }) => <Select id='teamOne' label='teamOne' {...field} errors={errors} disabled={isLoading} options={countryOptions} />} />
+        <Controller name="teamTwo" control={control} render={({ field }) => <Select id='teamTwo' label='teamTwo' {...field} errors={errors} disabled={isLoading} options={countryOptions} />} />
         <div>
             <Button disabled={isLoading} type='submit'>
                 Ajouter une team
