@@ -24,9 +24,9 @@
 - Send emails with [Nodemailer](https://nodemailer.com/about)
 - [React Hook Form](https://react-hook-form.com) for forms
 - [Zod](https://zod.dev) for type safety
-- Images stored on[Cloudinary](https://cloudinary.com)
+- Images stored on [Cloudinary](https://cloudinary.com)
 - [Vitest](https://vitest.dev) for test
-- global state management with[Zustand](https://zustand-demo.pmnd.rs)
+- global state management with [Zustand](https://zustand-demo.pmnd.rs)
 - [Mongodb](https://www.mongodb.com/fr-fr) database
 - [ESlint](https://eslint.org) for good practice
 
@@ -39,10 +39,8 @@ npm i
 npm run db
 npm run dev
 ```
-> npm i for install all dependencies
-> 
-> npm run db for delete the old database, generate client prisma types and recreate the database with default data
-> 
+> npm i for install all dependencies<br>
+> npm run db for delete the old database, generate client prisma types and recreate the database with default data<br>
 > npm run dev for starte server
 
 **Your app should now be running on [localhost:3000](http://localhost:3000/)**
