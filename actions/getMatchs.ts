@@ -1,6 +1,6 @@
 import prisma from '@/libs/prismadb'
 
-export default async function getMatch() {
+export default async function getMatchs() {
   try {
     const matchs = await prisma.match.findMany({
       // orderBy: {
