@@ -62,6 +62,7 @@ model Match {
   time       String
   phase       PHASE 
   stadium    String
+  image      String
 
   sections    Section[]
   matchTeams  MatchTeam[]
