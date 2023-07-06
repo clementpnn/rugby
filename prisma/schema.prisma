@@ -17,11 +17,11 @@ model User {
   lastName         String
   email            String   @unique
   emailVerified    Boolean  @default(false)
-  role             Role     @default(USER)
+  role             ROLE     @default(USER)
   accreditation    String?
   password         String
   company          String?
-  job              Job?
+  job              JOB?
 
   accounts   Account[]
   sessions   Session[]
@@ -31,7 +31,7 @@ model User {
 
 model SentEmail {
   id          String    @id @default(auto()) @map("_id") @db.ObjectId
-  type        EmailType
+  type        EMAIL_TYPE
   userId      String    @db.ObjectId
   createdAt   DateTime  @default(now())
   resetToken  String?
@@ -44,7 +44,7 @@ model Section {
   id         String  @id @default(auto()) @map("_id") @db.ObjectId
   name       String
   matchId    String  @db.ObjectId
-  type       Job
+  type       JOB
   places     Int
   image      String
 
@@ -60,7 +60,7 @@ model Match {
   // date       DateTime
   date       String
   time       String
-  type       MatchType  
+  phase       PHASE 
   stadium    String
 
   sections    Section[]
@@ -83,7 +83,7 @@ model MatchTeam {
 model Team {
   id       String    @id @default(auto()) @map("_id") @db.ObjectId
   country  COUNTIES  @unique
-  poule    POULE
+  phase    PHASE
 }
 
 model Demand {
@@ -138,25 +138,28 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
-enum Job {
+enum JOB {
   JOURNALIST
   PHOTOGRAPHER
 }
 
-enum Role {
+enum ROLE {
   DEV
   ADMIN
   USER
 }
 
-enum MatchType {
-  POULE
+enum PHASE {
+  POULE_A
+  POULE_B
+  POULE_C
+  POULE_D
   QUARTERFINAL
   SEMI_FINAL
   FINAL
 }
 
-enum EmailType {
+enum EMAIL_TYPE {
   RESET
   MFA
 }
@@ -171,13 +174,6 @@ enum RESULT {
   WINNER
   LOSER
   NULL
-}
-
-enum POULE {
-  A
-  B
-  C
-  D
 }
 
 enum COUNTIES {

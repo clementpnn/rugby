@@ -1,70 +1,70 @@
-import { COUNTIES, POULE } from '@prisma/client'
+import { COUNTIES, PHASE } from '@prisma/client'
 import prisma from '../libs/prismadb'
 
 async function main() {
 
     await prisma.team.create({
-        data: { country: COUNTIES.NEW_ZEALAND, poule: POULE.A }
+        data: { country: COUNTIES.NEW_ZEALAND, phase: PHASE.POULE_A }
     })
 
     await prisma.team.create({
-        data: { country: COUNTIES.FRANCE, poule: POULE.A }
+        data: { country: COUNTIES.FRANCE, phase: PHASE.POULE_A }
     })
 
     await prisma.team.create({
-    data: { country: COUNTIES.ARGENTINA, poule: POULE.A }
+    data: { country: COUNTIES.ARGENTINA, phase: PHASE.POULE_A }
     })
 
     await prisma.team.create({
-    data: { country: COUNTIES.ITALY, poule: POULE.A }
+    data: { country: COUNTIES.ITALY, phase: PHASE.POULE_A }
     })
 
     await prisma.team.create({
-    data: { country: COUNTIES.IRELAND, poule: POULE.B }
+    data: { country: COUNTIES.IRELAND, phase: PHASE.POULE_B }
     })
 
     await prisma.team.create({
-    data: { country: COUNTIES.SCOTLAND, poule: POULE.B }
+    data: { country: COUNTIES.SCOTLAND, phase: PHASE.POULE_B }
     })
 
     await prisma.team.create({
-    data: { country: COUNTIES.ENGLAND, poule: POULE.B }
+    data: { country: COUNTIES.ENGLAND, phase: PHASE.POULE_B }
     })
 
     await prisma.team.create({
-    data: { country: COUNTIES.JAPAN, poule: POULE.B }
+    data: { country: COUNTIES.JAPAN, phase: PHASE.POULE_B }
     })
 
     await prisma.team.create({
-    data: { country: COUNTIES.SOUTH_AFRICA, poule: POULE.C }
+    data: { country: COUNTIES.SOUTH_AFRICA, phase: PHASE.POULE_C }
     })
 
     await prisma.team.create({
-    data: { country: COUNTIES.WALES, poule: POULE.C }
+    data: { country: COUNTIES.WALES, phase: PHASE.POULE_C }
     })
 
     await prisma.team.create({
-    data: { country: COUNTIES.FIJI, poule: POULE.C }
+    data: { country: COUNTIES.FIJI, phase: PHASE.POULE_C }
     })
 
     await prisma.team.create({
-    data: { country: COUNTIES.AUSTRALIA, poule: POULE.C }
+    data: { country: COUNTIES.AUSTRALIA, phase: PHASE.POULE_C }
     })
 
     await prisma.team.create({
-    data: { country: COUNTIES.SAMOA, poule: POULE.D }
+    data: { country: COUNTIES.SAMOA, phase: PHASE.POULE_D }
     })
 
     await prisma.team.create({
-    data: { country: COUNTIES.TONGA, poule: POULE.D }
+    data: { country: COUNTIES.TONGA, phase: PHASE.POULE_D }
     })
 
     await prisma.team.create({
-    data: { country: COUNTIES.GEORGIA, poule: POULE.D }
+    data: { country: COUNTIES.GEORGIA, phase: PHASE.POULE_D }
     })
 
     await prisma.team.create({
-    data: { country: COUNTIES.URUGUAY, poule: POULE.D }
+    data: { country: COUNTIES.URUGUAY, phase: PHASE.POULE_D }
     })
 }
 
