@@ -70,7 +70,7 @@ export const MatchSchema = z.object({
   date: z.string().nonempty({ message: 'Required' }),
   hour: z.string().nonempty({ message: 'Required' }),
   minute: z.string().nonempty({ message: 'Required' }),
-  type: z.string().refine(value => value === 'POULE' || value === 'QUARTERFINAL' || value === 'SEMI_FINAL' || value === 'FINAL', { message: 'Invalid Type' }),
+  phase: z.string().refine(value => value === 'POULE_A' || value === 'POULE_B' || value === 'POULE_C' || value === 'POULE_D' || value === 'QUARTERFINAL' || value === 'SEMI_FINAL' || value === 'FINAL', { message: 'Invalid Type' }),
   stadium: z.string().nonempty({ message: 'Required' }),
   teamOne: z.string().nonempty({ message: 'Required' }),
   teamTwo: z.string().nonempty({ message: 'Required' })
