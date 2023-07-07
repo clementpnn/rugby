@@ -40,7 +40,7 @@ model SentEmail {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
-model Section {
+model Tribune {
   id         String  @id @default(auto()) @map("_id") @db.ObjectId
   name       String
   matchId    String  @db.ObjectId
@@ -64,7 +64,7 @@ model Match {
   stadium    String
   image      String
 
-  sections    Section[]
+  tribunes    Tribune[]
   matchTeams  MatchTeam[]
 
   @@unique([date, stadium])
@@ -90,14 +90,14 @@ model Team {
 model Demand {
   id         String    @id @default(auto()) @map("_id") @db.ObjectId
   userId     String    @db.ObjectId
-  sectionId  String    @db.ObjectId
+  tribuneId  String    @db.ObjectId
   state      STATE
   createdAt  DateTime  @default(now())
 
   user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  section  Section  @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+  tribune  Tribune  @relation(fields: [tribuneId], references: [id], onDelete: Cascade)
 
-  @@unique([userId, sectionId])
+  @@unique([userId, tribuneId])
 }
 
 model Account {
