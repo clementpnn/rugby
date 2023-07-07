@@ -53,7 +53,7 @@ export const MFASchema = z.object({
   numberSix: z.string().transform(Number)
 })
 
-export const SectionSchema = z.object({
+export const TribuneSchema = z.object({
   name: z.string().nonempty({ message: 'Required' }),
   matchId: z.string().nonempty({ message: 'Required' }),
   type: z.string().refine(value => value === 'JOURNALIST' || value === 'PHOTOGRAPHER', { message: 'Invalid Job' }),

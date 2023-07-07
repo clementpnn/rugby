@@ -11,15 +11,15 @@ export async function POST(request: Request) {
     return new NextResponse('Invalid Request', { status: 400 })
   }
 
-  const isExist = await prisma.section.findUnique({
+  const isExist = await prisma.tribune.findUnique({
     where: { matchId_name: { matchId, name } }
   })
 
   if (isExist) {
-    return new NextResponse('Section existing', { status: 500 })
+    return new NextResponse('Tribune existing', { status: 500 })
   }
 
-  await prisma.section.create({
+  await prisma.tribune.create({
     data: { name, matchId, type, places, image }
   })
 
