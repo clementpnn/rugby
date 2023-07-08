@@ -47,8 +47,8 @@ const LoginForm = () => {
       <Controller name="email" control={control} render={( { field } ) => <Input id='email' label='email' type='email' {...field} errors={errors} disabled={isLoading} />} />
       <Controller name="password" control={control} render={( { field } ) => <Input id='password' label='Mot de passe' type='password' {...field} errors={errors} disabled={isLoading} />} />
       <div>
-        <Button disabled={isLoading} type='submit'>
-                Login
+        <Button disabled={isLoading} type='submit' variant='primary' size='md'>
+          Login
         </Button>
       </div>
     </form>

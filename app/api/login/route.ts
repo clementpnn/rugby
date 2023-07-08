@@ -23,7 +23,7 @@ export async function POST( request: Request ) {
 
     const isCorrectPassword = await bcrypt.compare(
       password,
-      user.hashedPassword
+      user.password
     )
 
     if ( !isCorrectPassword ) {

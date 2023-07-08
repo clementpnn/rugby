@@ -51,7 +51,7 @@ const CreateStadiumContainer = () => {
           <Controller name="name" control={control} render={( { field } ) => <Input id='name' label='name' {...field} errors={errors} disabled={isLoading} />} />
           <ImageUpload onChange={( value ) => setStadiumImage( value )}>Upload Stade Image</ImageUpload>
           <div>
-            <Button disabled={isLoading} onclick={() => setStep( step + 1 as STEPS )} type='button'>
+            <Button disabled={isLoading} onClick={() => setStep( step + 1 as STEPS )} type='button' variant='primary' size='md'>
                         Valider
             </Button>
           </div>
@@ -99,10 +99,10 @@ const CreateStadiumContainer = () => {
             </div>
           ) )}
           <form className='bg-rose-500' onSubmit={handleSubmit( onSubmit )}>
-            <Button onclick={() => setStep( step - 1 as STEPS )} type='button'>
+            <Button onClick={() => setStep( step - 1 as STEPS )} type='button' variant='outline' size='md'>
                         Cancel
             </Button>
-            <Button disabled={isLoading} type='submit'>
+            <Button disabled={isLoading} type='submit' variant='primary' size='md'>
                         Valider
             </Button>
           </form>
@@ -122,13 +122,15 @@ const CreateStadiumContainer = () => {
           <ImageUpload onChange={( value ) => setTribuneImage( value )}> Upload Tribune Image</ImageUpload>
         </div>
         <div>
-          <Button onclick={() => setStep( step - 1 as STEPS )} type='button'>
-                    Cancel
+          <Button onClick={() => setStep( step - 1 as STEPS )} type='button' variant='outline' size='md'>
+            Cancel
           </Button>
-          <Button onclick={() => {
+          <Button onClick={() => {
             setTribunes( [ ...tribunes, { name: nameTribune, type: type as 'JOURNALIST' | 'PHOTOGRAPHER', places, image: tribuneImage } ] )
             setStep( step - 1 as STEPS )
-          }}
+          } }
+          variant={undefined}
+          size={undefined}
           >
                     Valider
           </Button>

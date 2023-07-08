@@ -10,13 +10,13 @@ export async function POST( request: Request ) {
     return new NextResponse( 'Invalid Request', { status: 400 } )
   }
 
-  const isExist = await prisma.match.findUnique( {
-    where: { date_stadium: { date, stadium } }
-  } )
+  // const isExist = await prisma.match.findUnique( {
+  //   where: { date_stadium: { date, stadium } }
+  // } )
 
-  if ( isExist ) {
-    return new NextResponse( 'A match already exists at the stadium and date.', { status: 400 } )
-  }
+  // if ( isExist ) {
+  //   return new NextResponse( 'A match already exists at the stadium and date.', { status: 400 } )
+  // }
 
   const match = await prisma.match.create( {
     data: { date, time: `${hour} : ${minute}`, stadium, phase, image }

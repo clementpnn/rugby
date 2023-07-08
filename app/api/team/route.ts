@@ -19,17 +19,17 @@ export async function POST( request: Request ) {
       return new NextResponse( 'Team Existing', { status: 500 } )
     }
 
-    const pouleCount = await prisma.team.count( {
-      where: { poule }
-    } )
+    // const pouleCount = await prisma.team.count( {
+    //   where: { poule }
+    // } )
 
-    if ( pouleCount >= 4 ) {
-      return new NextResponse( 'Poule is full', { status: 500 } )
-    }
+    // if ( pouleCount >= 4 ) {
+    //   return new NextResponse( 'Poule is full', { status: 500 } )
+    // }
 
-    await prisma.team.create( {
-      data: { country, poule }
-    } )
+    // await prisma.team.create( {
+    //   data: { country, poule }
+    // } )
 
     return new NextResponse( 'Team Created', { status: 200 } )
 

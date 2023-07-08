@@ -51,7 +51,7 @@ const AdminForm = () => {
       <Controller name="password" control={control} render={( { field } ) => <Input id='password' label='Mot de passe' type='password' {...field} errors={errors} disabled={isLoading} />} />
       <Controller name="confirmPassword" control={control} render={( { field } ) => <Input id='confirmPassword' label='Confirmez le mot de passe' type='password' {...field} errors={errors} disabled={isLoading} />} />
       <div>
-        <Button disabled={isLoading} type='submit'>
+        <Button disabled={isLoading} type='submit' variant='primary' size='md'>
           Register
         </Button>
       </div>

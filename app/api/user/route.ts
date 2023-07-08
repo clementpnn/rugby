@@ -24,7 +24,7 @@ export async function POST( request: Request ) {
     const hashedPassword = await bcrypt.hash( password, 12 )
 
     const user = await prisma.user.create( {
-      data: { accreditationId, firstName, lastName, email, company, job, hashedPassword }
+      data: { accreditationId, firstName, lastName, email, company, job, password: hashedPassword }
     } )
 
     const transporter = nodemailer.createTransport( {
