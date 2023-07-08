@@ -2,8 +2,9 @@
 import { create } from 'zustand'
 
 export enum STEPS {
-  SIGNIN = 0,
-  VERIFICATION = 1
+  ONE = 0,
+  TWO = 1,
+  THREE = 2
 }
 
 interface StepsStore {
@@ -12,7 +13,7 @@ interface StepsStore {
 }
 
 const useStep = create<StepsStore>((set) => ({
-  step: STEPS.SIGNIN,
+  step: STEPS.ONE,
   setStep: (newStep: STEPS) => set({ step: newStep })
 }))
 
