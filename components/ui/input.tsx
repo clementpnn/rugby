@@ -1,17 +1,41 @@
 import * as React from 'react'
 import { cn } from '@/libs/utils'
+import { cva, VariantProps } from 'class-variance-authority'
+
+
+const inputVariants = cva(
+  'flex w-full bg-neutral1 rounded-md border border-neutral3 px-4 py-2 text-blue9 file:border-0 file:bg-transparent file:text-sm file:font-medium  focus-visible:outline-none focus-visible:bg-neutral1 focus-visible:border-neutral5 disabled:cursor-not-allowed disabled:opacity-50',
+  {
+    variants: {
+      size: {
+        md: "base-md h-10 py-2",
+        sm: "base-sm h-9 py-3",
+        lg: "base-lg h-11 py-3.5",
+      }
+    },
+    defaultVariants: {
+      size: "md",
+    },
+  }
+)
+
 
 export interface InputProperties
-  extends React.InputHTMLAttributes<HTMLInputElement> {}
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'>,
+    VariantProps<typeof inputVariants> {
+  size?: SizeVariant | null;
+}
+
+type SizeVariant = "md" | "sm" | "lg";
+  
+
 
 const Input = React.forwardRef<HTMLInputElement, InputProperties>(
-  ({ className, type, ...properties }, reference) => {
+  ({ size, className, type, ...properties }, reference) => {
     return (
       <input
         type={type}
-        className={cn(
-          'flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50',
-          className
+        className={cn(inputVariants({ size, className })
         )}
         ref={reference}
         {...properties}

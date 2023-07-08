@@ -392,7 +392,7 @@
   }
 
   .label-lg {
-    @apply text-lg font-lato font-medium;
+    @apply text-lg font-lato font-semibold;
   }
 
   .label-md {
@@ -404,7 +404,7 @@
   }
 
   .base-lg {
-    @apply text-lg font-lato font-semibold;
+    @apply text-lg font-lato font-normal;
   }
 
   .base-md {

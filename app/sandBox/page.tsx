@@ -9,7 +9,7 @@ const Page = () => {
 
 
   return (
-    <div className="h-screen bg-red-200">
+    <div className="h-screen bg-neutral0">
       <Container>
         <Test />
       </Container>
