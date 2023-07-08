@@ -10,10 +10,9 @@ const MatchContainer: React.FC<MatchProperties> = ( { matchs } ) => {
       {matchs.map( ( match ) => {
         return (
           <div className='bg-blue-500' key={match.id}>
-            <h1>{match.stadium}</h1>
+            <h1>{match.phase}</h1>
             <p>{match.date}</p>
             <p>{match.time}</p>
-            <p>{match.type}</p>
             {match.matchTeams.map( ( team ) => {
               return (
                 <div key={team.id}>
