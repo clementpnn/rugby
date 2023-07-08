@@ -21,17 +21,17 @@ const countries = [
   'CHILI'
 ]
 
-const formattedCountries = countries.map((country) => ({
+const formattedCountries = countries.map( ( country ) => ( {
   value: country,
-  label: country.slice(0, 3),
-  flag: `/flags/${country.slice(0, 3).toLowerCase()}.svg`
-}))
+  label: country.slice( 0, 3 ),
+  flag: `/flags/${country.slice( 0, 3 ).toLowerCase()}.svg`
+} ) )
 
 const useCountries = () => {
   const getAll = () => formattedCountries
 
-  const getByValue = (value: string) => {
-    return formattedCountries.find((item) => item.value === value)
+  const getByValue = ( value: string ) => {
+    return formattedCountries.find( ( item ) => item.value === value )
   }
 
   return { getAll, getByValue }

@@ -1,4 +1,4 @@
-"use client";
+'use client'
 
 // import { InputHTMLAttributes } from 'react'
 // import { FieldErrors, FieldError } from 'react-hook-form'
@@ -33,36 +33,36 @@
 
 // export default Input
 
-import { InputHTMLAttributes } from "react";
-import { FieldErrors, FieldError } from "react-hook-form";
-import { InputUI } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { InputHTMLAttributes } from 'react'
+import { FieldErrors, FieldError } from 'react-hook-form'
+import { InputUI } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
 
 interface InputProperties
-  extends Omit<InputHTMLAttributes<HTMLInputElement>, "size"> {
-  label?: string;
-  id: string;
-  type?: string;
-  disabled?: boolean;
-  errors?: FieldErrors;
-  size?: "md" | "sm" | "lg";
+  extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
+  label?: string
+  id: string
+  type?: string
+  disabled?: boolean
+  errors?: FieldErrors
+  size?: 'md' | 'sm' | 'lg'
 }
 
-const Input: React.FC<InputProperties> = ({
+const Input: React.FC<InputProperties> = ( {
   label,
   id,
-  type = "text",
+  type = 'text',
   errors,
   disabled = false,
   size,
   ...rest
-}) => {
-  const error = errors ? (errors[id] as FieldError) : undefined;
+} ) => {
+  const error = errors ? ( errors[id] as FieldError ) : undefined
   return (
-    <div className="grid gap-y-1">
-      <div className="flex justify-between">
+    <div className='grid gap-y-1'>
+      <div className='flex justify-between'>
         <Label htmlFor={id}>{label}</Label>
-        {error && <p className="text-red-500 mt-2">{error.message}</p>}
+        {error && <p className='text-red-500 mt-2'>{error.message}</p>}
       </div>
       <div>
         <InputUI
@@ -74,7 +74,7 @@ const Input: React.FC<InputProperties> = ({
         ></InputUI>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Input;
+export default Input

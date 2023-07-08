@@ -20,7 +20,7 @@
 //         <AlertDialogTrigger><Button variant={'outline'} size={'sm'} className='text-blue6 flex gap-x-2'><MdOutlineLogout size={18} />Logout</Button></AlertDialogTrigger>
 //         <AlertDialogContent className='flex flex-col gap-y-8'>
 //             <AlertDialogHeader>
-//                 <div className='flex flex-row justify-between items-center'>  
+//                 <div className='flex flex-row justify-between items-center'>
 //                     <AlertDialogTitle>LOGOUT</AlertDialogTitle>
 //                     {/* mettre icon */}
 //                     <Button variant={'outline'} size={'sIcon'}>X</Button>
@@ -41,6 +41,6 @@
 //   )
 // }
 
-import * as React from "react"
+import * as React from 'react'
 
 React.Fragment

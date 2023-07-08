@@ -4,7 +4,7 @@ import TribuneForm from '@/components/forms/tribuneForm'
 const page = async () => {
   const matchs = await getMatch()
   return (
-    <> 
+    <>
       <TribuneForm matchs={matchs} />
     </>
   )

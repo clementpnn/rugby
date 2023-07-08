@@ -9,12 +9,12 @@ export enum STEPS {
 
 interface StepsStore {
   step: STEPS
-  setStep: (_newStep: STEPS) => void
+  setStep: ( _newStep: STEPS ) => void
 }
 
-const useStep = create<StepsStore>((set) => ({
+const useStep = create<StepsStore>( ( set ) => ( {
   step: STEPS.ONE,
-  setStep: (newStep: STEPS) => set({ step: newStep })
-}))
+  setStep: ( newStep: STEPS ) => set( { step: newStep } )
+} ) )
 
 export default useStep

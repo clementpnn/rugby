@@ -4,45 +4,45 @@ import nodemailer from 'nodemailer'
 
 import prisma from '@/libs/prismadb'
 
-export async function POST(request: Request) {
+export async function POST( request: Request ) {
   try{
     const body = await request.json()
     const { email, password } = body
 
-    if (!email || !password) {
-      return new NextResponse('Invalid Request', { status: 400 })
+    if ( !email || !password ) {
+      return new NextResponse( 'Invalid Request', { status: 400 } )
     }
 
-    const user = await prisma.user.findUnique({
+    const user = await prisma.user.findUnique( {
       where: { email }
-    })
+    } )
 
-    if (!user) {
-      return new NextResponse('User Not Existing', { status: 500 })
+    if ( !user ) {
+      return new NextResponse( 'User Not Existing', { status: 500 } )
     }
 
     const isCorrectPassword = await bcrypt.compare(
       password,
-      user.hashedPassword
+      user.password
     )
 
-    if (!isCorrectPassword) {
-      return new NextResponse('Server Error', { status: 500 })
+    if ( !isCorrectPassword ) {
+      return new NextResponse( 'Server Error', { status: 500 } )
     }
 
-    const mfaToken = Math.floor(100_000 + Math.random() * 900_000).toString()
+    const mfaToken = Math.floor( 100_000 + Math.random() * 900_000 ).toString()
 
-    await prisma.sentEmail.create({
+    await prisma.sentEmail.create( {
       data: { userId: user.id, type: 'MFA', mfaToken }
-    })
+    } )
 
-    const transporter = nodemailer.createTransport({
+    const transporter = nodemailer.createTransport( {
       service: 'gmail',
       auth: {
         user: process.env.SMTP_EMAIL,
         pass: process.env.SMTP_PASSWORD
       }
-    })
+    } )
 
     const mailOptions = {
       from: process.env.SMTP_EMAIL,
@@ -78,11 +78,11 @@ export async function POST(request: Request) {
                 </html>`
     }
 
-    await transporter.sendMail(mailOptions)
+    await transporter.sendMail( mailOptions )
 
-    return NextResponse.json(user)
+    return NextResponse.json( user )
 
   } catch {
-    return new NextResponse('Server Error', { status: 500 })
+    return new NextResponse( 'Server Error', { status: 500 } )
   }
 }

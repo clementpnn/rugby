@@ -4,15 +4,15 @@ interface IParameters {
     userId?: string
 }
 
-export default async function getDemands(parameters: IParameters) {
+export default async function getDemands( parameters: IParameters ) {
   try {
     const { userId } = parameters
 
-    if (!userId) {
+    if ( !userId ) {
       return
     }
 
-    const demands = await prisma.demand.findMany({
+    const demands = await prisma.demand.findMany( {
       where: { userId },
       orderBy: {
         createdAt: 'desc'
@@ -24,15 +24,15 @@ export default async function getDemands(parameters: IParameters) {
           }
         }
       }
-    })
+    } )
 
-    if (!demands) {
+    if ( !demands ) {
       return
     }
 
     return demands
 
-  } catch (error: any) {
-    throw new Error(error)
+  } catch ( error: any ) {
+    throw new Error( error )
   }
 }

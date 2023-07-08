@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { Button } from '@/components/ui/button'
+import Button from '@/components/buttons/button'
 
 const ProfileCard = () => {
   return (
@@ -30,6 +30,5 @@ const ProfileCard = () => {
 
   )
 }
-
 
 export default ProfileCard
