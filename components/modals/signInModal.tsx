@@ -41,19 +41,19 @@ const SignInModal: React.FC<SignInModalProperties> = ({ currentUser }) => {
     <div>Loading...</div>
   )
 
-  if (step === STEPS.SIGNIN && pathname === '/adminRegister') {
+  if (step === STEPS.ONE && pathname === '/adminRegister') {
     bodyContent = (
       <AdminForm />
     )
   }
 
-  if (step === STEPS.SIGNIN && pathname === '/') {
+  if (step === STEPS.ONE && pathname === '/') {
     bodyContent = (
       <LoginForm />
     )
   }
 
-  if (step === STEPS.VERIFICATION) {
+  if (step === STEPS.TWO) {
     bodyContent = (
       <MFAForm />
     )

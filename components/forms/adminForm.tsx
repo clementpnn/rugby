@@ -46,12 +46,12 @@ const AdminForm = () => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <Controller name="firstName" control={control} render={({ field }) => <Input id='firstName' label='Prénom' {...field} errors={errors} disabled={isLoading} />} />
       <Controller name="lastName" control={control} render={({ field }) => <Input id='lastName' label='Nom' {...field} errors={errors} disabled={isLoading} />} />
-      <Controller name="role" control={control} render={({ field }) => <Select label='role' {...field} disabled={isLoading} options={[{ value: 'ADMIN', label: 'Admin', disabled: false }, { value: 'DEV', label: 'Dev', disabled: false }]} />} />
+      <Controller name="role" control={control} render={({ field }) => <Select id='role' label='role' {...field} disabled={isLoading} options={[{ value: 'ADMIN', label: 'Admin' }, { value: 'DEV', label: 'Dev' }]} />} />
       <Controller name="email" control={control} render={({ field }) => <Input id='email' label='email' type='email' {...field} errors={errors} disabled={isLoading} />} />
       <Controller name="password" control={control} render={({ field }) => <Input id='password' label='Mot de passe' type='password' {...field} errors={errors} disabled={isLoading} />} />
       <Controller name="confirmPassword" control={control} render={({ field }) => <Input id='confirmPassword' label='Confirmez le mot de passe' type='password' {...field} errors={errors} disabled={isLoading} />} />
       <div>
-        <Button disabled={isLoading} type='submit'>
+        <Button disabled={isLoading}  type='submit'>
           Register
         </Button>
       </div>
