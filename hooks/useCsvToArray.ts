@@ -5,15 +5,15 @@ export interface FileRow {
 }
 
 const useCSVToArray = () => {
-  const csvFileToArray = (csvString: string): Promise<FileRow[]> => {
-    return new Promise((resolve) => {
-      Papa.parse(csvString, {
+  const csvFileToArray = ( csvString: string ): Promise<FileRow[]> => {
+    return new Promise( ( resolve ) => {
+      Papa.parse( csvString, {
         header: true,
-        complete: (results) => {
-          resolve(results.data as FileRow[])
+        complete: ( results ) => {
+          resolve( results.data as FileRow[] )
         }
-      })
-    })
+      } )
+    } )
   }
 
   return { csvFileToArray }

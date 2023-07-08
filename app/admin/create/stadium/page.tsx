@@ -3,7 +3,7 @@ import CreateStadiumContainer from '@/components/containers/createStadium'
 const page = async () => {
 
   return (
-    <> 
+    <>
       <CreateStadiumContainer />
     </>
   )

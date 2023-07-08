@@ -3,7 +3,7 @@ export const metadata = {
   description: 'SandBox'
 }
 
-export default function SandBoxLayout({ children }: { children: React.ReactNode }) {
+export default function SandBoxLayout( { children }: { children: React.ReactNode } ) {
   return (
     <div>
       {children}

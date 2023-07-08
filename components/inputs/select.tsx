@@ -16,24 +16,24 @@ interface SelectProperties extends SelectHTMLAttributes<HTMLSelectElement> {
   value: string
   options: SelectOption[]
   errors?: FieldErrors
-  onChange: (_event: ChangeEvent<HTMLSelectElement>) => void
+  onChange: ( _event: ChangeEvent<HTMLSelectElement> ) => void
 }
 
-const Select: React.FC<SelectProperties> = ({ id, label, name, value, onChange, options, disabled, errors }) => {
+const Select: React.FC<SelectProperties> = ( { id, label, name, value, onChange, options, disabled, errors } ) => {
   const error = errors ? errors[id] as FieldError : undefined
 
   return (
-  <div className='block'>
-    <label>{label}</label>
-    <select name={name} disabled={disabled} onChange={onChange} value={value}>
-      {options.map((option, index) => (
-        <option key={index} value={option.value} disabled={option.disabled}>
-          {option.label}
-        </option>
-      ))}
-    </select>
-    {error && <p className='text-red-500 mt-2'>{error.message}</p>}
-  </div>
-)}
+    <div className='block'>
+      <label>{label}</label>
+      <select name={name} disabled={disabled} onChange={onChange} value={value}>
+        {options.map( ( option, index ) => (
+          <option key={index} value={option.value} disabled={option.disabled}>
+            {option.label}
+          </option>
+        ) )}
+      </select>
+      {error && <p className='text-red-500 mt-2'>{error.message}</p>}
+    </div>
+  )}
 
 export default Select

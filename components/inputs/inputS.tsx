@@ -8,7 +8,7 @@ interface InputProperties extends InputHTMLAttributes<HTMLInputElement> {
     errors?: FieldErrors
     maxLength?: number
 }
-const Input_s: React.FC<InputProperties> = ({ label, id, type = 'text', errors, disabled, maxLength = 200, ...rest }) => {
+const Input_s: React.FC<InputProperties> = ( { label, id, type = 'text', errors, disabled, maxLength = 200, ...rest } ) => {
   const error = errors ? errors[id] as FieldError : undefined
   return (
     <>

@@ -14,26 +14,26 @@ interface SignInModalProperties {
   currentUser?: User | null
 }
 
-const SignInModal: React.FC<SignInModalProperties> = ({ currentUser }) => {
+const SignInModal: React.FC<SignInModalProperties> = ( { currentUser } ) => {
   const router = useRouter()
   const session = useSession()
   const pathname = usePathname()
 
-  useEffect(() => {
-    if (session?.status === 'authenticated') {
-      if (currentUser?.role === 'USER') {
-        router.push('/userDashboard')
+  useEffect( () => {
+    if ( session?.status === 'authenticated' ) {
+      if ( currentUser?.role === 'USER' ) {
+        router.push( '/userDashboard' )
       }
 
-      if (currentUser?.role === 'ADMIN') {
-        router.push('/adminDashboard')
+      if ( currentUser?.role === 'ADMIN' ) {
+        router.push( '/adminDashboard' )
       }
 
-      if (currentUser?.role === 'DEV') {
-        router.push('/adminDashboard')
+      if ( currentUser?.role === 'DEV' ) {
+        router.push( '/adminDashboard' )
       }
     }
-  }, [session?.status,currentUser?.role, router])
+  }, [ session?.status, currentUser?.role, router ] )
 
   const { step } = useStep()
 
@@ -41,19 +41,19 @@ const SignInModal: React.FC<SignInModalProperties> = ({ currentUser }) => {
     <div>Loading...</div>
   )
 
-  if (step === STEPS.ONE && pathname === '/adminRegister') {
+  if ( step === STEPS.ONE && pathname === '/adminRegister' ) {
     bodyContent = (
       <AdminForm />
     )
   }
 
-  if (step === STEPS.ONE && pathname === '/') {
+  if ( step === STEPS.ONE && pathname === '/' ) {
     bodyContent = (
       <LoginForm />
     )
   }
 
-  if (step === STEPS.TWO) {
+  if ( step === STEPS.TWO ) {
     bodyContent = (
       <MFAForm />
     )

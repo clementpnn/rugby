@@ -7,25 +7,25 @@ import bcrypt from 'bcrypt'
 import prisma from '@/libs/prismadb'
 
 export const authOptions: AuthOptions = {
-  adapter: PrismaAdapter(prisma),
+  adapter: PrismaAdapter( prisma ),
   providers: [
-    CredentialsProvider({
+    CredentialsProvider( {
       name: 'credentials',
       credentials: {
         email: { label: 'email', type: 'text' },
         password: { label: 'password', type: 'password' }
       },
-      async authorize(credentials) {
-        if (!credentials?.email || !credentials?.password) {
-          throw new Error('Invalid credentials')
+      async authorize( credentials ) {
+        if ( !credentials?.email || !credentials?.password ) {
+          throw new Error( 'Invalid credentials' )
         }
 
-        const user = await prisma.user.findUnique({
+        const user = await prisma.user.findUnique( {
           where: { email: credentials.email }
-        })
+        } )
 
-        if (!user) {
-          throw new Error('Invalid credentials')
+        if ( !user ) {
+          throw new Error( 'Invalid credentials' )
         }
 
         const isCorrectPassword = await bcrypt.compare(
@@ -33,13 +33,13 @@ export const authOptions: AuthOptions = {
           user.password
         )
 
-        if (!isCorrectPassword) {
-          throw new Error('Invalid credentials')
+        if ( !isCorrectPassword ) {
+          throw new Error( 'Invalid credentials' )
         }
 
         return user
       }
-    })
+    } )
   ],
   debug: process.env.NODE_ENV === 'development',
   session: {
@@ -48,6 +48,6 @@ export const authOptions: AuthOptions = {
   secret: process.env.NEXTAUTH_SECRET
 }
 
-const handler = NextAuth(authOptions)
+const handler = NextAuth( authOptions )
 
 export { handler as GET, handler as POST }

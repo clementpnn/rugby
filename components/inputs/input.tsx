@@ -3,8 +3,6 @@
 import { InputHTMLAttributes } from 'react'
 import { FieldErrors, FieldError } from 'react-hook-form'
 
-
-
 interface InputProperties extends InputHTMLAttributes<HTMLInputElement> {
     label?: string
     id: string
@@ -12,7 +10,7 @@ interface InputProperties extends InputHTMLAttributes<HTMLInputElement> {
     maxLength?: number
 }
 
-const Input: React.FC<InputProperties> = ({ label, id, type = 'text', errors, disabled, maxLength = 200, ...rest }) => {
+const Input: React.FC<InputProperties> = ( { label, id, type = 'text', errors, disabled, maxLength = 200, ...rest } ) => {
   const error = errors ? errors[id] as FieldError : undefined
   return (
     <>

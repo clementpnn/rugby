@@ -1,13 +1,13 @@
-"use client";
-import { ButtonUI } from "@/components/ui/button";
+'use client'
+import { ButtonUI } from '@/components/ui/button'
 
-interface ButtonProperties {
-  variant: "primary" | "secondary" | "outline" | "link" | "disabled" | null | undefined;
-  size: "md" | "sm" | "lg" | "iconSm" | "iconMd" | "iconLg" | null | undefined;
-  type?: "button" | "submit";
-  onClick?: () => void;
-  className?: string;
-  children?: React.ReactNode;
+interface ButtonProperties extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  variant: 'primary' | 'secondary' | 'outline' | 'link' | 'disabled' | null | undefined
+  size: 'md' | 'sm' | 'lg' | 'iconSm' | 'iconMd' | 'iconLg' | null | undefined
+  type?: 'button' | 'submit'
+  onClick?: () => void
+  className?: string
+  children?: React.ReactNode
 }
 
 // const Button: React.FC<ButtonProperties> = ({ type= 'button', fullWidth, children, onclick, secondary, danger, disabled }) => {
@@ -31,16 +31,18 @@ interface ButtonProperties {
 
 // export default Button
 
-const Button: React.FC<ButtonProperties> = ({
+const Button: React.FC<ButtonProperties> = ( {
   variant,
   size,
-  type = "button",
+  type = 'button',
   className,
   children,
   onClick,
-}) => {
+  disabled
+} ) => {
   return (
     <ButtonUI
+      disabled={disabled}
       variant={variant}
       size={size}
       type={type}
@@ -49,7 +51,7 @@ const Button: React.FC<ButtonProperties> = ({
     >
       {children}
     </ButtonUI>
-  );
-};
+  )
+}
 
-export default Button;
+export default Button

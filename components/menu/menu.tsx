@@ -10,10 +10,10 @@ import { useState } from 'react'
 // import { useAutoAnimate } from '@formkit/auto-animate/react'
 
 function Menu() {
-  const [showDrawer, setShowDrawer] = useState(false)
+  const [ showDrawer, setShowDrawer ] = useState( false )
 
   const handleShowDrawer = () => {
-    setShowDrawer(!showDrawer)
+    setShowDrawer( !showDrawer )
   }
 
   // const [parent] = useAutoAnimate()

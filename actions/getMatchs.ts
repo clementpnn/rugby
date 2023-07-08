@@ -2,7 +2,7 @@ import prisma from '@/libs/prismadb'
 
 export default async function getMatchs() {
   try {
-    const matchs = await prisma.match.findMany({
+    const matchs = await prisma.match.findMany( {
       // orderBy: {
       //   date: 'desc',
       //   time: 'desc'
@@ -10,11 +10,11 @@ export default async function getMatchs() {
       include: {
         matchTeams: true
       }
-    })
+    } )
 
     return matchs
 
-  } catch (error: any) {
-    throw new Error(error)
+  } catch ( error: any ) {
+    throw new Error( error )
   }
 }
