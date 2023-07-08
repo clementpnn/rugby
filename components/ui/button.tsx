@@ -74,7 +74,7 @@ export interface ButtonProperties
 //     );
 //   }
 // );
-const Button = React.forwardRef<HTMLButtonElement, ButtonProperties>(
+const ButtonUI = React.forwardRef<HTMLButtonElement, ButtonProperties>(
   ({ className, variant, size, asChild = false, ...properties }, reference) => {
     const Comp = asChild ? Slot : 'button';
     return (
@@ -87,6 +87,6 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProperties>(
   }
 );
 
-Button.displayName = 'Button'
+ButtonUI.displayName = 'Button'
 
-export { Button, buttonVariants }
+export { ButtonUI, buttonVariants }
