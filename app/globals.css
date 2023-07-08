@@ -392,19 +392,19 @@
   }
 
   .label-lg {
-    @apply text-lg font-lato font-bold;
+    @apply text-lg font-lato font-medium;
   }
 
   .label-md {
-    @apply text-base font-lato font-bold;
+    @apply text-base font-lato font-semibold;
   }
 
   .label-sm {
-    @apply text-sm font-lato font-bold;
+    @apply text-sm font-lato font-semibold;
   }
 
   .base-lg {
-    @apply text-lg font-lato font-normal;
+    @apply text-lg font-lato font-semibold;
   }
 
   .base-md {
