@@ -42,32 +42,36 @@ model SentEmail {
 
 model Tribune {
   id         String  @id @default(auto()) @map("_id") @db.ObjectId
+  stadiumId  String  @db.ObjectId
   name       String
-  matchId    String  @db.ObjectId
   type       JOB
   places     Int
   image      String
 
-  match Match @relation(fields: [matchId], references: [id], onDelete: Cascade)
+  demands  Demand[]
+  points   Point[]
 
-  demands Demand[]
+  stadium Stadium @relation(fields: [stadiumId], references: [id], onDelete: Cascade)
 
-  @@unique([matchId, name])
+  @@unique([name, stadiumId])
 }
 
 model Match {
-  id         String     @id @default(auto()) @map("_id") @db.ObjectId
+  id         String  @id @default(auto()) @map("_id") @db.ObjectId
   // date       DateTime
   date       String
   time       String
-  phase       PHASE 
-  stadium    String
+  phase      PHASE 
+  stadiumId  String  @db.ObjectId
   image      String
 
-  tribunes    Tribune[]
   matchTeams  MatchTeam[]
+  demands     Demand[]
 
-  @@unique([date, stadium])
+  stadium Stadium @relation(fields: [stadiumId], references: [id], onDelete: Cascade)
+
+  @@unique([date, stadiumId])
+  @@index([date])
 }
 
 model MatchTeam {
@@ -81,6 +85,20 @@ model MatchTeam {
   @@unique([matchId, team])
 }
 
+model Stadium {
+  id         String  @id @default(auto()) @map("_id") @db.ObjectId
+  name       String
+  reference  String
+  image      String
+
+  tribunes  Tribune[]
+  matches   Match[]
+  points    Point[]
+
+  @@unique([name, reference])
+  @@index([name])
+}
+
 model Team {
   id       String    @id @default(auto()) @map("_id") @db.ObjectId
   country  COUNTIES  @unique
@@ -90,14 +108,28 @@ model Team {
 model Demand {
   id         String    @id @default(auto()) @map("_id") @db.ObjectId
   userId     String    @db.ObjectId
+  matchId    String    @db.ObjectId
   tribuneId  String    @db.ObjectId
   state      STATE
   createdAt  DateTime  @default(now())
 
   user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  match    Match    @relation(fields: [matchId], references: [id], onDelete: Cascade)
   tribune  Tribune  @relation(fields: [tribuneId], references: [id], onDelete: Cascade)
 
-  @@unique([userId, tribuneId])
+  @@unique([userId, tribuneId, matchId])
+}
+
+model Point {
+  id         String       @id @default(auto()) @map("_id") @db.ObjectId
+  parentId   String       @db.ObjectId
+  parentType PARENT_TYPE
+  x          Float
+  y          Float
+  createdAt  DateTime     @default(now())
+
+  stadium Stadium? @relation(fields: [parentId], references: [id])
+  tribune Tribune? @relation(fields: [parentId], references: [id])
 }
 
 model Account {
@@ -148,6 +180,11 @@ enum ROLE {
   DEV
   ADMIN
   USER
+}
+
+enum PARENT_TYPE {
+  STADIUM
+  TRIBUNE
 }
 
 enum PHASE {

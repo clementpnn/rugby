@@ -1,31 +1,34 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { SubmitHandler, useForm, Controller } from 'react-hook-form'
+import { useForm, Controller } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { toast } from 'react-hot-toast'
+// import { toast } from 'react-hot-toast'
 import z from 'zod'
 
 import { MatchSchema } from '@/types/forms'
 import Button from '../buttons/button'
 import Select from '../inputs/select'
-import { useRouter } from 'next/navigation'
+// import { useRouter } from 'next/navigation'
 import Input from '../inputs/input'
 import { Team } from '@prisma/client'
 import Image from 'next/image'
 import ImageUpload from '../inputs/imageUpload'
 import useImage from '@/hooks/useImage'
+import useStep, { STEPS } from '@/hooks/useStep'
 
 interface MatchFormProperties {
   teams: Team[]
 }
 
 const MatchForm: React.FC<MatchFormProperties> = ({ teams }) => {
+  // eslint-disable-next-line no-unused-vars
   const [isLoading, setIsloading] = useState(false)
   const [isPoulePhase, setIsPoulePhase] = useState(true)
   const [filteredTeams, setFilteredTeams] = useState<{value: string, label: string, disabled?: boolean}[]>([{value: '--', label: '--', disabled: true}])
-  const { image, setImage } = useImage()
-  const router = useRouter()
+  const { setImage } = useImage()
+  const { step, setStep } = useStep()
+  // const router = useRouter()
 
   const pouleOptions = [{value: 'POULE_A', label: 'POULE A'}, {value: 'POULE_B', label: 'POULE B'}, {value: 'POULE_C', label: 'POULE C'}, {value: 'POULE_D', label: 'POULE D'} ]
   const knockOutOption = [{value: 'QUARTERFINAL', label: 'QUARTERFINAL'}, {value: 'SEMI_FINAL', label: 'SEMI FINAL'}, {value: 'FINAL', label: 'FINAL'}]
@@ -37,7 +40,7 @@ const MatchForm: React.FC<MatchFormProperties> = ({ teams }) => {
   const minuteOptions = minutes.map(minute => { return { value: minute.toString().padStart(2, '0'), label: minute.toString().padStart(2, '0') } })
   
   const defaultValues = {phase: isPoulePhase ? pouleOptions[0].value : knockOutOption[0].value, teamOne: filteredTeams[0]?.value, teamTwo: filteredTeams[0]?.value, hour: hourOptions[0]?.value, minute: minuteOptions[0]?.value, stadium: '', date: '' }
-  const { handleSubmit, control, watch, setValue, formState: { errors } } = useForm<z.infer<typeof MatchSchema>>({ resolver: zodResolver(MatchSchema), defaultValues, mode: 'onChange' })
+  const { control, watch, setValue, formState: { errors } } = useForm<z.infer<typeof MatchSchema>>({ resolver: zodResolver(MatchSchema), defaultValues, mode: 'onChange' })
 
   const phase = watch('phase')
   const teamOne = watch('teamOne')
@@ -49,23 +52,23 @@ const MatchForm: React.FC<MatchFormProperties> = ({ teams }) => {
     setFilteredTeams(options)
   }, [phase, teams])
 
-  const onSubmit: SubmitHandler<z.infer<typeof MatchSchema>> = async (data) => {
-    setIsloading(true)
-    console.log(data)
+  // const onSubmit: SubmitHandler<z.infer<typeof MatchSchema>> = async (data) => {
+  //   setIsloading(true)
+  //   console.log(data)
     
-    await fetch('/api/match', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({image, ...data}) })
-      .then((callback) => {
-        if (callback.status === 200) { toast.success(`${callback.statusText}`) }
-        if (callback.status !== 200) { toast.error(`${callback.statusText}`) }
-        router.refresh()
-      })
-  }
+  //   await fetch('/api/match', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({image, ...data}) })
+  //     .then((callback) => {
+  //       if (callback.status === 200) { toast.success(`${callback.statusText}`) }
+  //       if (callback.status !== 200) { toast.error(`${callback.statusText}`) }
+  //       router.refresh()
+  //     })
+  // }
 
   return (
     <>
         <Button onclick={() => {setIsPoulePhase(true); setValue('phase', pouleOptions[0].value)}}>POULE</Button>
         <Button onclick={() => {setIsPoulePhase(false); setValue('phase', knockOutOption[0].value)}}>KNOCK-OUT</Button>
-        <form className='bg-rose-500' onSubmit={handleSubmit(onSubmit)}>
+        {/* <form className='bg-rose-500' onSubmit={handleSubmit(onSubmit)}> */}
             <Controller name="phase" control={control} render={({ field }) => <Select id='phase' label='phase' {...field} errors={errors} disabled={isLoading} options={isPoulePhase ? pouleOptions : knockOutOption} />} />
             <Controller name="teamOne" control={control} render={({ field }) => <Select id='teamOne' label='teamOne' {...field} errors={errors} disabled={isLoading} options={filteredTeams.map(option => ({...option, disabled: option.value === '--' ? !!teamOne : option.value === teamTwo}))} />} />
             <Image src={teamOne === '--' ? '/placeholder-image.png' : `/flags/${teamOne.slice(0, 3).toLowerCase()}.svg`} alt='team' width={50} height={50} />
@@ -77,11 +80,11 @@ const MatchForm: React.FC<MatchFormProperties> = ({ teams }) => {
             <Controller name="stadium" control={control} render={({ field }) => <Input id='stadium' label='stadium' {...field} errors={errors} disabled={isLoading} />} />
             <ImageUpload onChange={(value) => setImage(value)} />
             <div>
-                <Button disabled={isLoading} type='submit'>
+                <Button disabled={isLoading} onclick={() => setStep(step + 1 as STEPS)} type='submit'>
                     Ajouter une team
                 </Button>
             </div>
-        </form>
+        {/* </form> */}
     </>
   )
 }
