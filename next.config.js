@@ -2,7 +2,9 @@
 const nextConfig = {
     images: {
         dangerouslyAllowSVG: true,
-        domains: ['res.cloudinary.com']
+        domains: ['res.cloudinary.com'],
+        contentDispositionType: 'attachment',
+        contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
     }
 }
 
