@@ -3,7 +3,7 @@ export const metadata = {
   description: 'End of school year project'
 }
 
-export default function adminSad( { children }: { children: React.ReactNode } ) {
+export default function AdminSadLayout( { children }: { children: React.ReactNode } ) {
   return (
     <div>
       {children}
