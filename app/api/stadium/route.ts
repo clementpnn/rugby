@@ -4,7 +4,7 @@ import prisma from '@/libs/prismadb'
 
 export async function POST( request: Request ) {
   const body = await request.json()
-  const { reference, name, stadiumImage, tribunes } = body
+  const { name, reference, stadiumImage, tribunes } = body
 
   if ( !reference || !name || !stadiumImage || !tribunes ) {
     return new NextResponse( 'Invalid Request', { status: 400 } )
@@ -17,8 +17,8 @@ export async function POST( request: Request ) {
   }
 
   tribunes.map( async ( tribune: any ) => {
-    const { name, type, places, image } = tribune
-    if ( !name || !type || !places || !image ) {
+    const { name, type, places, image, x, y } = tribune
+    if ( !name || !type || !places || !image || !x || !y ) {
       return new NextResponse( 'Invalid Request', { status: 400 } )
     }
   } )
@@ -32,25 +32,25 @@ export async function POST( request: Request ) {
   }
 
   const stadium = await prisma.stadium.create( {
-    data: { reference, name, image: stadiumImage, tribunes }
+    data: { reference, name, image: stadiumImage }
   } )
 
-  tribunes.map( async ( tribune: any ) => {
-    const { name, type, places, image } = tribune
+  await Promise.all(
+    tribunes.map( async ( tribune: any ) => {
+      const { name, type, places, image, x, y } = tribune
 
-    const isTribuneExist = await prisma.tribune.findUnique( {
-      where: { name_stadiumId: { name, stadiumId: stadium.id } }
+      const isTribuneExist = await prisma.tribune.findUnique( {
+        where: { name_stadiumId: { name, stadiumId: stadium.id } }
+      } )
 
-    } )
+      if ( isTribuneExist ) {
+        return new NextResponse( 'A tribune already exists', { status: 400 } )
+      }
 
-    if ( isTribuneExist ) {
-      return new NextResponse( 'A tribune already exists', { status: 400 } )
-    }
+      await prisma.tribune.create( {
+        data: { name, type, places: Number( places ), image, stadiumId: stadium.id, x, y }
+      } )
+    } ) )
 
-    await prisma.tribune.create( {
-      data: { name, type, places, image, stadiumId: stadium.id }
-    } )
-  } )
-
-  return new NextResponse( 'Team Created', { status: 200 } )
+  return new NextResponse( 'Stadium Created', { status: 200 } )
 }

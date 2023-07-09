@@ -26,6 +26,7 @@ const Input: React.FC<InputProperties> = ( {
   type = 'text',
   errors,
   disabled = false,
+
   size = 'md',
   variant = 'default',
   icon,
@@ -34,6 +35,7 @@ const Input: React.FC<InputProperties> = ( {
   placeholder,
   iconPosition = 'right',
   onClick,
+  size,
   ...rest
 } ) => {
   const [ isClicked, setIsClicked ] = useState( false )
