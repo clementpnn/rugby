@@ -59,7 +59,7 @@
   "devDependencies": {
     "@types/nodemailer": "^6.4.8",
     "@types/papaparse": "^5.3.7",
-    "eslint-plugin-check-file": "^2.4.0",
+    "eslint-plugin-check-file": "^2.5.0",
     "eslint-plugin-unused-imports": "^2.0.0",
     "ts-node": "^10.9.1"
   }
