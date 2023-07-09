@@ -21,10 +21,22 @@ const Component: React.FC = () => {
   const [ matches, setMatches ] = useState<Match[]>( [] )
 
   const poolCategories: PoolCategory[] = [
-    { category: 'Pool A', teams: [ 'Team1A', 'Team2A', 'Team3A', 'Team4A', 'Team5A' ] },
-    { category: 'Pool B', teams: [ 'Team1B', 'Team2B', 'Team3B', 'Team4B', 'Team5B' ] },
-    { category: 'Pool C', teams: [ 'Team1C', 'Team2C', 'Team3C', 'Team4C', 'Team5C' ] },
-    { category: 'Pool D', teams: [ 'Team1D', 'Team2D', 'Team3D', 'Team4D', 'Team5D' ] }
+    {
+      category: 'Pool A',
+      teams: [ 'Team1A', 'Team2A', 'Team3A', 'Team4A', 'Team5A' ]
+    },
+    {
+      category: 'Pool B',
+      teams: [ 'Team1B', 'Team2B', 'Team3B', 'Team4B', 'Team5B' ]
+    },
+    {
+      category: 'Pool C',
+      teams: [ 'Team1C', 'Team2C', 'Team3C', 'Team4C', 'Team5C' ]
+    },
+    {
+      category: 'Pool D',
+      teams: [ 'Team1D', 'Team2D', 'Team3D', 'Team4D', 'Team5D' ]
+    }
   ]
 
   const handlePoolButtonClick = () => {
@@ -49,9 +61,14 @@ const Component: React.FC = () => {
 
   const handleTeamClick = ( team: string ) => {
     setSelectedTeam( team )
-    const selectedPoolTeams = poolCategories.find( ( category ) => category.category === selectedPool )?.teams || []
+    const selectedPoolTeams =
+      poolCategories.find( ( category ) => category.category === selectedPool )
+        ?.teams || []
     const otherTeams = selectedPoolTeams.filter( ( t ) => t !== team )
-    const poolMatches: Match[] = otherTeams.map( ( t ) => ( { team1: team, team2: t } ) )
+    const poolMatches: Match[] = otherTeams.map( ( t ) => ( {
+      team1: team,
+      team2: t
+    } ) )
     setMatches( poolMatches )
   }
 
