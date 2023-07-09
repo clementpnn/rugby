@@ -1,16 +1,13 @@
 'use client'
 
-import z from 'zod'
 import toast from 'react-hot-toast'
 import { useState } from 'react'
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'next/navigation'
 
 import useStep, { STEPS } from '@/hooks/useStep'
 import ImageContainer from './image'
 import Button from '../buttons/button'
-import { StadiumSchema } from '@/types/forms'
 import ImageUpload from '../inputs/imageUpload'
 import Input from '../inputs/input'
 import Select from '../inputs/select'
@@ -18,25 +15,31 @@ import Select from '../inputs/select'
 const CreateStadiumContainer = () => {
   const [ isLoading, setIsloading ] = useState( false )
   const [ stadiumImage, setStadiumImage ] = useState( '' )
+  const [ stadium, setStadium ] = useState<{name: string, reference: string}>( { name: '', reference: '' } )
   const [ tribuneImage, setTribuneImage ] = useState( '' )
-  const [ stadiumPoints, setStadiumPoints ] = useState<{x: Number, y: Number}[]>( [] )
-  const [ tribunes, setTribunes ] = useState<{name: String, type: 'JOURNALIST'|'PHOTOGRAPHER', places: Number, image: String}[]>( [] )
+  const [ stadiumPoint, setStadiumPoint ] = useState<{x: number, y: number}>( { x: 0, y: 0 } )
+  const [ tribunes, setTribunes ] = useState<{name: string, type: 'JOURNALIST'|'PHOTOGRAPHER', places: number, image: string, x: number, y: number}[]>( [] )
   const { step, setStep } = useStep()
   const router = useRouter()
 
-  const { handleSubmit, control, watch, formState: { errors } } = useForm<z.infer<typeof StadiumSchema>>( { resolver: zodResolver( StadiumSchema ), defaultValues: { name: '', reference: '', nameTribune: '', type: 'JOURNALIST' }, mode: 'onChange' } )
-  const onSubmit: SubmitHandler<z.infer<typeof StadiumSchema>> = async () => {
+  const { handleSubmit, control, watch, reset, formState: { errors } } = useForm<any>( { defaultValues: { type: 'JOURNALIST' }, mode: 'onChange' } )
+  const onSubmit: SubmitHandler<any> = async () => {
     setIsloading( true )
 
-    await fetch( '/api/stadium', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify( { reference, name, stadiumImage, tribunes } ) } )
+    await fetch( '/api/stadium', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify( { ...stadium, stadiumImage, tribunes } ) } )
       .then( ( callback ) => {
-        if ( callback.status === 200 ) { toast.success( `${callback.statusText}` ) }
-        if ( callback.status !== 200 ) { toast.error( `${callback.statusText}` ) }
-        router.refresh()
+        if ( callback.status === 200 ) {
+          toast.success( `${callback.statusText}` )
+          router.refresh()
+        }
+        if ( callback.status !== 200 ) {
+          toast.error( `${callback.statusText}` )
+          setIsloading( true )
+        }
       } )
   }
 
-  const { reference, name, nameTribune, type, places } = watch()
+  const { name, reference, nameTribune, type, places } = watch()
 
   let bodyContent = (
     <div>Loading...</div>
@@ -51,8 +54,11 @@ const CreateStadiumContainer = () => {
           <Controller name="name" control={control} render={( { field } ) => <Input id='name' label='name' {...field} errors={errors} disabled={isLoading} />} />
           <ImageUpload onChange={( value ) => setStadiumImage( value )}>Upload Stade Image</ImageUpload>
           <div>
-            <Button disabled={isLoading} onClick={() => setStep( step + 1 as STEPS )} type='button' variant='primary' size='md'>
-                        Valider
+            <Button type='button' variant='primary' size='md' disabled={isLoading} onClick={() => {
+              setStep( step + 1 as STEPS )
+              setStadium( { name, reference } )
+            }}>
+              Valider
             </Button>
           </div>
         </div>
@@ -76,34 +82,39 @@ const CreateStadiumContainer = () => {
       <>
         <ImageContainer
           image={stadiumImage}
-          points={stadiumPoints}
+          tribunes={tribunes}
           onClick={ ( event ) => {
-            const pointSize = 10
-            const newPoint = calculatePoint( event, pointSize )
-            setStadiumPoints( [ ...stadiumPoints, newPoint ] )
+            const pointSize = 30
+            const point = calculatePoint( event, pointSize )
+            setStadiumPoint( point )
             setStep( step + 1 as STEPS )
           }}
         />
         <div>
           {tribunes.map( ( tribune, index ) => (
-            <div key={index}>
-              <div>
-                <p>{index}</p>
-                <p>Name</p>
-                <p>{tribune.name}</p>
-                <p>Type</p>
-                <p>{tribune.type}</p>
-                <p>Places</p>
-                <p>{tribune.places.toString()}</p>
+            <div key={index} className='relative group'>
+              <div className='flex p-8 justify-around border border-spacing-2 m-8'>
+                <p> Index : {index + 1}</p>
+                <p>Name : {tribune.name}</p>
+                <p>Type : {tribune.type}</p>
+                <p>Number of places : {tribune.places.toString()}</p>
               </div>
+              <button className="absolute top-0 right-8 w-6 h-6 rounded-full bg-red-500 text-white transform translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 cursor-pointer" onClick={() => setTribunes( tribunes.filter( ( _, itemIndex ) => itemIndex !== index ) )}>
+                X
+              </button>
             </div>
           ) )}
-          <form className='bg-rose-500' onSubmit={handleSubmit( onSubmit )}>
-            <Button onClick={() => setStep( step - 1 as STEPS )} type='button' variant='outline' size='md'>
-                        Cancel
+
+          <form onSubmit={handleSubmit( onSubmit )}>
+            <Button type='button' variant='outline' size='md' onClick={() => {
+              setStep( step - 1 as STEPS )
+              setStadiumImage( '' )
+              setTribunes( [] )
+            }}>
+              Cancel
             </Button>
             <Button disabled={isLoading} type='submit' variant='primary' size='md'>
-                        Valider
+              Valider
             </Button>
           </form>
         </div>
@@ -122,17 +133,28 @@ const CreateStadiumContainer = () => {
           <ImageUpload onChange={( value ) => setTribuneImage( value )}> Upload Tribune Image</ImageUpload>
         </div>
         <div>
-          <Button onClick={() => setStep( step - 1 as STEPS )} type='button' variant='outline' size='md'>
+          <Button type='button' variant='outline' size='md' onClick={() => {
+            setStep( step - 1 as STEPS )
+            setTribuneImage( '' )
+            reset( {
+              nameTribune: '',
+              type: 'JOURNALIST',
+              places: undefined
+            } )
+          }}>
             Cancel
           </Button>
-          <Button onClick={() => {
-            setTribunes( [ ...tribunes, { name: nameTribune, type: type as 'JOURNALIST' | 'PHOTOGRAPHER', places, image: tribuneImage } ] )
+          <Button variant='primary' size='md' onClick={() => {
+            setTribunes( [ ...tribunes, { name: nameTribune, type: type as 'JOURNALIST' | 'PHOTOGRAPHER', places, image: tribuneImage, x: stadiumPoint.x, y: stadiumPoint.y } ] )
             setStep( step - 1 as STEPS )
-          } }
-          variant={undefined}
-          size={undefined}
-          >
-                    Valider
+            setTribuneImage( '' )
+            reset( {
+              nameTribune: '',
+              type: 'JOURNALIST',
+              places: undefined
+            } )
+          }}>
+            Valider
           </Button>
         </div>
       </>
