@@ -78,14 +78,6 @@ export const TeamSchema = z.object( {
 //   name: z.string().nonempty({ message: 'Required' })
 // })
 
-export const StadiumSchema = z.object( {
-  name: z.string().nonempty( { message: 'Required' } ),
-  reference: z.string().nonempty( { message: 'Required' } ),
-  nameTribune: z.string().nonempty( { message: 'Required' } ),
-  type: z.string().refine( value => value === 'JOURNALIST' || value === 'PHOTOGRAPHER', { message: 'Invalid Job' } ),
-  places: z.string().transform( Number )
-} )
-
 export const DemandSchema = z.object( {
   userId: z.string().nonempty( { message: 'Required' } ),
   matchId: z.string().nonempty( { message: 'Required' } ),
