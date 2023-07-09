@@ -46,6 +46,7 @@ interface InputProperties
   disabled?: boolean
   errors?: FieldErrors
   size?: 'md' | 'sm' | 'lg'
+  required?: boolean
 }
 
 const Input: React.FC<InputProperties> = ( {
@@ -55,6 +56,7 @@ const Input: React.FC<InputProperties> = ( {
   errors,
   disabled = false,
   size,
+  required,
   ...rest
 } ) => {
   const error = errors ? ( errors[id] as FieldError ) : undefined
@@ -66,6 +68,7 @@ const Input: React.FC<InputProperties> = ( {
       </div>
       <div>
         <InputUI
+          required={required}
           id={id}
           type={type}
           disabled={disabled}
