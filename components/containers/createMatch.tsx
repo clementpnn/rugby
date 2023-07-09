@@ -76,8 +76,8 @@
 //       <>
 //         <ImageContainer />
 //         <div>
-//           <Button onclick={() => {setIsPoulePhase( true ); setValue( 'phase', pouleOptions[0].value )}}>POULE</Button>
-//           <Button onclick={() => {setIsPoulePhase( false ); setValue( 'phase', knockOutOption[0].value )}}>KNOCK-OUT</Button>
+//           <Button onclick={() => {setIsPoulePhase( true ) setValue( 'phase', pouleOptions[0].value )}}>POULE</Button>
+//           <Button onclick={() => {setIsPoulePhase( false ) setValue( 'phase', knockOutOption[0].value )}}>KNOCK-OUT</Button>
 //           <Controller name="phase" control={control} render={( { field } ) => <Select id='phase' label='phase' {...field} errors={errors} disabled={isLoading} options={isPoulePhase ? pouleOptions : knockOutOption} />} />
 //           <Controller name="teamOne" control={control} render={( { field } ) => <Select id='teamOne' label='teamOne' {...field} errors={errors} disabled={isLoading} options={filteredTeams.map( option => ( { ...option, disabled: option.value === '--' ? !!teamOne : option.value === teamTwo } ) )} />} />
 //           <Image src={teamOne === '--' ? '/placeholder-image.png' : `/flags/${teamOne.slice( 0, 3 ).toLowerCase()}.svg`} alt='team' width={50} height={50} />
@@ -147,7 +147,7 @@
 //           <Button onclick={() => setStep( step - 1 as STEPS )} type='button'>
 //                     Cancel
 //           </Button>
-//           <Button onclick={() => { setTribune( previousTribune => [ ...previousTribune, { id: uuidv4(), tribuneImage, name, places } ] ); setStep( step - 1 as STEPS ) }} type='submit'>
+//           <Button onclick={() => { setTribune( previousTribune => [ ...previousTribune, { id: uuidv4(), tribuneImage, name, places } ] ) setStep( step - 1 as STEPS ) }} type='submit'>
 //                     Valider
 //           </Button>
 //         </div>
