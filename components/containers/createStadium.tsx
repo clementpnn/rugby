@@ -30,6 +30,11 @@ const CreateStadiumContainer = () => {
       .then( ( callback ) => {
         if ( callback.status === 200 ) {
           toast.success( `${callback.statusText}` )
+          setStep( step - 1 as STEPS )
+          setStadiumImage( '' )
+          setStadium( { name: '', reference: '' } )
+          setStadiumPoint( { x: 0, y: 0 } )
+          reset()
           router.refresh()
         }
         if ( callback.status !== 200 ) {
