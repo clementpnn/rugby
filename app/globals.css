@@ -383,15 +383,15 @@
   }
 
   .label-lg {
-    @apply text-lg font-lato font-semibold;
+    @apply text-lg font-lato font-medium;
   }
 
   .label-md {
-    @apply text-base font-lato font-semibold;
+    @apply text-base font-lato font-medium;
   }
 
   .label-sm {
-    @apply text-sm font-lato font-semibold;
+    @apply text-sm font-lato font-medium;
   }
 
   .base-lg {

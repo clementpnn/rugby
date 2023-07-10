@@ -2,40 +2,23 @@
 import { ButtonUI } from '@/components/ui/button'
 
 interface ButtonProperties extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant: 'primary' | 'secondary' | 'outline' | 'link' | 'disabled' | null | undefined
-  size: 'md' | 'sm' | 'lg' | 'iconSm' | 'iconMd' | 'iconLg' | null | undefined
+  variant?: 'primary' | 'secondary' | 'outline' | 'link' | 'disabled' | null | undefined
+  size?: 'md' | 'sm' | 'lg' | 'iconSm' | 'iconMd' | 'iconLg' | null | undefined
   type?: 'button' | 'submit'
   onClick?: () => void
   className?: string
+  icon?: React.ReactNode
+  iconPosition?: 'right' | 'left'
   children?: React.ReactNode
 }
-
-// const Button: React.FC<ButtonProperties> = ({ type= 'button', fullWidth, children, onclick, secondary, danger, disabled }) => {
-//   return (
-//     <button
-//       onClick={onclick}
-//       type={type}
-//       disabled={disabled}
-//       className={`
-//         ${disabled && 'opacity-50 cursor-default'}
-//         ${fullWidth && 'w-full'}
-//         ${secondary ? 'text-gray-900' : 'text-white'}
-//         ${danger && 'bg-rose-500 hover:bg-rose-600 focus-visible:outline-rose-600'}
-//         ${!secondary && !danger && 'bg-sky-500 hover:bg-sky-600 focus-visible:outline-sky-600'}
-//         `}
-//     >
-//       {children}
-//     </button>
-//   )
-// }
-
-// export default Button
 
 const Button: React.FC<ButtonProperties> = ( {
   variant,
   size,
   type = 'button',
   className,
+  icon,
+  iconPosition,
   children,
   onClick,
   disabled
@@ -49,7 +32,30 @@ const Button: React.FC<ButtonProperties> = ( {
       onClick={onClick}
       className={className}
     >
-      {children}
+      {iconPosition==='left' && <div
+        className={`
+          ${size === 'iconSm' || size === 'sm' && 'w-4 h-4'} 
+          ${size === 'iconMd' || size === 'md' && 'w-5 h-5'} 
+          ${size === 'iconLg' || size === 'lg' && 'w-6 h-6'} 
+        `}
+      >
+        {icon}
+      </div>}
+      <span className={`
+        ${iconPosition === 'left' && size==='sm' && 'pl-1'} 
+        ${iconPosition === 'right' && 'pr-1'} 
+      `}>
+        {children}
+      </span>
+      {iconPosition==='right' && <div
+        className={`
+          ${size === 'iconSm' || size === 'sm' && 'w-4 h-4'} 
+          ${size === 'iconMd' || size === 'md' && 'w-5 h-5'} 
+          ${size === 'iconLg' || size === 'lg' && 'w-6 h-6'} 
+        `}
+      >
+        {icon}
+      </div>}
     </ButtonUI>
   )
 }

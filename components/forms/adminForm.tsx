@@ -15,6 +15,7 @@ import useStep, { STEPS } from '@/hooks/useStep'
 import useUser from '@/hooks/useUser'
 
 import { AiOutlineMenu, AiOutlineEye } from 'react-icons/ai'
+import Container from '@/components/containers/container'
 
 const AdminForm = () => {
   const [ isLoading, setIsloading ] = useState( false )
@@ -64,114 +65,119 @@ const AdminForm = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit( onSubmit )}>
-      <Controller
-        name="firstName"
-        control={control}
-        render={( { field } ) => (
-          <Input
-            id="firstName"
-            label="Prénom"
-            {...field}
-            errors={errors}
+    <Container>
+      <form onSubmit={handleSubmit( onSubmit )}>
+        <Controller
+          name="firstName"
+          control={control}
+          render={( { field } ) => (
+            <Input
+              id="firstName"
+              label="Prénom"
+              {...field}
+              errors={errors}
+              disabled={isLoading}
+            />
+          )}
+        />
+        <Controller
+          name="lastName"
+          control={control}
+          render={( { field } ) => (
+            <Input
+              id="lastName"
+              label="Nom"
+              {...field}
+              errors={errors}
+              disabled={isLoading}
+            />
+          )}
+        />
+        <Controller
+          name="role"
+          control={control}
+          render={( { field } ) => (
+            <Select
+              id="role"
+              label="role"
+              {...field}
+              disabled={isLoading}
+              options={[
+                { value: 'ADMIN', label: 'Admin' },
+                { value: 'DEV', label: 'Dev' }
+              ]}
+            />
+          )}
+        />
+        <Controller
+          name="email"
+          control={control}
+          render={( { field } ) => (
+            <Input
+              id="email"
+              label="email"
+              type="email"
+              {...field}
+              errors={errors}
+              disabled={isLoading}
+            />
+          )}
+        />
+        <Controller
+          name="password"
+          control={control}
+          render={( { field } ) => (
+            <Input
+              id="password"
+              label="Mot de passe"
+              type="password"
+              {...field}
+              errors={errors}
+              disabled={isLoading}
+            />
+          )}
+        />
+        <Controller
+          name="confirmPassword"
+          control={control}
+          render={( { field } ) => (
+            <Input
+              id="confirmPassword"
+              label="Confirmez le mot de passe"
+              type="password"
+              {...field}
+              errors={errors}
+              disabled={isLoading}
+            />
+          )}
+        />
+        <div>
+          <Button
             disabled={isLoading}
-          />
-        )}
-      />
-      <Controller
-        name="lastName"
-        control={control}
-        render={( { field } ) => (
-          <Input
-            id="lastName"
-            label="Nom"
-            {...field}
-            errors={errors}
-            disabled={isLoading}
-          />
-        )}
-      />
-      <Controller
-        name="role"
-        control={control}
-        render={( { field } ) => (
-          <Select
-            id="role"
-            label="role"
-            {...field}
-            disabled={isLoading}
-            options={[
-              { value: 'ADMIN', label: 'Admin' },
-              { value: 'DEV', label: 'Dev' }
-            ]}
-          />
-        )}
-      />
-      <Controller
-        name="email"
-        control={control}
-        render={( { field } ) => (
-          <Input
-            id="email"
-            label="email"
-            type="email"
-            {...field}
-            errors={errors}
-            disabled={isLoading}
-          />
-        )}
-      />
-      <Controller
-        name="password"
-        control={control}
-        render={( { field } ) => (
-          <Input
-            id="password"
-            label="Mot de passe"
-            type="password"
-            {...field}
-            errors={errors}
-            disabled={isLoading}
-          />
-        )}
-      />
-      <Controller
-        name="confirmPassword"
-        control={control}
-        render={( { field } ) => (
-          <Input
-            id="confirmPassword"
-            label="Confirmez le mot de passe"
-            type="password"
-            {...field}
-            errors={errors}
-            disabled={isLoading}
-          />
-        )}
-      />
-      <div>
-        <Button
-          disabled={isLoading}
-          type="submit"
-          variant="primary"
-          size={undefined}
-        >
-          Register
-        </Button>
-      </div>
-      <Input
-        id="Hey"
-        size="lg"
-        variant='code'
-        label='hey'
-        className='max-w-sm'
-        iconPosition='left'
-        icon={<AiOutlineMenu className="w-full h-full" />}
-        iconActive={<AiOutlineEye className="w-full h-full" />}
-        placeholder=''
-        onClick={handleIconClick}
-      />
-    </form>
+            type="submit"
+            size="lg"
+            icon={<AiOutlineEye className="w-full h-full" />}
+            iconPosition='right'
+            variant="primary"
+            onClick={()=>console.log( isLoading )}
+          >
+            Salut
+          </Button>
+        </div>
+        <Input
+          id="Hey"
+          size="lg"
+          variant='code'
+          label='hey'
+          className='max-w-sm'
+          iconPosition='left'
+          icon={<AiOutlineMenu className="w-full h-full" />}
+          iconActive={<AiOutlineEye className="w-full h-full" />}
+          placeholder=''
+          onClick={handleIconClick}
+        />
+      </form>
+    </Container>
   )
 }
 
