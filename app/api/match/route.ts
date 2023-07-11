@@ -4,22 +4,22 @@ import prisma from '@/libs/prismadb'
 
 export async function POST( request: Request ) {
   const body = await request.json()
-  const { phase, date, hour, minute, stadium, image, teamOne, teamTwo } = body
+  const { phase, date, hour, minute, stadiumId, image, teamOne, teamTwo } = body
 
-  if ( !phase || !date || !stadium || !teamOne || !teamTwo || !hour || !minute || !image || teamOne === teamTwo ) {
+  if ( !phase || !date || !stadiumId || !teamOne || !teamTwo || !hour || !minute || !image || teamOne === teamTwo ) {
     return new NextResponse( 'Invalid Request', { status: 400 } )
   }
 
-  // const isExist = await prisma.match.findUnique( {
-  //   where: { date_stadium: { date, stadium } }
-  // } )
+  const isMatchExist = await prisma.match.findUnique( {
+    where: { date_stadiumId: { date, stadiumId } }
+  } )
 
-  // if ( isExist ) {
-  //   return new NextResponse( 'A match already exists at the stadium and date.', { status: 400 } )
-  // }
+  if ( isMatchExist ) {
+    return new NextResponse( 'A match already exists at the stadium and date.', { status: 400 } )
+  }
 
   const match = await prisma.match.create( {
-    data: { date, time: `${hour} : ${minute}`, stadium, phase, image }
+    data: { date, time: `${hour} : ${minute}`, stadiumId, phase }
   } )
 
   await prisma.matchTeam.create( {

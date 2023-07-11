@@ -64,7 +64,6 @@ model Match {
   time       String
   phase      PHASE 
   stadiumId  String  @db.ObjectId
-  image      String
 
   matchTeams  MatchTeam[]
   demands     Demand[]
