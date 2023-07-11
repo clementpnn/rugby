@@ -65,18 +65,16 @@ export const TeamSchema = z.object( {
   poule: z.string().refine( value => value === 'A' || value === 'B' || value === 'C' || value === 'D', { message: 'Invalid Poule' } )
 } )
 
-// export const MatchSchema = z.object({
-//   // date: z.string().transform(value => new Date(value)),
-//   date: z.string().nonempty({ message: 'Required' }),
-//   hour: z.string().nonempty({ message: 'Required' }),
-//   minute: z.string().nonempty({ message: 'Required' }),
-//   phase: z.string().refine(value => value === 'POULE_A' || value === 'POULE_B' || value === 'POULE_C' || value === 'POULE_D' || value === 'QUARTERFINAL' || value === 'SEMI_FINAL' || value === 'FINAL', { message: 'Invalid Type' }),
-//   stadium: z.string().nonempty({ message: 'Required' }),
-//   teamOne: z.string().nonempty({ message: 'Required' }),
-//   teamTwo: z.string().nonempty({ message: 'Required' }),
-//   places: z.string().transform(Number),
-//   name: z.string().nonempty({ message: 'Required' })
-// })
+export const MatchSchema = z.object( {
+  // date: z.string().transform(value => new Date(value)),
+  date: z.string().nonempty( { message: 'Required' } ),
+  hour: z.string().nonempty( { message: 'Required' } ),
+  minute: z.string().nonempty( { message: 'Required' } ),
+  phase: z.string().refine( value => value === 'POULE_A' || value === 'POULE_B' || value === 'POULE_C' || value === 'POULE_D' || value === 'QUARTERFINAL' || value === 'SEMI_FINAL' || value === 'FINAL', { message: 'Invalid Type' } ),
+  stadium: z.string().nonempty( { message: 'Required' } ),
+  teamOne: z.string().nonempty( { message: 'Required' } ),
+  teamTwo: z.string().nonempty( { message: 'Required' } )
+} )
 
 export const DemandSchema = z.object( {
   userId: z.string().nonempty( { message: 'Required' } ),
