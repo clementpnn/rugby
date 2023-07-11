@@ -5,14 +5,14 @@ import * as React from 'react'
 import { useState } from 'react'
 
 type Match = {
-  team1: string;
-  team2: string;
-};
+  team1: string
+  team2: string
+}
 
 type PoolCategory = {
-  category: string;
-  teams: string[];
-};
+  category: string
+  teams: string[]
+}
 
 const Component: React.FC = () => {
   const [ phase, setPhase ] = useState<'Pool' | 'Knockout'>( 'Pool' )
