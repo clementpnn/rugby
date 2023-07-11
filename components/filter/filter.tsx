@@ -5,8 +5,8 @@ import { useState } from 'react'
 
 
 type PoolData = {
-  pool: string;
-  teams: string[];
+  pool: string
+  teams: string[]
 }
 
 const TeamImage: React.FC = () => {
@@ -16,8 +16,8 @@ const TeamImage: React.FC = () => {
 }
 
 const Filter: React.FC = () => {
-  const [showPool, setShowPool] = useState(false);
-  const [activeTab, setActiveTab] = useState('');
+  const [showPool, setShowPool] = useState(false)
+  const [activeTab, setActiveTab] = useState('')
 
   const handlePoolClick = () => {
     setShowPool(!showPool)
@@ -120,4 +120,4 @@ const App: React.FC = () => {
   )
 }
 
-export default App;
+export default App
