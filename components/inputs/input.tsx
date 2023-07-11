@@ -31,7 +31,7 @@ const Input: React.FC<InputProperties> = ( {
   icon,
   iconActive,
   className,
-  placeholder,
+  placeholder='',
   iconPosition = 'right',
   onClick,
   ...rest
@@ -112,6 +112,7 @@ const Input: React.FC<InputProperties> = ( {
             ${iconPosition === 'left' && size === 'md' ? 'pl-12' : ''}
             ${iconPosition === 'left' && size === 'lg' ? 'pl-[52px]' : ''}
             ${variant === 'code' && 'px-0'}
+            ${className}         
           `}
           value={inputValue}
           onChange={handleInputChange}

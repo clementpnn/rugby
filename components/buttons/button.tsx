@@ -30,7 +30,15 @@ const Button: React.FC<ButtonProperties> = ( {
       size={size}
       type={type}
       onClick={onClick}
-      className={className}
+      className={`
+        ${iconPosition === 'left' && size==='sm' && 'pl-2.5'} 
+        ${iconPosition === 'left' && size==='md' && 'pl-3.5'} 
+        ${iconPosition === 'left' && size==='lg' && 'pl-[18px]'}
+        ${iconPosition === 'right' && size==='sm' && 'pr-2.5'} 
+        ${iconPosition === 'right' && size==='md' && 'pr-3.5'} 
+        ${iconPosition === 'right' && size==='lg' && 'pr-[18px]'}
+        ${className}
+      `}
     >
       {iconPosition==='left' && <div
         className={`
@@ -42,8 +50,12 @@ const Button: React.FC<ButtonProperties> = ( {
         {icon}
       </div>}
       <span className={`
-        ${iconPosition === 'left' && size==='sm' && 'pl-1'} 
-        ${iconPosition === 'right' && 'pr-1'} 
+        ${iconPosition === 'left' && size==='sm' && 'pl-1.5'} 
+        ${iconPosition === 'left' && size==='md' && 'pl-2'} 
+        ${iconPosition === 'left' && size==='lg' && 'pl-2'} 
+        ${iconPosition === 'right' && size==='sm' && 'pr-1.5'} 
+        ${iconPosition === 'right' && size==='md' && 'pr-2'} 
+        ${iconPosition === 'right' && size==='lg' && 'pr-2'} 
       `}>
         {children}
       </span>

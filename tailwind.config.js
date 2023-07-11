@@ -18,7 +18,7 @@ export default {
     },
     extend: {
       fontFamily: {
-        lato: ['var(--font-lato)'],
+        poppins: ['var(--font-poppins)'],
         barlow: ['var(--font-barlow-condensed)'],
       },
       colors: {

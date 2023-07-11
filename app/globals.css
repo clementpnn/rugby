@@ -338,71 +338,71 @@
     @apply text-2xl font-barlow font-bold tracking-[-1px];
   }
 
-  .h1-lato-d {
-    @apply text-6xl font-lato font-bold;
+  .h1-poppins-d {
+    @apply text-6xl font-poppins font-bold;
   }
 
-  .h2-lato-d  {
-    @apply text-5xl font-lato font-bold;
+  .h2-poppins-d  {
+    @apply text-5xl font-poppins font-bold;
   }
 
-  .h3-lato-d  {
-    @apply text-4xl font-lato font-bold;
+  .h3-poppins-d  {
+    @apply text-4xl font-poppins font-bold;
   }
 
-  .h4-lato-d  {
-    @apply text-3xl font-lato font-bold;
+  .h4-poppins-d  {
+    @apply text-3xl font-poppins font-bold;
   }
 
-  .h5-lato-d  {
-    @apply text-2xl font-lato font-bold;
+  .h5-poppins-d  {
+    @apply text-2xl font-poppins font-bold;
   }
 
-  .h6-lato-d  {
-    @apply text-xl font-lato font-bold;
+  .h6-poppins-d  {
+    @apply text-xl font-poppins font-bold;
   }
 
-  .h1-lato-m {
-    @apply text-5xl font-lato font-bold;
+  .h1-poppins-m {
+    @apply text-5xl font-poppins font-bold;
   }
 
-  .h2-lato-m  {
-    @apply text-4xl font-lato font-bold;
+  .h2-poppins-m  {
+    @apply text-4xl font-poppins font-bold;
   }
 
-  .h3-lato-m  {
-    @apply text-3xl font-lato font-bold;
+  .h3-poppins-m  {
+    @apply text-3xl font-poppins font-bold;
   }
 
-  .h4-lato-m  {
-    @apply text-2xl font-lato font-bold;
+  .h4-poppins-m  {
+    @apply text-2xl font-poppins font-bold;
   }
 
-  .h5-lato-m  {
-    @apply text-xl font-lato font-bold;
+  .h5-poppins-m  {
+    @apply text-xl font-poppins font-bold;
   }
 
   .label-lg {
-    @apply text-lg font-lato font-medium;
+    @apply text-lg font-poppins font-medium;
   }
 
   .label-md {
-    @apply text-base font-lato font-medium;
+    @apply text-base font-poppins font-medium;
   }
 
   .label-sm {
-    @apply text-sm font-lato font-medium;
+    @apply text-sm font-poppins font-medium;
   }
 
   .base-lg {
-    @apply text-lg font-lato font-normal;
+    @apply text-lg font-poppins font-normal;
   }
 
   .base-md {
-    @apply text-base font-lato font-normal;
+    @apply text-base font-poppins font-normal;
   }
 
   .base-sm {
-    @apply text-sm font-lato font-normal;
+    @apply text-sm font-poppins font-normal;
   }
 }

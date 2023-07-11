@@ -16,9 +16,9 @@ const buttonVariants = cva(
         disabled: 'pointer-events-none bg-neutral3 text-neutral5'
       },
       size: {
-        md: 'label-md h-10 px-3.5 py-2',
+        md: 'label-md h-11 px-4 py-2',
         sm: 'label-sm h-9 px-3 py-2',
-        lg: 'label-lg h-11 px-4 py-2',
+        lg: 'label-lg h-13 px-5 py-3',
         iconSm: 'w-10 h-10',
         iconMd: 'w-9 h-9',
         iconLg: 'w-11 h-11'

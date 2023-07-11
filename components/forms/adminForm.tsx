@@ -13,9 +13,9 @@ import Select from '../inputs/select'
 import { User } from '@prisma/client'
 import useStep, { STEPS } from '@/hooks/useStep'
 import useUser from '@/hooks/useUser'
+import Container from '@/components/containers/container'
 
 import { AiOutlineMenu, AiOutlineEye } from 'react-icons/ai'
-import Container from '@/components/containers/container'
 
 const AdminForm = () => {
   const [ isLoading, setIsloading ] = useState( false )
@@ -104,7 +104,8 @@ const AdminForm = () => {
               disabled={isLoading}
               options={[
                 { value: 'ADMIN', label: 'Admin' },
-                { value: 'DEV', label: 'Dev' }
+                { value: 'DEV', label: 'Dev' },
+                { value: 'dqdqdqz', label: 'DJNQKJDJKQ' }
               ]}
             />
           )}
@@ -157,26 +158,28 @@ const AdminForm = () => {
             type="submit"
             size="lg"
             icon={<AiOutlineEye className="w-full h-full" />}
-            iconPosition='right'
+            iconPosition='left'
             variant="primary"
-            onClick={()=>console.log( isLoading )}
+            className='bg-green-700'
           >
             Salut
           </Button>
         </div>
-        <Input
-          id="Hey"
-          size="lg"
-          variant='code'
-          label='hey'
-          className='max-w-sm'
-          iconPosition='left'
-          icon={<AiOutlineMenu className="w-full h-full" />}
-          iconActive={<AiOutlineEye className="w-full h-full" />}
-          placeholder=''
-          onClick={handleIconClick}
-        />
+        <div className='max-w-md'>
+          <Input
+            id="Hey"
+            size="lg"
+            variant='code'
+            label='hey'
+            iconPosition='left'
+            icon={<AiOutlineMenu className="w-full h-full" />}
+            iconActive={<AiOutlineEye className="w-full h-full" />}
+            placeholder=''
+            onClick={handleIconClick}
+          />
+        </div>
       </form>
+      {/* <Select id={''} label={'salut'} name={''} value={''} options={[]} ></Select> */}
     </Container>
   )
 }

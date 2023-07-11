@@ -20,11 +20,11 @@ import './globals.css'
 
 // const inter = Inter({ subsets: ['latin'] })
 
-import { Lato, Barlow_Condensed } from 'next/font/google'
+import { Poppins, Barlow_Condensed } from 'next/font/google'
 
-const lato = Lato( {
+const poppins = Poppins( {
   subsets: [ 'latin' ],
-  variable: '--font-lato',
+  variable: '--font-poppins',
   weight: [ '300', '400', '700' ]
 } )
 
@@ -52,7 +52,7 @@ export default function RootLayout( {
   return (
     <html lang="fr">
       {/* <body className={inter.className}> */}
-      <body className={`${lato.variable} ${barlow.variable}`}>
+      <body className={`${poppins.variable} ${barlow.variable}`}>
         <ToasterProvider />
         <AuthProvider>{children}</AuthProvider>
       </body>
