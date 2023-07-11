@@ -7,33 +7,33 @@ import { useState } from 'react'
 type PoolData = {
   pool: string;
   teams: string[];
-};
+}
 
 const TeamImage: React.FC = () => {
   return (
     <div className='w-8 h-8 rounded-full bg-blue-500'></div>
-  );
-};
+  )
+}
 
 const Filter: React.FC = () => {
   const [showPool, setShowPool] = useState(false);
   const [activeTab, setActiveTab] = useState('');
 
   const handlePoolClick = () => {
-    setShowPool(!showPool);
-    setActiveTab('pool');
-  };
+    setShowPool(!showPool)
+    setActiveTab('pool')
+  }
 
   const handleTabClick = (tab: string) => {
-    setActiveTab(tab);
-  };
+    setActiveTab(tab)
+  }
 
   const poolData: PoolData[] = [
     { pool: 'A', teams: ['TeamA1', 'TeamA2', 'TeamA3', 'TeamA4', 'TeamA5'] },
     { pool: 'B', teams: ['TeamB1', 'TeamB2', 'TeamB3', 'TeamB4', 'TeamB5'] },
     { pool: 'C', teams: ['TeamC1', 'TeamC2', 'TeamC3', 'TeamC4', 'TeamC5'] },
     { pool: 'D', teams: ['TeamD1', 'TeamD2', 'TeamD3', 'TeamD4', 'TeamD5'] }
-  ];
+  ]
 
   return (
     <div className='flex items-start justify-start h-882 w-423'>
@@ -106,8 +106,8 @@ const Filter: React.FC = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
 const App: React.FC = () => {
   return (
@@ -117,7 +117,7 @@ const App: React.FC = () => {
         <Filter />
       </div>
     </div>
-  );
-};
+  )
+}
 
 export default App;
