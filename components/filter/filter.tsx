@@ -1,8 +1,6 @@
 'use client'
 
 import * as React from 'react'
-import Image from 'next/image'
-import { Button } from '@/components/ui/button'
 import { useState } from 'react'
 
 
@@ -44,7 +42,7 @@ const Filter: React.FC = () => {
           <div className='w-423 h-240 bg-gray-100 p-4 ml-4 border-b-0'>
             <h1 className='text-3xl text-blue-500 font-bold mb-4'>Planning</h1>
             <div className='flex gap-4'>
-              <Button
+              <button
                 className={`px-6 py-3 border bg-transparent text-blue-500 rounded-lg ${
                   activeTab === 'pool' ? 'bg-blue-500 text-white cursor-pointer' : ''
                 }`}
@@ -58,15 +56,15 @@ const Filter: React.FC = () => {
                 >
                   Pool
                 </span>
-              </Button>
-              <Button
+              </button>
+              <button
                 className={`px-6 py-3 border bg-transparent text-blue-500 rounded-lg ${
                   activeTab === 'knockout' ? 'bg-blue-500 text-white' : ''
                 }`}
                 onClick={() => setActiveTab('knockout')}
               >
                 Knock-out
-              </Button>
+              </button>
             </div>
           </div>
           <div className='w-423 h-240 bg-gray-100 p-4 ml-4'>
