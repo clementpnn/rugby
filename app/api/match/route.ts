@@ -4,9 +4,9 @@ import prisma from '@/libs/prismadb'
 
 export async function POST( request: Request ) {
   const body = await request.json()
-  const { phase, date, hour, minute, stadiumId, image, teamOne, teamTwo } = body
+  const { phase, date, hour, minute, stadiumId, teamOne, teamTwo } = body
 
-  if ( !phase || !date || !stadiumId || !teamOne || !teamTwo || !hour || !minute || !image || teamOne === teamTwo ) {
+  if ( !phase || !date || !stadiumId || !teamOne || !teamTwo || !hour || !minute || teamOne === teamTwo ) {
     return new NextResponse( 'Invalid Request', { status: 400 } )
   }
 

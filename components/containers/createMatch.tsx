@@ -9,7 +9,6 @@ import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'next/navigation'
 
-import ImageContainer from './image'
 import Button from '../buttons/button'
 import { MatchSchema } from '@/types/forms'
 import Select from '../inputs/select'
@@ -61,13 +60,13 @@ const CreateMatchContainer: React.FC<CreateMatchContainerProperties> = ( { teams
       .then( ( callback ) => {
         if ( callback.status === 200 ) { toast.success( `${callback.statusText}` ) }
         if ( callback.status !== 200 ) { toast.error( `${callback.statusText}` ) }
+        setIsloading( false )
         router.refresh()
       } )
   }
 
   return (
     <>
-      <ImageContainer image={''} />
       <div>
         <Button variant='primary' size='md' onClick={() => {
           setIsPoulePhase( true )
