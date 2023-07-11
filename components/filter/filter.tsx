@@ -4,9 +4,9 @@ import * as React from 'react'
 import { useState } from 'react'
 
 type PoolData = {
-  pool: string;
-  teams: string[];
-};
+  pool: string
+  teams: string[]
+}
 
 const TeamImage: React.FC = () => {
   return (
