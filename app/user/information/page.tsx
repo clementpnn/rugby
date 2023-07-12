@@ -1,14 +1,7 @@
-import React from 'react';
-import InformationDescription from '@/components/informationDescription/informationDescription';
+import InformationDescription from '@/components/informationDescription/informationDescription'
 
-interface DataProps {
-  shortcut: string;
-  title: string;
-  description: string;
-}
-
-const DataList = () => {
-  const dataList: DataProps[] = [
+const UserInformation = () => {
+  const dataList = [
     {
       shortcut: 'MJ',
       title: 'Match joué',
@@ -43,18 +36,16 @@ const DataList = () => {
       shortcut: 'PTS',
       title: 'Points',
       description: 'Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien.Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien.Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien.'
-    },
-  ];
+    }
+  ]
 
-  return (
-    <div>
-      {dataList.map((data, index) => (
+  return(
+    <>
+      {dataList.map( ( data, index ) => (
         <InformationDescription key={index} data={data} />
-      ))}
-    </div>
-  );
+      ) ) }
+    </>
+  )
 }
 
-export default function UserInformation() {
-  return <DataList />;
-}
+export default UserInformation
