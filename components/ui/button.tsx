@@ -21,7 +21,7 @@ const buttonVariants = cva(
         lg: 'label-lg h-13 px-5 py-3',
         iconSm: 'w-10 h-10',
         iconMd: 'w-9 h-9',
-        iconLg: 'w-11 h-11'
+        iconLg: 'w-12 h-12'
       }
     },
     defaultVariants: {

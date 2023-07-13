@@ -18,7 +18,7 @@ export default {
     },
     extend: {
       fontFamily: {
-        poppins: ['var(--font-poppins)'],
+        inter: ['var(--font-inter)'],
         barlow: ['var(--font-barlow-condensed)'],
       },
       colors: {

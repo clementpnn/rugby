@@ -20,11 +20,11 @@ import './globals.css'
 
 // const inter = Inter({ subsets: ['latin'] })
 
-import { Poppins, Barlow_Condensed } from 'next/font/google'
+import { Inter, Barlow_Condensed } from 'next/font/google'
 
-const poppins = Poppins( {
+const inter = Inter( {
   subsets: [ 'latin' ],
-  variable: '--font-poppins',
+  variable: '--font-inter',
   weight: [ '300', '400', '700' ]
 } )
 
@@ -52,7 +52,7 @@ export default function RootLayout( {
   return (
     <html lang="fr">
       {/* <body className={inter.className}> */}
-      <body className={`${poppins.variable} ${barlow.variable}`}>
+      <body className={`${inter.variable} ${barlow.variable}`}>
         <ToasterProvider />
         <AuthProvider>{children}</AuthProvider>
       </body>

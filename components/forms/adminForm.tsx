@@ -15,7 +15,7 @@ import useStep, { STEPS } from '@/hooks/useStep'
 import useUser from '@/hooks/useUser'
 import Container from '@/components/containers/container'
 
-import { AiOutlineMenu, AiOutlineEye } from 'react-icons/ai'
+import { AiOutlineEye } from 'react-icons/ai'
 
 const AdminForm = () => {
   const [ isLoading, setIsloading ] = useState( false )
@@ -59,21 +59,16 @@ const AdminForm = () => {
       .finally( () => setIsloading( false ) )
   }
 
-  const handleIconClick = () => {
-    console.log( 'Icon clicked' )
-    // Perform additional actions here
-  }
-
   return (
     <Container>
       <form onSubmit={handleSubmit( onSubmit )}>
         <Controller
-          name="firstName"
+          name='firstName'
           control={control}
           render={( { field } ) => (
             <Input
-              id="firstName"
-              label="Prénom"
+              id='firstName'
+              label='Prénom'
               {...field}
               errors={errors}
               disabled={isLoading}
@@ -81,12 +76,12 @@ const AdminForm = () => {
           )}
         />
         <Controller
-          name="lastName"
+          name='lastName'
           control={control}
           render={( { field } ) => (
             <Input
-              id="lastName"
-              label="Nom"
+              id='lastName'
+              label='Nom'
               {...field}
               errors={errors}
               disabled={isLoading}
@@ -94,12 +89,12 @@ const AdminForm = () => {
           )}
         />
         <Controller
-          name="role"
+          name='role'
           control={control}
           render={( { field } ) => (
             <Select
-              id="role"
-              label="role"
+              id='role'
+              label='role'
               {...field}
               disabled={isLoading}
               options={[
@@ -111,13 +106,13 @@ const AdminForm = () => {
           )}
         />
         <Controller
-          name="email"
+          name='email'
           control={control}
           render={( { field } ) => (
             <Input
-              id="email"
-              label="email"
-              type="email"
+              id='email'
+              label='email'
+              type='email'
               {...field}
               errors={errors}
               disabled={isLoading}
@@ -125,13 +120,13 @@ const AdminForm = () => {
           )}
         />
         <Controller
-          name="password"
+          name='password'
           control={control}
           render={( { field } ) => (
             <Input
-              id="password"
-              label="Mot de passe"
-              type="password"
+              id='password'
+              label='Mot de passe'
+              type='password'
               {...field}
               errors={errors}
               disabled={isLoading}
@@ -139,13 +134,13 @@ const AdminForm = () => {
           )}
         />
         <Controller
-          name="confirmPassword"
+          name='confirmPassword'
           control={control}
           render={( { field } ) => (
             <Input
-              id="confirmPassword"
-              label="Confirmez le mot de passe"
-              type="password"
+              id='confirmPassword'
+              label='Confirmez le mot de passe'
+              type='password'
               {...field}
               errors={errors}
               disabled={isLoading}
@@ -155,31 +150,19 @@ const AdminForm = () => {
         <div>
           <Button
             disabled={isLoading}
-            type="submit"
-            size="lg"
-            icon={<AiOutlineEye className="w-full h-full" />}
+            type='submit'
+            size='lg'
+            icon={<AiOutlineEye className='w-full h-full' />}
             iconPosition='left'
-            variant="primary"
+            variant='primary'
             className='bg-green-700'
           >
-            Salut
+            Button
           </Button>
         </div>
-        <div className='max-w-md'>
-          <Input
-            id="Hey"
-            size="lg"
-            variant='code'
-            label='hey'
-            iconPosition='left'
-            icon={<AiOutlineMenu className="w-full h-full" />}
-            iconActive={<AiOutlineEye className="w-full h-full" />}
-            placeholder=''
-            onClick={handleIconClick}
-          />
-        </div>
+
       </form>
-      {/* <Select id={''} label={'salut'} name={''} value={''} options={[]} ></Select> */}
+
     </Container>
   )
 }

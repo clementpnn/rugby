@@ -47,9 +47,10 @@ model Tribune {
   type       JOB
   places     Int
   image      String
+  x          Float
+  y          Float
 
   demands  Demand[]
-  points   Point[]
 
   stadium Stadium @relation(fields: [stadiumId], references: [id], onDelete: Cascade)
 
@@ -63,7 +64,6 @@ model Match {
   time       String
   phase      PHASE 
   stadiumId  String  @db.ObjectId
-  image      String
 
   matchTeams  MatchTeam[]
   demands     Demand[]
@@ -93,10 +93,9 @@ model Stadium {
 
   tribunes  Tribune[]
   matches   Match[]
-  points    Point[]
 
   @@unique([name, reference])
-  @@index([name])
+  @@index([reference])
 }
 
 model Team {
@@ -118,18 +117,6 @@ model Demand {
   tribune  Tribune  @relation(fields: [tribuneId], references: [id], onDelete: Cascade)
 
   @@unique([userId, tribuneId, matchId])
-}
-
-model Point {
-  id         String       @id @default(auto()) @map("_id") @db.ObjectId
-  parentId   String       @db.ObjectId
-  parentType PARENT_TYPE
-  x          Float
-  y          Float
-  createdAt  DateTime     @default(now())
-
-  stadium Stadium? @relation(fields: [parentId], references: [id])
-  tribune Tribune? @relation(fields: [parentId], references: [id])
 }
 
 model Account {
