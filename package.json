@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
-    "test": "jest --watch",
+    "test": "vitest",
     "db": "npm run seed:delete && npm run generate && npm run push && npm run seed:team",
     "generate": "prisma generate",
     "push": "npx prisma db push",
