@@ -3,10 +3,10 @@
 import { Match, MatchTeam } from '@prisma/client'
 
   interface MatchProperties {
-    matchs: ( Match & { matchTeams: MatchTeam[] } )[] | undefined
+    matchs: ( Match & { matchTeams: MatchTeam[] } )[]
   }
 
-const MatchContainer: React.FC<MatchProperties> = ( { matchs =[] } ) => {
+const MatchContainer: React.FC<MatchProperties> = ( { matchs } ) => {
   return (
     <>
       {matchs.map( ( match ) => {
