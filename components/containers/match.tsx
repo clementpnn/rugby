@@ -1,10 +1,12 @@
+'use client'
+
 import { Match, MatchTeam } from '@prisma/client'
 
   interface MatchProperties {
-    matchs: ( Match & { matchTeams: MatchTeam[] } )[]
+    matchs: ( Match & { matchTeams: MatchTeam[] } )[] | undefined
   }
 
-const MatchContainer: React.FC<MatchProperties> = ( { matchs } ) => {
+const MatchContainer: React.FC<MatchProperties> = ( { matchs =[] } ) => {
   return (
     <>
       {matchs.map( ( match ) => {

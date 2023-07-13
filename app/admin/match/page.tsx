@@ -1,8 +1,8 @@
-import getMatch from '@/actions/getMatchs'
+import getMatchs from '@/actions/getMatch'
 import MatchContainer from '@/components/containers/match'
 
 const page = async () => {
-  const matchs = await getMatch()
+  const matchs = await getMatchs()
 
   return (
     <>
