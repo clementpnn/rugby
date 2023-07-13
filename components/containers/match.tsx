@@ -1,3 +1,5 @@
+'use client'
+
 import { Match, MatchTeam } from '@prisma/client'
 
   interface MatchProperties {

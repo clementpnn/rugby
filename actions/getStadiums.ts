@@ -1,5 +1,14 @@
 import prisma from '@/libs/prismadb'
 
 export default async function getStadiums() {
-  return await prisma.stadium.findMany()
+  try {
+    const stadiums = await prisma.stadium.findMany()
+
+    if ( !stadiums ) return
+
+    return stadiums
+
+  } catch ( error: any ) {
+    throw new Error( error )
+  }
 }
