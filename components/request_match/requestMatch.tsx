@@ -50,20 +50,24 @@ function RequestMatch() {
                     <div className="md:label-md label-sm text-blue-400">Stade de Marseille</div>
                 </div>
                 <div className="flex items-center justify-between md:w-[384px] w-full md:mt-0">
-                    <div className="flex items-center w-36 justify-between">
+                    <div className="flex items-center w-32 justify-between">
                         <Image
                             src= { ITALY?.flag }
                             width={50}
                             height={150}
                             alt="flag"
                         />
-                        <div className="text-blue-900 h5-barlow-m">
+                        <div className="text-blue-900 h5-barlow-m w-[52px] flex justify-start">
                             { ITALY?.label }
                         </div>
                     </div>
-                    <div className="h6-barlow-m text-blue-600">VS</div>
-                    <div className="flex items-center w-36 justify-between">
-                        <div className="text-blue-900 h5-barlow-m">
+                    <div className="flex justify-center w-16">
+                        <div className="h6-barlow-m text-blue-600">W</div>
+                        <div className="h6-barlow-m text-blue-600 mx-1">-</div>
+                        <div className="h6-barlow-m text-blue-600">L</div>
+                    </div>
+                    <div className="flex items-center w-32 justify-between">
+                        <div className="text-blue-900 h5-barlow-m w-[52px] flex justify-end">
                             { NEW_ZEALAND?.label }
                         </div>
                         <Image
@@ -71,6 +75,7 @@ function RequestMatch() {
                             width={50}
                             height={150}
                             alt="flag"
+                            className="flex justify-end"
                         />
                     </div>
                 </div>
