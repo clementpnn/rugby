@@ -12,27 +12,8 @@ function RequestMatch() {
     const [ showDrawer, setShowDrawer ] = useState(false)
     const { getByValue } = useCountries()
 
-    const { getByValue } = useCountries();
-
     const NEW_ZEALAND = getByValue('NEW ZEALAND');
-    const FRANCE = getByValue('FRANCE');
     const ITALY = getByValue('ITALY');
-    const NAMIBIA = getByValue('NAMIBIA');
-    const SOUTH_AFRICA = getByValue('SOUTH AFRICA');
-    const IRELAND = getByValue('IRELAND'); //flag
-    const SCOTLAND = getByValue('SCOTLAND'); //flag
-    const TONGA = getByValue('TONGA'); //flag
-    const ROMANIA = getByValue('ROMANIA');
-    const WALES = getByValue('WALES'); //flag
-    const AUSTRALIA = getByValue('AUSTRALIA');
-    const FIJI = getByValue('FIJI'); //flag
-    const GEORGIA = getByValue('GEORGIA');
-    const PORTUGAL = getByValue('PORTUGAL'); //flag
-    const ENGLAND = getByValue('ENGLAND');
-    const JAPAN = getByValue('JAPAN'); //flag
-    const ARGENTINA = getByValue('ARGENTINA');
-    const SAMOA = getByValue('SAMOA'); //flag
-    const CHILI = getByValue('CHILI'); //flag
 
     const handleShowDrawer = () => {
         setShowDrawer(!showDrawer);
