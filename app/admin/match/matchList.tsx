@@ -1,17 +1,20 @@
 'use client'
 
+import Link from 'next/link'
+
 import { Match, MatchTeam } from '@prisma/client'
 
-  interface MatchProperties {
+  interface MatchListProperties {
     matchs: ( Match & { matchTeams: MatchTeam[] } )[]
   }
 
-const MatchContainer: React.FC<MatchProperties> = ( { matchs } ) => {
+const MatchList: React.FC<MatchListProperties> = ( { matchs } ) => {
+
   return (
     <>
       {matchs.map( ( match ) => {
         return (
-          <div className='bg-blue-500' key={match.id}>
+          <Link href={`/admin/match/${match.id}`} key={match.id}>
             <h1>{match.phase}</h1>
             <p>{match.date}</p>
             <p>{match.time}</p>
@@ -22,14 +25,12 @@ const MatchContainer: React.FC<MatchProperties> = ( { matchs } ) => {
                   <p>{team.result ?? '?'}</p>
                 </div>
               )
-            } )
-            }
-          </div>
+            } ) }
+          </Link>
         )
-      } )
-      }
+      } ) }
     </>
   )
 }
 
-export default MatchContainer
+export default MatchList
