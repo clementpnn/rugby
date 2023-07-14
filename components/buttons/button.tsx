@@ -1,7 +1,7 @@
 'use client'
 import { ButtonUI } from '@/components/ui/button'
 
-interface ButtonProperties extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProperties extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant: 'primary' | 'secondary' | 'outline' | 'link' | 'disabled' | null | undefined
   size: 'md' | 'sm' | 'lg' | 'iconSm' | 'iconMd' | 'iconLg' | null | undefined
   type?: 'button' | 'submit'

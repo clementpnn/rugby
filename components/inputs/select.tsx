@@ -3,13 +3,13 @@
 import { ChangeEvent, SelectHTMLAttributes } from 'react'
 import { FieldError, FieldErrors } from 'react-hook-form'
 
-interface SelectOption {
+export interface SelectOption {
   value: string
   label: string
   disabled?: boolean
 }
 
-interface SelectProperties extends SelectHTMLAttributes<HTMLSelectElement> {
+export interface SelectProperties extends SelectHTMLAttributes<HTMLSelectElement> {
   id: string
   label: string
   name: string
