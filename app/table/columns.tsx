@@ -53,7 +53,13 @@ export const columns: ColumnDef<Users>[] = [
         <ColumnHeader title='Name' column={column} />
       )
     },
-    cell: ( { row } ) => <div className='flex gap-x-1'>{row.getValue( 'name' )}<MdVerified className='w-4'/></div>
+    cell:
+    ( { row } ) => {
+      const { name, emailVerified } = row.original
+      return(
+        <div className='flex gap-x-1'>{name}{emailVerified === true && <MdVerified className='w-4' />}</div>
+      )
+    }
   },
   {
     accessorKey: 'company',

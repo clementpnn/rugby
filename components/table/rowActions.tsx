@@ -30,7 +30,7 @@ export function RowActions<TData>( {
         <DropdownMenuContent align="end">
           <DropdownMenuItem
             // eslint-disable-next-line no-console
-            onClick={() => console.log( row.id )}
+            onClick={() => console.log( row )}
           >
                 Supprimer
           </DropdownMenuItem>
