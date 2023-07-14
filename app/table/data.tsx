@@ -1,19 +1,4 @@
-// import { User, Demand } from '@prisma/client'
-
-type Users = {
-    id: number
-    name: string
-    company: string
-    status: 'Journalist' | 'Photograph'
-    email: string
-    amount: number
-    processing: number
-    refused: number
-    accepted: number
-}
-// type Users = {
-//     user: User & { demands: Demand[] }[]
-// }
+import { Users } from './columns'
 
 export const data: Users[] = [
   {

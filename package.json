@@ -9,10 +9,11 @@
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "test": "vitest",
-    "db": "npm run seed:delete && npm run generate && npm run push && npm run seed:team",
+    "db": "npm run seed:delete && npm run generate && npm run push && npm run seed:team && npm run seed:stadium",
     "generate": "prisma generate",
     "push": "npx prisma db push",
     "seed:team": "ts-node prisma/teamSeed.ts",
+    "seed:stadium": "ts-node prisma/stadiumSeed.ts",
     "seed:delete": "ts-node prisma/deleteSeed.ts"
   },
   "dependencies": {
@@ -61,10 +62,14 @@
     "zustand": "^4.3.8"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^14.0.0",
     "@types/nodemailer": "^6.4.8",
     "@types/papaparse": "^5.3.7",
     "eslint-plugin-check-file": "^2.5.0",
     "eslint-plugin-unused-imports": "^2.0.0",
+    "jest": "^29.6.1",
+    "jest-environment-jsdom": "^29.6.1",
     "ts-node": "^10.9.1"
   }
 }

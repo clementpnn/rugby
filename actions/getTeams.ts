@@ -6,6 +6,8 @@ export default async function getTeams() {
       orderBy: { country: 'desc' }
     } )
 
+    if ( !teams ) return
+
     return teams
 
   } catch ( error: any ) {

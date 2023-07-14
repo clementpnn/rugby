@@ -13,15 +13,24 @@ import {
 import { MoreVertical } from 'lucide-react'
 import { Checkbox } from '@/components/ui/checkbox'
 import { ColumnHeader } from '@/components/table/columnHeader'
+// import { User, Demand } from '@prisma/client'
 
-export type Payment = {
-  id: string
-  amount: number
-  status: 'pending' | 'processing' | 'success' | 'failed'
+export type Users = {
+  id: number
+  name: string
+  company: string
+  status: 'Journalist' | 'Photograph'
   email: string
+  amount: number
+  processing: number
+  refused: number
+  accepted: number
 }
+// type Users = {
+//     user: User & { demands: Demand[] }[]
+// }
 
-export const columns: ColumnDef<Payment>[] = [
+export const columns: ColumnDef<Users>[] = [
   {
     id: 'select',
     header: ( { table } ) => (
@@ -107,8 +116,6 @@ export const columns: ColumnDef<Payment>[] = [
   {
     id: 'actions',
     cell: ( { row } ) => {
-      const payment = row.original
-
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -119,7 +126,8 @@ export const columns: ColumnDef<Payment>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText( payment.id )}
+              // eslint-disable-next-line no-console
+              onClick={() => console.log( row.id )}
             >
                 Supprimer
             </DropdownMenuItem>

@@ -1,12 +1,16 @@
-import getMatch from '@/actions/getMatchs'
-import MatchContainer from '@/components/containers/match'
+import getMatchs from '@/actions/getMatch'
+import MatchList from './matchList'
 
 const page = async () => {
-  const matchs = await getMatch()
+  const matchs = await getMatchs()
+
+  if ( !matchs ) {
+    return <p>No Match</p>
+  }
 
   return (
     <>
-      <MatchContainer matchs={matchs} />
+      <MatchList matchs={matchs} />
     </>
   )
 }

@@ -9,17 +9,17 @@ import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'next/navigation'
 
-import Button from '../buttons/button'
+import Button from '@/components/buttons/button'
 import { MatchSchema } from '@/types/forms'
-import Select from '../inputs/select'
-import Input from '../inputs/input'
+import Select from '@/components/inputs/select'
+import Input from '@/components/inputs/input'
 
-interface CreateMatchContainerProperties {
+interface CreateMatchProperties {
     teams: Team[]
     stadiums: Stadium[]
   }
 
-const CreateMatchContainer: React.FC<CreateMatchContainerProperties> = ( { teams, stadiums } ) => {
+const CreateMatch: React.FC<CreateMatchProperties> = ( { teams, stadiums } ) => {
   const [ isLoading, setIsloading ] = useState( false )
   const [ isPoulePhase, setIsPoulePhase ] = useState( true )
   const [ filteredTeams, setFilteredTeams ] = useState<{value: string, label: string, disabled?: boolean}[]>( [ { value: '--', label: '--', disabled: true } ] )
@@ -101,4 +101,4 @@ const CreateMatchContainer: React.FC<CreateMatchContainerProperties> = ( { teams
   )
 }
 
-export default CreateMatchContainer
+export default CreateMatch
