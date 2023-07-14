@@ -21,6 +21,7 @@ export type Users = {
   company: string
   status: 'Journalist' | 'Photograph'
   email: string
+  emailVerified: boolean
   amount: number
   processing: number
   refused: number
