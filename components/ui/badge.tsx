@@ -1,7 +1,7 @@
 import { cva, type VariantProps } from 'class-variance-authority'
 
 import { cn } from '@/libs/utils'
-const badgeVariants = cva(
+export const badgeVariants = cva(
   'inline-flex items-center rounded-full border rounded-2xl border-transparent font-semibold justify-around',
   {
     variants: {
@@ -72,4 +72,4 @@ function Badge( { className, label, variant, circle, circle_size, size, ...prope
     </div>
   )
 }
-export { Badge, badgeVariants }
+export default Badge
