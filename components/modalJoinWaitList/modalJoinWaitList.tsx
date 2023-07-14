@@ -31,7 +31,7 @@
 //             <div className='h-fit w-full flex flex-col gap-y-4 sm:flex-row'>
 //               <div className='h-fit w-full px-4 py-2 gap-x-3 bg-blue1 rounded-md flex flex-row sm:px-4 sm:py-2'>
 //                 <Image src={country1?.flag || '/placeholder-image.png'} alt="Flag" width={'28'} height={'28'}/>
-//                 <span className='h6-lato-d text-blue6'>{country1?.value}</span>
+//                 <span className='h6-inter-d text-blue6'>{country1?.value}</span>
 //               </div>
 //               <div className='hidden sm:flex sm:flex-row sm:gap-y-1 sm:items-center'>
 //                 <span className='h6-barlow-m text-blue6 text-center w-8 h-8 sm:text-right'>W</span>
@@ -40,7 +40,7 @@
 //               </div>
 //               <div className='h-fit w-full px-4 py-2 gap-x-3 bg-blue1 rounded-md flex flex-row'>
 //                 <Image src={country2?.flag || '/placeholder-image.png'} alt="Flag" width={'28'} height={'28'} className='sm:hidden'/>
-//                 <span className='h6-lato-d text-blue6'>{country2?.value}</span>
+//                 <span className='h6-inter-d text-blue6'>{country2?.value}</span>
 //                 <Image src={country2?.flag || '/placeholder-image.png'} alt="Flag" width={'28'} height={'28'} className='hidden sm:block'/>
 //               </div>
 //             </div>

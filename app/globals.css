@@ -338,71 +338,71 @@
     @apply text-2xl font-barlow font-bold tracking-[-1px];
   }
 
-  .h1-lato-d {
-    @apply text-6xl font-lato font-bold;
+  .h1-inter-d {
+    @apply text-6xl font-inter font-bold;
   }
 
-  .h2-lato-d  {
-    @apply text-5xl font-lato font-bold;
+  .h2-inter-d  {
+    @apply text-5xl font-inter font-bold;
   }
 
-  .h3-lato-d  {
-    @apply text-4xl font-lato font-bold;
+  .h3-inter-d  {
+    @apply text-4xl font-inter font-bold;
   }
 
-  .h4-lato-d  {
-    @apply text-3xl font-lato font-bold;
+  .h4-inter-d  {
+    @apply text-3xl font-inter font-bold;
   }
 
-  .h5-lato-d  {
-    @apply text-2xl font-lato font-bold;
+  .h5-inter-d  {
+    @apply text-2xl font-inter font-bold;
   }
 
-  .h6-lato-d  {
-    @apply text-xl font-lato font-bold;
+  .h6-inter-d  {
+    @apply text-xl font-inter font-bold;
   }
 
-  .h1-lato-m {
-    @apply text-5xl font-lato font-bold;
+  .h1-inter-m {
+    @apply text-5xl font-inter font-bold;
   }
 
-  .h2-lato-m  {
-    @apply text-4xl font-lato font-bold;
+  .h2-inter-m  {
+    @apply text-4xl font-inter font-bold;
   }
 
-  .h3-lato-m  {
-    @apply text-3xl font-lato font-bold;
+  .h3-inter-m  {
+    @apply text-3xl font-inter font-bold;
   }
 
-  .h4-lato-m  {
-    @apply text-2xl font-lato font-bold;
+  .h4-inter-m  {
+    @apply text-2xl font-inter font-bold;
   }
 
-  .h5-lato-m  {
-    @apply text-xl font-lato font-bold;
+  .h5-inter-m  {
+    @apply text-xl font-inter font-bold;
   }
 
   .label-lg {
-    @apply text-lg font-lato font-semibold;
+    @apply text-lg font-inter font-medium;
   }
 
   .label-md {
-    @apply text-base font-lato font-semibold;
+    @apply text-base font-inter font-medium;
   }
 
   .label-sm {
-    @apply text-sm font-lato font-semibold;
+    @apply text-sm font-inter font-medium;
   }
 
   .base-lg {
-    @apply text-lg font-lato font-normal;
+    @apply text-lg font-inter font-normal;
   }
 
   .base-md {
-    @apply text-base font-lato font-normal;
+    @apply text-base font-inter font-normal;
   }
 
   .base-sm {
-    @apply text-sm font-lato font-normal;
+    @apply text-sm font-inter font-normal;
   }
 }

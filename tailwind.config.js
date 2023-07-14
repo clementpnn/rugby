@@ -18,7 +18,7 @@ export default {
     },
     extend: {
       fontFamily: {
-        lato: ['var(--font-lato)'],
+        inter: ['var(--font-inter)'],
         barlow: ['var(--font-barlow-condensed)'],
       },
       colors: {
