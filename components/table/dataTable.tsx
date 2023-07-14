@@ -23,7 +23,7 @@ import {
   TableHeader,
   TableRow
 } from '@/components/ui/table'
-import { ButtonUI } from '../ui/button'
+
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -31,7 +31,15 @@ import {
   DropdownMenuTrigger
 } from '@/components/ui/dropdownMenu'
 
+import { ButtonUI } from '../ui/button'
 import { InputUI } from '../ui/input'
+
+import { RxMixerHorizontal } from 'react-icons/rx'
+import { styled } from '@stitches/react'
+
+const ThickRxMixerHorizontal = styled( RxMixerHorizontal, {
+  strokeWidth: '0.5px' // Ajustez la valeur pour définir l'épaisseur du trait
+} )
 
 interface DataTableProperties<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
@@ -86,6 +94,7 @@ export function DataTable<TData, TValue>( {
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <ButtonUI variant="outline" className="ml-auto focus-visible:ring-0">
+              <ThickRxMixerHorizontal className='pr-2 w-6'/>
               Columns
             </ButtonUI>
           </DropdownMenuTrigger>

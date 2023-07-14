@@ -13,6 +13,8 @@ import {
 import { MoreVertical } from 'lucide-react'
 import { Checkbox } from '@/components/ui/checkbox'
 import { ColumnHeader } from '@/components/table/columnHeader'
+
+import { MdVerified } from 'react-icons/md'
 // import { User, Demand } from '@prisma/client'
 
 export type Users = {
@@ -58,7 +60,7 @@ export const columns: ColumnDef<Users>[] = [
         <ColumnHeader title='Name' column={column} />
       )
     },
-    cell: ( { row } ) => <div>{row.getValue( 'name' )}</div>
+    cell: ( { row } ) => <div className='flex gap-x-1'>{row.getValue( 'name' )}<MdVerified className='w-4'/></div>
   },
   {
     accessorKey: 'company',
@@ -120,7 +122,7 @@ export const columns: ColumnDef<Users>[] = [
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <ButtonUI variant="secondary" size='sm' className="h-8 w-8 p-0 bg-transparent hover:bg-transparent hover:scale-100 focus-visible:ring-0">
+            <ButtonUI variant="link" size='sm' className="h-8 w-8 p-0 hover:scale-100 focus-visible:ring-0">
               <span className="sr-only">Open menu</span>
               <MoreVertical className="h-4 w-4" />
             </ButtonUI>
