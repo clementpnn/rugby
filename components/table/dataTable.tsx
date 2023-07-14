@@ -37,6 +37,8 @@ import { InputUI } from '../ui/input'
 import { RxMixerHorizontal } from 'react-icons/rx'
 import { styled } from '@stitches/react'
 
+import { Pagination } from './pagination'
+
 const ThickRxMixerHorizontal = styled( RxMixerHorizontal, {
   strokeWidth: '0.5px' // Ajustez la valeur pour définir l'épaisseur du trait
 } )
@@ -165,23 +167,8 @@ export function DataTable<TData, TValue>( {
           </TableBody>
         </Table>
       </div>
-      <div className="flex items-center justify-end space-x-2 py-4">
-        <ButtonUI
-          variant="outline"
-          size="sm"
-          onClick={() => table.previousPage()}
-          disabled={!table.getCanPreviousPage()}
-        >
-          Previous
-        </ButtonUI>
-        <ButtonUI
-          variant="outline"
-          size="sm"
-          onClick={() => table.nextPage()}
-          disabled={!table.getCanNextPage()}
-        >
-          Next
-        </ButtonUI>
+      <div className="flex items-center justify-center pt-4">
+        <Pagination table={table} />
       </div>
     </>
   )
