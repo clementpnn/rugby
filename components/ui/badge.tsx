@@ -1,7 +1,6 @@
 import { cva, type VariantProps } from 'class-variance-authority'
 
 import { cn } from '@/libs/utils'
-import { InputHTMLAttributes } from 'react'
 const badgeVariants = cva(
   'inline-flex items-center rounded-full border rounded-2xl border-transparent font-semibold justify-around',
   {
@@ -61,16 +60,14 @@ const circleVariants = cva(
   }
 )
 
-interface BadgeProperties extends React.HTMLAttributes<HTMLDivElement>, VariantProps<typeof badgeVariants> {}
-
-interface InputProperties extends InputHTMLAttributes<HTMLInputElement> {
+interface BadgeProperties extends React.HTMLAttributes<HTMLDivElement>, VariantProps<typeof badgeVariants>, VariantProps<typeof circleVariants> {
   label?: string
 }
 
-function Badge({ className, label, variant, circle, circle_size, size, ...properties }: BadgeProperties) {
+function Badge( { className, label, variant, circle, circle_size, size, ...properties }: BadgeProperties ) {
   return (
-    <div className={cn(badgeVariants({ variant, size, className }))} {...properties}>
-      <div className={cn(circleVariants({ circle, circle_size }))} {...properties}/>
+    <div className={cn( badgeVariants( { variant, size, className } ) )} {...properties}>
+      <div className={cn( circleVariants( { circle, circle_size } ) )} {...properties}/>
       { label }
     </div>
   )
