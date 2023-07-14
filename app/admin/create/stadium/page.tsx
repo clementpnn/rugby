@@ -1,10 +1,10 @@
-import CreateStadiumContainer from '@/components/containers/createStadium'
+import CreateStadium from './create'
 
 const page = async () => {
 
   return (
     <>
-      <CreateStadiumContainer />
+      <CreateStadium />
     </>
   )
 }
