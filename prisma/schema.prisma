@@ -99,9 +99,16 @@ model Stadium {
 }
 
 model Team {
-  id       String    @id @default(auto()) @map("_id") @db.ObjectId
-  country  COUNTIES  @unique
-  phase    PHASE
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  country       COUNTIES  @unique
+  phase         PHASE
+  matchPlayed   Int       @default(0)
+  victory       Int       @default(0)
+  null          Int       @default(0)
+  defeat        Int       @default(0)
+  defenseBonus  Int       @default(0)
+  bonus         Int       @default(0)
+  points        Int       @default(0)
 }
 
 model Demand {
