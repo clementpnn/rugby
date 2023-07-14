@@ -10,11 +10,10 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger
 } from '@/components/ui/dropdownMenu'
-import { ArrowUpDown, MoreHorizontal } from 'lucide-react'
-import { Checkbox } from '../ui/checkbox'
+import { MoreVertical } from 'lucide-react'
+import { Checkbox } from '@/components/ui/checkbox'
+import { ColumnHeader } from '@/components/table/columnHeader'
 
-// This type is used to define the shape of our data.
-// You can use a Zod schema here if you want.
 export type Payment = {
   id: string
   amount: number
@@ -43,47 +42,67 @@ export const columns: ColumnDef<Payment>[] = [
     enableHiding: false
   },
   {
-    accessorKey: 'status',
+    accessorKey: 'name',
     header: ( { column } ) => {
       return (
-        <ButtonUI
-          variant="secondary"
-          onClick={() => column.toggleSorting( column.getIsSorted() === 'asc' )}
-        >
-          status
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </ButtonUI>
+        <ColumnHeader title='Name' column={column} />
       )
     },
-    cell: ( { row } ) => <div className="lowercase">{row.getValue( 'status' )}</div>
+    cell: ( { row } ) => <div>{row.getValue( 'name' )}</div>
+  },
+  {
+    accessorKey: 'company',
+    header: ( { column } ) => {
+      return (
+        <ColumnHeader title='Company' column={column} />
+      )
+    },
+    cell: ( { row } ) => <div>{row.getValue( 'company' )}</div>
   },
   {
     accessorKey: 'email',
     header: ( { column } ) => {
       return (
-        <ButtonUI
-          variant="secondary"
-          onClick={() => column.toggleSorting( column.getIsSorted() === 'asc' )}
-        >
-          Email
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </ButtonUI>
+        <ColumnHeader title='Email' column={column} />
       )
     },
     cell: ( { row } ) => <div className="lowercase">{row.getValue( 'email' )}</div>
   },
   {
     accessorKey: 'amount',
-    header: () => <div className="text-left">Amount</div>,
-    cell: ( { row } ) => {
-      const amount = Number.parseFloat( row.getValue( 'amount' ) )
-      const formatted = new Intl.NumberFormat( 'en-US', {
-        style: 'currency',
-        currency: 'USD'
-      } ).format( amount )
-
-      return <div className="text-left font-medium">{formatted}</div>
-    }
+    header: ( { column } ) => {
+      return (
+        <ColumnHeader title='Amount' column={column} />
+      )
+    },
+    cell: ( { row } ) => <div className="lowercase">{row.getValue( 'amount' )}</div>
+  },
+  {
+    accessorKey: 'processing',
+    header: ( { column } ) => {
+      return (
+        <ColumnHeader title='Processing' column={column} />
+      )
+    },
+    cell: ( { row } ) => <div className="lowercase">{row.getValue( 'processing' )}</div>
+  },
+  {
+    accessorKey: 'refused',
+    header: ( { column } ) => {
+      return (
+        <ColumnHeader title='Refused' column={column} />
+      )
+    },
+    cell: ( { row } ) => <div className="lowercase">{row.getValue( 'refused' )}</div>
+  },
+  {
+    accessorKey: 'accepted',
+    header: ( { column } ) => {
+      return (
+        <ColumnHeader title='Accepted' column={column} />
+      )
+    },
+    cell: ( { row } ) => <div className="lowercase">{row.getValue( 'accepted' )}</div>
   },
   {
     id: 'actions',
@@ -93,9 +112,9 @@ export const columns: ColumnDef<Payment>[] = [
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <ButtonUI variant="primary" className="h-8 w-8 p-0">
+            <ButtonUI variant="secondary" size='sm' className="h-8 w-8 p-0 bg-transparent hover:bg-transparent hover:scale-100 focus-visible:ring-0">
               <span className="sr-only">Open menu</span>
-              <MoreHorizontal className="h-4 w-4" />
+              <MoreVertical className="h-4 w-4" />
             </ButtonUI>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
