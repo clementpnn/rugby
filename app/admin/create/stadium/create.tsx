@@ -6,13 +6,13 @@ import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
 
 import useStep, { STEPS } from '@/hooks/useStep'
-import ImageContainer from './image'
-import Button from '../buttons/button'
-import ImageUpload from '../inputs/imageUpload'
-import Input from '../inputs/input'
-import Select from '../inputs/select'
+import ImageContainer from '@/components/containers/image'
+import Button from '@/components/buttons/button'
+import ImageUpload from '@/components/inputs/imageUpload'
+import Input from '@/components/inputs/input'
+import Select from '@/components/inputs/select'
 
-const CreateStadiumContainer = () => {
+const CreateStadium = () => {
   const [ isLoading, setIsloading ] = useState( false )
   const [ stadiumImage, setStadiumImage ] = useState( '' )
   const [ stadium, setStadium ] = useState<{name: string, reference: string}>( { name: '', reference: '' } )
@@ -171,4 +171,4 @@ const CreateStadiumContainer = () => {
   )
 }
 
-export default CreateStadiumContainer
+export default CreateStadium

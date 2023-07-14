@@ -1,16 +1,13 @@
+// eslint-disable-next-line check-file/folder-naming-convention
 'use client'
 
 import { Match, MatchTeam } from '@prisma/client'
 
 interface MatchIdProperties {
-    match: ( Match & { matchTeams: MatchTeam[] } ) | undefined
+    match: ( Match & { matchTeams: MatchTeam[] } )
 }
 
-const MatchIdContainer: React.FC<MatchIdProperties> = ( { match } ) => {
-
-  if ( !match ) {
-    return <p>No Match</p>
-  }
+const MatchId: React.FC<MatchIdProperties> = ( { match } ) => {
 
   return (
     <div className='bg-blue-500' key={match.id}>
@@ -29,4 +26,4 @@ const MatchIdContainer: React.FC<MatchIdProperties> = ( { match } ) => {
   )
 }
 
-export default MatchIdContainer
+export default MatchId
