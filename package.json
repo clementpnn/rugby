@@ -9,10 +9,11 @@
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "test": "vitest",
-    "db": "npm run seed:delete && npm run generate && npm run push && npm run seed:team",
+    "db": "npm run seed:delete && npm run generate && npm run push && npm run seed:team && npm run seed:stadium",
     "generate": "prisma generate",
     "push": "npx prisma db push",
     "seed:team": "ts-node prisma/teamSeed.ts",
+    "seed:stadium": "ts-node prisma/stadiumSeed.ts",
     "seed:delete": "ts-node prisma/deleteSeed.ts"
   },
   "dependencies": {
