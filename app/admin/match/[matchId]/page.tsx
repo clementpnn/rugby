@@ -1,6 +1,6 @@
 // eslint-disable-next-line check-file/folder-naming-convention
 import { getMatchById } from '@/actions/getMatch'
-import MatchId from './match'
+// import MatchId from './match'
 import getCurrentUser from '@/actions/getCurrentUser'
 
 interface IParameters {
@@ -25,7 +25,8 @@ const page = async ( { params }: {params: IParameters} ) => {
 
   return (
     <>
-      <MatchId match={match} />
+      <p>soon</p>
+      {/* <MatchId match={match} /> */}
     </>
   )
 }

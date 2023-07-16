@@ -5,7 +5,9 @@ const page = async () => {
   const currentUser = await getCurrentUser()
 
   return (
-    <SignInModal currentUser={currentUser} />
+    <>
+      <SignInModal currentUser={currentUser} />
+    </>
   )
 }
 

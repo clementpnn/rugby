@@ -31,15 +31,16 @@ const LoginForm = () => {
       body: JSON.stringify( data )
     } )
       .then( ( callback ) => {
-        if ( callback?.ok ) {
-          toast.success( 'Email send' )
+        if ( callback.status === 200 ) {
+          toast.success( `${callback.statusText}` )
           setStep( step + 1 as STEPS )
           setEmail( data.email )
           setPassword( data.password )
         }
+        if ( callback.status !== 200 ) { toast.error( `${callback.statusText}` ) }
       } )
-      .catch( error => toast.error( `${error}` ) )
-      .finally( () => setIsloading( false ) )
+
+    setIsloading( false )
   }
 
   return (
