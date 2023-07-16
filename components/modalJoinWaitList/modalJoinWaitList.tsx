@@ -3,7 +3,7 @@
 // import useCountries from '@/hooks/useCountries'
 // import { Button } from '../ui/button'
 // import Image from 'next/image'
-// import { Badge } from '../ui/badge'
+// import Badge from '../ui/badge'
 
 // const ModalJoinWaitList = () => {
 //   const { getByValue } = useCountries()

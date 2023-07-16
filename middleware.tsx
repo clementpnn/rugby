@@ -8,8 +8,7 @@ export default withAuth( {
 
 export const config = {
   matcher: [
-    // '/user/:path*',
-    // '/admin/:path*',
-    // '/dev/:path*'
+    '/user/:path*',
+    '/admin/:path*'
   ]
 }

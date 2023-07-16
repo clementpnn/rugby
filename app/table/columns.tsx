@@ -13,22 +13,17 @@ import {
 import { MoreVertical } from 'lucide-react'
 import { Checkbox } from '@/components/ui/checkbox'
 import { ColumnHeader } from '@/components/table/columnHeader'
-// import { User, Demand } from '@prisma/client'
+import { User, Demand } from '@prisma/client'
 
 export type Users = {
-  id: number
-  name: string
-  company: string
-  status: 'Journalist' | 'Photograph'
-  email: string
-  amount: number
-  processing: number
-  refused: number
-  accepted: number
+  user: User & {
+    demands: Demand[]
+    amount: number
+    processing: number
+    refused: number
+    accepted: number
+  }
 }
-// type Users = {
-//     user: User & { demands: Demand[] }[]
-// }
 
 export const columns: ColumnDef<Users>[] = [
   {

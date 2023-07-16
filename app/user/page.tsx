@@ -1,18 +1,19 @@
+import Link from 'next/link'
+
+import Button from '@/components/buttons/button'
 import getCurrentUser from '@/actions/getCurrentUser'
-import CreateStadium from './create'
 
 const page = async () => {
   const currentUser = await getCurrentUser()
 
-  if ( !currentUser || currentUser.role !== 'ADMIN' ) {
+  if ( !currentUser || currentUser.role !== 'USER' ) {
     return (
       <p>not authorized</p>
     )
   }
-
   return (
     <>
-      <CreateStadium />
+      <Link href={'user/dashboard'}><Button variant='link'>dashboard</Button></Link>
     </>
   )
 }

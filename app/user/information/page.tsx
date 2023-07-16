@@ -1,6 +1,15 @@
+import getCurrentUser from '@/actions/getCurrentUser'
 import InformationDescription from '@/components/informationDescription/informationDescription'
 
-const UserInformation = () => {
+const UserInformation = async () => {
+  const currentUser = await getCurrentUser()
+
+  if ( !currentUser || currentUser.role !== 'USER' ) {
+    return (
+      <p>not authorized</p>
+    )
+  }
+
   const dataList = [
     {
       shortcut: 'MJ',
