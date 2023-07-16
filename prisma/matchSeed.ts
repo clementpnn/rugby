@@ -20,6 +20,14 @@ function getRandomResult() {
   else return [ 'NULL', 'NULL' ]
 }
 
+function getRandomPoints( isWinner: boolean ) {
+  const basePoints = isWinner ? Math.floor( Math.random() * 5 + 5 ) : Math.floor( Math.random() * 5 )
+  const bonusPoints = Math.floor( Math.random() * 2 )
+  const defenseBonus = Math.floor( Math.random() * 2 )
+
+  return { basePoints, bonusPoints, defenseBonus }
+}
+
 async function main() {
   const stadiums = await prisma.stadium.findMany()
   const teams = await prisma.team.findMany()
@@ -37,10 +45,7 @@ async function main() {
         const team2 = phaseTeams[index_]
         const randomResult = getRandomResult()
         const randomTime = getRandomTime()
-        const phase = team1.phase
-
         const date = randomDate( startDate.toDate(), endDate.toDate() )
-
         const stadium = stadiums[Math.floor( Math.random() * stadiums.length )]
 
         const existingMatches = await prisma.match.findMany( {
@@ -55,12 +60,15 @@ async function main() {
           continue
         }
 
+        const team1Points = getRandomPoints( randomResult[0] === 'WINNER' )
+        const team2Points = getRandomPoints( randomResult[1] === 'WINNER' )
+
         await prisma.match.create( {
           data: {
             date: moment( date ).format( 'YYYY-MM-DD' ),
             time: randomTime,
             stadiumId: stadium.id,
-            phase,
+            phase: team1.phase,
             matchTeams: {
               create: [
                 { team: team1.country, result: randomResult[0] as RESULT },
@@ -69,15 +77,39 @@ async function main() {
             }
           }
         } )
+
+        await prisma.team.update( {
+          where: { country: team1.country },
+          data: {
+            points: { increment: team1Points.basePoints },
+            bonus: { increment: team1Points.bonusPoints },
+            defenseBonus: { increment: team1Points.defenseBonus },
+            victory: { increment: randomResult[0] === 'WINNER' ? 1 : 0 },
+            null: { increment: randomResult[0] === 'NULL' ? 1 : 0 },
+            defeat: { increment: randomResult[0] === 'LOSER' ? 1 : 0 },
+            matchPlayed: { increment: 1 }
+          }
+        } )
+
+        await prisma.team.update( {
+          where: { country: team2.country },
+          data: {
+            points: { increment: team2Points.basePoints },
+            bonus: { increment: team2Points.bonusPoints },
+            defenseBonus: { increment: team2Points.defenseBonus },
+            victory: { increment: randomResult[1] === 'WINNER' ? 1 : 0 },
+            null: { increment: randomResult[1] === 'NULL' ? 1 : 0 },
+            defeat: { increment: randomResult[1] === 'LOSER' ? 1 : 0 },
+            matchPlayed: { increment: 1 }
+          }
+        } )
       }
     }
   }
 }
 
 main()
-  .catch( ( error ) => {
-    // eslint-disable-next-line no-console
-    console.log( error )
+  .catch( () => {
     process.exit( 1 )
   } )
   .finally( async () => {
