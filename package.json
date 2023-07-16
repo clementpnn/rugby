@@ -9,11 +9,12 @@
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "test": "vitest",
-    "db": "npm run seed:delete && npm run generate && npm run push && npm run seed:team && npm run seed:stadium",
+    "db": "npm run seed:delete && npm run generate && npm run push && npm run seed:team && npm run seed:stadium && npm run seed:match",
     "generate": "prisma generate",
     "push": "npx prisma db push",
     "seed:team": "ts-node prisma/teamSeed.ts",
     "seed:stadium": "ts-node prisma/stadiumSeed.ts",
+    "seed:match": "ts-node prisma/matchSeed.ts",
     "seed:delete": "ts-node prisma/deleteSeed.ts"
   },
   "dependencies": {
@@ -41,6 +42,7 @@
     "eslint-config-next": "13.4.4",
     "eslint-plugin-unicorn": "^47.0.0",
     "lucide-react": "^0.252.0",
+    "moment": "^2.29.4",
     "mongodb": "^5.6.0",
     "next": "13.4.5",
     "next-auth": "^4.22.1",
