@@ -98,8 +98,7 @@ const AdminForm = () => {
               disabled={isLoading}
               options={[
                 { value: 'ADMIN', label: 'Admin' },
-                { value: 'DEV', label: 'Dev' },
-                { value: 'dqdqdqz', label: 'DJNQKJDJKQ' }
+                { value: 'USER', label: 'User' }
               ]}
             />
           )}
