@@ -10,17 +10,7 @@ import { RowActions } from '@/components/table/rowActions'
 import { MdVerified } from 'react-icons/md'
 import { User, Demand } from '@prisma/client'
 
-export type Users = {
-  user: User & {
-    demands: Demand[]
-    amount: number
-    processing: number
-    refused: number
-    accepted: number
-  }
-}
-
-export const columns: ColumnDef<Users>[] = [
+export const columns: ColumnDef<User & { demands: Demand[], amount: number, processing: number, refused: number, accepted: number }>[] = [
   {
     id: 'select',
     header: ( { table } ) => (
@@ -49,9 +39,9 @@ export const columns: ColumnDef<Users>[] = [
     },
     cell:
     ( { row } ) => {
-      const { name, emailVerified } = row.original
+      const { firstName, lastName, emailVerified } = row.original
       return(
-        <div className='flex gap-x-1'>{name}{emailVerified === true && <MdVerified className='w-4' />}</div>
+        <div className='flex gap-x-1'>{firstName} {lastName} {emailVerified ?? <MdVerified className='w-4' />}</div>
       )
     }
   },
