@@ -3,16 +3,11 @@
 
 import { ColumnDef } from '@tanstack/react-table'
 
-import { ButtonUI } from '@/components/ui/button'
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger
-} from '@/components/ui/dropdownMenu'
-import { MoreVertical } from 'lucide-react'
 import { Checkbox } from '@/components/ui/checkbox'
 import { ColumnHeader } from '@/components/table/columnHeader'
+import { RowActions } from '@/components/table/rowActions'
+
+import { MdVerified } from 'react-icons/md'
 import { User, Demand } from '@prisma/client'
 
 export type Users = {
@@ -52,7 +47,13 @@ export const columns: ColumnDef<Users>[] = [
         <ColumnHeader title='Name' column={column} />
       )
     },
-    cell: ( { row } ) => <div>{row.getValue( 'name' )}</div>
+    cell:
+    ( { row } ) => {
+      const { name, emailVerified } = row.original
+      return(
+        <div className='flex gap-x-1'>{name}{emailVerified === true && <MdVerified className='w-4' />}</div>
+      )
+    }
   },
   {
     accessorKey: 'company',
@@ -112,22 +113,7 @@ export const columns: ColumnDef<Users>[] = [
     id: 'actions',
     cell: ( { row } ) => {
       return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <ButtonUI variant="secondary" size='sm' className="h-8 w-8 p-0 bg-transparent hover:bg-transparent hover:scale-100 focus-visible:ring-0">
-              <span className="sr-only">Open menu</span>
-              <MoreVertical className="h-4 w-4" />
-            </ButtonUI>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuItem
-              // eslint-disable-next-line no-console
-              onClick={() => console.log( row.id )}
-            >
-                Supprimer
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        <RowActions row={row} />
       )
     }
   }

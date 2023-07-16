@@ -23,7 +23,7 @@ import {
   TableHeader,
   TableRow
 } from '@/components/ui/table'
-import { ButtonUI } from '../ui/button'
+
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -31,7 +31,17 @@ import {
   DropdownMenuTrigger
 } from '@/components/ui/dropdownMenu'
 
+import { ButtonUI } from '../ui/button'
 import { InputUI } from '../ui/input'
+
+import { RxMixerHorizontal } from 'react-icons/rx'
+import { styled } from '@stitches/react'
+
+import { Pagination } from './pagination'
+
+const ThickRxMixerHorizontal = styled( RxMixerHorizontal, {
+  strokeWidth: '0.5px' // Ajustez la valeur pour définir l'épaisseur du trait
+} )
 
 interface DataTableProperties<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
@@ -77,15 +87,16 @@ export function DataTable<TData, TValue>( {
       <div className="flex items-center py-4">
         <InputUI
           placeholder="Filter emails..."
-          value={( table.getColumn( 'email' )?.getFilterValue() as string ) ?? ''}
+          value={( table.getColumn( 'name' )?.getFilterValue() as string ) ?? ''}
           onChange={( event ) =>
-            table.getColumn( 'email' )?.setFilterValue( event.target.value )
+            table.getColumn( 'name' )?.setFilterValue( event.target.value )
           }
           className="max-w-sm"
         />
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <ButtonUI variant="outline" className="ml-auto focus-visible:ring-0">
+              <ThickRxMixerHorizontal className='pr-2 w-6'/>
               Columns
             </ButtonUI>
           </DropdownMenuTrigger>
@@ -156,23 +167,8 @@ export function DataTable<TData, TValue>( {
           </TableBody>
         </Table>
       </div>
-      <div className="flex items-center justify-end space-x-2 py-4">
-        <ButtonUI
-          variant="outline"
-          size="sm"
-          onClick={() => table.previousPage()}
-          disabled={!table.getCanPreviousPage()}
-        >
-          Previous
-        </ButtonUI>
-        <ButtonUI
-          variant="outline"
-          size="sm"
-          onClick={() => table.nextPage()}
-          disabled={!table.getCanNextPage()}
-        >
-          Next
-        </ButtonUI>
+      <div className="flex items-center justify-center pt-4">
+        <Pagination table={table} />
       </div>
     </>
   )
