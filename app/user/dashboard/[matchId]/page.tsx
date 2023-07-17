@@ -1,6 +1,6 @@
 // eslint-disable-next-line check-file/folder-naming-convention
-import { getMatchById } from '@/actions/getMatch'
-// import MatchId from './match'
+import { getMatchByIdUser } from '@/actions/getMatch'
+import MatchId from './match'
 import getCurrentUser from '@/actions/getCurrentUser'
 
 interface IParameters {
@@ -8,12 +8,12 @@ interface IParameters {
 }
 
 const page = async ( { params }: {params: IParameters} ) => {
-  const match = await getMatchById( params )
+  const match = await getMatchByIdUser( params )
   const currentUser = await getCurrentUser()
 
-  if ( !currentUser || currentUser.role !== 'ADMIN' ) {
+  if ( !currentUser ) {
     return (
-      <p>not authorized</p>
+      <p>not logged</p>
     )
   }
 
@@ -25,8 +25,7 @@ const page = async ( { params }: {params: IParameters} ) => {
 
   return (
     <>
-      <p>soon</p>
-      {/* <MatchId match={match} /> */}
+      <MatchId match={match} currentUser={currentUser} />
     </>
   )
 }

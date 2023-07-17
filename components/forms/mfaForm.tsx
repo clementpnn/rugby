@@ -26,7 +26,7 @@ const MFAForm = () => {
     setIsloading( true )
     const mfaToken = `${Number( data.numberOne )}${Number( data.numberTwo )}${Number( data.numberThree )}${Number( data.numberFour )}${Number( data.numberFive )}${Number( data.numberSix )}`
 
-    await fetch( '/api/create/mfa', {
+    await fetch( '/api/mfa', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify( { mfaToken } )
@@ -46,8 +46,7 @@ const MFAForm = () => {
         toast.success( 'Sign In' )
         router.refresh()
       } )
-      .catch( error => toast.error( `${error}` ) )
-      .finally( () => setIsloading( false ) )
+    setIsloading( false )
   }
 
   return (

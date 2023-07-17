@@ -115,15 +115,15 @@ model Demand {
   id         String    @id @default(auto()) @map("_id") @db.ObjectId
   userId     String    @db.ObjectId
   matchId    String    @db.ObjectId
-  tribuneId  String    @db.ObjectId
-  state      STATE
+  tribuneId  String?   @db.ObjectId
+  state      STATE     @default(IN_PROGRESS)
   createdAt  DateTime  @default(now())
 
-  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  match    Match    @relation(fields: [matchId], references: [id], onDelete: Cascade)
-  tribune  Tribune  @relation(fields: [tribuneId], references: [id], onDelete: Cascade)
+  user     User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  match    Match     @relation(fields: [matchId], references: [id], onDelete: Cascade)
+  tribune  Tribune?  @relation(fields: [tribuneId], references: [id], onDelete: Cascade)
 
-  @@unique([userId, tribuneId, matchId])
+  @@unique([userId, matchId])
 }
 
 model Account {
@@ -171,7 +171,6 @@ enum JOB {
 }
 
 enum ROLE {
-  DEV
   ADMIN
   USER
 }
