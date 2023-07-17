@@ -1,4 +1,3 @@
-import { ButtonUI } from '@/components/ui/button'
 import {
   Dialog,
   DialogContent,
@@ -8,18 +7,20 @@ import {
 } from '@/components/ui/dialog'
 
 interface ModalProperties{
-    children: React.ReactNode
+  children: React.ReactNode
+  action: React.ReactNode
+  title: string
 }
 
-const Modal: React.FC<ModalProperties> = ( { children } ) => {
+const Modal: React.FC<ModalProperties> = ( { children, action, title } ) => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <ButtonUI variant="outline">Edit Profile</ButtonUI>
+        {action}
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px] p-0 rounded-md overflow-hidden">
         <DialogHeader className='p-6 border-b-[1px] border-neutral3'>
-          <DialogTitle className='h5-barlow-m text-blue6 uppercase'>Edit profile</DialogTitle>
+          <DialogTitle className='h5-barlow-m text-blue6 uppercase'>{title}</DialogTitle>
         </DialogHeader>
         {children}
         {/* <DialogFooter>

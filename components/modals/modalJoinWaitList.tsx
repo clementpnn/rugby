@@ -64,14 +64,14 @@ const ModalJoinWaitList = () => {
   const country1 = getByValue( 'FRANCE' )
   const country2 = getByValue( 'ARGENTINA' )
   return(
-    <Modal>
+    <Modal action={<ButtonUI variant="outline">Salut</ButtonUI>} title='Hey'>
       <div className='w-full h-fit flex flex-col gap-8 px-6 py-6'>
-        <div className='flex flex-col gap-y-1'>
-          <div className='w-full flex justify-between'>
+        <div className='flex flex-col gap-y-3'>
+          <div className='w-full flex justify-between items-center'>
             <span className='h6-barlow-m text-blue6 sm:h6-barlow-d'>20:45</span>
-            <Badge>Progress</Badge>
+            <Badge size='sm' variant='rejected_dark'>Progress</Badge>
           </div>
-          <div className='flex flex-col gap-y-2 sm:flex-row sm:justify-between'>
+          <div className='flex flex-col gap-y-1 sm:flex-row sm:justify-between'>
             <span className='label-sm text-blue6 sm:label-md'>Saturday October 10, 2023</span>
             <span className='label-sm text-blue6 sm:label-md'>Stade de Marseille</span>
           </div>
@@ -99,7 +99,7 @@ const ModalJoinWaitList = () => {
             <span className='h6-barlow-m text-blue6 text-center w-8 h-8'>L</span>
           </div>
         </div>
-        <ButtonUI className='fill label-md m-0 sm:label-lg' variant='primary' size='lg'>Join Wait List</ButtonUI>
+        <ButtonUI className='' variant='primary' size='lg'>Join Wait List</ButtonUI>
       </div>
     </Modal>
   )
