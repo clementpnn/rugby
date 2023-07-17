@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Badge from '@/components/ui/badge'
 import { matchData } from '@/app/table/match'
 
-function RequestMatch( { variant, size, circleSize, circle, label } ) {
+function RequestMatch( { variant, size, label } ) {
 
   return (
     <div className="flex justify-center">
@@ -48,7 +48,7 @@ function RequestMatch( { variant, size, circleSize, circle, label } ) {
           </div>
         </div>
         <div className="flex flex-row w-[180px] h-9 justify-end items-center md:mr-0 mr-4 md:mt-0 mt-3 right-0 absolute md:relative">
-          <Badge variant={variant} size={size} circle_size={circleSize} circle={circle} label={label} />
+          <Badge variant={variant} size={size}>{ label }</Badge>
         </div>
       </div>
     </div>
