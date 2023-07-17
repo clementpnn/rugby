@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import Badge from '@/components/ui/badge'
-import { matchData } from '@/app/table/Match'
+import { matchData } from '@/app/table/match'
 
 function RequestMatch( { variant, size, circleSize, circle, label } ) {
 
