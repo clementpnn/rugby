@@ -5,93 +5,248 @@ async function main() {
 
   const stadiums = [
     {
-      name: 'Stade de France',
-      reference: 'SDF',
-      image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Stade_de_France_2019.jpg/1200px-Stade_de_France_2019.jpg',
+      name: 'Stade de Bordeaux',
+      reference: 'BOR',
+      image: 'https://res.cloudinary.com/dqoyumrza/image/upload/v1689541696/hgyueowqdwi4zimkafuj.png',
       tribunes: [
         {
-          name: 'Tribune 1',
-          type: JOB.JOURNALIST,
-          places: 1000,
-          image: 'https://picsum.photos/1000/500',
+          name: 'Static',
+          type: JOB.PHOTOGRAPHER,
+          places: 84,
+          image: 'https://res.cloudinary.com/dqoyumrza/image/upload/v1689540388/jtg6fubepzisuz3ujyir.png',
           x: 180,
           y: 210
         },
         {
-          name: 'Tribune 2',
-          type: JOB.PHOTOGRAPHER,
-          places: 500,
-          image: 'https://picsum.photos/500/500',
+          name: 'Table Positions',
+          type: JOB.JOURNALIST,
+          places: 150,
+          image: 'https://res.cloudinary.com/dqoyumrza/image/upload/v1689540415/wxx0vyekvm0nvjtboe3q.png',
           x: 60,
           y: 110
         },
         {
-          name: 'Tribune 3',
+          name: 'No Table Positions',
           type: JOB.JOURNALIST,
-          places: 1000,
-          image: 'https://picsum.photos/1000/500',
+          places: 25,
+          image: 'https://res.cloudinary.com/dqoyumrza/image/upload/v1689540415/wxx0vyekvm0nvjtboe3q.png',
           x: 90,
           y: 210
         }
       ]
     },
     {
-      name: 'Wembley Stadium',
-      reference: 'WST',
-      image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Wembley_Stadium_2017.jpg/1200px-Wembley_Stadium_2017.jpg',
+      name: 'Stade Pierre Mauroy',
+      reference: 'LIL',
+      image: 'https://res.cloudinary.com/dqoyumrza/image/upload/v1689541740/vz0vzlz0f7uk1yl4ipsv.png',
       tribunes: [
         {
-          name: 'Tribune 1',
+          name: 'No Table Positions',
           type: JOB.JOURNALIST,
-          places: 1000,
-          image: 'https://picsum.photos/1000/500',
+          places: 30,
+          image: 'https://res.cloudinary.com/dqoyumrza/image/upload/v1689540415/wxx0vyekvm0nvjtboe3q.png',
           x: 80,
           y: 190
         },
         {
-          name: 'Tribune 2',
+          name: 'Roving',
           type: JOB.PHOTOGRAPHER,
-          places: 500,
-          image: 'https://picsum.photos/500/500',
+          places: 94,
+          image: 'https://res.cloudinary.com/dqoyumrza/image/upload/v1689540388/jtg6fubepzisuz3ujyir.png',
           x: 220,
           y: 60
         },
         {
-          name: 'Tribune 3',
+          name: 'Table Positions',
           type: JOB.JOURNALIST,
-          places: 1000,
-          image: 'https://picsum.photos/1000/500',
+          places: 175,
+          image: 'https://res.cloudinary.com/dqoyumrza/image/upload/v1689540415/wxx0vyekvm0nvjtboe3q.png',
           x: 50,
           y: 40
         }
       ]
     },
     {
-      name: 'Estadio Azteca',
-      reference: 'EA',
-      image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Estadio_Azteca_2013.jpg/1200px-Estadio_Azteca_2013.jpg',
+      name: 'Stade de Lyon',
+      reference: 'LYO',
+      image: 'https://res.cloudinary.com/dqoyumrza/image/upload/v1689541716/lk6pzg1u0ogk91qdzdc1.png',
       tribunes: [
         {
-          name: 'Tribune 1',
+          name: 'Table Positions',
           type: JOB.JOURNALIST,
-          places: 1000,
-          image: 'https://picsum.photos/1000/500',
+          places: 175,
+          image: 'https://res.cloudinary.com/dqoyumrza/image/upload/v1689540415/wxx0vyekvm0nvjtboe3q.png',
           x: 140,
           y: 200
         },
         {
-          name: 'Tribune 2',
+          name: 'Elevated',
           type: JOB.PHOTOGRAPHER,
-          places: 500,
-          image: 'https://picsum.photos/500/500',
+          places: 94,
+          image: 'https://res.cloudinary.com/dqoyumrza/image/upload/v1689540388/jtg6fubepzisuz3ujyir.png',
           x: 120,
           y: 100
         },
         {
-          name: 'Tribune 3',
+          name: 'No Table Positions',
           type: JOB.JOURNALIST,
-          places: 1000,
-          image: 'https://picsum.photos/1000/500',
+          places: 30,
+          image: 'https://res.cloudinary.com/dqoyumrza/image/upload/v1689540415/wxx0vyekvm0nvjtboe3q.png',
+          x: 90,
+          y: 130
+        }
+      ]
+    },
+    {
+      name: 'Stade Vélodrome',
+      reference: 'MAR',
+      image: 'https://res.cloudinary.com/dqoyumrza/image/upload/v1689541800/yq5fjrpukeb2t9r5t67y.png',
+      tribunes: [
+        {
+          name: 'Table Positions',
+          type: JOB.JOURNALIST,
+          places: 190,
+          image: 'https://res.cloudinary.com/dqoyumrza/image/upload/v1689540415/wxx0vyekvm0nvjtboe3q.png',
+          x: 140,
+          y: 200
+        },
+        {
+          name: 'Roving',
+          type: JOB.PHOTOGRAPHER,
+          places: 100,
+          image: 'https://res.cloudinary.com/dqoyumrza/image/upload/v1689540388/jtg6fubepzisuz3ujyir.png',
+          x: 120,
+          y: 100
+        },
+        {
+          name: 'No Table Positions',
+          type: JOB.JOURNALIST,
+          places: 50,
+          image: 'https://res.cloudinary.com/dqoyumrza/image/upload/v1689540415/wxx0vyekvm0nvjtboe3q.png',
+          x: 90,
+          y: 130
+        }
+      ]
+    },
+    {
+      name: 'Stade de Beaujoire',
+      reference: 'NAN',
+      image: 'https://res.cloudinary.com/dqoyumrza/image/upload/v1689541653/ynj9nox8khle5lqvrizj.png',
+      tribunes: [
+        {
+          name: 'Table Positions',
+          type: JOB.JOURNALIST,
+          places: 175,
+          image: 'https://res.cloudinary.com/dqoyumrza/image/upload/v1689540415/wxx0vyekvm0nvjtboe3q.png',
+          x: 140,
+          y: 200
+        },
+        {
+          name: 'Elevated',
+          type: JOB.PHOTOGRAPHER,
+          places: 92,
+          image: 'https://res.cloudinary.com/dqoyumrza/image/upload/v1689540388/jtg6fubepzisuz3ujyir.png',
+          x: 120,
+          y: 100
+        },
+        {
+          name: 'No Table Positions',
+          type: JOB.JOURNALIST,
+          places: 30,
+          image: 'https://res.cloudinary.com/dqoyumrza/image/upload/v1689540415/wxx0vyekvm0nvjtboe3q.png',
+          x: 90,
+          y: 130
+        }
+      ]
+    },
+    {
+      name: 'Stade de Nice',
+      reference: 'NIC',
+      image: 'https://res.cloudinary.com/dqoyumrza/image/upload/v1689540347/jmhh0c9wuvspjqlogrs4.png',
+      tribunes: [
+        {
+          name: 'Table Positions',
+          type: JOB.JOURNALIST,
+          places: 175,
+          image: 'https://res.cloudinary.com/dqoyumrza/image/upload/v1689540415/wxx0vyekvm0nvjtboe3q.png',
+          x: 140,
+          y: 200
+        },
+        {
+          name: 'Static',
+          type: JOB.PHOTOGRAPHER,
+          places: 92,
+          image: 'https://res.cloudinary.com/dqoyumrza/image/upload/v1689540388/jtg6fubepzisuz3ujyir.png',
+          x: 120,
+          y: 100
+        },
+        {
+          name: 'No Table Positions',
+          type: JOB.JOURNALIST,
+          places: 30,
+          image: 'https://res.cloudinary.com/dqoyumrza/image/upload/v1689540415/wxx0vyekvm0nvjtboe3q.png',
+          x: 90,
+          y: 130
+        }
+      ]
+    },
+    {
+      name: 'Stade Geoffroy Guichard',
+      reference: 'STE',
+      image: 'https://res.cloudinary.com/dqoyumrza/image/upload/v1689541670/no6itd6idlqhz73jjo8d.png',
+      tribunes: [
+        {
+          name: 'Table Positions',
+          type: JOB.JOURNALIST,
+          places: 330,
+          image: 'https://res.cloudinary.com/dqoyumrza/image/upload/v1689540415/wxx0vyekvm0nvjtboe3q.png',
+          x: 140,
+          y: 200
+        },
+        {
+          name: 'Elevated',
+          type: JOB.PHOTOGRAPHER,
+          places: 100,
+          image: 'https://res.cloudinary.com/dqoyumrza/image/upload/v1689540388/jtg6fubepzisuz3ujyir.png',
+          x: 120,
+          y: 100
+        },
+        {
+          name: 'No Table Positions',
+          type: JOB.JOURNALIST,
+          places: 100,
+          image: 'https://res.cloudinary.com/dqoyumrza/image/upload/v1689540415/wxx0vyekvm0nvjtboe3q.png',
+          x: 90,
+          y: 130
+        }
+      ]
+    },
+    {
+      name: 'Stade de France',
+      reference: 'STD',
+      image: 'https://res.cloudinary.com/dqoyumrza/image/upload/v1689541628/jc599b0rccqwgtmvse2f.png',
+      tribunes: [
+        {
+          name: 'Table Positions',
+          type: JOB.JOURNALIST,
+          places: 150,
+          image: 'https://res.cloudinary.com/dqoyumrza/image/upload/v1689540415/wxx0vyekvm0nvjtboe3q.png',
+          x: 140,
+          y: 200
+        },
+        {
+          name: 'Roving',
+          type: JOB.PHOTOGRAPHER,
+          places: 74,
+          image: 'https://res.cloudinary.com/dqoyumrza/image/upload/v1689540388/jtg6fubepzisuz3ujyir.png',
+          x: 120,
+          y: 100
+        },
+        {
+          name: 'No Table Positions',
+          type: JOB.JOURNALIST,
+          places: 25,
+          image: 'https://res.cloudinary.com/dqoyumrza/image/upload/v1689540415/wxx0vyekvm0nvjtboe3q.png',
           x: 90,
           y: 130
         }

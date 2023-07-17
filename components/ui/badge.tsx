@@ -89,7 +89,7 @@ function Badge( { className, children, variant, size, ...properties }: BadgeProp
     <div className={cn( badgeVariants( { variant, size, className } ) )} {...properties}>
       <div className={`
         inline-flex items-center rounded-full h-2.5 w-2.5 bg-green-500
-        ${size==='sm' && 'h-2 w-2'}
+        ${size==='sm' && 'h-1 w-1'}
         ${size==='md' && 'h-2.5 w-2.5'}
         ${size==='lg' && 'h-3 w-3'}
         ${variant==='accepted_light' && 'bg-green-500'}

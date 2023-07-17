@@ -1,7 +1,7 @@
 import getCurrentUser from '@/actions/getCurrentUser'
-import CreateStadium from './create'
+import CSVForm from '@/components/forms/csvForm'
 
-const page = async () => {
+export default async function Home() {
   const currentUser = await getCurrentUser()
 
   if ( !currentUser || currentUser.role !== 'ADMIN' ) {
@@ -12,9 +12,7 @@ const page = async () => {
 
   return (
     <>
-      <CreateStadium />
+      <CSVForm />
     </>
   )
 }
-
-export default page

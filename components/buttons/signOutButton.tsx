@@ -2,9 +2,11 @@
 
 import { signOut } from 'next-auth/react'
 
+import Button from './button'
+
 const SignOutButton = () => {
   return (
-    <button className='cursor-pointer bg-blue-500' onClick={() => signOut()} >sign out</button>
+    <Button variant='link' onClick={() => signOut()}>sign out</Button>
   )
 }
 

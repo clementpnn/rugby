@@ -15,21 +15,21 @@ const CSVForm = () => {
   const { csvFileToArray } = useCSVToArray()
 
   const sendDataToBackend = async ( data: FileRow[] ) => {
+    setIsloading( true )
     for ( let items of data ) {
-      try {
-        // eslint-disable-next-line react-hooks/rules-of-hooks
-        const password = useCreatePassword()
-        fetch( '/api/create/user', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify( { ...items, password } )
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      const password = useCreatePassword()
+      fetch( '/api/user', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify( { ...items, password } )
+      } )
+        .then( ( callback ) => {
+          if ( callback.status === 200 ) { toast.success( `${callback.statusText}` ) }
+          if ( callback.status !== 200 ) { toast.error( `${callback.statusText}` ) }
         } )
-          .catch( error => toast.error( `${error}` ) )
-          .finally( () => setIsloading( false ) )
-      } catch ( error ) {
-        toast.error( `${error}` )
-      }
     }
+    setIsloading( false )
   }
 
   const handleOnFileSubmit = async ( file: File ) => {
