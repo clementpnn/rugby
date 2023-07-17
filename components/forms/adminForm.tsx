@@ -43,16 +43,19 @@ const AdminForm = () => {
   ) => {
     setIsloading( true )
 
-    await fetch( '/api/create/admin', {
+    await fetch( '/api/register', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify( data )
     } )
-      .then( () => {
-        toast.success( 'Email send' )
-        setStep( ( step + 1 ) as STEPS )
-        setEmail( data.email )
-        setPassword( data.password )
+      .then( ( callback ) => {
+        if ( callback.status === 200 ) {
+          toast.success( `${callback.statusText}` )
+          setStep( ( step + 1 ) as STEPS )
+          setEmail( data.email )
+          setPassword( data.password )
+        }
+        if ( callback.status !== 200 ) { toast.error( `${callback.statusText}` ) }
       } )
       .catch( ( error ) => toast.error( `${error}` ) )
       .finally( () => setIsloading( false ) )
@@ -98,8 +101,7 @@ const AdminForm = () => {
               disabled={isLoading}
               options={[
                 { value: 'ADMIN', label: 'Admin' },
-                { value: 'DEV', label: 'Dev' },
-                { value: 'dqdqdqz', label: 'DJNQKJDJKQ' }
+                { value: 'USER', label: 'User' }
               ]}
             />
           )}

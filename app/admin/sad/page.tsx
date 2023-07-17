@@ -1,7 +1,6 @@
 import getCurrentUser from '@/actions/getCurrentUser'
-import CreateStadium from './create'
 
-const page = async () => {
+export default async function Home() {
   const currentUser = await getCurrentUser()
 
   if ( !currentUser || currentUser.role !== 'ADMIN' ) {
@@ -9,12 +8,7 @@ const page = async () => {
       <p>not authorized</p>
     )
   }
-
   return (
-    <>
-      <CreateStadium />
-    </>
+    <h1>Here is Admin SAD Page !</h1>
   )
 }
-
-export default page
