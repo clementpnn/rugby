@@ -15,17 +15,17 @@ interface Match {
 }
 
 export const matchData : Match[] = [
-    {
-        data: {
-            finish: true,
-            hour: '20:00',
-            place: 'Stade de Marseille',
-            firstTeam: 'ITA',
-            firstTeamFlag: '/flags/ita.svg',
-            secondTeam: 'FRA',
-            secondTeamFlag: '/flags/fra.svg',
-            GPFirst: 54,
-            GPSecond: 78
-        }
-    },
+  {
+    data: {
+      finish: true,
+      hour: '20:00',
+      place: 'Stade de Marseille',
+      firstTeam: 'ITA',
+      firstTeamFlag: '/flags/ita.svg',
+      secondTeam: 'FRA',
+      secondTeamFlag: '/flags/fra.svg',
+      GPFirst: 54,
+      GPSecond: 78
+    }
+  }
 ]

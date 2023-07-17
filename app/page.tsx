@@ -1,6 +1,6 @@
 export default async function Home() {
-    return (
-        <div>
-        </div>
-    )
+  return (
+    <div>
+    </div>
+  )
 }
