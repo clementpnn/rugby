@@ -390,6 +390,10 @@
     @apply text-base font-inter font-medium;
   }
 
+  .label-md-bold {
+    @apply text-base font-inter font-bold;
+  }
+
   .label-sm {
     @apply text-sm font-inter font-medium;
   }
