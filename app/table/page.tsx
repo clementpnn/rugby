@@ -4,6 +4,7 @@
 import { DatePicker } from '@/components/datePicker/datePicker'
 // import { DataTableDemo } from '@/components/table/testTable'
 import ModalJoinWaitList from '@/components/modals/modalJoinWaitList'
+import Badge from '@/components/ui/badge'
 
 const page = async () => {
   return (
@@ -12,6 +13,7 @@ const page = async () => {
       {/* <DataTableDemo /> */}
       <DatePicker></DatePicker>
       <ModalJoinWaitList></ModalJoinWaitList>
+      <Badge variant='accepted_dark' size='sm'>Salut</Badge>
     </>
   )
 }
