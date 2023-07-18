@@ -5,104 +5,115 @@ import { ButtonUI } from '../ui/button'
 import Image from 'next/image'
 import Badge from '../ui/badge'
 import Modal from './dialog'
-// const ModalJoinWaitList = () => {
-//   const { getByValue } = useCountries()
-//   const country1 = getByValue( 'FRANCE' )
-//   const country2 = getByValue( 'ARGENTINA' )
-//   return(
-//     <div className='bg-neutral8 w-screen h-screen flex justify-center items-center box-border'>
-//       <div className='w-full max-w-lg mx-5 h-fit bg-neutral0 rounded-xl'>
-//         <div className='h-fit flex flex-row justify-between items-center py-6 px-6 border-b border-neutral3 sm:px-8 sm:py-10'>
-//           <span className='h5-barlow-m text-blue6 sm:h5-barlow-d'>QUARTER FINAL</span>
-//           <ButtonUI variant={'outline'} size={'iconSm'}>X</ButtonUI>
-//         </div>
-//         <div className='w-full h-fit flex flex-col gap-8 px-6 py-6'>
-//           <div className='flex flex-col gap-y-1'>
-//             <div className='w-full flex justify-between'>
-//               <span className='h6-barlow-m text-blue6 sm:h6-barlow-d'>20:45</span>
-//               <Badge>Progress</Badge>
-//             </div>
-//             <div className='flex flex-col gap-y-2 sm:flex-row sm:justify-between'>
-//               <span className='label-sm text-blue6 sm:label-md'>Saturday October 10, 2023</span>
-//               <span className='label-sm text-blue6 sm:label-md'>Stade de Marseille</span>
-//             </div>
-//           </div>
-//           <div className='flex gap-x-4'>
-//             <div className='h-fit w-full flex flex-col gap-y-4 sm:flex-row'>
-//               <div className='h-fit w-full px-4 py-2 gap-x-3 bg-blue1 rounded-md flex flex-row sm:px-4 sm:py-2'>
-//                 <Image src={country1?.flag || '/placeholder-image.png'} alt="Flag" width={'28'} height={'28'}/>
-//                 <span className='h6-inter-d text-blue6'>{country1?.value}</span>
-//               </div>
-//               <div className='hidden sm:flex sm:flex-row sm:gap-y-1 sm:items-center'>
-//                 <span className='h6-barlow-m text-blue6 text-center w-8 h-8 sm:text-right'>W</span>
-//                 <span className='h6-barlow-m text-blue6 text-center w-8 h-8 sm:text-center'>-</span>
-//                 <span className='h6-barlow-m text-blue6 text-center w-8 h-8 sm:text-left'>L</span>
-//               </div>
-//               <div className='h-fit w-full px-4 py-2 gap-x-3 bg-blue1 rounded-md flex flex-row'>
-//                 <Image src={country2?.flag || '/placeholder-image.png'} alt="Flag" width={'28'} height={'28'} className='sm:hidden'/>
-//                 <span className='h6-inter-d text-blue6'>{country2?.value}</span>
-//                 <Image src={country2?.flag || '/placeholder-image.png'} alt="Flag" width={'28'} height={'28'} className='hidden sm:block'/>
-//               </div>
-//             </div>
-//             <div className='flex flex-col gap-y-1 sm:hidden'>
-//               <span className='h6-barlow-m text-blue6 text-center w-8 h-8'>W</span>
-//               <span className='h6-barlow-m text-blue6 text-center w-8 h-8'>-</span>
-//               <span className='h6-barlow-m text-blue6 text-center w-8 h-8'>L</span>
-//             </div>
-//           </div>
-//           <ButtonUI className='fill label-md m-0 sm:label-lg' variant='primary' size='lg'>Join Wait List</ButtonUI>
-//         </div>
-//       </div>
-//     </div>
-//   )
-// }
+import { STATE } from '@prisma/client'
+import { useEffect, useState } from 'react'
+interface MatchInformation {
+  date: string
+  time: string
+  state: STATE
+  stadium: string
+  score: {
+    countryA : string
+    scoreA : number | 'NP'
+    countryB : string
+    scoreB : number | 'NP'
+  }
+}
+interface ModalJoinWaitListProperties {
+  // children: React.ReactNode
+  data: MatchInformation
+  onClick: ()=>void
+}
 
-// export default ModalJoinWaitList
+function formatString( inputString : string ) {
+  // Sépare les mots par les underscores et met chaque mot en minuscules
+  let words = inputString.toLowerCase().split( '_' )
 
-const ModalJoinWaitList = () => {
+  // Capitalise chaque mot
+  for ( let index = 0; index < words.length; index++ ) {
+    words[index] = words[index].charAt( 0 ).toUpperCase() + words[index].slice( 1 )
+  }
+
+  // Rejoindre les mots pour former la chaîne finale
+  let formattedString = words.join( ' ' )
+
+  return formattedString
+}
+
+const ModalJoinWaitList : React.FC<ModalJoinWaitListProperties> = ( { data, onClick } ) => {
+
+  const countryLeft = formatString( data.score.countryA )
+  const countryRight = formatString( data.score.countryB )
+
+  const state = formatString( data.state )
+
+  const [ stateClass, setStateClass ] = useState<'accepted_light' | 'rejected_light' | 'progress_light' | 'accepted_dark' | 'rejected_dark' | 'progress_dark'>( 'accepted_light' )
+  useEffect( () => {
+    switch ( data.state ) {
+    case 'ACCEPTED': {
+      setStateClass( 'accepted_light' )
+      break
+    }
+    case 'IN_PROGRESS': {
+      setStateClass( 'progress_light' )
+      break
+    }
+    case 'REJECTED': {
+      setStateClass( 'rejected_light' )
+      break
+    }
+    default: {
+      // Set a default state in case 'data.state' doesn't match any of the cases
+      setStateClass( 'accepted_light' )
+      break
+    }
+    }
+  }, [ data.state ] )
+
   const { getByValue } = useCountries()
-  const country1 = getByValue( 'FRANCE' )
-  const country2 = getByValue( 'ARGENTINA' )
+  const imgCountryLeft = getByValue( data.score.countryA )
+  const imgCountryRight = getByValue( data.score.countryB )
   return(
     <Modal action={<ButtonUI variant="outline">Salut</ButtonUI>} title='Hey'>
-      <div className='w-full h-fit flex flex-col gap-8 px-6 py-6'>
+      <div className='w-full h-fit flex flex-col gap-8 p-6 sm:p-8'>
         <div className='flex flex-col gap-y-3'>
           <div className='w-full flex justify-between items-center'>
-            <span className='h6-barlow-m text-blue6 sm:h6-barlow-d'>20:45</span>
-            <Badge size='sm' variant='rejected_dark'>Progress</Badge>
+            <span className='h6-barlow-m text-blue6 sm:h6-barlow-d'>{ data.time }</span>
+            <Badge size='md' variant={stateClass}>{ state }</Badge>
           </div>
           <div className='flex flex-col gap-y-1 sm:flex-row sm:justify-between'>
-            <span className='label-sm text-blue6 sm:label-md'>Saturday October 10, 2023</span>
-            <span className='label-sm text-blue6 sm:label-md'>Stade de Marseille</span>
+            <span className='label-sm text-blue6 sm:label-md'>{ data.date }</span>
+            <span className='label-sm text-blue6 sm:label-md'>{ data.stadium }</span>
           </div>
         </div>
         <div className='flex gap-x-4'>
           <div className='h-fit w-full flex flex-col gap-y-4 sm:flex-row'>
             <div className='h-fit w-full px-4 py-2 gap-x-3 bg-blue1 rounded-md flex flex-row sm:px-4 sm:py-2'>
-              <Image src={country1?.flag || '/placeholder-image.png'} alt="Flag" width={'28'} height={'28'}/>
-              <span className='h6-inter-d text-blue6'>{country1?.value}</span>
+              <Image src={imgCountryLeft?.flag || '/placeholder-image.png'} alt="Flag" width={'28'} height={'28'}/>
+              <span className='h6-inter-d text-blue6'>{countryLeft}</span>
             </div>
             <div className='hidden sm:flex sm:flex-row sm:gap-y-1 sm:items-center'>
-              <span className='h6-barlow-m text-blue6 text-center w-8 h-8 sm:text-right'>W</span>
+              <span className='h6-barlow-m text-blue6 text-center w-8 h-8 sm:text-right'>{ data.score.scoreA }</span>
               <span className='h6-barlow-m text-blue6 text-center w-8 h-8 sm:text-center'>-</span>
-              <span className='h6-barlow-m text-blue6 text-center w-8 h-8 sm:text-left'>L</span>
+              <span className='h6-barlow-m text-blue6 text-center w-8 h-8 sm:text-left'>{ data.score.scoreB }</span>
             </div>
             <div className='h-fit w-full px-4 py-2 gap-x-3 bg-blue1 rounded-md flex flex-row'>
-              <Image src={country2?.flag || '/placeholder-image.png'} alt="Flag" width={'28'} height={'28'} className='sm:hidden'/>
-              <span className='h6-inter-d text-blue6'>{country2?.value}</span>
-              <Image src={country2?.flag || '/placeholder-image.png'} alt="Flag" width={'28'} height={'28'} className='hidden sm:block'/>
+              <Image src={imgCountryRight?.flag || '/placeholder-image.png'} alt="Flag" width={'28'} height={'28'} className='sm:hidden'/>
+              <span className='h6-inter-d text-blue6'>{countryRight}</span>
+              <Image src={imgCountryRight?.flag || '/placeholder-image.png'} alt="Flag" width={'28'} height={'28'} className='hidden sm:block'/>
             </div>
           </div>
           <div className='flex flex-col gap-y-1 sm:hidden'>
-            <span className='h6-barlow-m text-blue6 text-center w-8 h-8'>W</span>
+            <span className='h6-barlow-m text-blue6 text-center w-8 h-8'>{ data.score.scoreA }</span>
             <span className='h6-barlow-m text-blue6 text-center w-8 h-8'>-</span>
-            <span className='h6-barlow-m text-blue6 text-center w-8 h-8'>L</span>
+            <span className='h6-barlow-m text-blue6 text-center w-8 h-8'>{ data.score.scoreB }</span>
           </div>
         </div>
-        <ButtonUI className='' variant='primary' size='lg'>Join Wait List</ButtonUI>
+        <ButtonUI className='' variant='primary' size='lg' onClick={onClick}>Join Wait List</ButtonUI>
       </div>
     </Modal>
   )
 }
 
 export default ModalJoinWaitList
+

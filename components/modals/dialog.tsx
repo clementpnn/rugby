@@ -18,9 +18,9 @@ const Modal: React.FC<ModalProperties> = ( { children, action, title } ) => {
       <DialogTrigger asChild>
         {action}
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px] p-0 rounded-md overflow-hidden">
-        <DialogHeader className='p-6 border-b-[1px] border-neutral3'>
-          <DialogTitle className='h5-barlow-m text-blue6 uppercase'>{title}</DialogTitle>
+      <DialogContent className="w-[calc(100vw-40px)] p-0 rounded-md overflow-hidden gap-0 max-w-xl sm:w-fit">
+        <DialogHeader className='p-8 border-b-[1px] border-neutral3'>
+          <DialogTitle className='h5-barlow-d text-blue6 uppercase'>{title}</DialogTitle>
         </DialogHeader>
         {children}
         {/* <DialogFooter>
