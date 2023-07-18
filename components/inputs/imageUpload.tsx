@@ -28,8 +28,8 @@ const ImageUpload: React.FC<ImageUploadProperties> = ( { onChange, children } ) 
     >
       {( { open } ) => {
         return (
-          <div onClick={() => open?.()} className='cursor-pointer hover:opacity-70 transition border-neutral-300 flex flex-col justify-center items-center gap-4 text-neutral-600'>
-            <div className='font-semibold text-lg'>
+          <div onClick={() => open?.()} className='bg-neutral0 rounded-md h-32 cursor-pointer transition border-[1px] border-neutral3 border-dashed flex flex-col justify-center items-center gap-4 text-blue6 hover:bg-neutral1 hover:scale-105 '>
+            <div className='label-md text-lg flex flex-col items-center gap-y-2'>
               {children}
             </div>
           </div>

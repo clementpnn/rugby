@@ -30,7 +30,7 @@ interface SelectProperties extends SelectHTMLAttributes<HTMLSelectElement> {
 }
 
 const selectVariants = cva(
-  'w-fit flex items-center justify-center rounded-md font-medium transition-colors hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue5 ',
+  'w-fit flex items-center justify-center rounded-md font-medium transition hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue5 ',
   {
     variants: {
       variant: {
