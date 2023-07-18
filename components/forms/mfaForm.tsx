@@ -28,7 +28,7 @@ const MFAForm = () => {
 
     if ( currentValue !== '' ) {
       const nextInput = document.querySelector( `#${nextInputName}` ) as HTMLInputElement | null
-      nextInput.focus()
+      nextInput?.focus()
     }
   }
 
