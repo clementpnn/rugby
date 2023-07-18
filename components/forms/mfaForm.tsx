@@ -23,10 +23,18 @@ const MFAForm = () => {
     mode: 'onChange'
   } )
 
+  const handleInputChange = ( currentInputName: string, nextInputName: string ) => ( event: { target: { value: any } } ) => {
+    const currentValue = event.target.value
+
+    if ( currentValue !== '' ) {
+      const nextInput = document.querySelector( `#${nextInputName}` ) as HTMLInputElement | null
+      nextInput?.focus()
+    }
+  }
+
   const onSubmit: SubmitHandler<any> = async ( data ) => {
     setIsloading( true )
     const mfaToken = `${Number( data.numberOne )}${Number( data.numberTwo )}${Number( data.numberThree )}${Number( data.numberFour )}${Number( data.numberFive )}${Number( data.numberSix )}`
-
     await fetch( '/api/mfa', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -51,10 +59,10 @@ const MFAForm = () => {
   }
 
   return (
-    <div className='w-screen h-screen box-border flex justify-center items-center'>
+    <div className='w-screen h-screen box-border flex justify-center'>
       <Container>
         <form onSubmit={handleSubmit( onSubmit )}>
-          <div className='h-fit w-[calc(100vw-40px)] flex flex-col max-w-[400px]'>
+          <div className='h-fit w-[calc(100vw-40px)] flex flex-col max-w-[400px] pt-14 sm:pt-20'>
             <Image
               src={'/images/logoBlueInline.svg'}
               height={48}
@@ -70,17 +78,17 @@ const MFAForm = () => {
             <p className='text-neutral11 base-md mb-6'>Pick it up to log in.</p>
             <span className='text-neutral5 label-md'>Code</span>
             <div className='flex flex-row gap-x-2 mb-10'>
-              <Controller name="numberOne" control={control} render={( { field } ) => <Input id='numberOne' type='number' {...field} errors={errors} maxLength={1} variant='code' disabled={isLoading} style={{ WebkitAppearance: 'none', MozAppearance: 'textfield' }} />}/>
-              <Controller name="numberTwo" control={control} render={( { field } ) => <Input id='numberTwo' type='number' {...field} errors={errors} maxLength={1} variant='code' disabled={isLoading} style={{ WebkitAppearance: 'none', MozAppearance: 'textfield' }}/>} />
-              <Controller name="numberThree" control={control} render={( { field } ) => <Input id='numberThree' type='number' {...field} variant='code' errors={errors} maxLength={1} disabled={isLoading} style={{ WebkitAppearance: 'none', MozAppearance: 'textfield' }} />} />
-              <Controller name="numberFour" control={control} render={( { field } ) => <Input id='numberFour' type='number' {...field} errors={errors} variant='code' maxLength={1} disabled={isLoading} style={{ WebkitAppearance: 'none', MozAppearance: 'textfield' }} />} />
-              <Controller name="numberFive" control={control} render={( { field } ) => <Input id='numberFive' type='number' {...field} variant='code' errors={errors} maxLength={1} disabled={isLoading} style={{ WebkitAppearance: 'none', MozAppearance: 'textfield' }} />} />
-              <Controller name="numberSix" control={control} render={( { field } ) => <Input id='numberSix' type='number' {...field} errors={errors} maxLength={1} disabled={isLoading} variant='code' style={{ WebkitAppearance: 'none', MozAppearance: 'textfield' }} />} />
+              <Controller name="numberOne" control={control} render={( { field } ) => <Input id='numberOne' type='number' className='h-[60px]' {...field} errors={errors} variant='code' disabled={isLoading} style={{ appearance: 'none', WebkitAppearance: 'none', MozAppearance: 'textfield' }} onChange={handleInputChange( 'numberOne', 'numberTwo' )}/>}/>
+              <Controller name="numberTwo" control={control} render={( { field } ) => <Input id='numberTwo' type='number' className='h-[60px]' {...field} errors={errors} variant='code' disabled={isLoading} style={{ appearance: 'none', WebkitAppearance: 'none', MozAppearance: 'textfield' }} onChange={handleInputChange( 'numberTwo', 'numberThree' )}/>} />
+              <Controller name="numberThree" control={control} render={( { field } ) => <Input id='numberThree' type='number' className='h-[60px]' {...field} errors={errors} variant='code' disabled={isLoading} style={{ appearance: 'none', WebkitAppearance: 'none', MozAppearance: 'textfield' }} onChange={handleInputChange( 'numberThree', 'numberFour' )}/>} />
+              <Controller name="numberFour" control={control} render={( { field } ) => <Input id='numberFour' type='number' className='h-[60px]' {...field} errors={errors} variant='code' disabled={isLoading} style={{ appearance: 'none', WebkitAppearance: 'none', MozAppearance: 'textfield' }} onChange={handleInputChange( 'numberFour', 'numberFive' )}/>} />
+              <Controller name="numberFive" control={control} render={( { field } ) => <Input id='numberFive' type='number' className='h-[60px]' {...field} errors={errors} variant='code' disabled={isLoading} style={{ appearance: 'none', WebkitAppearance: 'none', MozAppearance: 'textfield' }} onChange={handleInputChange( 'numberFive', 'numberSix' )}/>} />
+              <Controller name="numberSix" control={control} render={( { field } ) => <Input id='numberSix' type='number' className='h-[60px]' {...field} errors={errors} variant='code' disabled={isLoading} style={{ appearance: 'none', WebkitAppearance: 'none', MozAppearance: 'textfield' }} maxLength={1} />} />
             </div>
+            <Button disabled={isLoading} type='submit' variant='primary' size='lg' className='w-full'>
+              Validate
+            </Button>
           </div>
-          <Button disabled={isLoading} type='submit' variant='primary' size='lg' className='w-full'>
-            Validate
-          </Button>
         </form>
       </Container>
     </div>

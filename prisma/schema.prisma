@@ -102,7 +102,6 @@ model Team {
   id            String    @id @default(auto()) @map("_id") @db.ObjectId
   country       COUNTIES  @unique
   phase         PHASE
-  matchPlayed   Int       @default(0)
   victory       Int       @default(0)
   null          Int       @default(0)
   defeat        Int       @default(0)
@@ -216,6 +215,7 @@ enum RESULT {
   WINNER
   LOSER
   NULL
+  NO_PLAYED
 }
 
 enum COUNTIES {

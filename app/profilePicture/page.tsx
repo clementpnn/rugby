@@ -1,10 +1,6 @@
 import PictureForm from '@/components/forms/pictureForm'
 
-interface IParameters {
-  resetId: string
-}
-
-const page = async ( { params }: {params: IParameters} ) => {
+const page = async () => {
   return (
     <PictureForm/>
   )

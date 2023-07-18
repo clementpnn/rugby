@@ -1,5 +1,6 @@
 import getCurrentUser from '@/actions/getCurrentUser'
-import CreateStadium from './create'
+// import CreateStadium from './create'
+import AdminContainer from '@/components/containers/adminContainer'
 
 const page = async () => {
   const currentUser = await getCurrentUser()
@@ -12,7 +13,12 @@ const page = async () => {
 
   return (
     <>
-      <CreateStadium />
+      <AdminContainer>
+        <div className='w-full h-full bg-neutral0 rounded-md'>
+          Salut
+        </div>
+      </AdminContainer>
+      {/* <CreateStadium></CreateStadium> */}
     </>
   )
 }
