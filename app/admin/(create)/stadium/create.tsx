@@ -53,7 +53,9 @@ const CreateStadium = () => {
   if ( step === STEPS.ONE ) {
     bodyContent = (
       <>
-        <ImageContainer image={stadiumImage} />
+        <div className='bg-red-500 h-full aspect-square'>
+          <ImageContainer image={stadiumImage} />
+        </div>
         <div>
           <Controller name="reference" control={control} render={( { field } ) => <Input id='reference' label='Reference' {...field} errors={errors} disabled={isLoading} />} />
           <Controller name="name" control={control} render={( { field } ) => <Input id='name' label='Name' {...field} errors={errors} disabled={isLoading} />} />
