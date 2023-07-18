@@ -2,14 +2,13 @@ import Navbar from '@/components/navbar/navbar'
 import Filter from '@/components/filter/filter'
 import Empty from '@/components/containers/empty'
 
-interface IParameters {
-  resetId: string
-}
-
-const page = async ( { params }: {params: IParameters} ) => {
+const page = async () => {
   return (
-    <><><Navbar />
-      <Empty /></><Filter /></>
+    <>
+      {/* pas bon */}
+      <><Navbar />
+        <Empty /></><Filter />
+    </>
   )
 }
 

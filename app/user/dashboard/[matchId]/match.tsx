@@ -4,7 +4,7 @@
 import { Match, MatchTeam, User } from '@prisma/client'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import Button from '@/components/buttons/button'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import toast from 'react-hot-toast'
 
@@ -20,11 +20,6 @@ const MatchId: React.FC<MatchIdProperties> = ( { currentUser, match } ) => {
   const userId = currentUser.id
 
   const { handleSubmit } = useForm<any>( {} )
-
-  useEffect( () => {
-    // eslint-disable-next-line no-console
-    console.log( match )
-  }, [] )
 
   const onSubmit: SubmitHandler<any> = async () => {
     setIsloading( true )

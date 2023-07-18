@@ -7,7 +7,7 @@ import Button from '../buttons/button'
 const PictureForm = () => {
   const [ selectedImage, setSelectedImage ] = useState<File | undefined>( )
 
-  const handleImageChange = ( event: React.ChangeEvent<HTMLInputElement> ) => {
+  const handleImageChange = ( _event: React.ChangeEvent<HTMLInputElement> ) => {
     // Logique de gestion de l'image
   }
 
@@ -17,22 +17,32 @@ const PictureForm = () => {
     if ( selectedImage ) {
       // Envoyer l'image sélectionnée à la base de données
       // Ajoutez votre logique ici
+<<<<<<< HEAD
       setSelectedImage( )
+=======
+      // eslint-disable-next-line unicorn/no-useless-undefined
+      setSelectedImage( undefined )
+>>>>>>> 881f15ac3c72e9eb9506ed08298712e0ca06d2f5
     }
   }
   return (
-    <div className='flex justify-center items-center h-screen'>
-      <form onSubmit={handleSubmit} className='w-80 flex flex-col items-start'>
+    <div className='flex justify-center w-screen h-screen'>
+      <form onSubmit={handleSubmit} className='w-80 flex flex-col items-start pt-14 sm:pt-20'>
         <div className='mb-12'>
           <Image src='/images/logoBlueInline.svg' height={48} width={132} alt='logo blue inline' className='mb-2' />
-          <p className='text-blue7 h2-barlow-m sm:h1-barlow-m'>Add</p>
-          <p className='text-blue6 h2-barlow-m sm:h1-barlow-m'>a picture</p>
+          <p className='text-blue7 h2-barlow-m sm:h1-barlow-m'>ADD</p>
+          <p className='text-blue6 h2-barlow-m sm:h1-barlow-m'>A PICTURE</p>
         </div>
 
         <div className='w-full flex justify-center'>
           <div className='w-44 h-44 rounded-full border-2 border-neutral-100 flex justify-center items-center mb-8'>
             {selectedImage ? (
+<<<<<<< HEAD
               <img src={URL.createObjectURL( selectedImage )} alt='Profile' className='object-cover w-full h-full' />
+=======
+              <Image src={URL.createObjectURL( selectedImage )} alt='Profile' className='object-cover w-full h-full' />
+
+>>>>>>> 881f15ac3c72e9eb9506ed08298712e0ca06d2f5
             ) : (
               <label htmlFor='imageInput' className='cursor-pointer'>
                 <span className='text-6xl text-neutral-300'>+</span>
@@ -41,8 +51,7 @@ const PictureForm = () => {
             )}
           </div>
         </div>
-
-        <Button className='w-full max-w-2xl bg-blue-600 hover:bg-blue-500 py-3 px-6 rounded' type='submit' variant='primary' size='md'>
+        <Button className='w-full' type='submit' variant='primary' size='md'>
           Submit
         </Button>
       </form>

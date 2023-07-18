@@ -47,10 +47,10 @@ const NewPasswordForm = () => {
   }
 
   return (
-    <div className='w-screen h-screen box-border flex justify-center items-center'>
+    <div className='w-screen h-screen box-border flex justify-center'>
       <Container>
         <form onSubmit={handleSubmit( onSubmit )}>
-          <div className='h-fit w-[calc(100vw-40px)] flex flex-col max-w-[400px]'>
+          <div className='h-fit w-[calc(100vw-40px)] flex flex-col max-w-[400px] pt-14 sm:pt-20'>
             <Image
               src={'/images/logoBlueInline.svg'}
               height={48}

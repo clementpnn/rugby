@@ -1,5 +1,18 @@
 // import { User, Demand } from '@prisma/client'
 
+interface Users {
+  id: number
+  name: string
+  company: string
+  status: string
+  email: string
+  emailVerified: boolean
+  amount: number
+  processing: number
+  refused: number
+  accepted: number
+}
+
 export const data: Users[] = [
   {
     id: 0,
