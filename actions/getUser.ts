@@ -48,3 +48,29 @@ export async function getUserById( parameters: IParameters ) {
     throw new Error( error )
   }
 }
+
+interface IParameters {
+  resetToken?: string
+}
+
+export async function getUserByResetToken( parameters: IParameters ) {
+  try {
+    const { resetToken } = parameters
+
+    if ( !resetToken ) return
+
+    const reset = await prisma.sentEmail.findUnique( {
+      where: { resetToken },
+      include: {
+        user: true
+      }
+    } )
+
+    if ( !reset ) return
+
+    return reset.user
+
+  } catch ( error: any ) {
+    throw new Error( error )
+  }
+}

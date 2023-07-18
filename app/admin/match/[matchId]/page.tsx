@@ -1,5 +1,4 @@
 /* eslint-disable unicorn/no-await-expression-member */
-// eslint-disable-next-line check-file/folder-naming-convention
 import { getMatchById } from '@/actions/getMatch'
 // import MatchId from './match'
 import getCurrentUser from '@/actions/getCurrentUser'
