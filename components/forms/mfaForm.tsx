@@ -4,13 +4,14 @@ import { useState } from 'react'
 import { SubmitHandler, useForm, Controller } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { toast } from 'react-hot-toast'
-
+import Image from 'next/image'
 import { MFASchema } from '@/types/forms'
 import Input from '../inputs/input'
 import useUser from '@/hooks/useUser'
 import { signIn } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import Button from '../buttons/button'
+import Container from '../containers/container'
 
 const MFAForm = () => {
   const router = useRouter()
@@ -50,17 +51,39 @@ const MFAForm = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit( onSubmit )}>
-      <Controller name="numberOne" control={control} render={( { field } ) => <Input id='numberOne' type='number' {...field} errors={errors} maxLength={1} disabled={isLoading} />} />
-      <Controller name="numberTwo" control={control} render={( { field } ) => <Input id='numberTwo' type='number' {...field} errors={errors} maxLength={1} disabled={isLoading} />} />
-      <Controller name="numberThree" control={control} render={( { field } ) => <Input id='numberThree' type='number' {...field} errors={errors} maxLength={1} disabled={isLoading} />} />
-      <Controller name="numberFour" control={control} render={( { field } ) => <Input id='numberFour' type='number' {...field} errors={errors} maxLength={1} disabled={isLoading} />} />
-      <Controller name="numberFive" control={control} render={( { field } ) => <Input id='numberFive' type='number' {...field} errors={errors} maxLength={1} disabled={isLoading} />} />
-      <Controller name="numberSix" control={control} render={( { field } ) => <Input id='numberSix' type='number' {...field} errors={errors} maxLength={1} disabled={isLoading} />} />
-      <Button disabled={isLoading} type='submit' variant='primary' size='md'>
-          Envoyer
-      </Button>
-    </form>
+    <div className='w-screen h-screen box-border flex justify-center items-center'>
+      <Container>
+        <form onSubmit={handleSubmit( onSubmit )}>
+          <div className='h-fit w-[calc(100vw-40px)] flex flex-col max-w-[400px]'>
+            <Image
+              src={'/images/logoBlueInline.svg'}
+              height={48}
+              width={132}
+              alt='logo blue inline'
+              className='mb-[60px]'
+            />
+            <div className='mb-20'>
+              <p className='text-blue7 h2-barlow-m sm:h1-barlow-m'>ENTER</p>
+              <p className='text-blue6 h2-barlow-m sm:h1-barlow-m'>THE CODE</p>
+            </div>
+            <p className='text-neutral11 base-md'>A code has been sent to you by email.</p>
+            <p className='text-neutral11 base-md mb-6'>Pick it up to log in.</p>
+            <span className='text-neutral5 label-md'>Code</span>
+            <div className='flex flex-row gap-x-2 mb-10'>
+              <Controller name="numberOne" control={control} render={( { field } ) => <Input id='numberOne' type='number' {...field} errors={errors} maxLength={1} variant='code' disabled={isLoading} style={{ WebkitAppearance: 'none', MozAppearance: 'textfield' }} />}/>
+              <Controller name="numberTwo" control={control} render={( { field } ) => <Input id='numberTwo' type='number' {...field} errors={errors} maxLength={1} variant='code' disabled={isLoading} style={{ WebkitAppearance: 'none', MozAppearance: 'textfield' }}/>} />
+              <Controller name="numberThree" control={control} render={( { field } ) => <Input id='numberThree' type='number' {...field} variant='code' errors={errors} maxLength={1} disabled={isLoading} style={{ WebkitAppearance: 'none', MozAppearance: 'textfield' }} />} />
+              <Controller name="numberFour" control={control} render={( { field } ) => <Input id='numberFour' type='number' {...field} errors={errors} variant='code' maxLength={1} disabled={isLoading} style={{ WebkitAppearance: 'none', MozAppearance: 'textfield' }} />} />
+              <Controller name="numberFive" control={control} render={( { field } ) => <Input id='numberFive' type='number' {...field} variant='code' errors={errors} maxLength={1} disabled={isLoading} style={{ WebkitAppearance: 'none', MozAppearance: 'textfield' }} />} />
+              <Controller name="numberSix" control={control} render={( { field } ) => <Input id='numberSix' type='number' {...field} errors={errors} maxLength={1} disabled={isLoading} variant='code' style={{ WebkitAppearance: 'none', MozAppearance: 'textfield' }} />} />
+            </div>
+          </div>
+          <Button disabled={isLoading} type='submit' variant='primary' size='lg' className='w-full'>
+            Validate
+          </Button>
+        </form>
+      </Container>
+    </div>
   )
 }
 

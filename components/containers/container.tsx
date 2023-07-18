@@ -3,7 +3,7 @@ interface ContainerProperties {
 }
 
 const Container: React.FC<ContainerProperties> = ( { children } ) => {
-  return <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">{children}</div>
+  return <div className="px-5 sm:px-10 lg:px-20">{children}</div>
 }
 
 export default Container

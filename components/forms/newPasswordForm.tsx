@@ -14,14 +14,14 @@ import Container from '../containers/container'
 import { AiOutlineEye } from 'react-icons/ai'
 import { AiOutlineEyeInvisible } from 'react-icons/ai'
 
-const LoginForm = () => {
+const NewPasswordForm = () => {
   const [ isLoading, setIsloading ] = useState( false )
   const { step, setStep } = useStep()
   const { setEmail, setPassword } = useUser()
 
   const { handleSubmit, control, formState: { errors } } = useForm( {
     resolver: zodResolver( LoginSchema ),
-    defaultValues: { email: '', password: '' },
+    defaultValues: { password: '', newPassword: '' },
     mode: 'onChange'
   } )
 
@@ -38,7 +38,7 @@ const LoginForm = () => {
           toast.success( `${callback.statusText}` )
           setStep( step + 1 as STEPS )
           setEmail( data.email )
-          setPassword( data.password )
+          setPassword( data.newPassword )
         }
         if ( callback.status !== 200 ) { toast.error( `${callback.statusText}` ) }
       } )
@@ -59,16 +59,16 @@ const LoginForm = () => {
               className='mb-[60px]'
             />
             <div className='mb-20'>
-              <p className='text-blue7 h2-barlow-m sm:h1-barlow-m'>WELCOME</p>
-              <p className='text-blue6 h2-barlow-m sm:h1-barlow-m'>BACK</p>
+              <p className='text-blue7 h2-barlow-m sm:h1-barlow-m'>NEW</p>
+              <p className='text-blue6 h2-barlow-m sm:h1-barlow-m'>PASSWORD</p>
             </div>
             <div className='flex flex-col gap-y-10'>
               <div className='flex flex-col gap-y-6'>
-                <Controller name="email" control={control} render={( { field } ) => <Input id='email' label='Email' type='email' placeholder='Enter your email' {...field} errors={errors} disabled={isLoading} />} />
-                <Controller name="password" control={control} render={( { field } ) => <Input id='password' label='Password' type='password' placeholder='Enter your password' {...field} errors={errors} disabled={isLoading} iconPosition='right' icon={<AiOutlineEye className="w-full h-full" />} iconActive={<AiOutlineEyeInvisible className='w-full h-full' />}/>} />
+                <Controller name="password" control={control} render={( { field } ) => <Input id='password' label='Password' type='password' placeholder='Enter your actual password' {...field} errors={errors} disabled={isLoading} iconPosition='right' icon={<AiOutlineEye className="w-full h-full" />} iconActive={<AiOutlineEyeInvisible className='w-full h-full' />}/>} />
+                <Controller name="newPassword" control={control} render={( { field } ) => <Input id='newPassword' label='New Password' type='password' placeholder='Enter your new password' {...field} errors={errors} disabled={isLoading} iconPosition='right' icon={<AiOutlineEye className="w-full h-full" />} iconActive={<AiOutlineEyeInvisible className='w-full h-full' />}/>} />
               </div>
               <Button className='w-full' disabled={isLoading} type='submit' variant='primary' size='md'>
-                Login
+                Change
               </Button>
             </div>
           </div>
@@ -78,4 +78,4 @@ const LoginForm = () => {
   )
 }
 
-export default LoginForm
+export default NewPasswordForm
