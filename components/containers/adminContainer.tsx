@@ -9,12 +9,10 @@ interface AdminContainerProperties {
 
 const AdminContainer: React.FC<AdminContainerProperties> = ( { children } ) => {
   useEffect( () => {
-    // On component mount, disable scroll on the entire body
     document.body.style.overflow = 'hidden'
 
-    // On component unmount, re-enable scroll on the entire body
     return () => {
-      document.body.style.overflow = 'visible'
+      document.body.style.overflow = 'auto'
     }
   }, [] )
   return (

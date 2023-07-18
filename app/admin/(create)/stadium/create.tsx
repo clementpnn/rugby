@@ -52,15 +52,16 @@ const CreateStadium = () => {
 
   if ( step === STEPS.ONE ) {
     bodyContent = (
-      <>
-        <div className='bg-red-500 h-full aspect-square'>
+      <div className='flex h-full w-full'>
+        <div className='bg-neutral0 m-6 mr-0 h-[calc(100%-48px)] w-full flex justify-center items-center rounded-md' style={{ boxShadow: '0px 0px 14px rgba(0, 0, 0, 0.1)' }}>
           <ImageContainer image={stadiumImage} />
         </div>
-        <div>
-          <Controller name="reference" control={control} render={( { field } ) => <Input id='reference' label='Reference' {...field} errors={errors} disabled={isLoading} />} />
-          <Controller name="name" control={control} render={( { field } ) => <Input id='name' label='Name' {...field} errors={errors} disabled={isLoading} />} />
-          <ImageUpload onChange={( value ) => setStadiumImage( value )}>Upload Stade Image</ImageUpload>
-          <div>
+        <div className='p-10 w-[480px] h-full'>
+          <h2 className='h2-barlow-m text-blue6 mb-10'>CREATE STADIUM</h2>
+          <div className='grid gap-y-4'>
+            <Controller name="reference" control={control} render={( { field } ) => <Input id='reference' label='Reference' placeholder='Enter the reference' {...field} errors={errors} disabled={isLoading} />} />
+            <Controller name="name" control={control} render={( { field } ) => <Input id='name' label='Name' placeholder='Enter the stadium name' {...field} errors={errors} disabled={isLoading} />} />
+            <ImageUpload onChange={( value ) => setStadiumImage( value )}>Upload Stade Image</ImageUpload>
             <Button type='button' variant='primary' size='md' disabled={isLoading} onClick={() => {
               setStep( step + 1 as STEPS )
               setStadium( { name, reference } )
@@ -69,7 +70,7 @@ const CreateStadium = () => {
             </Button>
           </div>
         </div>
-      </>
+      </div>
     )
   }
 
