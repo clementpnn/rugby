@@ -4,12 +4,28 @@ import { PiDownloadSimpleBold } from 'react-icons/pi'
 import { PiPlusSquare } from 'react-icons/pi'
 import { PiListMagnifyingGlass } from 'react-icons/pi'
 import { PiIdentificationCard } from 'react-icons/pi'
-import { MdOutlineLogout } from 'react-icons/md'
+import { LuLogOut } from 'react-icons/lu'
 import Image from 'next/image'
 import Button from '@/components/buttons/button'
 import Link from 'next/link'
+import { styled } from '@stitches/react'
 
 const Sidebar = () => {
+  const ThickPiDownloadSimpleBold = styled( PiDownloadSimpleBold, {
+    strokeWidth: '1px'
+  } )
+  const ThickPiPlusSquare = styled( PiPlusSquare, {
+    strokeWidth: '6px'
+  } )
+  const ThickPiListMagnifyingGlass = styled( PiListMagnifyingGlass, {
+    strokeWidth: '6px'
+  } )
+  const ThickPiIdentificationCard = styled( PiIdentificationCard, {
+    strokeWidth: '4px'
+  } )
+  const ThickLuLogOut = styled( LuLogOut, {
+    strokeWidth: '2.2px'
+  } )
   return (
     <div className="bg-neutral0 h-screen w-fit px-6 py-[60px] flex flex-col justify-between">
       <div className='flex flex-col gap-y-12 items-center w-fit'>
@@ -26,29 +42,29 @@ const Sidebar = () => {
         <div className='flex flex-col gap-y-6 items-center w-fit'>
           <Link href="/adminImport">
             <Button variant='secondary' size='iconLg'>
-              <PiDownloadSimpleBold className='h-6 w-6'/>
+              <ThickPiDownloadSimpleBold className='h-6 w-6'/>
             </Button>
           </Link>
           <Link href="/adminMatch">
             <Button variant='secondary' size='iconLg'>
-              <PiPlusSquare className='h-6 w-6'/>
+              <ThickPiPlusSquare className='h-6 w-6'/>
             </Button>
           </Link>
           <Link href="/adminStadium">
             <Button variant='secondary' size='iconLg'>
-              <PiListMagnifyingGlass className='h-6 w-6'/>
+              <ThickPiListMagnifyingGlass className='h-6 w-6'/>
             </Button>
           </Link>
           <Link href="/adminSad">
             <Button variant='secondary' size='iconLg'>
-              <PiIdentificationCard className='h-6 w-6'/>
+              <ThickPiIdentificationCard className='h-6 w-6'/>
             </Button>
           </Link>
         </div>
       </div>
       <div>
         <Button variant='secondary' size='iconLg'>
-          <MdOutlineLogout className='h-6 w-6'/>
+          <ThickLuLogOut className='h-6 w-6'/>
         </Button>
       </div>
     </div>
