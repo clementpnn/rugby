@@ -3,7 +3,7 @@ export const metadata = {
   description: 'End of school year project'
 }
 
-export default function ProfilePictureLayout( { children }: { children: React.ReactNode } ) {
+export default function Profilepicturelayout( { children }: { children: React.ReactNode } ) {
   return (
     <div>
       {children}
