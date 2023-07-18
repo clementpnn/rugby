@@ -86,8 +86,7 @@ async function main() {
             defenseBonus: { increment: team1Points.defenseBonus },
             victory: { increment: randomResult[0] === 'WINNER' ? 1 : 0 },
             null: { increment: randomResult[0] === 'NULL' ? 1 : 0 },
-            defeat: { increment: randomResult[0] === 'LOSER' ? 1 : 0 },
-            matchPlayed: { increment: 1 }
+            defeat: { increment: randomResult[0] === 'LOSER' ? 1 : 0 }
           }
         } )
 
@@ -99,8 +98,7 @@ async function main() {
             defenseBonus: { increment: team2Points.defenseBonus },
             victory: { increment: randomResult[1] === 'WINNER' ? 1 : 0 },
             null: { increment: randomResult[1] === 'NULL' ? 1 : 0 },
-            defeat: { increment: randomResult[1] === 'LOSER' ? 1 : 0 },
-            matchPlayed: { increment: 1 }
+            defeat: { increment: randomResult[1] === 'LOSER' ? 1 : 0 }
           }
         } )
       }
