@@ -1,3 +1,4 @@
+/* eslint-disable check-file/folder-naming-convention */
 
 'use client'
 
@@ -8,9 +9,21 @@ import { ColumnHeader } from '@/components/table/columnHeader'
 import { RowActions } from '@/components/table/rowActions'
 
 import { MdVerified } from 'react-icons/md'
-import { User, Demand } from '@prisma/client'
+import { JOB } from '@prisma/client'
 
-export const columns: ColumnDef<User & { demands: Demand[], amount: number, processing: number, refused: number, accepted: number }>[] = [
+export type Users = {
+    name: string
+    company: string
+    status: JOB
+    email: string
+    emailVerified: boolean
+    amount: number
+    accepted: number
+    processing: number
+    refused: number
+}
+
+export const columns: ColumnDef<Users>[] = [
   {
     id: 'select',
     header: ( { table } ) => (
@@ -39,9 +52,9 @@ export const columns: ColumnDef<User & { demands: Demand[], amount: number, proc
     },
     cell:
     ( { row } ) => {
-      const { firstName, lastName, emailVerified } = row.original
+      const { name, emailVerified } = row.original
       return(
-        <div className='flex gap-x-1'>{firstName} {lastName} {emailVerified ?? <MdVerified className='w-4' />}</div>
+        <div className='flex gap-x-1'>{name} {emailVerified ?? <MdVerified className='w-4' />}</div>
       )
     }
   },
