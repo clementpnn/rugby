@@ -2,6 +2,7 @@
 
 import Image from 'next/image'
 import { useState } from 'react'
+import Button from '../buttons/button'
 
 const PictureForm = () => {
   const [ selectedImage, setSelectedImage ] = useState<File | undefined>( undefined )
@@ -19,36 +20,38 @@ const PictureForm = () => {
       setSelectedImage( undefined )
     }
   }
-
   return (
-    <div className="flex justify-center items-center h-screen">
-      <form onSubmit={handleSubmit} className="w-80 flex flex-col items-center">
-        <div className="flex flex-col items-start mb-12">
-          <img src="/images/logoBlueInline.svg" height={48} width={132} alt="logo blue inline" className="mb-2" />
+    <div className='flex justify-center items-center h-screen'>
+      <form onSubmit={handleSubmit} className='w-80 flex flex-col items-start'>
+        <div className='mb-12'>
+          <Image src='/images/logoBlueInline.svg' height={48} width={132} alt='logo blue inline' className='mb-2' />
           <p className='text-blue7 h2-barlow-m sm:h1-barlow-m'>Add</p>
           <p className='text-blue6 h2-barlow-m sm:h1-barlow-m'>a picture</p>
         </div>
 
-        <div className="w-44 h-44 rounded-full border-2 border-gray-400 flex justify-center items-center mb-8">
-          {selectedImage ? (
-            <Image src={URL.createObjectURL( selectedImage )} alt="Profile" className="object-cover w-full h-full" />
-          ) : (
-            <label htmlFor="imageInput" className="cursor-pointer">
-              <span className="text-4xl">+</span>
-              <input type="file" id="imageInput" accept="image/*" className="hidden" onChange={handleImageChange} />
-            </label>
-          )}
+        <div className='w-full flex justify-center'>
+          <div className='w-44 h-44 rounded-full border-2 border-neutral-100 flex justify-center items-center mb-8'>
+            {selectedImage ? (
+              <img src={URL.createObjectURL(selectedImage)} alt='Profile' className='object-cover w-full h-full' />
+            ) : (
+              <label htmlFor='imageInput' className='cursor-pointer'>
+                <span className='text-6xl text-neutral-300'>+</span>
+                <input type='file' id='imageInput' accept='image/*' className='hidden' onChange={handleImageChange} />
+              </label>
+            )}
+          </div>
         </div>
 
-        <button className='w-full max-w-2xl bg-blue5 hover:bg-blue6 items-start py-3 px-6 rounded' type='submit'>
+        <Button className='w-full max-w-2xl bg-blue-500 hover:bg-blue-600 py-3 px-6 rounded' type='submit' variant='primary' size='md'>
           Submit
-        </button>
+        </Button>
       </form>
     </div>
   )
 }
 
 export default PictureForm
+
 
 // const PictureForm = () => {
 //     const [selectedImage, setSelectedImage] = useState<File | null>(null)
@@ -133,12 +136,3 @@ export default PictureForm
 
 // export default PictureForm
 
-{/* <div className='flex flex-col gap-y-10'>
-              <div className='flex flex-col gap-y-6'>
-                <Controller name='email' control={control} render={( { field } ) => <Input id='email' label='Email' type='email' placeholder='Enter your email' {...field} errors={errors} disabled={isLoading} />} />
-                <Controller name='password' control={control} render={( { field } ) => <Input id='password' label='Password' type='password' placeholder='Enter your password' {...field} errors={errors} disabled={isLoading} iconPosition='right' icon={<AiOutlineEye className='w-full h-full' />} iconActive={<AiOutlineEyeInvisible className='w-full h-full' />}/>} />
-              </div>
-              <Button className='w-full' disabled={isLoading} type='submit' variant='primary' size='md'>
-                Valider
-              </Button>
-            </div> */}
