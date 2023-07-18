@@ -22,18 +22,19 @@ const PictureForm = () => {
     }
   }
   return (
-    <div className='flex justify-center items-center h-screen'>
-      <form onSubmit={handleSubmit} className='w-80 flex flex-col items-start'>
+    <div className='flex justify-center w-screen h-screen'>
+      <form onSubmit={handleSubmit} className='w-80 flex flex-col items-start pt-14 sm:pt-20'>
         <div className='mb-12'>
           <Image src='/images/logoBlueInline.svg' height={48} width={132} alt='logo blue inline' className='mb-2' />
-          <p className='text-blue7 h2-barlow-m sm:h1-barlow-m'>Add</p>
-          <p className='text-blue6 h2-barlow-m sm:h1-barlow-m'>a picture</p>
+          <p className='text-blue7 h2-barlow-m sm:h1-barlow-m'>ADD</p>
+          <p className='text-blue6 h2-barlow-m sm:h1-barlow-m'>A PICTURE</p>
         </div>
 
         <div className='w-full flex justify-center'>
           <div className='w-44 h-44 rounded-full border-2 border-neutral-100 flex justify-center items-center mb-8'>
             {selectedImage ? (
               <Image src={URL.createObjectURL( selectedImage )} alt='Profile' className='object-cover w-full h-full' />
+
             ) : (
               <label htmlFor='imageInput' className='cursor-pointer'>
                 <span className='text-6xl text-neutral-300'>+</span>
@@ -42,8 +43,7 @@ const PictureForm = () => {
             )}
           </div>
         </div>
-
-        <Button className='w-full max-w-2xl bg-blue-600 hover:bg-blue-500 py-3 px-6 rounded' type='submit' variant='primary' size='md'>
+        <Button className='w-full' type='submit' variant='primary' size='md'>
           Submit
         </Button>
       </form>
