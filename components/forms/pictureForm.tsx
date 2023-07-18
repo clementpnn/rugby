@@ -42,7 +42,7 @@ const PictureForm = () => {
           </div>
         </div>
 
-        <Button className='w-full max-w-2xl bg-blue-500 hover:bg-blue-600 py-3 px-6 rounded' type='submit' variant='primary' size='md'>
+        <Button className='w-full max-w-2xl bg-blue-600 hover:bg-blue-500 py-3 px-6 rounded' type='submit' variant='primary' size='md'>
           Submit
         </Button>
       </form>
