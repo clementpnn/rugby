@@ -5,7 +5,7 @@ import { ButtonUI } from '../ui/button'
 import Image from 'next/image'
 import Badge from '../ui/badge'
 import Modal from './dialog'
-import { STATE } from '@prisma/client'
+import { RESULT, STATE } from '@prisma/client'
 import { useEffect, useState } from 'react'
 interface MatchInformation {
   date: string
@@ -14,9 +14,9 @@ interface MatchInformation {
   stadium: string
   score: {
     countryA : string
-    scoreA : number | 'NP'
+    scoreA : RESULT
     countryB : string
-    scoreB : number | 'NP'
+    scoreB : RESULT
   }
 }
 interface ModalJoinWaitListProperties {
@@ -93,9 +93,9 @@ const ModalJoinWaitList : React.FC<ModalJoinWaitListProperties> = ( { data, onCl
               <span className='h6-inter-d text-blue6'>{countryLeft}</span>
             </div>
             <div className='hidden sm:flex sm:flex-row sm:gap-y-1 sm:items-center'>
-              <span className='h6-barlow-m text-blue6 text-center w-8 h-8 sm:text-right'>{ data.score.scoreA }</span>
+              <span className='h6-barlow-m text-blue6 text-center w-8 h-8 sm:text-right'>{ data.score.scoreA.slice( 0, 1 ) }</span>
               <span className='h6-barlow-m text-blue6 text-center w-8 h-8 sm:text-center'>-</span>
-              <span className='h6-barlow-m text-blue6 text-center w-8 h-8 sm:text-left'>{ data.score.scoreB }</span>
+              <span className='h6-barlow-m text-blue6 text-center w-8 h-8 sm:text-left'>{ data.score.scoreB.slice( 0, 1 ) }</span>
             </div>
             <div className='h-fit w-full px-4 py-2 gap-x-3 bg-blue1 rounded-md flex flex-row'>
               <Image src={imgCountryRight?.flag || '/placeholder-image.png'} alt="Flag" width={'28'} height={'28'} className='sm:hidden'/>
@@ -104,9 +104,9 @@ const ModalJoinWaitList : React.FC<ModalJoinWaitListProperties> = ( { data, onCl
             </div>
           </div>
           <div className='flex flex-col gap-y-1 sm:hidden'>
-            <span className='h6-barlow-m text-blue6 text-center w-8 h-8'>{ data.score.scoreA }</span>
+            <span className='h6-barlow-m text-blue6 text-center w-8 h-8'>{ data.score.scoreA.slice( 0, 1 ) }</span>
             <span className='h6-barlow-m text-blue6 text-center w-8 h-8'>-</span>
-            <span className='h6-barlow-m text-blue6 text-center w-8 h-8'>{ data.score.scoreB }</span>
+            <span className='h6-barlow-m text-blue6 text-center w-8 h-8'>{ data.score.scoreB.slice( 0, 1 ) }</span>
           </div>
         </div>
         <ButtonUI className='' variant='primary' size='lg' onClick={onClick}>Join Wait List</ButtonUI>

@@ -1,6 +1,6 @@
 'use client'
 
-import { STATE } from '@prisma/client'
+import { RESULT, STATE } from '@prisma/client'
 import ModalJoinWaitList from '../modals/modalJoinWaitList'
 
 const ModalTest = () => {
@@ -11,9 +11,9 @@ const ModalTest = () => {
     stadium: 'Stade de France',
     score: {
       countryA: 'FRANCE',
-      scoreA: 0,
+      scoreA: 'WINNER' as RESULT,
       countryB: 'NEW_ZEALAND',
-      scoreB: 2
+      scoreB: 'LOSER'as RESULT
     }
   }
   const abde = () => {
