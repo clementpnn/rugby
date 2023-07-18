@@ -3,6 +3,7 @@ import getCurrentUser from '@/actions/getCurrentUser'
 import AdminContainer from '@/components/containers/adminContainer'
 
 const page = async () => {
+
   const currentUser = await getCurrentUser()
 
   if ( !currentUser || currentUser.role !== 'ADMIN' ) {
