@@ -208,5 +208,5 @@ export const poulesData: Poules[] = [
       B: 0,
       Pts: 0
     }
-  },
-];
+  }
+]

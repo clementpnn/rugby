@@ -2,14 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c81fcbf6-adff-4670-83ea-bd4f4bea3cb8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/rugby.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/table/poulelayout.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/poule/Poule.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/pools/Pool.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/table/poulelayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/table/poulelayout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/poule/Poule.tsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/hooks/useCountries.ts" beforeDir="false" afterPath="$PROJECT_DIR$/hooks/useCountries.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -77,7 +74,7 @@
       <workItem from="1688816245353" duration="17168000" />
       <workItem from="1689001504664" duration="2848000" />
       <workItem from="1689579137183" duration="18607000" />
-      <workItem from="1689669689187" duration="2743000" />
+      <workItem from="1689669689187" duration="5211000" />
     </task>
     <servers />
   </component>
