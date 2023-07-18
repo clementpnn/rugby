@@ -2,11 +2,12 @@
 import NewPasswordForm from '@/components/forms/newPasswordForm'
 
 interface IParameters {
-  resetId: string
+  resetToken: string
 }
 
 const page = async ( { params }: {params: IParameters} ) => {
-
+  // eslint-disable-next-line no-unused-vars
+  const { resetToken } = params
   return (
     <>
       <NewPasswordForm />
