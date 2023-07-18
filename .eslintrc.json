@@ -24,37 +24,12 @@
       "off"
     ],
     "unicorn/filename-case": [
-      "off"
-    ],
-    "check-file/folder-match-with-fex": [
       "error",
       {
-        "*.test.{js,jsx,ts,tsx}": "**/tests/*"
-      }
-    ],
-    "check-file/filename-naming-convention": [
-      "error",
-      {
-        "**/*.{jsx,tsx}": "CAMEL_CASE",
-        "**/*.{js,ts}": "CAMEL_CASE"
-      },
-      {
-        "ignoreMiddleExtensions": true
-      }
-    ],
-    "check-file/no-index": "error",
-    "check-file/folder-naming-convention": [
-      "error",
-      {
-        "app/**/": "CAMEL_CASE",
-        "components/**/": "CAMEL_CASE"
-      }
-    ],
-    "check-file/filename-blocklist": [
-      "error",
-      {
-        "**/*.model.ts": "*.models.ts",
-        "**/*.util.ts": "*.utils.ts"
+        "cases": {
+          "camelCase": true,
+          "pascalCase": true
+        }
       }
     ],
     "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
