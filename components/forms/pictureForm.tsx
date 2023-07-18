@@ -17,12 +17,8 @@ const PictureForm = () => {
     if ( selectedImage ) {
       // Envoyer l'image sélectionnée à la base de données
       // Ajoutez votre logique ici
-<<<<<<< HEAD
-      setSelectedImage( )
-=======
       // eslint-disable-next-line unicorn/no-useless-undefined
       setSelectedImage( undefined )
->>>>>>> 881f15ac3c72e9eb9506ed08298712e0ca06d2f5
     }
   }
   return (
@@ -37,12 +33,8 @@ const PictureForm = () => {
         <div className='w-full flex justify-center'>
           <div className='w-44 h-44 rounded-full border-2 border-neutral-100 flex justify-center items-center mb-8'>
             {selectedImage ? (
-<<<<<<< HEAD
-              <img src={URL.createObjectURL( selectedImage )} alt='Profile' className='object-cover w-full h-full' />
-=======
               <Image src={URL.createObjectURL( selectedImage )} alt='Profile' className='object-cover w-full h-full' />
 
->>>>>>> 881f15ac3c72e9eb9506ed08298712e0ca06d2f5
             ) : (
               <label htmlFor='imageInput' className='cursor-pointer'>
                 <span className='text-6xl text-neutral-300'>+</span>

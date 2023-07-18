@@ -40,7 +40,7 @@ const Sidebar = () => {
           </Link>
         </div>
         <div className='flex flex-col gap-y-6 items-center w-fit'>
-          <Link href="/adminImport">
+          <Link href="/admin/import">
             <Button variant='secondary' size='iconLg'>
               <ThickPiDownloadSimpleBold className='h-6 w-6'/>
             </Button>
