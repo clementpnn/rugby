@@ -1,39 +1,25 @@
 'use client'
 
+import Image from 'next/image'
 import { useState } from 'react'
 
-import { SubmitHandler, useForm, Controller } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { toast } from 'react-hot-toast'
-import Image from 'next/image'
-import Button from '../buttons/button'
-import { LoginSchema } from '@/types/forms'
-import Input from '../inputs/input'
-import useStep, { STEPS } from '@/hooks/useStep'
-import useUser from '@/hooks/useUser'
-import Container from '../containers/container'
-import { AiOutlineEye } from 'react-icons/ai'
-import { AiOutlineEyeInvisible } from 'react-icons/ai'
-
-
 const PictureForm = () => {
-  const [selectedImage, setSelectedImage] = useState<File | null>(null)
-  
+  const [ selectedImage, setSelectedImage ] = useState<File | undefined>( undefined )
 
-  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageChange = ( event: React.ChangeEvent<HTMLInputElement> ) => {
     // Logique de gestion de l'image
   }
 
-  const handleSubmit = async (event: React.FormEvent) => {
+  const handleSubmit = async ( event: React.FormEvent ) => {
     event.preventDefault()
 
-    if (selectedImage) {
+    if ( selectedImage ) {
       // Envoyer l'image sélectionnée à la base de données
       // Ajoutez votre logique ici
-      setSelectedImage(null)
+      setSelectedImage( undefined )
     }
   }
-  
+
   return (
     <div className="flex justify-center items-center h-screen">
       <form onSubmit={handleSubmit} className="w-80 flex flex-col items-center">
@@ -45,7 +31,7 @@ const PictureForm = () => {
 
         <div className="w-44 h-44 rounded-full border-2 border-gray-400 flex justify-center items-center mb-8">
           {selectedImage ? (
-            <img src={URL.createObjectURL(selectedImage)} alt="Profile" className="object-cover w-full h-full" />
+            <Image src={URL.createObjectURL( selectedImage )} alt="Profile" className="object-cover w-full h-full" />
           ) : (
             <label htmlFor="imageInput" className="cursor-pointer">
               <span className="text-4xl">+</span>
@@ -54,7 +40,7 @@ const PictureForm = () => {
           )}
         </div>
 
-        <button className='w-full max-w-2xl bg-blue5 hover:bg-blue6 items-start py-3 px-6 rounded'  type='submit'>
+        <button className='w-full max-w-2xl bg-blue5 hover:bg-blue6 items-start py-3 px-6 rounded' type='submit'>
           Submit
         </button>
       </form>
@@ -66,7 +52,7 @@ export default PictureForm
 
 // const PictureForm = () => {
 //     const [selectedImage, setSelectedImage] = useState<File | null>(null)
-  
+
 //     const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 //       const file = event.target.files && event.target.files[0]
 //       if (file) {
@@ -99,10 +85,10 @@ export default PictureForm
 //         }
 //       }
 //     }
-  
+
 //     const handleSubmit = async (event: React.FormEvent) => {
 //       event.preventDefault();
-      
+
 //       if (selectedImage) {
 //         // Send the selected image to the database
 //         // Add your logic here
@@ -126,7 +112,7 @@ export default PictureForm
 //               <p className='text-blue7 h2-barlow-m sm:h1-barlow-m'>Add</p>
 //               <p className='text-blue6 h2-barlow-m sm:h1-barlow-m'>Your profile picture</p>
 //             </div>
-            
+
 //             <div className='w-44 h-44 rounded-full border-2 border-gray-400 flex justify-center items-center overflow-hidden'>
 //                 {selectedImage ? (
 //                 <img src={URL.createObjectURL(selectedImage)} alt='Photo de profil' className='object-cover w-full h-full' />
@@ -147,8 +133,7 @@ export default PictureForm
 
 // export default PictureForm
 
-
-   {/* <div className='flex flex-col gap-y-10'>
+{/* <div className='flex flex-col gap-y-10'>
               <div className='flex flex-col gap-y-6'>
                 <Controller name='email' control={control} render={( { field } ) => <Input id='email' label='Email' type='email' placeholder='Enter your email' {...field} errors={errors} disabled={isLoading} />} />
                 <Controller name='password' control={control} render={( { field } ) => <Input id='password' label='Password' type='password' placeholder='Enter your password' {...field} errors={errors} disabled={isLoading} iconPosition='right' icon={<AiOutlineEye className='w-full h-full' />} iconActive={<AiOutlineEyeInvisible className='w-full h-full' />}/>} />
@@ -157,4 +142,3 @@ export default PictureForm
                 Valider
               </Button>
             </div> */}
-            
