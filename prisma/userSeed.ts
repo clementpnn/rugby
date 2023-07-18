@@ -38,7 +38,7 @@ async function main() {
         lastName,
         email: faker.internet.email( { firstName, lastName } ),
         image: faker.image.avatar(),
-        password: await bcrypt.hash( 'Azerty1$', 10 ),
+        password: await bcrypt.hash( 'Azerty1$', 12 ),
         company: company,
         job: faker.helpers.arrayElement( [ 'JOURNALIST', 'PHOTOGRAPHER' ] )
       }
@@ -50,7 +50,7 @@ async function main() {
       lastName: 'Huang',
       email: 'huang.victor.mail@gmail.com',
       image: faker.image.avatar(),
-      password: await bcrypt.hash( 'Victor.123456789', 10 ),
+      password: await bcrypt.hash( 'Victor.123456789', 12 ),
       role: 'ADMIN'
     }
   } )
