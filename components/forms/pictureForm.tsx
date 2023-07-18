@@ -5,7 +5,7 @@ import { useState } from 'react'
 import Button from '../buttons/button'
 
 const PictureForm = () => {
-  const [ selectedImage, setSelectedImage ] = useState<File | undefined>( undefined )
+  const [ selectedImage, setSelectedImage ] = useState<File | undefined>( )
 
   const handleImageChange = ( event: React.ChangeEvent<HTMLInputElement> ) => {
     // Logique de gestion de l'image
@@ -17,7 +17,7 @@ const PictureForm = () => {
     if ( selectedImage ) {
       // Envoyer l'image sélectionnée à la base de données
       // Ajoutez votre logique ici
-      setSelectedImage( undefined )
+      setSelectedImage( )
     }
   }
   return (
