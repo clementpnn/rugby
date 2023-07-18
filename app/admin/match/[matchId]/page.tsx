@@ -1,7 +1,10 @@
+/* eslint-disable unicorn/no-await-expression-member */
 // eslint-disable-next-line check-file/folder-naming-convention
 import { getMatchById } from '@/actions/getMatch'
 // import MatchId from './match'
 import getCurrentUser from '@/actions/getCurrentUser'
+import { DataTable } from '@/components/table/dataTable'
+import { columns } from './columns'
 
 interface IParameters {
   matchId: string
@@ -25,8 +28,16 @@ const page = async ( { params }: {params: IParameters} ) => {
 
   return (
     <>
-      <p>soon</p>
       {/* <MatchId match={match} /> */}
+      {match.match.matchTeams.map( ( team ) => {
+        return (
+          <div className='mb-6' key={team.id}>
+            <p>{team.team}</p>
+            <p>{team.result ?? '?'}</p>
+          </div>
+        )
+      } ) }
+      <DataTable columns={columns} data={match.demands}/>
     </>
   )
 }

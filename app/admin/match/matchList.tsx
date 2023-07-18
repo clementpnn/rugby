@@ -15,7 +15,7 @@ const MatchList: React.FC<MatchListProperties> = ( { matchs } ) => {
       {matchs.map( ( match ) => {
         return (
           <Link href={`/admin/match/${match.id}`} key={match.id}>
-            <h1>{match.phase}</h1>
+            <h1 className='mt-6'>{match.phase}</h1>
             <p>{match.date}</p>
             <p>{match.time}</p>
             {match.matchTeams.map( ( team ) => {

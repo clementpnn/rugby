@@ -42,11 +42,11 @@ import {
   DropdownMenuTrigger
 } from '@/components/ui/dropdownMenu'
 
-  interface DataTableColumnHeaderProperties<TData, TValue>
-    extends React.HTMLAttributes<HTMLDivElement> {
-    column: Column<TData, TValue>
-    title: string
-  }
+interface DataTableColumnHeaderProperties<TData, TValue>
+  extends React.HTMLAttributes<HTMLDivElement> {
+  column: Column<TData, TValue>
+  title: string
+}
 
 export function ColumnHeader<TData, TValue>( {
   column,
