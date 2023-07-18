@@ -53,6 +53,36 @@ export const MFASchema = z.object( {
   numberSix: z.string().transform( Number )
 } )
 
+export const EmailShema = z.object( {
+  email: z.string().email( { message: 'Invalid email format' } )
+} )
+
+export const NewPasswordShema = z.object( {
+  newPassword: z.string()
+    .nonempty( { message: 'Required' } )
+    .min( 8, { message: 'Mot de passe doit contenir au moins 8 caractères' } )
+    .refine(
+      ( value ) => /[a-z]/.test( value ),
+      { message: 'Password must contain at least one lowercase letter' }
+    )
+    .refine(
+      ( value ) => /[A-Z]/.test( value ),
+      { message: 'Password must contain at least one capital letter' }
+    )
+    .refine(
+      ( value ) => /\d/.test( value ),
+      { message: 'Password must contain at least one number' }
+    )
+    .refine(
+      ( value ) => /[\W_]/.test( value ),
+      { message: 'Password must contain at least one special character' }
+    ),
+  newPasswordConfirm: z.string().nonempty( { message: 'Required' } )
+} ).refine( ( data ) => data.newPassword === data.newPasswordConfirm, {
+  message: 'Passwords must match',
+  path: [ 'newPasswordConfirm' ]
+} )
+
 export const TribuneSchema = z.object( {
   name: z.string().nonempty( { message: 'Required' } ),
   matchId: z.string().nonempty( { message: 'Required' } ),

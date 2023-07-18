@@ -1,4 +1,3 @@
-// eslint-disable-next-line check-file/folder-naming-convention
 import CredentialsProvider from 'next-auth/providers/credentials'
 import { PrismaAdapter } from '@next-auth/prisma-adapter'
 import NextAuth, { AuthOptions } from 'next-auth'

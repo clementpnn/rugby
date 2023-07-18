@@ -4,7 +4,6 @@
     "plugin:unicorn/all"
   ],
   "plugins": [
-    "check-file",
     "unused-imports"
   ],
   "rules": {

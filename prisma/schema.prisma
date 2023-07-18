@@ -185,11 +185,6 @@ enum ROLE {
   USER
 }
 
-enum PARENT_TYPE {
-  STADIUM
-  TRIBUNE
-}
-
 enum PHASE {
   POULE_A
   POULE_B

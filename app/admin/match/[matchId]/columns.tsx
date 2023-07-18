@@ -1,5 +1,3 @@
-/* eslint-disable check-file/folder-naming-convention */
-
 'use client'
 
 import { ColumnDef } from '@tanstack/react-table'

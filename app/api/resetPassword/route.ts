@@ -27,10 +27,16 @@ export async function POST( request: Request ) {
     return new NextResponse( 'Invalid User', { status: 400 } )
   }
 
-  const hashedPassword = await bcrypt.hash( password, 10 )
+  const hashedPassword = await bcrypt.hash( password, 12 )
 
   await prisma.user.update( {
     where: { id: user.id },
     data: { password: hashedPassword }
   } )
+
+  await prisma.sentEmail.delete( {
+    where: { id: token.id }
+  } )
+
+  return new NextResponse( 'Password Updated', { status: 200 } )
 }

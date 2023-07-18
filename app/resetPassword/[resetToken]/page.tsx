@@ -1,4 +1,4 @@
-/* eslint-disable check-file/folder-naming-convention */
+import { getUserByResetToken } from '@/actions/getUser'
 import NewPasswordForm from '@/components/forms/newPasswordForm'
 
 interface IParameters {
@@ -6,11 +6,20 @@ interface IParameters {
 }
 
 const page = async ( { params }: {params: IParameters} ) => {
-  // eslint-disable-next-line no-unused-vars
   const { resetToken } = params
+  const user = await getUserByResetToken( { resetToken } )
+
+  if ( !resetToken || !user ) {
+    return (
+      <>
+        <h1>Invalid token</h1>
+      </>
+    )
+  }
+
   return (
     <>
-      <NewPasswordForm />
+      <NewPasswordForm resetToken={resetToken} user={user} />
     </>
   )
 }

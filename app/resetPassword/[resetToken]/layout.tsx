@@ -1,10 +1,9 @@
-/* eslint-disable check-file/folder-naming-convention */
 export const metadata = {
   title: 'Rugby User',
   description: 'End of school year project'
 }
 
-export default function resetPasswordLayout( { children }: { children: React.ReactNode } ) {
+export default function resetPasswordIdLayout( { children }: { children: React.ReactNode } ) {
   return (
     <div>
       {children}

@@ -19,13 +19,9 @@ export async function POST( request: Request ) {
       return new NextResponse( 'User Not Existing', { status: 500 } )
     }
 
-    const sentEmail = await prisma.sentEmail.findFirst( {
+    const sentEmail = await prisma.sentEmail.findUnique( {
       where: {
-        userId: user.id,
-        type: 'MFA'
-      },
-      orderBy: {
-        createdAt: 'desc'
+        mfaToken
       }
     } )
 
@@ -33,11 +29,15 @@ export async function POST( request: Request ) {
       return new NextResponse( 'Invalid MFA Token', { status: 400 } )
     }
 
+    if ( sentEmail.userId !== user.id ) {
+      return new NextResponse( 'Invalid User', { status: 400 } )
+    }
+
     await prisma.sentEmail.delete( {
       where: { id: sentEmail.id }
     } )
 
-    return NextResponse.json( user )
+    return new NextResponse( 'MFA Token Valid', { status: 200 } )
 
   } catch {
     return new NextResponse( 'Server Error', { status: 500 } )

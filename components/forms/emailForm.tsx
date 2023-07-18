@@ -6,41 +6,29 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { toast } from 'react-hot-toast'
 import Image from 'next/image'
 import Button from '../buttons/button'
-import { LoginSchema } from '@/types/forms'
 import Input from '../inputs/input'
-import useStep, { STEPS } from '@/hooks/useStep'
-import useUser from '@/hooks/useUser'
+import { EmailShema } from '@/types/forms'
 import Container from '../containers/container'
-import { AiOutlineEye } from 'react-icons/ai'
-import { AiOutlineEyeInvisible } from 'react-icons/ai'
-import Link from 'next/link'
 
-const LoginForm = () => {
+const EmailForm = () => {
   const [ isLoading, setIsloading ] = useState( false )
-  const { step, setStep } = useStep()
-  const { setEmail, setPassword } = useUser()
 
   const { handleSubmit, control, formState: { errors } } = useForm( {
-    resolver: zodResolver( LoginSchema ),
-    defaultValues: { email: '', password: '' },
+    resolver: zodResolver( EmailShema ),
+    defaultValues: { email: '' },
     mode: 'onChange'
   } )
 
   const onSubmit: SubmitHandler<any> = async ( data ) => {
     setIsloading( true )
 
-    await fetch( '/api/login', {
+    await fetch( '/api/sendReset', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify( data )
     } )
       .then( ( callback ) => {
-        if ( callback.status === 200 ) {
-          toast.success( `${callback.statusText}` )
-          setStep( step + 1 as STEPS )
-          setEmail( data.email )
-          setPassword( data.password )
-        }
+        if ( callback.status === 200 ) { toast.success( `${callback.statusText}` ) }
         if ( callback.status !== 200 ) { toast.error( `${callback.statusText}` ) }
       } )
 
@@ -48,10 +36,10 @@ const LoginForm = () => {
   }
 
   return (
-    <div className='w-screen h-screen box-border flex justify-center'>
+    <div className='w-screen h-screen box-border flex justify-center items-center'>
       <Container>
         <form onSubmit={handleSubmit( onSubmit )}>
-          <div className='h-fit w-[calc(100vw-40px)] flex flex-col max-w-[400px] pt-14 sm:pt-20'>
+          <div className='h-fit w-[calc(100vw-40px)] flex flex-col max-w-[400px]'>
             <Image
               src={'/images/logoBlueInline.svg'}
               height={48}
@@ -66,11 +54,9 @@ const LoginForm = () => {
             <div className='flex flex-col gap-y-10'>
               <div className='flex flex-col gap-y-6'>
                 <Controller name="email" control={control} render={( { field } ) => <Input id='email' label='Email' type='email' placeholder='Enter your email' {...field} errors={errors} disabled={isLoading} />} />
-                <Controller name="password" control={control} render={( { field } ) => <Input id='password' label='Password' type='password' placeholder='Enter your password' {...field} errors={errors} disabled={isLoading} iconPosition='right' icon={<AiOutlineEye className="w-full h-full" />} iconActive={<AiOutlineEyeInvisible className='w-full h-full' />}/>} />
               </div>
-              <Link href='/resetPassword'><Button className='ml-auto' variant='link'>Forgot your password ?</Button></Link>
               <Button className='w-full' disabled={isLoading} type='submit' variant='primary' size='md'>
-                Login
+                Send reset link
               </Button>
             </div>
           </div>
@@ -80,4 +66,4 @@ const LoginForm = () => {
   )
 }
 
-export default LoginForm
+export default EmailForm
