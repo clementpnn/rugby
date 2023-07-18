@@ -5,9 +5,9 @@ import { useState } from 'react'
 import Button from '../buttons/button'
 
 const PictureForm = () => {
-  const [ selectedImage, setSelectedImage ] = useState<File | undefined>( undefined )
+  const [ selectedImage, setSelectedImage ] = useState<File | undefined>( )
 
-  const handleImageChange = ( event: React.ChangeEvent<HTMLInputElement> ) => {
+  const handleImageChange = ( _event: React.ChangeEvent<HTMLInputElement> ) => {
     // Logique de gestion de l'image
   }
 
@@ -17,6 +17,7 @@ const PictureForm = () => {
     if ( selectedImage ) {
       // Envoyer l'image sélectionnée à la base de données
       // Ajoutez votre logique ici
+      // eslint-disable-next-line unicorn/no-useless-undefined
       setSelectedImage( undefined )
     }
   }
@@ -32,7 +33,7 @@ const PictureForm = () => {
         <div className='w-full flex justify-center'>
           <div className='w-44 h-44 rounded-full border-2 border-neutral-100 flex justify-center items-center mb-8'>
             {selectedImage ? (
-              <img src={URL.createObjectURL(selectedImage)} alt='Profile' className='object-cover w-full h-full' />
+              <Image src={URL.createObjectURL( selectedImage )} alt='Profile' className='object-cover w-full h-full' />
             ) : (
               <label htmlFor='imageInput' className='cursor-pointer'>
                 <span className='text-6xl text-neutral-300'>+</span>
@@ -51,7 +52,6 @@ const PictureForm = () => {
 }
 
 export default PictureForm
-
 
 // const PictureForm = () => {
 //     const [selectedImage, setSelectedImage] = useState<File | null>(null)
