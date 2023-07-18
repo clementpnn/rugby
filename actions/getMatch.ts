@@ -1,4 +1,5 @@
 import prisma from '@/libs/prismadb'
+import { JOB } from '@prisma/client'
 
 export default async function getMatchs() {
   try {
@@ -45,36 +46,38 @@ export async function getMatchById( parameters: IParameters ) {
   const demandsWithUserDemandsInfo = await Promise.all( match.demands.map( async ( demand ) => {
     const userId = demand.user.id
 
-    const totalDemands = await prisma.demand.count( {
+    const amount = await prisma.demand.count( {
       where: { userId }
     } )
 
-    const totalAccepted = await prisma.demand.count( {
+    const accepted = await prisma.demand.count( {
       where: { userId, state: 'ACCEPTED' }
     } )
 
-    const totalRejected = await prisma.demand.count( {
+    const refused = await prisma.demand.count( {
       where: { userId, state: 'REJECTED' }
     } )
 
-    const totalPending = await prisma.demand.count( {
+    const processing = await prisma.demand.count( {
       where: { userId, state: 'IN_PROGRESS' }
     } )
 
     return {
-      ...demand,
-      user: {
-        ...demand.user,
-        totalDemands,
-        totalAccepted,
-        totalRejected,
-        totalPending
-      }
+      demandState: demand.state,
+      name: `${demand.user.firstName} ${demand.user.lastName}`,
+      company: demand.user.company || 'No company',
+      status: demand.user.job || JOB.JOURNALIST,
+      email: demand.user.email,
+      emailVerified: demand.user.emailVerified,
+      amount,
+      accepted,
+      refused,
+      processing
     }
   } ) )
 
   return {
-    ...match.matchTeams,
+    match: { ...match },
     demands: demandsWithUserDemandsInfo
   }
 }
