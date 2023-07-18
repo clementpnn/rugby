@@ -1,8 +1,9 @@
 import getCurrentUser from '@/actions/getCurrentUser'
-// import CreateStadium from './create'
+import CreateStadium from './create'
 import AdminContainer from '@/components/containers/adminContainer'
 
 const page = async () => {
+
   const currentUser = await getCurrentUser()
 
   if ( !currentUser || currentUser.role !== 'ADMIN' ) {
@@ -14,11 +15,10 @@ const page = async () => {
   return (
     <>
       <AdminContainer>
-        <div className='w-full h-full bg-neutral0 rounded-md'>
-          Salut
+        <div className='w-full h-full bg-neutral0 rounded-md overflow-hidden'>
+          <CreateStadium></CreateStadium>
         </div>
       </AdminContainer>
-      {/* <CreateStadium></CreateStadium> */}
     </>
   )
 }

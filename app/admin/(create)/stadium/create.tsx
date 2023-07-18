@@ -55,8 +55,8 @@ const CreateStadium = () => {
       <>
         <ImageContainer image={stadiumImage} />
         <div>
-          <Controller name="reference" control={control} render={( { field } ) => <Input id='reference' label='reference' {...field} errors={errors} disabled={isLoading} />} />
-          <Controller name="name" control={control} render={( { field } ) => <Input id='name' label='name' {...field} errors={errors} disabled={isLoading} />} />
+          <Controller name="reference" control={control} render={( { field } ) => <Input id='reference' label='Reference' {...field} errors={errors} disabled={isLoading} />} />
+          <Controller name="name" control={control} render={( { field } ) => <Input id='name' label='Name' {...field} errors={errors} disabled={isLoading} />} />
           <ImageUpload onChange={( value ) => setStadiumImage( value )}>Upload Stade Image</ImageUpload>
           <div>
             <Button type='button' variant='primary' size='md' disabled={isLoading} onClick={() => {

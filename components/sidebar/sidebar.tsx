@@ -2,26 +2,30 @@
 
 import { PiDownloadSimpleBold } from 'react-icons/pi'
 import { PiPlusSquare } from 'react-icons/pi'
-import { PiListMagnifyingGlass } from 'react-icons/pi'
-import { PiIdentificationCard } from 'react-icons/pi'
+import { MdOutlineStadium } from 'react-icons/md'
+import { MdOutlineScoreboard } from 'react-icons/md'
 import { LuLogOut } from 'react-icons/lu'
 import Image from 'next/image'
 import Button from '@/components/buttons/button'
 import Link from 'next/link'
 import { styled } from '@stitches/react'
+import { usePathname } from 'next/navigation'
 
 const Sidebar = () => {
+
+  const pathname = usePathname()
+
   const ThickPiDownloadSimpleBold = styled( PiDownloadSimpleBold, {
     strokeWidth: '1px'
+  } )
+  const ThickMdOutlineStadium = styled( MdOutlineStadium, {
+    strokeWidth: '0px'
   } )
   const ThickPiPlusSquare = styled( PiPlusSquare, {
     strokeWidth: '6px'
   } )
-  const ThickPiListMagnifyingGlass = styled( PiListMagnifyingGlass, {
-    strokeWidth: '6px'
-  } )
-  const ThickPiIdentificationCard = styled( PiIdentificationCard, {
-    strokeWidth: '4px'
+  const ThickMdOutlineScoreboard = styled( MdOutlineScoreboard, {
+    strokeWidth: '0px'
   } )
   const ThickLuLogOut = styled( LuLogOut, {
     strokeWidth: '2.2px'
@@ -41,23 +45,23 @@ const Sidebar = () => {
         </div>
         <div className='flex flex-col gap-y-6 items-center w-fit'>
           <Link href="/admin/import">
-            <Button variant='secondary' size='iconLg'>
+            <Button variant='secondary' size='iconLg' className={`${pathname === '/admin/import' && 'bg-blue1'}`}>
               <ThickPiDownloadSimpleBold className='h-6 w-6'/>
             </Button>
           </Link>
-          <Link href="/adminMatch">
-            <Button variant='secondary' size='iconLg'>
+          <Link href="/admin/stadium">
+            <Button variant='secondary' size='iconLg' className={`${pathname === '/admin/stadium' && 'bg-blue1'}`}>
+              <ThickMdOutlineStadium className='h-6 w-6'/>
+            </Button>
+          </Link>
+          <Link href="/admin/match">
+            <Button variant='secondary' size='iconLg' className={`${pathname === '/admin/match' && 'bg-blue1'}`}>
               <ThickPiPlusSquare className='h-6 w-6'/>
             </Button>
           </Link>
-          <Link href="/adminStadium">
-            <Button variant='secondary' size='iconLg'>
-              <ThickPiListMagnifyingGlass className='h-6 w-6'/>
-            </Button>
-          </Link>
-          <Link href="/adminSad">
-            <Button variant='secondary' size='iconLg'>
-              <ThickPiIdentificationCard className='h-6 w-6'/>
+          <Link href="/admin/score">
+            <Button variant='secondary' size='iconLg' className={`${pathname === '/admin/score' && 'bg-blue1'}`}>
+              <ThickMdOutlineScoreboard className='h-6 w-6'/>
             </Button>
           </Link>
         </div>
