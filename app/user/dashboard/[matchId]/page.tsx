@@ -1,4 +1,3 @@
-// eslint-disable-next-line check-file/folder-naming-convention
 import { getMatchByIdUser } from '@/actions/getMatch'
 import MatchId from './match'
 import getCurrentUser from '@/actions/getCurrentUser'

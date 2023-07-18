@@ -1,4 +1,3 @@
-// eslint-disable-next-line check-file/folder-naming-convention
 'use client'
 
 import { Match, MatchTeam } from '@prisma/client'

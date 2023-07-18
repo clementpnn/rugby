@@ -1,4 +1,3 @@
-// eslint-disable-next-line check-file/folder-naming-convention
 export const metadata = {
   title: 'Rugby Admin',
   description: 'End of school year project'

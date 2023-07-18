@@ -1,1 +1,1 @@
-// eslint-disable-next-line check-file/folder-match-with-fex, unicorn/prevent-abbreviations, unicorn/no-empty-file
+// eslint-disable-next-line unicorn/no-empty-file, unicorn/prevent-abbreviations
