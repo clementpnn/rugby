@@ -11,6 +11,7 @@ import Button from '@/components/buttons/button'
 import ImageUpload from '@/components/inputs/imageUpload'
 import Input from '@/components/inputs/input'
 import Select from '@/components/inputs/select'
+import { PiUploadSimpleBold } from 'react-icons/pi'
 
 const CreateStadium = () => {
   const [ isLoading, setIsloading ] = useState( false )
@@ -61,7 +62,7 @@ const CreateStadium = () => {
           <div className='grid gap-y-4'>
             <Controller name="reference" control={control} render={( { field } ) => <Input id='reference' label='Reference' placeholder='Enter the reference' {...field} errors={errors} disabled={isLoading} />} />
             <Controller name="name" control={control} render={( { field } ) => <Input id='name' label='Name' placeholder='Enter the stadium name' {...field} errors={errors} disabled={isLoading} />} />
-            <ImageUpload onChange={( value ) => setStadiumImage( value )}>Upload Stade Image</ImageUpload>
+            <ImageUpload onChange={( value ) => setStadiumImage( value )}><PiUploadSimpleBold className='h-6 w-6'/>Upload Stade Image</ImageUpload>
             <Button type='button' variant='primary' size='md' disabled={isLoading} onClick={() => {
               setStep( step + 1 as STEPS )
               setStadium( { name, reference } )
