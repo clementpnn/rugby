@@ -82,6 +82,21 @@ export async function getMatchById( parameters: IParameters ) {
   }
 }
 
+export async function getMatchUpdateById( parameters: IParameters ) {
+  const { matchId } = parameters
+
+  const match = await prisma.match.findUnique( {
+    where: { id: matchId },
+    include: {
+      matchTeams: true
+    }
+  } )
+
+  if ( !match ) return
+
+  return match
+}
+
 export async function getMatchByIdUser( parameters: IParameters ) {
 
   const { matchId } = parameters
