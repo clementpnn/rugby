@@ -1,8 +1,12 @@
 import Navbar from '@/components/navbar/navbar'
 import Filter from '@/components/filter/filter'
 import Empty from '@/components/containers/empty'
+// import getMatch from '@/actions/getMatch'
 
 const page = async () => {
+  // const matchs = await getMatch()
+  // eslint-disable-next-line no-console
+  // console.log( matchs )
   return (
     <div className="flex flex-col h-screen">
       <Navbar />
