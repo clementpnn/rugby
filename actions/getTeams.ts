@@ -14,3 +14,21 @@ export default async function getTeams() {
     throw new Error( error )
   }
 }
+
+interface IParameters {
+  teamId?: string
+}
+
+export async function getTeambyId( parameters: IParameters ) {
+  const { teamId } = parameters
+
+  if ( !teamId ) return
+
+  const team = await prisma.team.findUnique( {
+    where: { id: teamId }
+  } )
+
+  if ( !team ) return
+
+  return team
+}
