@@ -55,10 +55,11 @@ const AdminForm = () => {
           setEmail( data.email )
           setPassword( data.password )
         }
+
         if ( callback.status !== 200 ) { toast.error( `${callback.statusText}` ) }
+
+        setIsloading( false )
       } )
-      .catch( ( error ) => toast.error( `${error}` ) )
-      .finally( () => setIsloading( false ) )
   }
 
   return (

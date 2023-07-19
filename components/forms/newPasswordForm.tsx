@@ -37,7 +37,7 @@ const NewPasswordForm: React.FC<NewPasswordFormProperties> = ( { resetToken, use
     await fetch( '/api/resetPassword', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify( { password: data.newPassword, resetToken } )
+      body: JSON.stringify( { password: data.newPassword, resetToken, user } )
     } )
       .then( ( callback ) => {
         if ( callback.status === 200 ) {
