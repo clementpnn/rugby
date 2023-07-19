@@ -2,35 +2,31 @@ import { cva, type VariantProps } from 'class-variance-authority'
 
 import { cn } from '@/libs/utils'
 export const badgeVariants = cva(
-  'flex items-center rounded-full font-semibold',
+  'flex items-center rounded-full',
   {
     variants: {
       variant: {
         accepted_light:
-          'bg-green-100 text-green-600',
+              'bg-green-100 text-green-600',
         rejected_light:
-          'bg-red-100 text-red-600',
+              'bg-red-100 text-red-600',
         progress_light:
-          'bg-yellow-100 text-yellow-600',
+              'bg-yellow-100 text-yellow-600',
         accepted_dark:
-          'bg-green-500 text-green-100',
+              'bg-green-500 text-green-100',
         rejected_dark:
-          'bg-red-500 text-red-100',
+              'bg-red-500 text-red-100',
         progress_dark:
-          'bg-yellow-500 text-yellow-100'
+              'bg-yellow-500 text-yellow-100'
       },
       size: {
         sm:
-          'h-5 label-sm px-2.5 py-1 h-fit w-fit gap-x-1',
+              'h-5 label-sm px-2.5 py-1 h-fit w-fit gap-x-1',
         md:
-          'h-6 label-md px-3 py-1.5 h-fit w-fit gap-x-1.5',
+              'h-6 label-md px-3 py-1.5 h-fit w-fit gap-x-1.5',
         lg:
-          'h-7 label-lg px-4 py-2 h-fit w-fit gap-x-2'
+              'h-7 label-lg px-4 py-2 h-fit w-fit gap-x-2'
       }
-    },
-    defaultVariants: {
-      variant: 'accepted_light',
-      size: 'md'
     }
   }
 )
@@ -63,4 +59,3 @@ function Badge( { className, children, variant, size, ...properties }: BadgeProp
   )
 }
 export default Badge
-
