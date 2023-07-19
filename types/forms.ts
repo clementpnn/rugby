@@ -111,3 +111,14 @@ export const DemandSchema = z.object( {
   matchId: z.string().nonempty( { message: 'Required' } ),
   state: z.string().refine( value => value === 'ACCEPTED' || value === 'IN_PROGRESS' || value === 'REJECTED', { message: 'Invalid State' } )
 } )
+
+export const MatchUpdateSchema = z.object( {
+  team1Result: z.string().refine( value => value === 'WINNER' || value === 'LOSER' || value === 'NULL' || value === 'NO_PLAYED', { message: 'Invalid State' } ),
+  team2Result: z.string().refine( value => value === 'WINNER' || value === 'LOSER' || value === 'NULL' || value === 'NO_PLAYED', { message: 'Invalid State' } ),
+  team1Points: z.string().transform( Number ),
+  team2Points: z.string().transform( Number ),
+  team1Bonus: z.string().transform( Number ),
+  team2Bonus: z.string().transform( Number ),
+  team1DefenseBonus: z.string().transform( Number ),
+  team2DefenseBonus: z.string().transform( Number )
+} )

@@ -1,4 +1,6 @@
 import getCurrentUser from '@/actions/getCurrentUser'
+import ModalMatch from '@/components/modals/modalMatch'
+// import RequestMatch from '@/components/requestMatch/requestMatch'
 
 export default async function Home() {
   const currentUser = await getCurrentUser()
@@ -9,6 +11,9 @@ export default async function Home() {
     )
   }
   return (
-    <h1>Here is Admin SAD Page !</h1>
+    <>
+      {/* <RequestMatch variant='accepted_dark' label='Salut'/> */}
+      <ModalMatch></ModalMatch>
+    </>
   )
 }

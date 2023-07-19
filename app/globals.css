@@ -294,6 +294,15 @@
 
 
 @layer utilities {
+  @variants responsive {
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+    .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+  }
   .h1-barlow-d {
     @apply text-9xl font-barlow font-bold tracking-[-1px];
   }
