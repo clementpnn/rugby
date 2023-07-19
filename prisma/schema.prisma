@@ -80,7 +80,7 @@ model MatchTeam {
   id       String   @id @default(auto()) @map("_id") @db.ObjectId
   matchId  String   @db.ObjectId
   team     String
-  result   RESULT?
+  result   RESULT?  @default(NO_PLAYED)
 
   match Match @relation(fields: [matchId], references: [id], onDelete: Cascade)
 

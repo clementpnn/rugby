@@ -5,7 +5,7 @@ async function main() {
   const matchs = await prisma.match.findMany()
   const users = await prisma.user.findMany()
 
-  const states = [ 'ACCEPTED', 'IN_PROGRESS', 'REJECTED' ]
+  const states = [ 'IN_PROGRESS', 'REJECTED' ]
 
   for ( let match of matchs ) {
     const numberOfUsers = Math.floor( Math.random() * ( 10 - 5 + 1 ) ) + 5
