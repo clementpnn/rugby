@@ -10,6 +10,11 @@ interface IParameters {
 
 const page = async ( { params }: {params: IParameters} ) => {
   const match = await getMatchUpdateById( params )
+  if ( !match ) {
+    return(
+      <p>not match</p>
+    )
+  }
   return (
     <div className="w-screen h-screen flex flex-row">
       <Sidebar/>
@@ -21,7 +26,7 @@ const page = async ( { params }: {params: IParameters} ) => {
             </Button>
             <div className='flex flex-row items-center gap-x-8'>
               <div className='flex flex-row gap-x-4 items-center'>
-                <Image src={`/flags/${match.matchTeam[0].team.slice( 0, 3 )}.svg`} alt={'flag'} width={60} height={60} className='rounded-full'/>
+                <Image src={`/flags/${match?.matchTeam[0].team.slice( 0, 3 )}.svg`} alt={'flag'} width={60} height={60} className='rounded-full'/>
                 <p className='w-[52px] h5-barlow-m text-blue9 text-right uppercase'>{match.matchTeam[1].team.slice( 0, 3 )}</p>
               </div>
               <div className='w-16 text-center'>
@@ -29,7 +34,7 @@ const page = async ( { params }: {params: IParameters} ) => {
               </div>
               <div className='flex flex-row gap-x-4 items-center'>
                 <p className='w-[52px] h5-barlow-m text-blue9 text-left uppercase'>{match.matchTeam[1].team.slice( 0, 3 )}</p>
-                <Image src={`/flags/${match.matchTeam[1].team.slice( 0, 3 )}.svg`} alt={'flag'} width={60} height={60} className='rounded-full'/>
+                <Image src={`/flags/${match?.matchTeam[1].team.slice( 0, 3 )}.svg`} alt={'flag'} width={60} height={60} className='rounded-full'/>
               </div>
             </div>
             <div className='text-neutral0 w-[99px]'>
