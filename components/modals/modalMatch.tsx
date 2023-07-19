@@ -2,8 +2,9 @@
 
 import { RESULT, STATE } from '@prisma/client'
 import ModalJoinWaitList from '../modals/modalJoinWaitList'
+// import RequestMatch from '../requestMatch/requestMatch'
 
-const ModalTest = () => {
+const ModalMatch = () => {
   const data = {
     date: 'Satuday 13th March',
     time: '23:00',
@@ -22,9 +23,9 @@ const ModalTest = () => {
   }
   return (
     <div>
-      <ModalJoinWaitList data={data} onClick={abde}></ModalJoinWaitList>
+      <ModalJoinWaitList data={data} onClick={abde} />
     </div>
   )
 }
 
-export default ModalTest
+export default ModalMatch

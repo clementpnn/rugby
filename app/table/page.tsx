@@ -10,7 +10,7 @@ import Button from '@/components/buttons/button'
 import { DatePicker } from '@/components/datePicker/datePicker'
 
 // import { DataTableDemo } from '@/components/table/testTable'
-import ModalTest from '@/components/modalTest/modalTest'
+import ModalMatch from '@/components/modals/modalMatch'
 import Badge from '@/components/ui/badge'
 
 const page = async () => {
@@ -19,9 +19,8 @@ const page = async () => {
   return (
     <>
       {/* <DataTable columns={columns} data={data}/> */}
-      {/* <DataTableDemo /> */}
       <DatePicker></DatePicker>
-      <ModalTest></ModalTest>
+      <ModalMatch></ModalMatch>
       <Badge variant='accepted_dark' size='lg'>Salut</Badge>
       <Button>Salut</Button>
     </>
