@@ -2,8 +2,6 @@
 
 import useIsPools from '@/hooks/usePoolsOrKnockouts'
 import InformationDescription from '../informationDescription/informationDescription'
-import Knockout from '../knockouts/knockouts'
-import Knockouts from '../knockouts/knockouts'
 
 const PoolsOrKnockouts = () => {
   const { isPools } = useIsPools()
