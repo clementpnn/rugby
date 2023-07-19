@@ -16,8 +16,8 @@ const Pool: React.FC<PouleProperties> = ( { data } ) => {
   const country5 = getByValue( data.data[4].teamName )
 
   return(
-    <div className='w-full rounded w-96'>
-      <div className='h-full rounded-l space-y-3'>
+    <div className='py-12 w-full rounded'>
+      <div className='rounded-l space-y-3'>
         <div className='text-blue-600 pl-5 h6-barlow-m md:pl-20'> POUL { data.pouleName }</div>
       </div>
       <table className='table-auto mt-3 w-full'>

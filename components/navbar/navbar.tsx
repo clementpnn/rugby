@@ -12,7 +12,7 @@ const Navbar = () => {
     setActiveButton( buttonName )
   }
   return(
-    <div className="bg-neutral0 w-screen h-fit px-20 py-6 border-b-[1px] border-neutral3 flex flex-row justify-between items-center">
+    <div className="bg-neutral0 w-full h-fit px-20 py-6 border-b-[1px] border-neutral3 flex flex-row justify-between items-center">
       <div className='flex flex-row gap-x-12'>
         <Link href={'/'}>
           <Image

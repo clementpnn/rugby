@@ -2,6 +2,8 @@
 
 import useIsPools from '@/hooks/usePoolsOrKnockouts'
 import InformationDescription from '../informationDescription/informationDescription'
+import Pool from '../pools/pool'
+import { poulesData } from '@/app/table/poulelayout'
 
 const PoolsOrKnockouts = () => {
   const { isPools } = useIsPools()
@@ -46,10 +48,12 @@ const PoolsOrKnockouts = () => {
     <div className='w-full h-full max-h-[calc(100%-294.9px)]'>
       {isPools ? (
         <div className='w-full h-full grid grid-cols-3'>
-          <div className='bg-blue1 w-full h-full grid col-span-2'>
-            Salma COMPONENT
+          <div className='w-full h-full grid col-span-2 overflow-auto scroll-smooth no-scrollbar'>
+            <Pool data={poulesData[0]}/>
+            <Pool data={poulesData[0]}/>
+            <Pool data={poulesData[0]}/>
           </div>
-          <div className='overflow-auto w-full h-full'>
+          <div className='overflow-auto w-full h-full scroll-smooth no-scrollbar'>
             <div className='flex flex-col gap-y-12 w-hug pl-12 pr-20 py-12'>
               {dataList.map( ( data, index ) => (
                 <InformationDescription key={index} data={data} />
@@ -58,7 +62,7 @@ const PoolsOrKnockouts = () => {
           </div>
         </div>
       ) : (
-        <div className='w-full h-full'>
+        <div className='bg-blue1 w-full h-full'>
           Add knockout Component
         </div>
       )}
