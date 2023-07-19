@@ -223,26 +223,24 @@ const Filter: React.FC<FilterProperties> = ( { /* height,*/ /* width */ } ) => {
         )}
         {activeTab === 'knock-out' && (
           <>
-            <div className='flex flex-col pb-2 pt-2'>
-              <div className='border-l-2 border-r-2 border-t-2 p-2 pl-7'>
-                <div className='flex items-center space-x-2'>
-                  <div className='h2-barlow-m text-blue6 pr-3'>1</div>
-                  <div className='h4-barlow-m text-blue9'>FINAL</div>
-                </div>
+            <div className='flex flex-col divide-y divide-neutral3 bg-neutral0 h-fit'>
+
+              <div className='flex items-center cursor-pointer p-5 pl-7 bg-neutral0 hover:bg-neutral1 opacity-30 py-3'>
+                <div className='h2-barlow-m w-10 text-blue6'>1</div>
+                <div className='h4-barlow-m text-blue9'>FINAL</div>
               </div>
-              <div className='border-l-2 border-r-2 border-t-2 p-2 pl-7'>
-                <div className='flex items-center space-x-2'>
-                  <div className='h2-barlow-m text-blue6 pr-3'>2</div>
-                  <div className='h4-barlow-m text-blue9'>SEMI FINAL</div>
-                </div>
+
+              <div className='flex items-center cursor-pointer p-5 pl-7 bg-neutral0 hover:bg-neutral1 opacity-30 py-3'>
+                <div className='h2-barlow-m w-10 text-blue6'>2</div>
+                <div className='h4-barlow-m text-blue9'>SEMI FINAL</div>
               </div>
-              <div className='border-2 p-2 pl-7'>
-                <div className='flex items-center space-x-2'>
-                  <div className='h2-barlow-m text-blue6 pr-3'>3</div>
-                  <div className='h4-barlow-m text-blue9'>QUARTER FINAL</div>
-                </div>
+
+              <div className='flex items-center cursor-pointer p-5 pl-7 bg-neutral0 hover:bg-neutral1 opacity-30 py-3'>
+                <div className='h2-barlow-m w-10 text-blue6'>3</div>
+                <div className='h4-barlow-m text-blue9'>QUARTER FINAL</div>
               </div>
             </div>
+
           </>
         )}
       </div>
