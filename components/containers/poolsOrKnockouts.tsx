@@ -3,7 +3,7 @@
 import useIsPools from '@/hooks/usePoolsOrKnockouts'
 import InformationDescription from '../informationDescription/informationDescription'
 import Pool from '../pools/pool'
-import { poulesData } from '@/app/table/poulelayout'
+import { poulesData } from '@/app/pool/poolayout'
 
 const PoolsOrKnockouts = () => {
   const { isPools } = useIsPools()
