@@ -34,7 +34,7 @@ const Pool: React.FC<PouleProperties> = ( { data } ) => {
           </tr>
         </thead>
         <tbody>
-          <tr className='border-t border-slate-200 h6-lato-d'>
+          <tr className='border-t border-slate-200 h6-inter-d'>
             <td>
               <div className='py-3.5 pl-5 rounded flex md:pl-20'>
                 <Image src={ country1?.flag || '/placeholder-image.png'} alt='Flag' width={'28'} height={'28'} className={'mr-4'}/>
@@ -49,7 +49,7 @@ const Pool: React.FC<PouleProperties> = ( { data } ) => {
             <td className='invisible md:visible text-blue-900 text-center'>{data.data[0].B}</td>
             <td className='text-blue-900 text-center'>{data.data[0].Pts}</td>
           </tr>
-          <tr className='border-t border-slate-200 h6-lato-d'>
+          <tr className='border-t border-slate-200 h6-inter-d'>
             <td>
               <div className=' py-3.5 pl-5 rounded flex md:pl-20'>
                 <Image src={country2?.flag || '/placeholder-image.png'} alt='Flag' width={'28'} height={'28'} className={'mr-4'}/>
@@ -64,7 +64,7 @@ const Pool: React.FC<PouleProperties> = ( { data } ) => {
             <td className='invisible md:visible text-blue-900 text-center'>{data.data[1].B}</td>
             <td className='text-blue-900 text-center'>0</td>
           </tr>
-          <tr className='border-t border-slate-200 h6-lato-d'>
+          <tr className='border-t border-slate-200 h6-inter-d'>
             <td>
               <div className=' py-3.5 pl-5 rounded flex md:pl-20'>
                 <Image src={country3?.flag || '/placeholder-image.png' } alt='Flag' width={'28'} height={'28'} className={'mr-4'}/>
@@ -79,7 +79,7 @@ const Pool: React.FC<PouleProperties> = ( { data } ) => {
             <td className='invisible md:visible text-blue-900 text-center'>{data.data[2].B}</td>
             <td className='text-blue-900 text-center'>0</td>
           </tr>
-          <tr className='border-t border-slate-200 h6-lato-d'>
+          <tr className='border-t border-slate-200 h6-inter-d'>
             <td>
               <div className=' py-3.5 pl-5 rounded flex md:pl-20'>
                 <Image src={country4?.flag || '/placeholder-image.png'} alt='Flag' width={'28'} height={'28'} className={'mr-4'}/>
@@ -94,7 +94,7 @@ const Pool: React.FC<PouleProperties> = ( { data } ) => {
             <td className='invisible md:visible text-blue-900 text-center'>{data.data[3].B}</td>
             <td className='text-blue-900 text-center'>0</td>
           </tr>
-          <tr className='border-t border-slate-200 h6-lato-d'>
+          <tr className='border-t border-slate-200 h6-inter-d'>
             <td>
               <div className=' py-3.5 pl-5 rounded flex md:pl-20'>
                 <Image src={country5?.flag || '/placeholder-image.png'} alt='Flag' width={'28'} height={'28'} className={'mr-4'}/>

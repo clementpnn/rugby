@@ -64,7 +64,6 @@ const ModalJoinWaitList : React.FC<ModalJoinWaitListProperties> = ( { data, onCl
       break
     }
     default: {
-      // Set a default state in case 'data.state' doesn't match any of the cases
       setStateClass( 'accepted_light' )
       break
     }
