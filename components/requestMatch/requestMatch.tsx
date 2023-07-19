@@ -14,9 +14,9 @@ const RequestMatch: React.FC<MatchProperties> = ( { variant, label } ) => {
   return (
     <div className="flex justify-center">
       <div className="flex justify-between flex-col md:flex-row items-start md:items-center border-y-2 w-full text-black h-[156px] px-5 md:px-20 py-4">
-        <div className="w-[180px]">
-          <div className="md:h4-barlow-m h5-barlow-m text-blue-600">{ matchData[0].data.hour }</div>
-          <div className="md:label-md label-sm text-blue-400">{ matchData[0].data.place }</div>
+        <div className="w-[180px] flex flex-col items-start gap-y-2">
+          <div className="md:h4-barlow-m h5-barlow-m text-blue6">{ matchData[0].data.hour }</div>
+          <div className="md:label-md label-sm text-blue6">{ matchData[0].data.place }</div>
         </div>
         <div className="flex items-center justify-between md:w-[384px] w-full md:mt-0">
           <div className="flex items-center justify-end">

@@ -23,6 +23,7 @@ interface ModalJoinWaitListProperties {
   // children: React.ReactNode
   data: MatchInformation
   onClick: ()=>void
+  button: React.ReactNode
 }
 
 function formatString( inputString : string ) {
@@ -40,7 +41,7 @@ function formatString( inputString : string ) {
   return formattedString
 }
 
-const ModalJoinWaitList : React.FC<ModalJoinWaitListProperties> = ( { data, onClick } ) => {
+const ModalJoinWaitList : React.FC<ModalJoinWaitListProperties> = ( { data, onClick, button } ) => {
 
   const countryLeft = formatString( data.score.countryA )
   const countryRight = formatString( data.score.countryB )
@@ -74,7 +75,7 @@ const ModalJoinWaitList : React.FC<ModalJoinWaitListProperties> = ( { data, onCl
   const imgCountryLeft = getByValue( data.score.countryA )
   const imgCountryRight = getByValue( data.score.countryB )
   return(
-    <Modal action={<ButtonUI variant="outline">Salut</ButtonUI>} title='Hey'>
+    <Modal action={<button className='w-full'>{button}</button>} title='Hey'>
       <div className='w-full h-fit flex flex-col gap-8 p-6 sm:p-8'>
         <div className='flex flex-col gap-y-3'>
           <div className='w-full flex justify-between items-center'>
