@@ -2,7 +2,6 @@ import Image from 'next/image'
 import * as React from 'react'
 import useCountries from '@/hooks/useCountries'
 import { Poules } from '@/app/table/poulelayout'
-// import getTeams from '@/actions/getTeams'
 
 interface PouleProperties{
   data: Poules
@@ -10,11 +9,11 @@ interface PouleProperties{
 
 const Pool: React.FC<PouleProperties> = ( { data } ) => {
   const { getByValue } = useCountries()
-  const country1 = getByValue(data.data[0].teamName)
-  const country2 = getByValue(data.data[1].teamName)
-  const country3 = getByValue(data.data[2].teamName)
-  const country4 = getByValue(data.data[3].teamName)
-  const country5 = getByValue(data.data[4].teamName)
+  const country1 = getByValue( data.data[0].teamName )
+  const country2 = getByValue( data.data[1].teamName )
+  const country3 = getByValue( data.data[2].teamName )
+  const country4 = getByValue( data.data[3].teamName )
+  const country5 = getByValue( data.data[4].teamName )
 
   return(
     <div className='w-full rounded w-96'>
