@@ -39,7 +39,7 @@ model SentEmail {
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@unique([userId, resetToken])
+  @@unique([userId, mfaToken])
 }
 
 model Tribune {
