@@ -1,122 +1,152 @@
 'use client'
 
 import * as React from 'react'
-import { useState } from 'react'
+import Button from '../buttons/button'
+import { useEffect, useState } from 'react'
 
-type PoolData = {
-  pool: string
-  teams: string[]
+
+type Pool = {
+  id: string
+  name: string
+  teams: Team[]
 }
 
-const TeamImage: React.FC = () => {
-  return (
-    <div className='w-8 h-8 rounded-full bg-blue-500'></div>
-  )
+type Team = {
+  id: string
+  name: string
+  image: string
 }
 
-const Filter: React.FC = () => {
-  const [ showPool, setShowPool ] = useState( false )
-  const [ activeTab, setActiveTab ] = useState( '' )
+type FilterProps = {
+  height: number
+  width: number
+}
 
-  const handlePoolClick = () => {
-    setShowPool( !showPool )
-    setActiveTab( 'pool' )
+const Filter: React.FC<FilterProps> = ({ height, width }) => {
+  const [activeTab, setActiveTab] = useState('pools')
+  const [activePool, setActivePool] = useState('')
+
+  const handleClickTab = (tab: string) => {
+    setActiveTab(tab)
+    setActivePool('')
   }
 
-  const handleTabClick = ( tab: string ) => {
-    setActiveTab( tab )
+  const handleClickPool = (poolId: string) => {
+    setActivePool(poolId === activePool ? '' : poolId)
   }
 
-  const poolData: PoolData[] = [
-    { pool: 'A', teams: [ 'TeamA1', 'TeamA2', 'TeamA3', 'TeamA4', 'TeamA5' ] },
-    { pool: 'B', teams: [ 'TeamB1', 'TeamB2', 'TeamB3', 'TeamB4', 'TeamB5' ] },
-    { pool: 'C', teams: [ 'TeamC1', 'TeamC2', 'TeamC3', 'TeamC4', 'TeamC5' ] },
-    { pool: 'D', teams: [ 'TeamD1', 'TeamD2', 'TeamD3', 'TeamD4', 'TeamD5' ] }
-  ]
+  const generateTeams = (poolId: string): Team[] => {
+    if (poolId === 'A') {
+      return [
+        { id: 'A1', name: 'Team A1', image: 'https://via.placeholder.com/28x28' },
+        { id: 'A2', name: 'Team A2', image: 'https://via.placeholder.com/28x28' },
+        { id: 'A3', name: 'Team A3', image: 'https://via.placeholder.com/28x28' },
+        { id: 'A4', name: 'Team A4', image: 'https://via.placeholder.com/28x28' },
+        { id: 'A5', name: 'Team A5', image: 'https://via.placeholder.com/28x28' },
+      ]
+    } else if (poolId === 'B') {
+      return [
+        { id: 'B1', name: 'Team B1', image: 'https://via.placeholder.com/28x28' },
+        { id: 'B2', name: 'Team B2', image: 'https://via.placeholder.com/28x28' },
+        { id: 'B3', name: 'Team B3', image: 'https://via.placeholder.com/28x28' },
+        { id: 'B4', name: 'Team B4', image: 'https://via.placeholder.com/28x28' },
+        { id: 'B5', name: 'Team B5', image: 'https://via.placeholder.com/28x28' },
+      ]
+    } else if (poolId === 'C') {
+      return [
+        { id: 'C1', name: 'Team C1', image: 'https://via.placeholder.com/28x28' },
+        { id: 'C2', name: 'Team C2', image: 'https://via.placeholder.com/28x28' },
+        { id: 'C3', name: 'Team C3', image: 'https://via.placeholder.com/28x28' },
+        { id: 'C4', name: 'Team C4', image: 'https://via.placeholder.com/28x28' },
+        { id: 'C5', name: 'Team C5', image: 'https://via.placeholder.com/28x28' },
+      ]
+    } else if (poolId === 'D') {
+      return [
+        { id: 'D1', name: 'Team D1', image: 'https://via.placeholder.com/28x28' },
+        { id: 'D2', name: 'Team D2', image: 'https://via.placeholder.com/28x28' },
+        { id: 'D3', name: 'Team D3', image: 'https://via.placeholder.com/28x28' },
+        { id: 'D4', name: 'Team D4', image: 'https://via.placeholder.com/28x28' },
+        { id: 'D5', name: 'Team D5', image: 'https://via.placeholder.com/28x28' },
+      ]
+    }
+    return []
+  }
 
   return (
-    <div className='flex items-start justify-start h-882 w-423'>
-      <div className='w-423 h-440 bg-gray-100 p-4'>
-        <div className='flex flex-col gap-4'>
-          <div className='w-423 h-240 bg-gray-100 p-4 ml-4 border-b-0'>
-            <h1 className='text-3xl text-blue-500 font-bold mb-4'>Planning</h1>
-            <div className='flex gap-4'>
-              <button
-                className={`px-6 py-3 border bg-transparent text-blue-500 rounded-lg ${
-                  activeTab === 'pool' ? 'bg-blue-500 text-white cursor-pointer' : ''
-                }`}
-                onClick={handlePoolClick}
-              >
-                <span
-                  className={`cursor-pointer ${
-                    activeTab === 'pool' ? 'text-white' : ''
+    <div className=' filter-container'>
+      <h1 className='text-blue6 h2-barlow-m sm:h1-barlow-m mb-4 pb-2 pt-18 pl-7'>PLANNING</h1>
+      <div className='flex space-x-3 mb-4 pb-2 pt-12 pl-7'>
+        <Button
+          size={'lg'}
+          className={`h-12 w-40 border-2 ${activeTab === 'pools' ? 'bg-blue6 text-neutral0' : 'bg-neutral0 text-blue6'}`}
+          onClick={() => handleClickTab('pools')}
+        >
+          Pools
+        </Button>
+        <Button
+          size={'lg'}
+          className={`h-12 w-40 border-2 ${activeTab === 'knock-out' ? 'bg-blue6 text-neutral0' : 'bg-neutral0 text-blue6'}`}
+          onClick={() => handleClickTab('knock-out')}
+        >
+          Knock-out
+        </Button>
+      </div>
+      {activeTab === 'pools' && (
+        <>
+          <h5 className='text-blue6 h5-barlow-m mb-4 pb-2 pt-3 pl-7'>POOLS</h5>
+          <div className='flex flex-col space-y-2 mb-4 pb-2 pt-2 pl-7' style={{ overflow: 'auto', maxHeight: `${height}px` }}>
+            {['A', 'B', 'C', 'D'].map((poolId) => (
+              <div key={poolId} className='border-2 p-2'>
+                <div
+                  className={`flex items-center space-x-2 cursor-pointer ${
+                    poolId === activePool ? 'text-blue6' : 'text-blue9'
                   }`}
-                  onClick={() => handleTabClick( 'pool' )}
+                  onClick={() => handleClickPool(poolId)}
                 >
-                  Pool
-                </span>
-              </button>
-              <button
-                className={`px-6 py-3 border bg-transparent text-blue-500 rounded-lg ${
-                  activeTab === 'knockout' ? 'bg-blue-500 text-white' : ''
-                }`}
-                onClick={() => setActiveTab( 'knockout' )}
-              >
-                Knock-out
-              </button>
+                  <div className='h2-barlow-m'>{poolId} POOL</div>
+                </div>
+                {poolId === activePool && (
+                  <div className='pl-14'>
+                    {generateTeams(poolId).map((team) => (
+                      <div key={team.id} className='flex items-center space-x-2'>
+                        <img src={team.image} alt='team logo' className='h-7 w-7 rounded-full' />
+                        <div className='h6-lato-d'>{team.name}</div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </>
+      )}
+      {activeTab === 'knock-out' && (
+        <>
+          <h5 className='text-blue6 h5-barlow-m mb-4 pb-2 pt-3 pl-7'>KNOCK-OUT</h5>
+          <div className='flex flex-col space-y-2 mb-4 pb-2 pt-2 pl-7' style={{ overflow: 'auto', maxHeight: `${height}px` }}>
+            <div className='border-2 p-2'>
+              <div className='flex items-center space-x-2'>
+                <div className='h2-barlow-m'>1</div>
+                <div className='h4-barlow-m'>FINAL</div>
+              </div>
+            </div>
+            <div className='border-2 p-2'>
+              <div className='flex items-center space-x-2'>
+                <div className='h2-barlow-m'>2</div>
+                <div className='h4-barlow-m'>SEMI FINAL</div>
+              </div>
+            </div>
+            <div className='border-2 p-2'>
+              <div className='flex items-center space-x-2'>
+                <div className='h2-barlow-m'>3</div>
+                <div className='h4-barlow-m'>QUARTER FINAL</div>
+              </div>
             </div>
           </div>
-          <div className='w-423 h-240 bg-gray-100 p-4 ml-4'>
-            <h2 className='text-2xl text-blue-500 font-bold mb-4'>Filter</h2>
-            {showPool && (
-              <div className='flex flex-col gap-2'>
-                {poolData.map( ( poolItem ) => (
-                  <div
-                    key={poolItem.pool}
-                    className={`border-b border-gray-300 ${
-                      activeTab === `pool${poolItem.pool}` ? 'cursor-pointer' : ''
-                    }`}
-                    onClick={() => handleTabClick( `pool${poolItem.pool}` )}
-                  >
-                    <div className='flex items-center'>
-                      <h1
-                        className={`text-3xl text-blue-500 font-bold ${
-                          activeTab === `pool${poolItem.pool}` ? 'text-blue-500 cursor-pointer' : ''
-                        }`}
-                      >
-                        {poolItem.pool}
-                      </h1>
-                      <p className='ml-1'>Pool</p>
-                    </div>
-                    {activeTab === `pool${poolItem.pool}` && (
-                      <ul className='mt-4 space-y-3'>
-                        {poolItem.teams.map( ( team, index ) => (
-                          <li key={index} className='flex items-center gap-2'>
-                            <TeamImage /> {team}
-                          </li>
-                        ) )}
-                      </ul>
-                    )}
-                  </div>
-                ) )}
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
+        </>
+      )}
     </div>
   )
 }
 
-const App: React.FC = () => {
-  return (
-    <div className='flex items-center justify-center h-screen'>
-      <div className='w-423 h-240 bg-gray-100 p-48'>
-        <h5 className='text-3xl font-bold mb-4'>Filter</h5>
-        <Filter />
-      </div>
-    </div>
-  )
-}
-
-export default App
+export default Filter
