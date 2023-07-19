@@ -36,7 +36,7 @@ const RequestMatch: React.FC<MatchProperties> = ( { data, stateClass, state } ) 
             { data.score.countryA.slice( 0, 3 ) }
           </div>
         </div>
-        { data.score.scoreA===RESULT.NO_PLAYED || data.score.scoreB===RESULT.NO_PLAYED ? (
+        { data.score.scoreA===RESULT.WINNER || data.score.scoreB===RESULT.WINNER ? (
           <div className="h6-barlow-m text-blue6 flex justify-center w-16">VS</div>
         ) : (
           <div className="flex row w-16 justify-between">
