@@ -5,11 +5,11 @@ import Button from '../buttons/button'
 import { useState } from 'react'
 import Image from 'next/image'
 
-type Pool = {
-  id: string
-  name: string
-  teams: Team[]
-}
+// type Pool = {
+//   id: string
+//   name: string
+//   teams: Team[]
+// }
 
 type Team = {
   id: string
@@ -19,10 +19,10 @@ type Team = {
 
 type FilterProperties = {
   height: number
-  width: number
+  //width: number
 }
 
-const Filter: React.FC<FilterProperties> = ( { height, width } ) => {
+const Filter: React.FC<FilterProperties> = ( { height /* width*/ } ) => {
   const [ activeTab, setActiveTab ] = useState( 'pools' )
   const [ activePool, setActivePool ] = useState( '' )
 
