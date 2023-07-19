@@ -1,13 +1,12 @@
-/* eslint-disable react/no-string-refs */
 'use client'
 
 import * as React from 'react'
 import Button from '../buttons/button'
-import { useState } from 'react'
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 import { formatString } from '../modals/modalJoinWaitList'
 import Image from 'next/image'
 import useCountries from '@/hooks/useCountries'
+import { useFilterStore } from '@/hooks/useFilter'
 
 type Team = {
   team: string
@@ -25,143 +24,20 @@ type FilterProperties = {
   width: number
 }
 
-const Filter: React.FC<FilterProperties> = ( { /* height,*/ /* width */ } ) => {
+const Filter: React.FC<FilterProperties> = () => {
   const { getByValue } = useCountries()
   const [ parent ] = useAutoAnimate()
-  const [ activeTab, setActiveTab ] = useState( 'pools' )
-  const [ pools, setPools ] = useState<Pool[]>( [
-    {
-      poolName: 'A',
-      selected: false,
-      teams: [
-        {
-          team: 'NEW_ZEALAND',
-          selected: true
-        },
-        {
-          team: 'FRANCE',
-          selected: true
-        },
-        {
-          team: 'ITALY',
-          selected: true
-        },
-        {
-          team: 'URUGUAY',
-          selected: true
-        },
-        {
-          team: 'NAMIBIA',
-          selected: true
-        }
-      ]
-    },
-    {
-      poolName: 'B',
-      selected: false,
-      teams: [
-        {
-          team: 'SOUTH_AFRICA',
-          selected: true
-        },
-        {
-          team: 'IRELAND',
-          selected: true
-        },
-        {
-          team: 'SCOTLAND',
-          selected: true
-        },
-        {
-          team: 'TONGUA',
-          selected: true
-        },
-        {
-          team: 'ROMANIA',
-          selected: true
-        }
-      ]
-    },
-    {
-      poolName: 'C',
-      selected: false,
-      teams: [
-        {
-          team: 'WALES',
-          selected: true
-        },
-        {
-          team: 'AUSTRALIA',
-          selected: true
-        },
-        {
-          team: 'FIJI',
-          selected: true
-        },
-        {
-          team: 'GEORGIA',
-          selected: true
-        },
-        {
-          team: 'PORTUGAL',
-          selected: true
-        }
-      ]
-    },
-    {
-      poolName: 'D',
-      selected: false,
-      teams: [
-        {
-          team: 'ENGLAND',
-          selected: true
-        },
-        {
-          team: 'JAPAN',
-          selected: true
-        },
-        {
-          team: 'ARGENTINA',
-          selected: true
-        },
-        {
-          team: 'SAMOA',
-          selected: true
-        },
-        {
-          team: 'CHILE',
-          selected: true
-        }
-      ]
-    }
-  ] )
+
+  const {
+    activeTab,
+    pools,
+    setActiveTab,
+    handlePoolClick,
+    handleTeamClick
+  } = useFilterStore()
 
   const handleClickTab = ( tab: string ) => {
     setActiveTab( tab )
-  }
-
-  const handlePoolClick = ( index: number ) => {
-    const updatedPools = pools.map( ( pool, index_ ) => ( {
-      ...pool,
-      selected: index_ === index ? !pool.selected : pool.selected
-    } ) )
-    setPools( updatedPools )
-  }
-
-  const handleTeamClick = ( poolIndex: number, teamIndex: number ) => {
-    const updatedPools = pools.map( ( pool, index ) => {
-      if ( index === poolIndex ) {
-        const updatedTeams = pool.teams.map( ( team, tIndex ) => {
-          if ( tIndex === teamIndex ) {
-            return { ...team, selected: !team.selected }
-          }
-          return team
-        } )
-        return { ...pool, teams: updatedTeams }
-      }
-      return pool
-    } )
-    setPools( updatedPools )
   }
 
   return (
@@ -191,7 +67,7 @@ const Filter: React.FC<FilterProperties> = ( { /* height,*/ /* width */ } ) => {
           <>
             <div ref={parent} className='flex flex-col divide-y divide-neutral3 bg-neutral0 h-fit'>
               {pools.map( ( pool : Pool, index: number ) => (
-                <>
+                <React.Fragment key={index}>
                   <div key={index} className={`flex items-center cursor-pointer p-5 pl-7 bg-neutral0 hover:bg-neutral1 ${pool.selected === false && 'opacity-30 py-3'}`} onClick={() => handlePoolClick( index )}>
                     <div className='h2-barlow-m w-10 text-blue6'>{pool.poolName}</div>
                     <div className='h4-barlow-m text-blue9'>
@@ -214,7 +90,7 @@ const Filter: React.FC<FilterProperties> = ( { /* height,*/ /* width */ } ) => {
                     </div>
 
                   )}
-                </>
+                </React.Fragment>
 
               ) )}
             </div>

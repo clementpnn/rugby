@@ -1,8 +1,12 @@
 import Navbar from '@/components/navbar/navbar'
 import Filter from '@/components/filter/filter'
 import Empty from '@/components/containers/empty'
+// import getMatch from '@/actions/getMatch'
 
 const page = async () => {
+  // const matchs = await getMatch()
+  // eslint-disable-next-line no-console
+  // console.log( matchs )
   return (
     <div className="flex flex-col h-screen">
       <Navbar />
@@ -10,7 +14,7 @@ const page = async () => {
         <div className="col-span-2 w-full h-full flex-1 border-r-[1px] lg:border-r-1">
           <Empty />
         </div>
-        <div className="w-full h-full bg-red-500 col-span-1">
+        <div className="w-full h-full col-span-1">
           <Filter height={0} width={0}/>
         </div>
       </div>
