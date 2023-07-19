@@ -16,7 +16,7 @@ const page = async ( { params }: {params: IParameters} ) => {
     )
   }
 
-  if ( !match ) {
+  if ( !match?.matchTeams[0].team ) {
     return (
       <p>not match</p>
     )

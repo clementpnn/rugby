@@ -97,6 +97,50 @@ export async function getMatchUpdateById( parameters: IParameters ) {
   return match
 }
 
+export async function getMatchDemandById( parameters: IParameters ) {
+  const { matchId } = parameters
+
+  const match = await prisma.match.findUnique( {
+    where: { id: matchId },
+    include: {
+      matchTeams: true,
+      demands: true
+    }
+  } )
+
+  if ( !match ) return
+
+  const stadium = await prisma.stadium.findUnique( {
+    where: { id: match?.stadiumId },
+    include: {
+      tribunes: true
+    }
+  } )
+
+  if ( !stadium ) return
+
+  const demandsWithUserDemandsInfo = await Promise.all( match.demands.map( async ( demand ) => {
+    const userId = demand.userId
+
+    const user = await prisma.user.findUnique( {
+      where: { id: userId }
+    } )
+
+    return {
+      demand, user
+    }
+  } ) )
+
+  return {
+    match: {
+      ...match,
+      matchTeams: match.matchTeams,
+      demands: demandsWithUserDemandsInfo
+    },
+    stadium
+  }
+}
+
 export async function getMatchByIdUser( parameters: IParameters ) {
 
   const { matchId } = parameters
