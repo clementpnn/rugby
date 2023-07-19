@@ -1,8 +1,11 @@
-import Pool from '@/components/pools/pool'
-import { poulesData } from './table/poulelayout'
-export default async function Home(){
-  return(
+import getCurrentUser from '@/actions/getCurrentUser'
+import SignInModal from '@/components/modals/signInModal'
+
+export default async function Home() {
+  const currentUser = await getCurrentUser()
+  return (
     <div>
-      <Pool data={poulesData[0]}/>
+      <SignInModal currentUser={currentUser} />
     </div>
-  )}
+  )
+}
