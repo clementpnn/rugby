@@ -79,7 +79,7 @@ const Filter: React.FC<FilterProperties> = ( { height, width } ) => {
   }
 
   return (
-    <div className=' filter-container'>
+    <div className='filter-container'>
       <h1 className='text-blue6 h2-barlow-m sm:h1-barlow-m mb-4 pb-2 pt-18 pl-7'>PLANNING</h1>
       <div className='flex space-x-3 mb-4 pb-2 pt-12 pl-7'>
         <Button
