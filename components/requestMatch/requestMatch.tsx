@@ -9,7 +9,7 @@ interface MatchProperties {
   label: string
 }
 
-const RequestMatch: React.FC<MatchProperties> = ( { variant, label }) => {
+const RequestMatch: React.FC<MatchProperties> = ( { variant, label } ) => {
 
   return (
     <div className="flex justify-center">
