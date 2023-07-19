@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-
 import create from 'zustand'
 
 type Team = {
@@ -16,9 +14,9 @@ type Pool = {
 type FilterStore = {
   activeTab: string
   pools: Pool[]
-  setActiveTab: ( tab: string ) => void
-  handlePoolClick: ( index: number ) => void
-  handleTeamClick: ( poolIndex: number, teamIndex: number ) => void
+  setActiveTab: ( _tab: string ) => void
+  handlePoolClick: ( _index: number ) => void
+  handleTeamClick: ( _poolIndex: number, _teamIndex: number ) => void
 }
 
 export const useFilterStore = create<FilterStore>( ( set ) => ( {
