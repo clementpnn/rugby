@@ -7,6 +7,7 @@ import { toast } from 'react-hot-toast'
 import Image from 'next/image'
 import Button from '../buttons/button'
 import Input from '../inputs/input'
+
 import Select from '../inputs/select'
 import { MatchUpdateSchema } from '@/types/forms'
 import Container from '../containers/container'
@@ -32,6 +33,7 @@ const MatchForm: React.FC<MatchFormProperties> = ( { match } ) => {
     } : {},
     mode: 'onChange'
   } )
+
   const onSubmit: SubmitHandler<any> = async ( data ) => {
     setIsloading( true )
 
