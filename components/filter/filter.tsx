@@ -118,7 +118,7 @@ const Filter: React.FC<FilterProperties> = ( { height, width } ) => {
                     {generateTeams( poolId ).map( ( team ) => (
                       <div key={team.id} className='flex items-center space-x-2'>
                         <Image src={team.image} alt='team logo' className='h-7 w-7 rounded-full' />
-                        <div className='h6-lato-d'>{team.name}</div>
+                        <div className='h6-inter-d'>{team.name}</div>
                       </div>
                     ) )}
                   </div>
