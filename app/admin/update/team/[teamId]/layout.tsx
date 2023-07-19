@@ -3,7 +3,7 @@ export const metadata = {
   description: 'End of school year project'
 }
 
-export default function AdminUpdateTeamLayout( { children }: { children: React.ReactNode } ) {
+export default function AdminUpdateTeamIdLayout( { children }: { children: React.ReactNode } ) {
   return (
     <div>
       {children}
