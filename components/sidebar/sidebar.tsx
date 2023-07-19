@@ -31,7 +31,7 @@ const Sidebar = () => {
     strokeWidth: '2.2px'
   } )
   return (
-    <div className="bg-neutral0 h-screen w-fit px-6 py-[60px] flex flex-col justify-between">
+    <div className="bg-neutral0 h-full w-fit px-6 py-[60px] flex flex-col justify-between">
       <div className='flex flex-col gap-y-12 items-center w-fit'>
         <div>
           <Link href="/adminHome">
