@@ -6,8 +6,7 @@ import prisma from '@/libs/prismadb'
 import { EMAIL_TYPE } from '@prisma/client'
 
 export async function POST( request: Request ) {
-  // eslint-disable-next-line no-console
-  console.log( 'on' )
+
   const body = await request.json()
   const { firstName, lastName, email, role, password } = body
 
