@@ -7,7 +7,8 @@ import Badge from '../ui/badge'
 import Modal from './dialog'
 import { RESULT, STATE } from '@prisma/client'
 import { useEffect, useState } from 'react'
-interface MatchInformation {
+import RequestMatch from '../requestMatch/requestMatch'
+export interface MatchInformation {
   date: string
   time: string
   state: STATE
@@ -23,10 +24,9 @@ interface ModalJoinWaitListProperties {
   // children: React.ReactNode
   data: MatchInformation
   onClick: ()=>void
-  button: React.ReactNode
 }
 
-function formatString( inputString : string ) {
+export function formatString( inputString : string ) {
   // Sépare les mots par les underscores et met chaque mot en minuscules
   let words = inputString.toLowerCase().split( '_' )
 
@@ -41,7 +41,7 @@ function formatString( inputString : string ) {
   return formattedString
 }
 
-const ModalJoinWaitList : React.FC<ModalJoinWaitListProperties> = ( { data, onClick, button } ) => {
+const ModalJoinWaitList : React.FC<ModalJoinWaitListProperties> = ( { data, onClick } ) => {
 
   const countryLeft = formatString( data.score.countryA )
   const countryRight = formatString( data.score.countryB )
@@ -75,7 +75,7 @@ const ModalJoinWaitList : React.FC<ModalJoinWaitListProperties> = ( { data, onCl
   const imgCountryLeft = getByValue( data.score.countryA )
   const imgCountryRight = getByValue( data.score.countryB )
   return(
-    <Modal action={<button className='w-full'>{button}</button>} title='Hey'>
+    <Modal action={<button className='w-full bg-neutral0 hover:bg-neutral1'><RequestMatch data={data} state={state} stateClass={stateClass}/></button>} title='Wait List'>
       <div className='w-full h-fit flex flex-col gap-8 p-6 sm:p-8'>
         <div className='flex flex-col gap-y-3'>
           <div className='w-full flex justify-between items-center'>
@@ -93,11 +93,15 @@ const ModalJoinWaitList : React.FC<ModalJoinWaitListProperties> = ( { data, onCl
               <Image src={imgCountryLeft?.flag || '/placeholder-image.png'} alt="Flag" width={'28'} height={'28'}/>
               <span className='h6-inter-d text-blue6'>{countryLeft}</span>
             </div>
-            <div className='hidden sm:flex sm:flex-row sm:gap-y-1 sm:items-center'>
-              <span className='h6-barlow-m text-blue6 text-center w-8 h-8 sm:text-right'>{ data.score.scoreA.slice( 0, 1 ) }</span>
-              <span className='h6-barlow-m text-blue6 text-center w-8 h-8 sm:text-center'>-</span>
-              <span className='h6-barlow-m text-blue6 text-center w-8 h-8 sm:text-left'>{ data.score.scoreB.slice( 0, 1 ) }</span>
-            </div>
+            {data.score.scoreA===RESULT.NO_PLAYED || data.score.scoreB===RESULT.NO_PLAYED ?
+              <div className=' sm:flex sm:flex-row sm:gap-y-1 sm:items-center'>
+                <span className='w-[96px] h6-barlow-m text-blue6 text-center h-8 sm:text-center'>VS</span>
+              </div> : <div className='hidden sm:flex sm:flex-row sm:gap-y-1 sm:items-center'>
+                <span className='h6-barlow-m text-blue6 text-center w-8 h-8 sm:text-right'>{ data.score.scoreA.slice( 0, 1 ) }</span>
+                <span className='h6-barlow-m text-blue6 text-center w-8 h-8 sm:text-center'>-</span>
+                <span className='h6-barlow-m text-blue6 text-center w-8 h-8 sm:text-left'>{ data.score.scoreB.slice( 0, 1 ) }</span>
+              </div>}
+
             <div className='h-fit w-full px-4 py-2 gap-x-3 bg-blue1 rounded-md flex flex-row'>
               <Image src={imgCountryRight?.flag || '/placeholder-image.png'} alt="Flag" width={'28'} height={'28'} className='sm:hidden'/>
               <span className='h6-inter-d text-blue6'>{countryRight}</span>
