@@ -15,7 +15,7 @@ const page = async () => {
 
         <div className="lg:w-1/3 lg:self-start">
           <div className="lg:mt-10 sticky top-0">
-            <Filter height={0} /*width={0}*/ />
+            <Filter height={0} width={0}/>
           </div>
         </div>
       </div>
