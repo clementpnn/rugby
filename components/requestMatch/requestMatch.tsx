@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Badge from '@/components/ui/badge'
 import { MatchInformation } from '../modals/modalJoinWaitList'
 import useCountries from '@/hooks/useCountries'
+import { RESULT } from '@prisma/client'
 // import { formatString } from '../modals/modalJoinWaitList'
 interface MatchProperties {
   // variant: 'accepted_light' | 'rejected_light' | 'progress_light' | 'accepted_dark' | 'rejected_dark' | 'progress_dark'

@@ -7,8 +7,9 @@ interface ImageContainerProperties {
 }
 
 const ImageContainer: React.FC<ImageContainerProperties> = ( { image, onClick, tribunes } ) => {
+
   return (
-    <div onClick={onClick} className={`relative ${image === '' ? 'w-60 h-60' : 'w-[560px] h-[560px]' }`}>
+    <div onClick={onClick} className={`relative aspect-square rounded-md overflow-hidden ${image === '' ? 'w-60 h-60' : 'w-[560px] h-[560px]'}`}>
       <Image alt='stadium' fill style={{ objectFit: 'cover' }} src={image === '' ? '/images/placeHolderImage.svg' : image}/>
       {tribunes && tribunes.map( ( tribune, index ) => (
         <div
