@@ -54,8 +54,8 @@ const CreateStadium = () => {
   if ( step === STEPS.ONE ) {
     bodyContent = (
       <div className='flex h-full w-full'>
-        <div className='bg-neutral0 m-6 mr-0 h-[calc(100%-48px)] w-full flex justify-center items-center rounded-md' style={{ boxShadow: '0px 0px 14px rgba(0, 0, 0, 0.1)' }}>
-          <ImageContainer image={stadiumImage} />
+        <div className='bg-neutral0 m-6 mr-0 h-[calc(100%-48px)] w-full flex justify-center items-center rounded-md overflow-hidden' style={{ boxShadow: '0px 0px 14px rgba(0, 0, 0, 0.1)' }} >
+          <ImageContainer image={stadiumImage}/>
         </div>
         <div className='p-10 w-[480px] h-full'>
           <h2 className='h2-barlow-m text-blue6 mb-10'>CREATE STADIUM</h2>
@@ -88,7 +88,7 @@ const CreateStadium = () => {
 
   if ( step === STEPS.TWO ) {
     bodyContent = (
-      <>
+      <div className='flex h-full w-full'>{/* <>
         <ImageContainer
           image={stadiumImage}
           tribunes={tribunes}
@@ -127,7 +127,49 @@ const CreateStadium = () => {
             </Button>
           </form>
         </div>
-      </>
+      </> */}
+      <div className='bg-neutral0 m-6 mr-0 h-[calc(100%-48px)] w-full flex justify-center items-center rounded-md overflow-hidden' style={{ boxShadow: '0px 0px 14px rgba(0, 0, 0, 0.1)' }} >
+        <ImageContainer
+          image={stadiumImage}
+          tribunes={tribunes}
+          onClick={ ( event ) => {
+            const pointSize = 30
+            const point = calculatePoint( event, pointSize )
+            setStadiumPoint( point )
+            setStep( step + 1 as STEPS )
+          }}
+        />
+      </div>
+      <div className='p-10 w-[480px] h-full'>
+        <h2 className='h2-barlow-m text-blue6 mb-10'>SECTIONS PLACE</h2>
+        <Button>+</Button>
+        {tribunes.map( ( tribune, index ) => (
+          <div key={index} className='relative group'>
+            <div className='flex p-8 justify-around border border-spacing-2 m-8'>
+              <p> Index : {index + 1}</p>
+              <p>Name : {tribune.name}</p>
+              <p>Type : {tribune.type}</p>
+              <p>Number of places : {tribune.places.toString()}</p>
+            </div>
+            <button className="absolute top-0 right-8 w-6 h-6 rounded-full bg-red-500 text-white transform translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 cursor-pointer" onClick={() => setTribunes( tribunes.filter( ( _, itemIndex ) => itemIndex !== index ) )}>
+                X
+            </button>
+          </div>
+        ) )}
+        <form onSubmit={handleSubmit( onSubmit )}>
+          <Button type='button' variant='outline' size='md' onClick={() => {
+            setStep( step - 1 as STEPS )
+            setStadiumImage( '' )
+            setTribunes( [] )
+          }}>
+              Cancel
+          </Button>
+          <Button disabled={isLoading} type='submit' variant='primary' size='md'>
+              Valider
+          </Button>
+        </form>
+      </div>
+      </div>
     )
   }
 

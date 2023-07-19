@@ -22,7 +22,7 @@ type FilterProperties = {
   width: number
 }
 
-const Filter: React.FC<FilterProperties> = ( { /* height,*/ /* width */ } ) => {
+
   const [ activeTab, setActiveTab ] = useState( 'pools' )
   const [ activePool, setActivePool ] = useState( '' )
 
@@ -158,23 +158,6 @@ const Filter: React.FC<FilterProperties> = ( { /* height,*/ /* width */ } ) => {
           Knock-out
         </Button>
       </div>
-      <div className='flex-grow'>
-        {activeTab === 'pools' && (
-          <>
-            <h5 className='text-blue6 h5-barlow-m pb-2 pt-3 pl-7'>FILTER</h5>
-            <div className='flex flex-col pb-3'>
-              {[ 'A', 'B', 'C', 'D' ].map( ( poolId ) => (
-                <div key={poolId} className='border-l-2 border-r-2 border-t-2 p-2 pl-7'>
-                  <div
-                    className={`flex items-center space-x-2 cursor-pointer ${
-                      poolId === activePool ? 'text-blue6' : 'text-blue6'
-                    }`}
-                    onClick={() => handleClickPool( poolId )}
-                  >
-                    <div className='h2-barlow-m pr-3'>{poolId}</div>
-                    <div className={`h2-barlow-m ${poolId === activePool ? 'text-blue9' : 'text-blue9'}`}>
-                      POOL
-                    </div>
                   </div>
                   {poolId === activePool && (
                     <div /*className=''*/>
