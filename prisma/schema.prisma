@@ -34,13 +34,12 @@ model SentEmail {
   type        EMAIL_TYPE
   userId      String    @db.ObjectId
   createdAt   DateTime  @default(now())
-  resetToken  String?
+  resetToken  String?   @unique
   mfaToken    String?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([userId, resetToken])
-  @@unique([userId, mfaToken])
 }
 
 model Tribune {
