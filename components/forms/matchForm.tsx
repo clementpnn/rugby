@@ -7,17 +7,19 @@ import { toast } from 'react-hot-toast'
 import Image from 'next/image'
 import Button from '../buttons/button'
 import Input from '../inputs/input'
-
 import Select from '../inputs/select'
 import { MatchUpdateSchema } from '@/types/forms'
 import Container from '../containers/container'
 import { Match, MatchTeam } from '@prisma/client'
+import { useRouter } from 'next/navigation'
+
 interface MatchFormProperties {
     match: ( Match & { matchTeams: MatchTeam[] } )
 }
 
 const MatchForm: React.FC<MatchFormProperties> = ( { match } ) => {
   const [ isLoading, setIsloading ] = useState( false )
+  const router = useRouter()
 
   const { handleSubmit, control, setValue, formState: { errors } } = useForm( {
     resolver: zodResolver( MatchUpdateSchema ),
@@ -37,13 +39,16 @@ const MatchForm: React.FC<MatchFormProperties> = ( { match } ) => {
   const onSubmit: SubmitHandler<any> = async ( data ) => {
     setIsloading( true )
 
-    await fetch( '/api/sendReset', {
-      method: 'POST',
+    await fetch( '/api/match', {
+      method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify( data )
+      body: JSON.stringify( { matchId: match?.id, ...data } )
     } )
       .then( ( callback ) => {
-        if ( callback.status === 200 ) { toast.success( `${callback.statusText}` ) }
+        if ( callback.status === 200 ) {
+          toast.success( `${callback.statusText}` )
+          router.refresh()
+        }
         if ( callback.status !== 200 ) { toast.error( `${callback.statusText}` ) }
       } )
 
