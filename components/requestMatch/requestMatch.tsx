@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Badge from '@/components/ui/badge'
 import { matchData } from '@/app/table/match'
 
-function RequestMatch( { variant, size, label } ) {
+function RequestMatch( { variant, size, label }: { variant: string, size: string, label: string } ) {
 
   return (
     <div className="flex justify-center">
