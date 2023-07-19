@@ -136,13 +136,15 @@ const CreateStadium = () => {
             const pointSize = 30
             const point = calculatePoint( event, pointSize )
             setStadiumPoint( point )
-            setStep( step + 1 as STEPS )
+            // eslint-disable-next-line no-console
+            console.log( true )
+            // setStep( step + 1 as STEPS )
           }}
         />
       </div>
       <div className='p-10 w-[480px] h-full'>
         <h2 className='h2-barlow-m text-blue6 mb-10'>SECTIONS PLACE</h2>
-        <Button>+</Button>
+        <Button onClick={()=>setStep( step + 1 as STEPS )}>+</Button>
         {tribunes.map( ( tribune, index ) => (
           <div key={index} className='relative group'>
             <div className='flex p-8 justify-around border border-spacing-2 m-8'>
