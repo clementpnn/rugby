@@ -4,7 +4,12 @@ import Image from 'next/image'
 import Badge from '@/components/ui/badge'
 import { matchData } from '@/app/table/match'
 
-function RequestMatch( { variant, size, label }: { variant: string, size: string, label: string } ) {
+interface MatchProperties {
+  variant: 'accepted_light' | 'rejected_light' | 'progress_light' | 'accepted_dark' | 'rejected_dark' | 'progress_dark'
+  label: string
+}
+
+function RequestMatch( { variant, label }) {
 
   return (
     <div className="flex justify-center">
@@ -48,7 +53,7 @@ function RequestMatch( { variant, size, label }: { variant: string, size: string
           </div>
         </div>
         <div className="flex flex-row w-[180px] h-9 justify-end items-center md:mr-0 mr-4 md:mt-0 mt-3 right-0 absolute md:relative">
-          <Badge variant={variant} size={size}>{ label }</Badge>
+          <Badge variant={variant} size="md">{ label }</Badge>
         </div>
       </div>
     </div>
