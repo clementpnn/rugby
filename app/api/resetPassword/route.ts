@@ -12,7 +12,7 @@ export async function POST( request: Request ) {
   }
 
   const token = await prisma.sentEmail.findUnique( {
-    where: { userId_resetToken: { userId: user.id, resetToken } }
+    where: { resetToken }
   } )
 
   if ( !token ) {

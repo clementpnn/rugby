@@ -19,10 +19,12 @@ type Team = {
 
 type FilterProperties = {
   height: number
-  //width: number
+  width: number
 }
 
-const Filter: React.FC<FilterProperties> = ( { height /* width*/ } ) => {
+// à supprimer
+// eslint-disable-next-line no-unused-vars
+const Filter: React.FC<FilterProperties> = ( { height, width } ) => {
   const [ activeTab, setActiveTab ] = useState( 'pools' )
   const [ activePool, setActivePool ] = useState( '' )
 
