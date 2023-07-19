@@ -1,20 +1,23 @@
+/* eslint-disable react/no-string-refs */
 'use client'
 
 import * as React from 'react'
 import Button from '../buttons/button'
 import { useState } from 'react'
+import { useAutoAnimate } from '@formkit/auto-animate/react'
+import { formatString } from '../modals/modalJoinWaitList'
 import Image from 'next/image'
-
-// type Pool = {
-//   id: string
-//   name: string
-//   teams: Team[]
-// }
+import useCountries from '@/hooks/useCountries'
 
 type Team = {
-  id: string
-  name: string
-  image: string
+  team: string
+  selected: boolean
+}
+
+type Pool = {
+  poolName: string
+  selected: boolean
+  teams: Team[]
 }
 
 type FilterProperties = {
@@ -23,177 +26,203 @@ type FilterProperties = {
 }
 
 const Filter: React.FC<FilterProperties> = ( { /* height,*/ /* width */ } ) => {
+  const { getByValue } = useCountries()
+  const [ parent ] = useAutoAnimate()
   const [ activeTab, setActiveTab ] = useState( 'pools' )
-  const [ activePool, setActivePool ] = useState( '' )
+  const [ pools, setPools ] = useState<Pool[]>( [
+    {
+      poolName: 'A',
+      selected: false,
+      teams: [
+        {
+          team: 'NEW_ZEALAND',
+          selected: true
+        },
+        {
+          team: 'FRANCE',
+          selected: true
+        },
+        {
+          team: 'ITALY',
+          selected: true
+        },
+        {
+          team: 'URUGUAY',
+          selected: true
+        },
+        {
+          team: 'NAMIBIA',
+          selected: true
+        }
+      ]
+    },
+    {
+      poolName: 'B',
+      selected: false,
+      teams: [
+        {
+          team: 'SOUTH_AFRICA',
+          selected: true
+        },
+        {
+          team: 'IRELAND',
+          selected: true
+        },
+        {
+          team: 'SCOTLAND',
+          selected: true
+        },
+        {
+          team: 'TONGUA',
+          selected: true
+        },
+        {
+          team: 'ROMANIA',
+          selected: true
+        }
+      ]
+    },
+    {
+      poolName: 'C',
+      selected: false,
+      teams: [
+        {
+          team: 'WALES',
+          selected: true
+        },
+        {
+          team: 'AUSTRALIA',
+          selected: true
+        },
+        {
+          team: 'FIJI',
+          selected: true
+        },
+        {
+          team: 'GEORGIA',
+          selected: true
+        },
+        {
+          team: 'PORTUGAL',
+          selected: true
+        }
+      ]
+    },
+    {
+      poolName: 'D',
+      selected: false,
+      teams: [
+        {
+          team: 'ENGLAND',
+          selected: true
+        },
+        {
+          team: 'JAPAN',
+          selected: true
+        },
+        {
+          team: 'ARGENTINA',
+          selected: true
+        },
+        {
+          team: 'SAMOA',
+          selected: true
+        },
+        {
+          team: 'CHILE',
+          selected: true
+        }
+      ]
+    }
+  ] )
 
   const handleClickTab = ( tab: string ) => {
     setActiveTab( tab )
-    setActivePool( '' )
   }
 
-  const handleClickPool = ( poolId: string ) => {
-    setActivePool( poolId === activePool ? '' : poolId )
+  const handlePoolClick = ( index: number ) => {
+    const updatedPools = pools.map( ( pool, index_ ) => ( {
+      ...pool,
+      selected: index_ === index ? !pool.selected : pool.selected
+    } ) )
+    setPools( updatedPools )
   }
 
-  const generateTeams = ( poolId: string ): Team[] => {
-    switch ( poolId ) {
-    case 'A': {
-      return [
-        { id: 'A1',
-          name: 'Team A1',
-          image: 'https://via.placeholder.com/28x28' },
-
-        { id: 'A2',
-          name: 'Team A2',
-          image: 'https://via.placeholder.com/28x28' },
-
-        { id: 'A3',
-          name: 'Team A3',
-          image: 'https://via.placeholder.com/28x28' },
-
-        { id: 'A4',
-          name: 'Team A4',
-          image: 'https://via.placeholder.com/28x28' },
-
-        { id: 'A5',
-          name: 'Team A5',
-          image: 'https://via.placeholder.com/28x28' }
-      ]
-    }
-    case 'B': {
-      return [
-        { id: 'B1',
-          name: 'Team B1',
-          image: 'https://via.placeholder.com/28x28' },
-
-        { id: 'B2',
-          name: 'Team B2',
-          image: 'https://via.placeholder.com/28x28' },
-
-        { id: 'B3',
-          name: 'Team B3',
-          image: 'https://via.placeholder.com/28x28' },
-
-        { id: 'B4',
-          name: 'Team B4',
-          image: 'https://via.placeholder.com/28x28' },
-
-        { id: 'B5',
-          name: 'Team B5',
-          image: 'https://via.placeholder.com/28x28' }
-      ]
-    }
-    case 'C': {
-      return [
-        { id: 'C1',
-          name: 'Team C1',
-          image: 'https://via.placeholder.com/28x28' },
-
-        { id: 'C2',
-          name: 'Team C2',
-          image: 'https://via.placeholder.com/28x28' },
-
-        { id: 'C3',
-          name: 'Team C3',
-          image: 'https://via.placeholder.com/28x28' },
-
-        { id: 'C4',
-          name: 'Team C4',
-          image: 'https://via.placeholder.com/28x28' },
-
-        { id: 'C5',
-          name: 'Team C5',
-          image: 'https://via.placeholder.com/28x28' }
-      ]
-    }
-    case 'D': {
-      return [
-        { id: 'D1',
-          name: 'Team D1',
-          image: 'https://via.placeholder.com/28x28' },
-
-        { id: 'D2',
-          name: 'Team D2',
-          image: 'https://via.placeholder.com/28x28' },
-
-        { id: 'D3',
-          name: 'Team D3',
-          image: 'https://via.placeholder.com/28x28' },
-
-        { id: 'D4',
-          name: 'Team D4',
-          image: 'https://via.placeholder.com/28x28' },
-
-        { id: 'D5',
-          name: 'Team D5',
-          image: 'https://via.placeholder.com/28x28' }
-      ]
-    }
-    default: {
-      return []
-    }
-    }
+  const handleTeamClick = ( poolIndex: number, teamIndex: number ) => {
+    const updatedPools = pools.map( ( pool, index ) => {
+      if ( index === poolIndex ) {
+        const updatedTeams = pool.teams.map( ( team, tIndex ) => {
+          if ( tIndex === teamIndex ) {
+            return { ...team, selected: !team.selected }
+          }
+          return team
+        } )
+        return { ...pool, teams: updatedTeams }
+      }
+      return pool
+    } )
+    setPools( updatedPools )
   }
 
   return (
-    <div className='filter-container flex flex-col h-screen overflow-y-auto'>
+    <div className='bg-neutral0 w-full h-full filter-container flex flex-col'>
       <h1 className='text-blue6 h2-barlow-m sm:h1-barlow-m pb-2 pt-14 pl-7'>PLANNING</h1>
       <div className='flex space-x-3 pb-12 pt-12 pl-7'>
         <Button
-          size={'lg'}
-          className={`h-12 w-40 border-2 ${
-            activeTab === 'pools' ? 'bg-blue6 text-neutral0' : 'bg-neutral0 text-blue6'
-          }`}
+          size='lg'
+          variant={`${activeTab === 'pools' ? 'primary' : 'outline'}`}
+          className='w-[150px]'
           onClick={() => handleClickTab( 'pools' )}
         >
           Pools
         </Button>
         <Button
-          size={'lg'}
-          className={`h-12 w-40 border-2 ${
-            activeTab === 'knock-out' ? 'bg-blue6 text-neutral0' : 'bg-neutral0 text-blue6'
-          }`}
+          size='lg'
+          variant={`${activeTab === 'knock-out' ? 'primary' : 'outline'}`}
+          className='w-[150px]'
           onClick={() => handleClickTab( 'knock-out' )}
         >
           Knock-out
         </Button>
       </div>
-      <div className='flex-grow'>
+      <h5 className='text-blue6 h5-barlow-m pb-2 pt-3 pl-7 border-b-[1px]'>FILTER</h5>
+      <div className='w-full h-full max-h-[calc(100vh-57px-150px-136px-101px)] overflow-auto scroll-smooth no-scrollbar'>
         {activeTab === 'pools' && (
           <>
-            <h5 className='text-blue6 h5-barlow-m pb-2 pt-3 pl-7'>FILTER</h5>
-            <div className='flex flex-col pb-3'>
-              {[ 'A', 'B', 'C', 'D' ].map( ( poolId ) => (
-                <div key={poolId} className='border-l-2 border-r-2 border-t-2 p-2 pl-7'>
-                  <div
-                    className={`flex items-center space-x-2 cursor-pointer ${
-                      poolId === activePool ? 'text-blue6' : 'text-blue6'
-                    }`}
-                    onClick={() => handleClickPool( poolId )}
-                  >
-                    <div className='h2-barlow-m pr-3'>{poolId}</div>
-                    <div className={`h2-barlow-m ${poolId === activePool ? 'text-blue9' : 'text-blue9'}`}>
-                      POOL
+            <div ref={parent} className='flex flex-col divide-y divide-neutral3 bg-neutral0 h-fit'>
+              {pools.map( ( pool : Pool, index: number ) => (
+                <>
+                  <div key={index} className={`flex items-center cursor-pointer p-5 pl-7 bg-neutral0 hover:bg-neutral1 ${pool.selected === false && 'opacity-30 py-3'}`} onClick={() => handlePoolClick( index )}>
+                    <div className='h2-barlow-m w-10 text-blue6'>{pool.poolName}</div>
+                    <div className='h4-barlow-m text-blue9'>
+                    POOL
                     </div>
                   </div>
-                  {poolId === activePool && (
-                    <div /*className=''*/>
-                      {generateTeams( poolId ).map( ( team ) => (
-                        <div key={team.id} className='border-t-2 p-5 flex items-center space-x-2 pt-5'>
-                          {/*<img/>*/}<Image src={team.image} alt='team logo' className='h-7 w-7 rounded-full' />
-                          <div className='h6-lato-d'>{team.name}</div>
+                  {pool.selected === true && (
+                    <div className='divide-y divide-neutral3 cursor-pointer'>
+                      { pool.teams.map( ( team: Team, teamIndex: number ) => (
+                        <div key={teamIndex} className={`pl-7 flex bg-neutral1 gap-x-3 p-5 hover:bg-neutral2 ${team.selected===false && 'opacity-30'}`} onClick={() => handleTeamClick( index, teamIndex )}>
+                          <Image
+                            src= {getByValue( team.team )?.flag || '/placeholder-image.png'}
+                            width={28}
+                            height={28}
+                            alt="flag"
+                          />
+                          <span className='h5-inter-m text-blue9'>{formatString( team.team )}</span>
                         </div>
-                      ) )}
+                      ) ) }
                     </div>
+
                   )}
-                </div>
+                </>
+
               ) )}
             </div>
+
           </>
         )}
         {activeTab === 'knock-out' && (
           <>
-            <h5 className='text-blue6 h5-barlow-m pb-2 pt-3 pl-7'>FILTER</h5>
             <div className='flex flex-col pb-2 pt-2'>
               <div className='border-l-2 border-r-2 border-t-2 p-2 pl-7'>
                 <div className='flex items-center space-x-2'>
@@ -218,6 +247,7 @@ const Filter: React.FC<FilterProperties> = ( { /* height,*/ /* width */ } ) => {
         )}
       </div>
     </div>
+
   )
 }
 
