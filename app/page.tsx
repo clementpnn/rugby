@@ -1,9 +1,8 @@
-import Pool from '@/components/poule/Pool'
-
-export default async function Home() {
-  return (
+import Pool from "@/components/pools/pool"
+import { poulesData } from "./table/poulelayout"
+export default async function Home(){
+  return(
     <div>
-      <Pool pouleName='B' flag1='FRANCE' flag2='JAPAN' flag3='IRELAND' flag4='NEW_ZEALAND' flag5='AUSTRALIA'/>
+      <Pool data={poulesData[0]}/>
     </div>
-  )
-}
+  )}
