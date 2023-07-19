@@ -2,7 +2,7 @@ import Image from 'next/image'
 import * as React from 'react'
 import useCountries from '@/hooks/useCountries'
 import { Poules } from '@/app/table/poulelayout'
-import getTeams from '@/actions/getTeams'
+// import getTeams from '@/actions/getTeams'
 
 interface PouleProperties{
   data: Poules
