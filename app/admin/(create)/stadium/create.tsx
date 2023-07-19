@@ -141,7 +141,8 @@ const CreateStadium = () => {
         />
       </div>
       <div className='p-10 w-[480px] h-full'>
-        <h2 className='h2-barlow-m text-blue6 mb-10'>PLACE SECTIONS</h2>
+        <h2 className='h2-barlow-m text-blue6 mb-10'>SECTIONS PLACE</h2>
+        <Button>+</Button>
         {tribunes.map( ( tribune, index ) => (
           <div key={index} className='relative group'>
             <div className='flex p-8 justify-around border border-spacing-2 m-8'>
