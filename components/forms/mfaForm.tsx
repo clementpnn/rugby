@@ -23,14 +23,14 @@ const MFAForm = () => {
     mode: 'onChange'
   } )
 
-  const handleInputChange = ( currentInputName: string, nextInputName: string ) => ( event: { target: { value: any } } ) => {
-    const currentValue = event.target.value
+  // const handleInputChange = ( currentInputName: string, nextInputName: string ) => ( event: { target: { value: any } } ) => {
+  //   const currentValue = event.target.value
 
-    if ( currentValue !== '' ) {
-      const nextInput = document.querySelector( `#${nextInputName}` ) as HTMLInputElement | null
-      nextInput?.focus()
-    }
-  }
+  //   if ( currentValue !== '' ) {
+  //     const nextInput = document.querySelector( `#${nextInputName}` ) as HTMLInputElement | null
+  //     nextInput?.focus()
+  //   }
+  // }
 
   const onSubmit: SubmitHandler<any> = async ( data ) => {
     setIsloading( true )
@@ -52,8 +52,6 @@ const MFAForm = () => {
               }
             }
           } )
-        toast.success( 'Sign In' )
-        router.refresh()
       } )
     setIsloading( false )
   }
@@ -78,11 +76,11 @@ const MFAForm = () => {
             <p className='text-neutral11 base-md mb-6'>Pick it up to log in.</p>
             <span className='text-neutral5 label-md'>Code</span>
             <div className='flex flex-row gap-x-2 mb-10'>
-              <Controller name="numberOne" control={control} render={( { field } ) => <Input id='numberOne' type='number' className='h-[60px]' {...field} errors={errors} variant='code' disabled={isLoading} style={{ appearance: 'none', WebkitAppearance: 'none', MozAppearance: 'textfield' }} onChange={handleInputChange( 'numberOne', 'numberTwo' )}/>}/>
-              <Controller name="numberTwo" control={control} render={( { field } ) => <Input id='numberTwo' type='number' className='h-[60px]' {...field} errors={errors} variant='code' disabled={isLoading} style={{ appearance: 'none', WebkitAppearance: 'none', MozAppearance: 'textfield' }} onChange={handleInputChange( 'numberTwo', 'numberThree' )}/>} />
-              <Controller name="numberThree" control={control} render={( { field } ) => <Input id='numberThree' type='number' className='h-[60px]' {...field} errors={errors} variant='code' disabled={isLoading} style={{ appearance: 'none', WebkitAppearance: 'none', MozAppearance: 'textfield' }} onChange={handleInputChange( 'numberThree', 'numberFour' )}/>} />
-              <Controller name="numberFour" control={control} render={( { field } ) => <Input id='numberFour' type='number' className='h-[60px]' {...field} errors={errors} variant='code' disabled={isLoading} style={{ appearance: 'none', WebkitAppearance: 'none', MozAppearance: 'textfield' }} onChange={handleInputChange( 'numberFour', 'numberFive' )}/>} />
-              <Controller name="numberFive" control={control} render={( { field } ) => <Input id='numberFive' type='number' className='h-[60px]' {...field} errors={errors} variant='code' disabled={isLoading} style={{ appearance: 'none', WebkitAppearance: 'none', MozAppearance: 'textfield' }} onChange={handleInputChange( 'numberFive', 'numberSix' )}/>} />
+              <Controller name="numberOne" control={control} render={( { field } ) => <Input id='numberOne' type='number' className='h-[60px]' {...field} errors={errors} variant='code' disabled={isLoading} style={{ appearance: 'none', WebkitAppearance: 'none', MozAppearance: 'textfield' }} maxLength={1} />}/>
+              <Controller name="numberTwo" control={control} render={( { field } ) => <Input id='numberTwo' type='number' className='h-[60px]' {...field} errors={errors} variant='code' disabled={isLoading} style={{ appearance: 'none', WebkitAppearance: 'none', MozAppearance: 'textfield' }} maxLength={1} />} />
+              <Controller name="numberThree" control={control} render={( { field } ) => <Input id='numberThree' type='number' className='h-[60px]' {...field} errors={errors} variant='code' disabled={isLoading} style={{ appearance: 'none', WebkitAppearance: 'none', MozAppearance: 'textfield' }} maxLength={1} />} />
+              <Controller name="numberFour" control={control} render={( { field } ) => <Input id='numberFour' type='number' className='h-[60px]' {...field} errors={errors} variant='code' disabled={isLoading} style={{ appearance: 'none', WebkitAppearance: 'none', MozAppearance: 'textfield' }} maxLength={1} />} />
+              <Controller name="numberFive" control={control} render={( { field } ) => <Input id='numberFive' type='number' className='h-[60px]' {...field} errors={errors} variant='code' disabled={isLoading} style={{ appearance: 'none', WebkitAppearance: 'none', MozAppearance: 'textfield' }} maxLength={1} />} />
               <Controller name="numberSix" control={control} render={( { field } ) => <Input id='numberSix' type='number' className='h-[60px]' {...field} errors={errors} variant='code' disabled={isLoading} style={{ appearance: 'none', WebkitAppearance: 'none', MozAppearance: 'textfield' }} maxLength={1} />} />
             </div>
             <Button disabled={isLoading} type='submit' variant='primary' size='lg' className='w-full'>

@@ -3,8 +3,11 @@ import bcrypt from 'bcrypt'
 import nodemailer from 'nodemailer'
 
 import prisma from '@/libs/prismadb'
+import { EMAIL_TYPE } from '@prisma/client'
 
 export async function POST( request: Request ) {
+  // eslint-disable-next-line no-console
+  console.log( 'on' )
   const body = await request.json()
   const { firstName, lastName, email, role, password } = body
 
@@ -29,7 +32,7 @@ export async function POST( request: Request ) {
   const mfaToken = Math.floor( 100_000 + Math.random() * 900_000 ).toString()
 
   await prisma.sentEmail.create( {
-    data: { userId: user.id, type: 'MFA', mfaToken }
+    data: { userId: user.id, type: EMAIL_TYPE.MFA, mfaToken }
   } )
 
   const transporter = nodemailer.createTransport( {
