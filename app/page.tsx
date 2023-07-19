@@ -1,5 +1,5 @@
-import Pool from "@/components/pools/pool"
-import { poulesData } from "./table/poulelayout"
+import Pool from '@/components/pools/pool'
+import { poulesData } from './table/poulelayout'
 export default async function Home(){
   return(
     <div>
