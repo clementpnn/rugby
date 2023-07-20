@@ -29,6 +29,7 @@ interface Teams {
 }
 
 export interface Match{
+  [x: string]: any
   id: string
   date: string
   time: string

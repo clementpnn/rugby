@@ -21,7 +21,7 @@ const RequestMatch: React.FC<MatchProperties> = ( { data, stateClass, state, tim
   const imgCountryLeft = getByValue( data.matchTeams[0].team )
   const imgCountryRight = getByValue( data.matchTeams[1].team )
   return (
-    <div className={`flex justify-between flex-col md:flex-row items-start md:items-center border-y-[0.5px] w-full h-fit px-5 md:px-20 py-6 ${data.matchTeams[0].result!==RESULT.NO_PLAYED || data.matchTeams[1].result!==RESULT.NO_PLAYED ? 'opacity-40' : ''}`}>
+    <div className={`flex justify-between flex-col md:flex-row items-start md:items-center w-full h-fit px-5 md:px-20 py-6 ${data.matchTeams[0].result!==RESULT.NO_PLAYED || data.matchTeams[1].result!==RESULT.NO_PLAYED ? 'opacity-40' : ''}`}>
       <div className="w-[280px] flex flex-col items-start gap-y-2">
         <div className="md:h4-barlow-m h5-barlow-m text-blue6">{ time }</div>
         <div className="label-sm text-blue6">{ data.stadiumName }</div>

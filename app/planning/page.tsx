@@ -1,59 +1,61 @@
 /* eslint-disable unicorn/no-await-expression-member */
 import getCurrentUser from '@/actions/getCurrentUser'
 import { getMatchsInfoByUser } from '@/actions/getMatch'
-// import Empty from '@/components/containers/empty'
-// import Filter from '@/components/filter/filter'
-// import Navbar from '@/components/navbar/navbar'
-import ModalJoinWaitList from '@/components/modals/modalJoinWaitList'
-
-const groupAndSortItemsByDate = ( items ) => {
-  // Créer un objet de type dictionnaire pour regrouper les éléments par date
-  const groupedItems = {}
-  for ( const item of items ) {
-    const itemDate = item.date
-    if ( !groupedItems[itemDate] ) {
-      groupedItems[itemDate] = []
-    }
-    groupedItems[itemDate].push( item )
-  }
-
-  // Trier les dates dans l'ordre du plus récent au moins récent
-  const sortedDates = Object.keys( groupedItems ).sort( ( a, b ) => new Date( b ) - new Date( a ) )
-
-  // Renvoyer les éléments triés par date
-  return sortedDates.map( ( date ) => ( {
-    date,
-    items: groupedItems[date]
-  } ) )
-}
+// import Container from '@/components/containers/container'
+import Filter from '@/components/filter/filter'
+import Navbar from '@/components/navbar/navbar'
+// import ModalJoinWaitList, { Match } from '@/components/modals/modalJoinWaitList'
+import { Match } from '@/components/modals/modalJoinWaitList'
+import ListMatch from '@/components/listMatch/listMatch'
 
 const page = async () => {
   const currentUser = await getCurrentUser()
   const matchs = await getMatchsInfoByUser( { userId : currentUser?.id || '' } ) || []
-  // if( !matchs ){
-  //   return (
-  //     <p>not match</p>
-  //   )
-  // }
+
+  const matchsByDate : { [date: string]: Match[] } = {}
+
+  for ( const match of matchs ) {
+    const matchDate = new Date( ( await match ).date ).toDateString() // Convert the date to a text format to serve as a key
+    if ( !matchsByDate[matchDate] ) {
+      matchsByDate[matchDate] = []
+    }
+    matchsByDate[matchDate].push( await match )
+  }
+
   return (
     <div className="flex flex-col h-screen">
-      {/* <Navbar />
-      <div className="grid grid-cols-3 h-[calc(100%-101px)]">
-        <div className="col-span-2 w-full h-full flex-1 border-r-[1px] lg:border-r-1">
-          <Empty />
+      <Navbar />
+      <div className="grid grid-cols-10 h-[calc(100%-101px)]">
+        <div className="col-span-7 w-full h-full flex-1 border-r-[1px] max-h-[calc(100vh-101px)] overflow-auto scroll-smooth no-scrollbar">
+          {/* <Empty /> */}
+          {/* {Object.entries( matchsByDate ).map( ( [ date, matches ] ) => (
+            <div key={date}>
+              <Container>
+                <h2 className='pt-12 pb-4 label-lg text-blue9'>Date: {date}</h2>
+              </Container>
+              <div className='border-y-[1px] border-neutral3 divide-y divide-neutral3'>
+                {matches.map( ( match ) => (
+                  <div key={match.id}>
+                    <ModalJoinWaitList data={match} />
+                  </div>
+                ) )}
+              </div>
+            </div>
+          ) )} */}
+          <ListMatch matchs={matchsByDate}></ListMatch>
         </div>
-        <div className="w-full h-full col-span-1">
+        <div className="w-full h-full col-span-3">
           <Filter height={0} width={0}/>
         </div>
-      </div> */}
-      { matchs?.map( async ( items ) => {
+      </div>
+      {/* { matchs?.map( async ( items ) => {
         return(
           <div key={( await items ).id}>
-            <ModalJoinWaitList data={( await items )} />
-            {/* <p className='text-red-500'>{( await items ).userDemandStatus}</p>
+            <ModalJoinWaitList data={( await items )} /> */}
+      {/* <p className='text-red-500'>{( await items ).userDemandStatus}</p>
             { ( await items ).matchTeams?.map( ( match ) => (
               <div key={match.id}>{match.result}</div> ) ) } */}
-            {/* <p>{( await items ).date}</p>
+      {/* <p>{( await items ).date}</p>
             <p>{( await items ).id}</p>
             <p className='text-red-500'>{( await items ).userDemandStatus}</p>
             { ( await items ).matchTeams?.map( ( match ) => (
@@ -62,9 +64,9 @@ const page = async () => {
             <p>{( await items ).phase}</p>
             <p>{( await items ).stadiumName}</p>
             <p>{( await items ).time}</p> */}
-          </div>
+      {/* </div>
         )
-      } ) }
+      } ) } */}
     </div>
   )
 }
