@@ -53,7 +53,7 @@ export async function getMatchsInfoByUser( parameters: IUser ) {
     const userDemand = matchItem.demands.find( demand => demand.user?.id === userId )
     return {
       ...matchItem,
-      userDemandStatus: userDemand ? userDemand.state : undefined
+      userDemandStatus: userDemand ? userDemand.state : 'NOT_DEMANDED'
     }
   } )
 }
