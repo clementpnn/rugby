@@ -1,8 +1,10 @@
+/* eslint-disable unicorn/no-await-expression-member */
 import getCurrentUser from '@/actions/getCurrentUser'
 import { getMatchsInfoByUser } from '@/actions/getMatch'
 // import Empty from '@/components/containers/empty'
 // import Filter from '@/components/filter/filter'
 // import Navbar from '@/components/navbar/navbar'
+import ModalJoinWaitList from '@/components/modals/modalJoinWaitList'
 
 const page = async () => {
   const currentUser = await getCurrentUser()
@@ -23,18 +25,10 @@ const page = async () => {
           <Filter height={0} width={0}/>
         </div>
       </div> */}
-      { matchs?.map( ( items ) => {
+      { matchs?.map( async ( items ) => {
         return(
-          <div key={items.matchItem.id} className='pt-3'>
-            <p>{items.date}</p>
-            <p>{items.id}</p>
-            <p className='text-red-500'>{items.userDemandStatus}</p>
-            { items.matchTeams?.map( ( match ) => (
-              <div key={match.id}>{match.team} {match.result}</div>
-            ) ) }
-            <p>{items.phase}</p>
-            <p>{items.stadiumId}</p>
-            <p>{items.time}</p>
+          <div key={( await items ).id} className='pt-3'>
+            <ModalJoinWaitList data={( await items )} />
           </div>
         )
       } ) }
