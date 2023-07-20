@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 'use client'
 
 import Container from '../containers/container'
@@ -16,13 +17,18 @@ interface ListMatchProperties {
 const ListMatch : React.FC<ListMatchProperties> = ( { matchs } ) => {
   const { pools } = useFilterStore()
   const selectedPoolNames = pools.filter( ( pool ) => pool.selected ).map( ( pool ) => pool.poolName )
+  const reformSelectedPoolNames = selectedPoolNames.map( ( item ) => 'POOL_' + item )
 
-  if ( selectedPoolNames.length === 0 ) {
+  if ( reformSelectedPoolNames.length === 0 ) {
     return <Empty />
   }
+  let selectedMatchs
   // eslint-disable-next-line no-console
-  console.log( matchs )
+  Object.entries( matchs ).map( ( matchsOfData ) => (
+    // match[1].filter( team => selectedPoolNames.includes( match[1].phase ) )
+    selectedMatchs =matchsOfData[1].filter( ( match ) => ( reformSelectedPoolNames.includes( match.phase ) ) ) ) )
 
+  console.log( selectedMatchs )
   return (
     <>
       {Object.entries( matchs ).map( ( [ date, matches ] ) => (
