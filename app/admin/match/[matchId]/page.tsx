@@ -36,7 +36,7 @@ const page = async ( { params }: {params: IParameters} ) => {
           </div>
         )
       } ) }
-      <DataTable columns={columns} data={match.demands}/>
+      <DataTable columns={columns} data={match.demands} statusButton={false}/>
     </>
   )
 }
