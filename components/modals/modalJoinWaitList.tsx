@@ -29,7 +29,6 @@ interface Teams {
 }
 
 export interface Match{
-  [x: string]: any
   id: string
   date: string
   time: string
@@ -40,43 +39,34 @@ export interface Match{
 }
 
 interface ModalJoinWaitListProperties {
-  // children: React.ReactNode
-  // data: MatchInformation
   data: Match
   onClick?: ()=>void
 }
 
 export function formatString( inputString : string ) {
-  // Sépare les mots par les underscores et met chaque mot en minuscules
   let words = inputString.toLowerCase().split( '_' )
 
-  // Capitalise chaque mot
   for ( let index = 0; index < words.length; index++ ) {
     words[index] = words[index].charAt( 0 ).toUpperCase() + words[index].slice( 1 )
   }
 
-  // Rejoindre les mots pour former la chaîne finale
   let formattedString = words.join( ' ' )
 
   return formattedString
 }
 
 const convertDateToEnglish = ( dateString : string ) => {
-  // Diviser la chaîne en jour, mois et année
   const [ day, month, year ] = dateString.split( '-' )
 
-  // Obtenir le mois en anglais
   const monthsInEnglish = [
     'January', 'February', 'March', 'April', 'May', 'June',
     'July', 'August', 'September', 'October', 'November', 'December'
   ]
   const monthInEnglish = monthsInEnglish[Number.parseInt( month ) - 1]
 
-  // Si l'année est fournie sous forme de deux chiffres, convertir en année complète
   const currentYear = new Date().getFullYear()
   const fullYear = currentYear - ( currentYear % 100 ) + Number.parseInt( year )
 
-  // Construire la date en anglais
   const dateInEnglish = `${monthInEnglish} ${Number.parseInt( day )}, ${fullYear}`
 
   return dateInEnglish
