@@ -22,13 +22,15 @@ const ListMatch : React.FC<ListMatchProperties> = ( { matchs } ) => {
   if ( reformSelectedPoolNames.length === 0 ) {
     return <Empty />
   }
-  let selectedMatchs
-  // eslint-disable-next-line no-console
-  Object.entries( matchs ).map( ( matchsOfData ) => (
-    // match[1].filter( team => selectedPoolNames.includes( match[1].phase ) )
-    selectedMatchs =matchsOfData[1].filter( ( match ) => ( reformSelectedPoolNames.includes( match.phase ) ) ) ) )
 
-  console.log( selectedMatchs )
+  const filteredMatches: MatchsByDate = {}
+  for ( const [ date, matches ] of Object.entries( matchs ) ) {
+    const selectedMatchesForDate = matches.filter( ( match ) => reformSelectedPoolNames.includes( match.phase ) )
+    if ( selectedMatchesForDate.length > 0 ) {
+      filteredMatches[date] = selectedMatchesForDate
+    }
+  }
+
   return (
     <>
       {Object.entries( matchs ).map( ( [ date, matches ] ) => (
