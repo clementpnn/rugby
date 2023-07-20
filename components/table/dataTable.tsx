@@ -41,7 +41,7 @@ import { Pagination } from './pagination'
 import StatusButton from '../buttons/statusButton'
 
 const ThickRxMixerHorizontal = styled( RxMixerHorizontal, {
-  strokeWidth: '0.5px' // Ajustez la valeur pour définir l'épaisseur du trait
+  strokeWidth: '0.5px'
 } )
 
 interface DataTableProperties<TData, TValue> {
