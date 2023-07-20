@@ -138,7 +138,7 @@ const ModalJoinWaitList : React.FC<ModalJoinWaitListProperties> = ( { data, onCl
               <Image src={imgCountryLeft?.flag || '/placeholder-image.png'} alt="Flag" width={'28'} height={'28'}/>
               <span className='h6-inter-d text-blue6'>{countryLeft}</span>
             </div>
-            {data.matchTeams[0].result!==RESULT.WINNER && data.matchTeams[0].result!==RESULT.LOSER && data.matchTeams[0].result!==RESULT.NULL || data.matchTeams[1].result!==RESULT.WINNER && data.matchTeams[1].result!==RESULT.LOSER && data.matchTeams[1].result!==RESULT.NULL ?
+            {data.matchTeams[0].result===RESULT.NO_PLAYED || data.matchTeams[1].result===RESULT.NO_PLAYED ?
               <div className=' sm:flex sm:flex-row sm:gap-y-1 sm:items-center'>
                 <span className='w-[96px] h6-barlow-m text-blue6 text-center h-8 sm:text-center'>VS</span>
               </div> : <div className='hidden sm:flex sm:flex-row sm:gap-y-1 sm:items-center'>
@@ -160,7 +160,7 @@ const ModalJoinWaitList : React.FC<ModalJoinWaitListProperties> = ( { data, onCl
           </div>
         </div>
         {/* <ButtonUI variant={data.matchTeams[0].result!==RESULT.WINNER && data.matchTeams[0].result!==RESULT.LOSER && data.matchTeams[0].result!==RESULT.NULL || data.matchTeams[1].result!==RESULT.WINNER && data.matchTeams[1].result!==RESULT.LOSER && data.matchTeams[1].result!==RESULT.NULL ? 'primary' : 'disabled'} size='lg' onClick={onClick}>Join Wait List</ButtonUI> */}
-        <ButtonUI variant={data.matchTeams[0].result!==RESULT.NO_PLAYED || data.matchTeams[1].result!==RESULT.NO_PLAYED ? 'primary' : 'disabled'} size='lg' onClick={onClick}>Join Wait List</ButtonUI>
+        <ButtonUI variant={data.matchTeams[0].result===RESULT.NO_PLAYED || data.matchTeams[1].result===RESULT.NO_PLAYED ? 'primary' : 'disabled'} size='lg' onClick={onClick}>Join Wait List</ButtonUI>
       </div>
     </Modal>
   )
