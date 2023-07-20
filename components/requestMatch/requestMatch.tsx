@@ -5,12 +5,12 @@ import Badge from '@/components/ui/badge'
 // import { MatchInformation } from '../modals/modalJoinWaitList'
 import useCountries from '@/hooks/useCountries'
 import { RESULT } from '@prisma/client'
-import { Matchs } from '../modals/modalJoinWaitList'
+import { Match } from '../modals/modalJoinWaitList'
 // import { formatString } from '../modals/modalJoinWaitList'
 interface MatchProperties {
   // variant: 'accepted_light' | 'rejected_light' | 'progress_light' | 'accepted_dark' | 'rejected_dark' | 'progress_dark'
   // label: string
-  data: Matchs
+  data: Match
   state: string
   stateClass: 'accepted_light' | 'rejected_light' | 'progress_light' | 'accepted_dark' | 'rejected_dark' | 'progress_dark' | 'disabled'
   time: string

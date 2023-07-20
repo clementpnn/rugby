@@ -28,7 +28,7 @@ interface Teams {
   result: RESULT | null
 }
 
-export interface Matchs{
+export interface Match{
   id: string
   date: string
   time: string
@@ -41,7 +41,7 @@ export interface Matchs{
 interface ModalJoinWaitListProperties {
   // children: React.ReactNode
   // data: MatchInformation
-  data: Matchs
+  data: Match
   onClick?: ()=>void
 }
 

@@ -6,6 +6,27 @@ import { getMatchsInfoByUser } from '@/actions/getMatch'
 // import Navbar from '@/components/navbar/navbar'
 import ModalJoinWaitList from '@/components/modals/modalJoinWaitList'
 
+const groupAndSortItemsByDate = ( items ) => {
+  // Créer un objet de type dictionnaire pour regrouper les éléments par date
+  const groupedItems = {}
+  for ( const item of items ) {
+    const itemDate = item.date
+    if ( !groupedItems[itemDate] ) {
+      groupedItems[itemDate] = []
+    }
+    groupedItems[itemDate].push( item )
+  }
+
+  // Trier les dates dans l'ordre du plus récent au moins récent
+  const sortedDates = Object.keys( groupedItems ).sort( ( a, b ) => new Date( b ) - new Date( a ) )
+
+  // Renvoyer les éléments triés par date
+  return sortedDates.map( ( date ) => ( {
+    date,
+    items: groupedItems[date]
+  } ) )
+}
+
 const page = async () => {
   const currentUser = await getCurrentUser()
   const matchs = await getMatchsInfoByUser( { userId : currentUser?.id || '' } ) || []
