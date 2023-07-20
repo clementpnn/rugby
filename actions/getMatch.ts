@@ -26,6 +26,38 @@ interface IParameters {
   matchId?: string
 }
 
+interface IUser {
+  userId: string
+}
+
+export async function getMatchsInfoByUser( parameters: IUser ) {
+  const { userId } = parameters
+
+  const match = await prisma.match.findMany( {
+    include: {
+      matchTeams: true,
+      demands: {
+        where: {
+          userId: userId
+        },
+        include: {
+          user: true
+        }
+      }
+    }
+  } )
+
+  if ( !match ) return
+
+  return match.map( matchItem => {
+    const userDemand = matchItem.demands.find( demand => demand.user?.id === userId )
+    return {
+      ...matchItem,
+      userDemandStatus: userDemand ? userDemand.state : undefined
+    }
+  } )
+}
+
 export async function getMatchById( parameters: IParameters ) {
 
   const { matchId } = parameters
