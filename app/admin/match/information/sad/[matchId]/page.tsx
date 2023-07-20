@@ -1,9 +1,12 @@
+import { getMatchUpdateById } from '@/actions/getMatch'
 import Button from '@/components/buttons/button'
 import Sidebar from '@/components/sidebar/sidebar'
-import { PiArrowUDownLeft, PiIdentificationCard, PiListMagnifyingGlass } from 'react-icons/pi'
+import { DataTable } from '@/components/table/dataTable'
 import Image from 'next/image'
-import { getMatchUpdateById } from '@/actions/getMatch'
 import Link from 'next/link'
+import { PiArrowUDownLeft, PiPrinter } from 'react-icons/pi'
+import { columns } from './columns'
+import { data } from '@/app/table/data'
 
 interface IParameters {
   matchId: string
@@ -17,14 +20,18 @@ const page = async ( { params }: {params: IParameters} ) => {
     )
   }
   return (
-    <div className="w-screen h-screen flex flex-row">
+    <div className="w-screen h-screen flex flex-row fixed">
       <Sidebar/>
       <div className='w-full bg-neutral1 p-6 flex flex-col items-start gap-y-3'>
         <div className='flex flex-col items-start gap-y-6 bg-neutral1 w-full h-full rounded-md'>
           <div className='bg-neutral0 w-full h-fit rounded-md p-10 flex justify-between items-center'>
-            <Button size={'md'} variant={'outline'} iconPosition='left' icon={<PiArrowUDownLeft className='h-full w-full'/>}>
-              Back
-            </Button>
+            <div className='w-[141px]'>
+              <Link href={`/admin/match/information/${match.id}/`}>
+                <Button size={'md'} variant={'outline'} iconPosition='left' icon={<PiArrowUDownLeft className='h-full w-full'/>}>
+                  Back
+                </Button>
+              </Link>
+            </div>
             <div className='flex flex-row items-center gap-x-8'>
               <div className='flex flex-row gap-x-4 items-center'>
                 <Image src={`/flags/${match.matchTeams[0].team.slice( 0, 3 )}.svg`} alt={'flag'} width={60} height={60} className='rounded-full'/>
@@ -38,22 +45,17 @@ const page = async ( { params }: {params: IParameters} ) => {
                 <Image src={`/flags/${match.matchTeams[1].team.slice( 0, 3 )}.svg`} alt={'flag'} width={60} height={60} className='rounded-full'/>
               </div>
             </div>
-            <div className='text-neutral0 w-[99px]'>
-            </div>
+            <Button size={'md'} variant={'primary'} iconPosition='left' icon={<PiPrinter className='h-full w-full'/>}>
+              Print Users
+            </Button>
           </div>
-          <div className='bg-neutral0 w-full h-full rounded-md p-10 flex flex-row gap-x-10'>
-            <Link href={`/admin/match/information/listing/${match.id}`} className='w-full h-full rounded-md border-[1px] border-neutral3 flex flex-col gap-y-[52px] items-center justify-center hover:bg-neutral1'>
-              <PiListMagnifyingGlass className='w-20 h-20 text-neutral3'/>
-              <p className='h3-barlow-d text-blue6 uppercase'>listing</p>
-            </Link>
-            <Link href={`/admin/match/information/place/${match.id}`} className='w-full h-full rounded-md border-[1px] border-neutral3 flex flex-col gap-y-[52px] items-center justify-center hover:bg-neutral1'>
-              <PiListMagnifyingGlass className='w-20 h-20 text-neutral3'/>
-              <p className='h3-barlow-d text-blue6 uppercase'>place</p>
-            </Link>
-            <Link href={`/admin/match/information/sad/${match.id}`} className='w-full h-full rounded-md border-[1px] border-neutral3 flex flex-col gap-y-[52px] items-center justify-center hover:bg-neutral1'>
-              <PiIdentificationCard className='w-20 h-20 text-neutral3'/>
-              <p className='h3-barlow-d text-blue6 uppercase'>sad</p>
-            </Link>
+          <div className='bg-neutral1 w-full h-full rounded-md grid grid-cols-3 gap-x-6'>
+            <div className='bg-neutral0 rounded-md p-10 col-span-2 w-full max-h-[700px] overflow-auto no-scrollbar'>
+              <DataTable columns={columns} data={data} statusButton={true} />
+            </div>
+            <div className='bg-neutral0 rounded-md p-10 col-span-1 w-full max-h-[700px] overflow-auto no-scrollbar'>
+              {/* si un User est selectionné alors on affiche sa carte */}
+            </div>
           </div>
         </div>
       </div>
