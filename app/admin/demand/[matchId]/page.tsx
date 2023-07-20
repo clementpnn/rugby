@@ -1,13 +1,13 @@
-import { getMatchUpdateById } from '@/actions/getMatch'
 import getCurrentUser from '@/actions/getCurrentUser'
-import MatchForm from '@/components/forms/matchForm'
+import { getMatchDemandById } from '@/actions/getMatch'
+import DemandMatch from './demand'
 
 interface IParameters {
   matchId: string
 }
 
 const page = async ( { params }: {params: IParameters} ) => {
-  const match = await getMatchUpdateById( params )
+  const matchData = await getMatchDemandById( params )
   const currentUser = await getCurrentUser()
 
   if ( !currentUser || currentUser.role !== 'ADMIN' ) {
@@ -16,15 +16,13 @@ const page = async ( { params }: {params: IParameters} ) => {
     )
   }
 
-  if ( !match ) {
-    return (
-      <p>not match</p>
-    )
+  if ( !matchData ) {
+    <p>not team</p>
   }
 
   return (
     <>
-      <MatchForm match={match} />
+      <DemandMatch matchData={matchData} />
     </>
   )
 }
