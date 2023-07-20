@@ -28,14 +28,15 @@ const page = async ( { params }: {params: IParameters} ) => {
   return (
     <>
       {/* <MatchId match={match} /> */}
-      {match.match.matchTeams.map( ( team ) => {
+      {/* {match.match.matchTeams.map( ( team ) => {
         return (
           <div className='mb-6' key={team.id}>
             <p>{team.team}</p>
             <p>{team.result ?? '?'}</p>
           </div>
         )
-      } ) }
+      } ) } */}
+      Salut
       {/* <DataTable columns={columns} data={match.demands}/> */}
     </>
   )
