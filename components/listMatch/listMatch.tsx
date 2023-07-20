@@ -36,8 +36,39 @@ const ListMatch : React.FC<ListMatchProperties> = ( { matchs } ) => {
 
   console.log( matchs )
 
+  // function filterBySelectedPool( data: Match[] ) {
+  //   return data.filter( ( item ) => reformSelectedPoolNames.includes( item.phase ) )
+  // }
+
+  // const matchs = {
+  //   'Sat Jul 15 2023': [
+  //     { date: '2023-07-15', time: '14:05', phase: 'POULE_A', stadiumId: '64b8e8aec890c124a4cf9c8e', matchTeams: [ { team:'WALES', result: 'NULL' }, { team:'FRANCE', result: 'NULL' } ] },
+  //     { date: '2023-07-15', time: '16:30', phase: 'POULE_B', stadiumId: '64b8e8aec890c124a4cf9c8f', matchTeams: [ { team:'FIJI', result: 'NULL' }, { team:'GERMAN', result: 'NULL' } ] },
+  //     { date: '2023-07-15', time: '18:50', phase: 'POULE_C', stadiumId: '64b8e8aec890c124a4cf9c8g', matchTeams: [ { team:'CHINA', result: 'NULL' }, { team:'AMERICA', result: 'NULL' } ] }
+  //   ]
+  // }
+
+  function getSelectedTeamsByPool() {
+    const selectedTeams: string[] = []
+    for ( const pool of pools ) {
+      if ( pool.selected ) {
+        for ( const team of pool.teams ) {
+          if ( team.selected ) {
+            selectedTeams.push( team.team )
+          }
+        }
+      }
+    }
+    return selectedTeams
+  }
+
+  // Filtrer les matchs en fonction des équipes sélectionnées pour chaque pool
   function filterBySelectedPool( data: Match[] ) {
-    return data.filter( ( item ) => reformSelectedPoolNames.includes( item.phase ) )
+    const selectedTeams = getSelectedTeamsByPool()
+    console.log( selectedTeams )
+    return data.filter( ( item ) =>
+      item.matchTeams.every( ( mt ) => selectedTeams.includes( mt.team ) )
+    )
   }
 
   const result = Object.fromEntries(
