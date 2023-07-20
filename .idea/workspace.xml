@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4121f3b9-2fbd-4fb6-b747-e8bf0e0aefdc" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/app/table/columns.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/table/columns.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/table/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/table/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/import/tableImpot.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/import/tableImpot.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +45,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1689839054712</updated>
-      <workItem from="1689839057433" duration="4644000" />
+      <workItem from="1689839057433" duration="4801000" />
     </task>
     <servers />
   </component>
