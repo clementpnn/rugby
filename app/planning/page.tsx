@@ -27,11 +27,11 @@ const page = async () => {
       </div> */}
       { matchs?.map( async ( items ) => {
         return(
-          <div key={( await items ).id} className='pt-3'>
+          <div key={( await items ).id}>
             <ModalJoinWaitList data={( await items )} />
-            <p className='text-red-500'>{( await items ).userDemandStatus}</p>
+            {/* <p className='text-red-500'>{( await items ).userDemandStatus}</p>
             { ( await items ).matchTeams?.map( ( match ) => (
-              <div key={match.id}>{match.result}</div> ) ) }
+              <div key={match.id}>{match.result}</div> ) ) } */}
             {/* <p>{( await items ).date}</p>
             <p>{( await items ).id}</p>
             <p className='text-red-500'>{( await items ).userDemandStatus}</p>

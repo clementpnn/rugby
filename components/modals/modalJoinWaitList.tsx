@@ -60,6 +60,27 @@ export function formatString( inputString : string ) {
   return formattedString
 }
 
+const convertDateToEnglish = ( dateString : string ) => {
+  // Diviser la chaîne en jour, mois et année
+  const [ day, month, year ] = dateString.split( '-' )
+
+  // Obtenir le mois en anglais
+  const monthsInEnglish = [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
+  ]
+  const monthInEnglish = monthsInEnglish[Number.parseInt( month ) - 1]
+
+  // Si l'année est fournie sous forme de deux chiffres, convertir en année complète
+  const currentYear = new Date().getFullYear()
+  const fullYear = currentYear - ( currentYear % 100 ) + Number.parseInt( year )
+
+  // Construire la date en anglais
+  const dateInEnglish = `${monthInEnglish} ${Number.parseInt( day )}, ${fullYear}`
+
+  return dateInEnglish
+}
+
 const ModalJoinWaitList : React.FC<ModalJoinWaitListProperties> = ( { data, onClick } ) => {
 
   const countryLeft = formatString( data.matchTeams[0].team )
@@ -97,6 +118,7 @@ const ModalJoinWaitList : React.FC<ModalJoinWaitListProperties> = ( { data, onCl
   const imgCountryLeft = getByValue( data.matchTeams[0].team )
   const imgCountryRight = getByValue( data.matchTeams[1].team )
   const time = data.time.split( ' ' ).join( '' )
+  const date = convertDateToEnglish( data.date )
   return(
     <Modal action={<button className='w-full bg-neutral0 hover:bg-neutral1'><RequestMatch data={data} state={state} stateClass={stateClass} time={time}/></button>} title='Wait List'>
       <div className='w-full h-fit flex flex-col gap-8 p-6 sm:p-8'>
@@ -106,7 +128,7 @@ const ModalJoinWaitList : React.FC<ModalJoinWaitListProperties> = ( { data, onCl
             <Badge size='md' variant={stateClass}>{ state }</Badge>
           </div>
           <div className='flex flex-col gap-y-1 sm:flex-row sm:justify-between'>
-            <span className='label-sm text-blue6 sm:label-md'>{ data.date }</span>
+            <span className='label-sm text-blue6 sm:label-md'>{ date }</span>
             <span className='label-sm text-blue6 sm:label-md'>{ data.stadiumName }</span>
           </div>
         </div>
@@ -116,7 +138,7 @@ const ModalJoinWaitList : React.FC<ModalJoinWaitListProperties> = ( { data, onCl
               <Image src={imgCountryLeft?.flag || '/placeholder-image.png'} alt="Flag" width={'28'} height={'28'}/>
               <span className='h6-inter-d text-blue6'>{countryLeft}</span>
             </div>
-            {data.matchTeams[0].result===RESULT.NO_PLAYED || data.matchTeams[1].result===RESULT.NO_PLAYED ?
+            {data.matchTeams[0].result!==RESULT.WINNER && data.matchTeams[0].result!==RESULT.LOSER && data.matchTeams[0].result!==RESULT.NULL || data.matchTeams[1].result!==RESULT.WINNER && data.matchTeams[1].result!==RESULT.LOSER && data.matchTeams[1].result!==RESULT.NULL ?
               <div className=' sm:flex sm:flex-row sm:gap-y-1 sm:items-center'>
                 <span className='w-[96px] h6-barlow-m text-blue6 text-center h-8 sm:text-center'>VS</span>
               </div> : <div className='hidden sm:flex sm:flex-row sm:gap-y-1 sm:items-center'>
@@ -125,7 +147,7 @@ const ModalJoinWaitList : React.FC<ModalJoinWaitListProperties> = ( { data, onCl
                 <span className='h6-barlow-m text-blue6 text-center w-8 h-8 sm:text-left'>{ data.matchTeams[1].result?.slice( 0, 1 ) }</span>
               </div>}
 
-            <div className='h-fit w-full px-4 py-2 gap-x-3 bg-blue1 rounded-md flex flex-row'>
+            <div className='h-fit w-full px-4 py-2 gap-x-3 bg-blue1 rounded-md flex justify-end'>
               <Image src={imgCountryRight?.flag || '/placeholder-image.png'} alt="Flag" width={'28'} height={'28'} className='sm:hidden'/>
               <span className='h6-inter-d text-blue6'>{countryRight}</span>
               <Image src={imgCountryRight?.flag || '/placeholder-image.png'} alt="Flag" width={'28'} height={'28'} className='hidden sm:block'/>
@@ -137,7 +159,7 @@ const ModalJoinWaitList : React.FC<ModalJoinWaitListProperties> = ( { data, onCl
             <span className='h6-barlow-m text-blue6 text-center w-8 h-8'>{ data.matchTeams[0].result?.slice( 0, 1 ) }</span>
           </div>
         </div>
-        <ButtonUI className='' variant='primary' size='lg' onClick={onClick}>Join Wait List</ButtonUI>
+        <ButtonUI variant={data.matchTeams[0].result!==RESULT.WINNER && data.matchTeams[0].result!==RESULT.LOSER && data.matchTeams[0].result!==RESULT.NULL || data.matchTeams[1].result!==RESULT.WINNER && data.matchTeams[1].result!==RESULT.LOSER && data.matchTeams[1].result!==RESULT.NULL ? 'primary' : 'disabled'} size='lg' onClick={onClick}>Join Wait List</ButtonUI>
       </div>
     </Modal>
   )
