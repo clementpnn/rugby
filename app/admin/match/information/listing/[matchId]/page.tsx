@@ -58,7 +58,7 @@ const page = async ( { params }: {params: IParameters} ) => {
             </div>
             {/* remplacer 500px */}
             <div className='w-full max-h-[500px] overflow-auto no-scrollbar'>
-              <DataTable columns={columns} data={data} statusButton={true} />
+              <DataTable columns={columns} data={data} />
             </div>
           </div>
         </div>

@@ -50,7 +50,7 @@ interface DataTableProperties<TData, TValue> {
 
 export function DataTable<TData, TValue>( {
   columns,
-  data,
+  data
 }: DataTableProperties<TData, TValue> ) {
   const [ sorting, setSorting ] = React.useState<SortingState>( [] )
 

@@ -51,7 +51,7 @@ const page = async ( { params }: {params: IParameters} ) => {
           </div>
           <div className='bg-neutral1 w-full h-full rounded-md grid grid-cols-3 gap-x-6'>
             <div className='bg-neutral0 rounded-md p-10 col-span-2 w-full max-h-[700px] overflow-auto no-scrollbar'>
-              <DataTable columns={columns} data={data} statusButton={true} />
+              <DataTable columns={columns} data={data} />
             </div>
             <div className='bg-neutral0 rounded-md p-10 col-span-1 w-full max-h-[700px] overflow-auto no-scrollbar'>
               {/* si un User est selectionné alors on affiche sa carte */}
