@@ -19,12 +19,7 @@ type Pool = {
   teams: Team[]
 }
 
-type FilterProperties = {
-  height: number
-  width: number
-}
-
-const Filter: React.FC<FilterProperties> = () => {
+const Filter = () => {
   const { getByValue } = useCountries()
   const [ parent ] = useAutoAnimate()
 
@@ -62,7 +57,7 @@ const Filter: React.FC<FilterProperties> = () => {
         </Button>
       </div>
       <h5 className='text-blue6 h5-barlow-m pb-2 pt-3 pl-7'>FILTER</h5>
-      <div className='w-full h-full max-h-[calc(100vh-57px-150px-136px-101px)] overflow-auto scroll-smooth no-scrollbar border-y-[1px]'>
+      <div className='w-full h-full max-h-[calc(100vh-57px-150px-136px-101px)] overflow-auto scroll-smooth no-scrollbar border-t-[1px]'>
         {activeTab === 'pools' && (
           <>
             <div ref={parent} className='flex flex-col divide-y divide-neutral3 bg-neutral0 h-fit'>
