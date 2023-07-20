@@ -7,7 +7,8 @@ type ProfileCardProperties = {
   showLogoutButton: boolean;
 };
 
-const ProfileCard: React.FC<ProfileCardProperties> = ( { showLogoutButton } ) => {
+const ProfileCard = ( { showLogoutButton }: ProfileCardProperties ) => {
+
   return (
     <div className='flex items-center'>
       <div className='bg-neutral0 rounded-lg border border-neutral3 max-w-[350px] mx-auto'>
