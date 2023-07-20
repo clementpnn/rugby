@@ -1,5 +1,6 @@
 'use client'
 
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 import Container from '../containers/container'
 // import { Demand, MatchTeam, User } from '@prisma/client'
 import Empty from '../containers/empty'
@@ -16,6 +17,7 @@ interface ListMatchProperties {
 
 const ListMatch : React.FC<ListMatchProperties> = ( { matchs } ) => {
   const { pools } = useFilterStore()
+  const [ parent ] = useAutoAnimate()
   const selectedPoolNames = pools.filter( ( pool ) => pool.selected ).map( ( pool ) => pool.poolName )
   const reformSelectedPoolNames = selectedPoolNames.map( ( item ) => 'POULE_' + item )
 
@@ -51,7 +53,7 @@ const ListMatch : React.FC<ListMatchProperties> = ( { matchs } ) => {
   return (
     <>
       {Object.entries( result ).map( ( [ date, matches ] ) => (
-        <div key={date}>
+        <div ref={parent} key={date}>
           {matches.length === 0 ? (
             ''
           ) : (
