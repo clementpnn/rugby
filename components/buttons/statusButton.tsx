@@ -1,3 +1,5 @@
+'use client'
+
 import Button from '@/components/buttons/button'
 
 const StatusButton = async () => {
