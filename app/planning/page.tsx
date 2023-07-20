@@ -15,7 +15,7 @@ const page = async () => {
   const matchsByDate : { [date: string]: Match[] } = {}
 
   for ( const match of matchs ) {
-    const matchDate = new Date( ( await match ).date ).toDateString() // Convert the date to a text format to serve as a key
+    const matchDate = new Date( ( await match ).date ).toDateString()
     if ( !matchsByDate[matchDate] ) {
       matchsByDate[matchDate] = []
     }
