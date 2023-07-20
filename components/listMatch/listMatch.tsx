@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 'use client'
 
 import Container from '../containers/container'
@@ -10,16 +9,6 @@ import { useFilterStore } from '@/hooks/useFilter'
 interface MatchsByDate {
     [date: string]: Match[]
 }
-
-// interface Martchss {
-//   match: { stadiumName: string
-//     userDemandStatus: string
-//     matchTeams: MatchTeam[]
-//     demandes: Demand & {
-//       user: User
-//     }
-//   }
-//   }
 
 interface ListMatchProperties {
     matchs: MatchsByDate
@@ -33,20 +22,6 @@ const ListMatch : React.FC<ListMatchProperties> = ( { matchs } ) => {
   if ( reformSelectedPoolNames.length === 0 ) {
     return <Empty />
   }
-
-  console.log( matchs )
-
-  // function filterBySelectedPool( data: Match[] ) {
-  //   return data.filter( ( item ) => reformSelectedPoolNames.includes( item.phase ) )
-  // }
-
-  // const matchs = {
-  //   'Sat Jul 15 2023': [
-  //     { date: '2023-07-15', time: '14:05', phase: 'POULE_A', stadiumId: '64b8e8aec890c124a4cf9c8e', matchTeams: [ { team:'WALES', result: 'NULL' }, { team:'FRANCE', result: 'NULL' } ] },
-  //     { date: '2023-07-15', time: '16:30', phase: 'POULE_B', stadiumId: '64b8e8aec890c124a4cf9c8f', matchTeams: [ { team:'FIJI', result: 'NULL' }, { team:'GERMAN', result: 'NULL' } ] },
-  //     { date: '2023-07-15', time: '18:50', phase: 'POULE_C', stadiumId: '64b8e8aec890c124a4cf9c8g', matchTeams: [ { team:'CHINA', result: 'NULL' }, { team:'AMERICA', result: 'NULL' } ] }
-  //   ]
-  // }
 
   function getSelectedTeamsByPool() {
     const selectedTeams: string[] = []
@@ -62,10 +37,8 @@ const ListMatch : React.FC<ListMatchProperties> = ( { matchs } ) => {
     return selectedTeams
   }
 
-  // Filtrer les matchs en fonction des équipes sélectionnées pour chaque pool
   function filterBySelectedPool( data: Match[] ) {
     const selectedTeams = getSelectedTeamsByPool()
-    console.log( selectedTeams )
     return data.filter( ( item ) =>
       item.matchTeams.every( ( mt ) => selectedTeams.includes( mt.team ) )
     )
@@ -74,10 +47,6 @@ const ListMatch : React.FC<ListMatchProperties> = ( { matchs } ) => {
   const result = Object.fromEntries(
     Object.entries( matchs ).map( ( [ key, value ] ) => [ key, filterBySelectedPool( value ) ] )
   )
-
-  console.log( result )
-
-  console.log( reformSelectedPoolNames )
 
   return (
     <>
