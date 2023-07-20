@@ -159,7 +159,8 @@ const ModalJoinWaitList : React.FC<ModalJoinWaitListProperties> = ( { data, onCl
             <span className='h6-barlow-m text-blue6 text-center w-8 h-8'>{ data.matchTeams[0].result?.slice( 0, 1 ) }</span>
           </div>
         </div>
-        <ButtonUI variant={data.matchTeams[0].result!==RESULT.WINNER && data.matchTeams[0].result!==RESULT.LOSER && data.matchTeams[0].result!==RESULT.NULL || data.matchTeams[1].result!==RESULT.WINNER && data.matchTeams[1].result!==RESULT.LOSER && data.matchTeams[1].result!==RESULT.NULL ? 'primary' : 'disabled'} size='lg' onClick={onClick}>Join Wait List</ButtonUI>
+        {/* <ButtonUI variant={data.matchTeams[0].result!==RESULT.WINNER && data.matchTeams[0].result!==RESULT.LOSER && data.matchTeams[0].result!==RESULT.NULL || data.matchTeams[1].result!==RESULT.WINNER && data.matchTeams[1].result!==RESULT.LOSER && data.matchTeams[1].result!==RESULT.NULL ? 'primary' : 'disabled'} size='lg' onClick={onClick}>Join Wait List</ButtonUI> */}
+        <ButtonUI variant={data.matchTeams[0].result!==RESULT.NO_PLAYED || data.matchTeams[1].result!==RESULT.NO_PLAYED ? 'primary' : 'disabled'} size='lg' onClick={onClick}>Join Wait List</ButtonUI>
       </div>
     </Modal>
   )
