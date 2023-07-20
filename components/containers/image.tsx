@@ -3,7 +3,7 @@ import Image from 'next/image'
 interface ImageContainerProperties {
     image: string
     onClick?: ( _event: React.MouseEvent<HTMLDivElement> ) => void
-    tribunes?: {name: string, type: 'JOURNALIST'|'PHOTOGRAPHER', places: number, image: string, x: number, y: number}[]
+    tribunes?: {name?: string, type?: 'JOURNALIST'|'PHOTOGRAPHER', places?: number, image?: string, x: number, y: number}[]
 }
 
 const ImageContainer: React.FC<ImageContainerProperties> = ( { image, onClick, tribunes } ) => {
