@@ -73,14 +73,10 @@
   },
   "devDependencies": {
     "@faker-js/faker": "^8.0.2",
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^14.0.0",
     "@types/nodemailer": "^6.4.8",
     "@types/papaparse": "^5.3.7",
     "@types/uuid": "^9.0.2",
     "eslint-plugin-unused-imports": "^2.0.0",
-    "jest": "^29.6.1",
-    "jest-environment-jsdom": "^29.6.1",
     "ts-node": "^10.9.1"
   }
 }

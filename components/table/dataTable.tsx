@@ -40,7 +40,7 @@ import { styled } from '@stitches/react'
 import { Pagination } from './pagination'
 
 const ThickRxMixerHorizontal = styled( RxMixerHorizontal, {
-  strokeWidth: '0.5px' // Ajustez la valeur pour définir l'épaisseur du trait
+  strokeWidth: '0.5px'
 } )
 
 interface DataTableProperties<TData, TValue> {
