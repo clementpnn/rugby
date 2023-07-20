@@ -67,7 +67,7 @@ const ModalJoinWaitList : React.FC<ModalJoinWaitListProperties> = ( { data, onCl
 
   const state = formatString( data.userDemandStatus )
 
-  const [ stateClass, setStateClass ] = useState<'accepted_light' | 'rejected_light' | 'progress_light' | 'accepted_dark' | 'rejected_dark' | 'progress_dark'>( 'accepted_light' )
+  const [ stateClass, setStateClass ] = useState<'accepted_light' | 'rejected_light' | 'progress_light' | 'accepted_dark' | 'rejected_dark' | 'progress_dark' | 'disabled'>( 'accepted_light' )
   useEffect( () => {
     switch ( data.userDemandStatus ) {
     case 'ACCEPTED': {

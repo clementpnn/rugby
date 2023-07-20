@@ -12,7 +12,7 @@ interface MatchProperties {
   // label: string
   data: Matchs
   state: string
-  stateClass: 'accepted_light' | 'rejected_light' | 'progress_light' | 'accepted_dark' | 'rejected_dark' | 'progress_dark'
+  stateClass: 'accepted_light' | 'rejected_light' | 'progress_light' | 'accepted_dark' | 'rejected_dark' | 'progress_dark' | 'disabled'
 }
 
 const RequestMatch: React.FC<MatchProperties> = ( { data, stateClass, state } ) => {
