@@ -2,24 +2,6 @@ import AuthProvider from '@/providers/authProvider'
 import ToasterProvider from '@/providers/toasterProvider'
 import './globals.css'
 
-// import { Inter, Barlow_Condensed } from 'next/font/google'
-
-// import localFont from 'next/font/local'
-
-// Font files can be colocated inside of `pages`
-// const barlowFont = localFont({
-//   src: [
-//     {
-//       path: '/fonts/Barlow-Bold.ttf',
-//       weight: 'bold',
-//       style: 'normal',
-//       variable: '--font-barlow'
-//     }
-//   ]
-// })
-
-// const inter = Inter({ subsets: ['latin'] })
-
 import { Inter, Barlow_Condensed } from 'next/font/google'
 
 const inter = Inter( {
@@ -27,11 +9,6 @@ const inter = Inter( {
   variable: '--font-inter',
   weight: [ '300', '400', '700' ]
 } )
-
-// const barlow = localFont({
-//   src: "/fonts/Barlow/BarlowCondensed-Bold.woff2",
-//   variable: "--font-barlow-condensed",
-// })
 
 const barlow = Barlow_Condensed( {
   subsets: [ 'latin' ],
@@ -51,7 +28,6 @@ export default function RootLayout( {
 } ) {
   return (
     <html lang="fr">
-      {/* <body className={inter.className}> */}
       <body className={`${inter.variable} ${barlow.variable}`}>
         <ToasterProvider />
         <AuthProvider>{children}</AuthProvider>
