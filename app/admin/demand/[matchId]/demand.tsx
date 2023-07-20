@@ -1,17 +1,15 @@
 'use client'
 
 import toast from 'react-hot-toast'
-import { useState } from 'react'
-import { Controller, SubmitHandler, useForm } from 'react-hook-form'
+import { useEffect, useState } from 'react'
+import { Controller, useForm } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
 
 import useStep, { STEPS } from '@/hooks/useStep'
 import ImageContainer from '@/components/containers/image'
 import Button from '@/components/buttons/button'
-import ImageUpload from '@/components/inputs/imageUpload'
-import Input from '@/components/inputs/input'
 import Select from '@/components/inputs/select'
-import { Demand, Match, MatchTeam, Stadium, Tribune, User } from '@prisma/client'
+import { Demand, Match, MatchTeam, STATE, Stadium, Tribune, User } from '@prisma/client'
 
 interface UserDemandInfo {
     demand: Demand
@@ -35,21 +33,37 @@ interface UserDemandInfo {
 const DemandMatch: React.FC<DemandMatchProperties> = ( { matchData } ) => {
   const [ isLoading, setIsloading ] = useState( false )
   const [ tribuneImage, setTribuneImage ] = useState( '' )
-  const [ stadiumPoint, setStadiumPoint ] = useState<{x: number, y: number}>( { x: 0, y: 0 } )
-  const [ tribunes, setTribunes ] = useState<{name: string, type: 'JOURNALIST'|'PHOTOGRAPHER', places: number, image: string, x: number, y: number}[]>( [] )
+  const [ points, setPoints ] = useState<{name?: string, type?: 'JOURNALIST'|'PHOTOGRAPHER', places?: number, image?: string, x: number, y: number}[]>( [] )
+  const [ userOptions, setUserOptions ] = useState<{value: string, label: string}[]>( [] )
+  const [ tribune, setTribune ] = useState( '' )
   const { step, setStep } = useStep()
+  const point = matchData?.match.demands
+  point
   const router = useRouter()
 
-  const { handleSubmit, control, watch, reset, formState: { errors } } = useForm<any>( { defaultValues: { type: 'JOURNALIST' }, mode: 'onChange' } )
-  const onSubmit: SubmitHandler<any> = async () => {
+  useEffect( () => {
+    const userOptions = ( matchData?.match.demands || [] )
+      .filter( ( demand ) => demand.demand.state === STATE.IN_PROGRESS )
+      .map( ( demand ) => ( {
+        value: demand.demand.id || '',
+        label: `${demand?.user?.firstName} ${demand.user?.lastName}` || ''
+      } ) )
+
+    setUserOptions( userOptions )
+  }, [ matchData ] )
+
+  const { reset, watch, control, formState: { errors } } = useForm<any>( { defaultValues: { type: userOptions && userOptions[0] ? userOptions[0].value : '' }, mode: 'onChange' } )
+
+  const userSelect = watch()
+
+  const submit= async () => {
     setIsloading( true )
 
-    await fetch( '/api/stadium', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify( { tribunes } ) } )
+    await fetch( '/api/accepte', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify( { demandId: userSelect.type, points, tribuneId: tribune } ) } )
       .then( ( callback ) => {
         if ( callback.status === 200 ) {
           toast.success( `${callback.statusText}` )
           setStep( step - 1 as STEPS )
-          setStadiumPoint( { x: 0, y: 0 } )
           reset()
           router.refresh()
         }
@@ -59,8 +73,17 @@ const DemandMatch: React.FC<DemandMatchProperties> = ( { matchData } ) => {
         }
       } )
   }
+  // eslint-disable-next-line no-console
 
-  const { nameTribune, type, places } = watch()
+  function countAcceptedDemands( tribune: Tribune, demands: UserDemandInfo[] ): number {
+    // eslint-disable-next-line unicorn/no-array-reduce
+    return demands.reduce( ( accumulator, demand ) => {
+      if ( demand.demand.state === STATE.ACCEPTED && demand.demand.tribuneId === tribune.id ) {
+        return accumulator + 1
+      }
+      return accumulator
+    }, 0 )
+  }
 
   let bodyContent = (
     <div>Loading...</div>
@@ -77,79 +100,87 @@ const DemandMatch: React.FC<DemandMatchProperties> = ( { matchData } ) => {
         </div>
         <div className='p-10 w-[480px] h-full'>
           <h2 className='h2-barlow-m text-blue6 mb-10'>SECTIONS PLACE</h2>
-          <Button>+</Button>
-          {matchData?.stadium.tribunes.map( ( tribune, index ) => (
-            <div key={index} className='relative group'>
-              <div onClick={() => setStep( step + 1 as STEPS )} className='flex p-8 justify-around border border-spacing-2 m-8'>
-                <p> Index : {index + 1}</p>
-                <p>Name : {tribune.name}</p>
-                <p>Type : {tribune.type}</p>
-                <p>Number of places : {tribune.places.toString()}</p>
+          {matchData?.stadium.tribunes.map( ( tribune, index ) => {
+            const acceptedDemandsCount = countAcceptedDemands( tribune, matchData.match.demands )
+            return (
+              <div key={index} className='relative group cursor-pointer'>
+                <div className='flex p-8 justify-around border border-spacing-2 m-8' onClick={() => {
+                  setStep( step + 1 as STEPS )
+                  setTribuneImage( tribune.image )
+                  setTribune( tribune.id )
+                }} >
+                  <p> Index : {index + 1}</p>
+                  <p>Name : {tribune.name}</p>
+                  <p>Type : {tribune.type}</p>
+                  <p>Number of places : {acceptedDemandsCount} / {tribune.places.toString()}</p>
+                </div>
               </div>
-            </div>
-          ) )}
-          <form onSubmit={handleSubmit( onSubmit )}>
-            <Button type='button' variant='outline' size='md' onClick={() => {
-              setStep( step - 1 as STEPS )
-              setTribunes( [] )
-            }}>
-                Cancel
-            </Button>
-            <Button disabled={isLoading} type='submit' variant='primary' size='md'>
-                Valider
-            </Button>
-          </form>
+            ) } ) }
         </div>
       </div>
     )
   }
 
-  //   const clamp = ( value: number, min: number, max: number ): number => { return Math.min( Math.max( value, min ), max )}
+  const clamp = ( value: number, min: number, max: number ): number => { return Math.min( Math.max( value, min ), max )}
 
-  //   const calculatePoint = ( event: React.MouseEvent<HTMLDivElement, MouseEvent>, pointSize: number ) => {
-  //     const rect = ( event.target as Element ).getBoundingClientRect()
-  //     let x = event.clientX - rect.left
-  //     let y = event.clientY - rect.top
-  //     x = clamp( x, pointSize, rect.width - pointSize )
-  //     y = clamp( y, pointSize, rect.height - pointSize )
-  //     return { x, y }
-  //   }
+  const calculatePoint = ( event: React.MouseEvent<HTMLDivElement, MouseEvent>, pointSize: number ) => {
+    const rect = ( event.target as Element ).getBoundingClientRect()
+    let x = event.clientX - rect.left
+    let y = event.clientY - rect.top
+    x = clamp( x, pointSize, rect.width - pointSize )
+    y = clamp( y, pointSize, rect.height - pointSize )
+    return { x, y }
+  }
 
   if ( step === STEPS.TWO ) {
     bodyContent = (
       <>
-        <ImageContainer image={tribuneImage} />
+        <ImageContainer image={tribuneImage} tribunes={points} onClick={ ( event ) => {
+          const pointSize = 30
+          const points = calculatePoint( event, pointSize )
+          setPoints( previousPoints => [ ...previousPoints, { name: 'string', type: 'JOURNALIST', places: 0, image: '', x: points.x, y: points.y } ] )
+
+          setStep( step + 1 as STEPS )
+        }} />
         <div>
-          <Controller name="nameTribune" control={control} render={( { field } ) => <Input id='nameTribune' label='Name' {...field} errors={errors} disabled={isLoading} />} />
-          <Controller name="type" control={control} render={( { field } ) => <Select id='type' label='type' {...field} errors={errors} disabled={isLoading} options={[ { value: 'JOURNALIST', label: 'JOURNALIST' }, { value: 'PHOTOGRAPHER', label: 'PHOTOGRAPHER' } ]} />} />
-          <Controller name="places" control={control} render={( { field } ) => <Input id='places' label='Number of places' type='number' {...field} errors={errors} disabled={isLoading} />} />
-          <ImageUpload onChange={( value ) => setTribuneImage( value )}> Upload Tribune Image</ImageUpload>
-        </div>
-        <div>
+          {matchData?.match.demands
+            .filter( ( demand ) => demand.demand.state === STATE.IN_PROGRESS )
+            .map( ( demand, index ) => (
+              <div key={index}>
+                <p>{demand.user?.firstName} {demand.user?.lastName}</p>
+              </div>
+            ) )
+          }
           <Button type='button' variant='outline' size='md' onClick={() => {
             setStep( step - 1 as STEPS )
             setTribuneImage( '' )
-            reset( {
-              nameTribune: '',
-              type: 'JOURNALIST',
-              places: undefined
-            } )
           }}>
             Cancel
           </Button>
-          <Button variant='primary' size='md' onClick={() => {
-            setTribunes( [ ...tribunes, { name: nameTribune, type: type as 'JOURNALIST' | 'PHOTOGRAPHER', places, image: tribuneImage, x: stadiumPoint.x, y: stadiumPoint.y } ] )
+        </div>
+      </>
+    )
+  }
+
+  if ( step === STEPS.THREE ) {
+    bodyContent = (
+      <>
+        <div>
+          <Controller name="user" control={control} render={( { field } ) => <Select id='user' label='user' {...field} errors={errors} disabled={isLoading} options={userOptions || ''} />} />
+        </div>
+        <Button type='button' variant='outline' size='md' onClick={() => {
+          setStep( step - 1 as STEPS )
+        }}>
+            Cancel
+        </Button>
+        <form>
+          <Button type='submit' variant='primary' size='md' onClick={() => {
             setStep( step - 1 as STEPS )
-            setTribuneImage( '' )
-            reset( {
-              nameTribune: '',
-              type: 'JOURNALIST',
-              places: undefined
-            } )
+            submit()
           }}>
             Valider
           </Button>
-        </div>
+        </form>
       </>
     )
   }
