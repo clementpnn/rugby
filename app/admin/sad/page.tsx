@@ -1,5 +1,4 @@
 import getCurrentUser from '@/actions/getCurrentUser'
-import ModalMatch from '@/components/modals/modalMatch'
 // import RequestMatch from '@/components/requestMatch/requestMatch'
 
 export default async function Home() {
@@ -13,7 +12,6 @@ export default async function Home() {
   return (
     <>
       {/* <RequestMatch variant='accepted_dark' label='Salut'/> */}
-      <ModalMatch></ModalMatch>
     </>
   )
 }

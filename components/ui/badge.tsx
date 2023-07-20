@@ -17,7 +17,9 @@ export const badgeVariants = cva(
         rejected_dark:
               'bg-red-500 text-red-100',
         progress_dark:
-              'bg-yellow-500 text-yellow-100'
+              'bg-yellow-500 text-yellow-100',
+        disabled:
+              'bg-neutral3 text-neutral5'
       },
       size: {
         sm:
@@ -53,6 +55,7 @@ function Badge( { className, children, variant, size, ...properties }: BadgeProp
         ${variant==='accepted_dark' && 'bg-green-50'}
         ${variant==='rejected_dark' && 'bg-red-50'}
         ${variant==='progress_dark' && 'bg-yellow-50'}
+        ${variant==='disabled' && 'bg-neutral5'}
       `}/>
       { children }
     </div>
