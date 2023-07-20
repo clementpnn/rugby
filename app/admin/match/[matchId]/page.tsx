@@ -2,8 +2,8 @@
 import { getMatchById } from '@/actions/getMatch'
 // import MatchId from './match'
 import getCurrentUser from '@/actions/getCurrentUser'
-import { DataTable } from '@/components/table/dataTable'
-import { columns } from './columns'
+// import { DataTable } from '@/components/table/dataTable'
+// import { columns } from './columns'
 
 interface IParameters {
   matchId: string
