@@ -82,6 +82,10 @@ const ModalJoinWaitList : React.FC<ModalJoinWaitListProperties> = ( { data, onCl
       setStateClass( 'rejected_light' )
       break
     }
+    case 'NOT_DEMANDED': {
+      setStateClass( 'disabled' )
+      break
+    }
     default: {
       setStateClass( 'accepted_light' )
       break
@@ -92,12 +96,13 @@ const ModalJoinWaitList : React.FC<ModalJoinWaitListProperties> = ( { data, onCl
   const { getByValue } = useCountries()
   const imgCountryLeft = getByValue( data.matchTeams[0].team )
   const imgCountryRight = getByValue( data.matchTeams[1].team )
+  const time = data.time.split( ' ' ).join( '' )
   return(
-    <Modal action={<button className='w-full bg-neutral0 hover:bg-neutral1'><RequestMatch data={data} state={state} stateClass={stateClass}/></button>} title='Wait List'>
+    <Modal action={<button className='w-full bg-neutral0 hover:bg-neutral1'><RequestMatch data={data} state={state} stateClass={stateClass} time={time}/></button>} title='Wait List'>
       <div className='w-full h-fit flex flex-col gap-8 p-6 sm:p-8'>
         <div className='flex flex-col gap-y-3'>
           <div className='w-full flex justify-between items-center'>
-            <span className='h6-barlow-m text-blue6 sm:h6-barlow-d'>{ data.time }</span>
+            <span className='h6-barlow-m text-blue6 sm:h6-barlow-d'>{ time }</span>
             <Badge size='md' variant={stateClass}>{ state }</Badge>
           </div>
           <div className='flex flex-col gap-y-1 sm:flex-row sm:justify-between'>
