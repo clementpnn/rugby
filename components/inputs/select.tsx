@@ -38,7 +38,7 @@ const selectVariants = cva(
       }
     },
     defaultVariants: {
-      variant: 'primary',
+      variant: 'outline',
       size: 'md'
     }
   }

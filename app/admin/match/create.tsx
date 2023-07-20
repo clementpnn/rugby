@@ -68,29 +68,38 @@ const CreateMatch: React.FC<CreateMatchProperties> = ( { teams, stadiums } ) => 
   return (
     <>
       <div>
-        <Button variant='primary' size='md' onClick={() => {
-          setIsPoulePhase( true )
-          setValue( 'phase', pouleOptions[0].value )
-        } }>
-            POULE
-        </Button>
-        <Button variant='primary' size='md' onClick={() => {
-          setIsPoulePhase( false )
-          setValue( 'phase', knockOutOption[0].value )
-        } } >
-            KNOCK-OUT
-        </Button>
-        <form onSubmit={handleSubmit( onSubmit )}>
-          <Controller name="phase" control={control} render={( { field } ) => <Select id='phase' label='phase' {...field} errors={errors} disabled={isLoading} options={isPoulePhase ? pouleOptions : knockOutOption} />} />
-          <Controller name="teamOne" control={control} render={( { field } ) => <Select id='teamOne' label='teamOne' {...field} errors={errors} disabled={isLoading} options={filteredTeams.map( option => ( { ...option, disabled: option.value === '--' ? !!teamOne : option.value === teamTwo } ) )} />} />
-          <Image src={teamOne === '--' ? '/placeholder-image.png' : `/flags/${teamOne.slice( 0, 3 ).toLowerCase()}.svg`} alt='team' width={50} height={50} />
-          <Controller name="teamTwo" control={control} render={( { field } ) => <Select id='teamTwo' label='teamTwo' {...field} errors={errors} disabled={isLoading} options={filteredTeams.map( option => ( { ...option, disabled: option.value === '--' ? !!teamTwo : option.value === teamOne } ) )} />} />
-          <Image src={teamTwo === '--' ? '/placeholder-image.png' : `/flags/${teamTwo.slice( 0, 3 ).toLowerCase()}.svg`} alt='team' width={50} height={50} />
-          <Controller name="date" control={control} render={( { field } ) => <Input id='date' label='date' {...field} errors={errors} disabled={isLoading} />} />
-          <Controller name="hour" control={control} render={( { field } ) => <Select id='hour' label='hour' {...field} disabled={isLoading} options={hourOptions} />} />
-          <Controller name="minute" control={control} render={( { field } ) => <Select id='minute' label='minute' {...field} disabled={isLoading} options={minuteOptions} />} />
+        <div className='flex gap-x-2'>
+          <Button variant={isPoulePhase===true ? 'primary' : 'outline'} size='md' className='w-full' onClick={() => {
+            setIsPoulePhase( true )
+            setValue( 'phase', pouleOptions[0].value )
+          } }>
+            Pool
+          </Button>
+          <Button variant={isPoulePhase===false ? 'primary' : 'outline'} size='md' className='w-full' onClick={() => {
+            setIsPoulePhase( false )
+            setValue( 'phase', knockOutOption[0].value )
+          } } >
+            Knock-out
+          </Button>
+        </div>
+        <form onSubmit={handleSubmit( onSubmit )} className='mt-8 grid gap-y-3'>
+          <Controller name="phase" control={control} render={( { field } ) => <Select id='phase' label='Phase' {...field} errors={errors} disabled={isLoading} options={isPoulePhase ? pouleOptions : knockOutOption} />} />
+          <div className='flex items-end gap-x-4'>
+            <Controller name="teamOne" control={control} render={( { field } ) => <Select id='teamOne' label='Team One' {...field} errors={errors} disabled={isLoading} options={filteredTeams.map( option => ( { ...option, disabled: option.value === '--' ? !!teamOne : option.value === teamTwo } ) )} />} />
+            <Image src={teamOne === '--' ? '/placeholder-image.png' : `/flags/${teamOne.slice( 0, 3 ).toLowerCase()}.svg`} alt='team' width={44} height={44} style={{ boxShadow: '0px 0px 14px rgba(0, 0, 0, 0.1)' }} className='rounded-full aspect-square' />
+          </div>
+          <div className='flex items-end gap-x-4'>
+            <Controller name="teamTwo" control={control} render={( { field } ) => <Select id='teamTwo' label='teamTwo' {...field} errors={errors} disabled={isLoading} options={filteredTeams.map( option => ( { ...option, disabled: option.value === '--' ? !!teamTwo : option.value === teamOne } ) )} />} />
+            <Image src={teamTwo === '--' ? '/placeholder-image.png' : `/flags/${teamTwo.slice( 0, 3 ).toLowerCase()}.svg`} alt='team' width={44} height={44} style={{ boxShadow: '0px 0px 14px rgba(0, 0, 0, 0.1)' }} className='rounded-full aspect-square'/>
+          </div>
+          <Controller name="date" control={control} render={( { field } ) => <Input id='date' label='Date' {...field} errors={errors} disabled={isLoading} />} />
+          <div className='flex gap-x-4'>
+            <Controller name="hour" control={control} render={( { field } ) => <Select id='hour' label='Hour' {...field} disabled={isLoading} options={hourOptions} />} />
+            <Controller name="minute" control={control} render={( { field } ) => <Select id='minute' label='Minute' {...field} disabled={isLoading} options={minuteOptions} />} />
+          </div>
+
           <Controller name="stadium" control={control} render={( { field } ) => <Select id='stadium' label='Stadium' {...field} errors={errors} disabled={isLoading} options={stadiumsOptions} />} />
-          <div>
+          <div className='mt-6'>
             <Button disabled={isLoading} type='submit' variant='primary' size='md'>
                 Valider
             </Button>

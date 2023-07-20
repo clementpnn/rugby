@@ -1,17 +1,22 @@
 'use client'
 import Modal from './dialog'
 import Button from '../buttons/button'
-import getTeams from '@/actions/getTeams'
-import getStadiums from '@/actions/getStadiums'
+
 import CreateMatch from '@/app/admin/match/create'
 
-const ModalCreateMatch = async () => {
-  const stadiums = await getStadiums() || []
-  const teams = await getTeams() || []
+interface ModalCreateMatchProperties {
+  teams: any
+  stadiums: any
+}
+
+const ModalCreateMatch : React.FC<ModalCreateMatchProperties> = ( { teams, stadiums } ) => {
+
   return (
     <>
       <Modal title='Create Match' action={<Button size='lg'>Create Match</Button>}>
-        <CreateMatch teams={teams} stadiums={stadiums} />
+        <div className='p-8'>
+          <CreateMatch teams={teams} stadiums={stadiums} />
+        </div>
       </Modal>
     </>
   )
