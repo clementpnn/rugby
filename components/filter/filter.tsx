@@ -19,7 +19,11 @@ type Pool = {
   teams: Team[]
 }
 
-const Filter = () => {
+type FilterProperties = {
+  title: string
+}
+
+const Filter: React.FC<FilterProperties> = ( { title } ) => {
   const { getByValue } = useCountries()
   const [ parent ] = useAutoAnimate()
 
@@ -37,7 +41,7 @@ const Filter = () => {
 
   return (
     <div className='bg-neutral0 w-full h-full filter-container flex flex-col'>
-      <h1 className='text-blue6 h2-barlow-m sm:h1-barlow-m pb-2 pt-14 pl-7'>PLANNING</h1>
+      <h1 className='text-blue6 h2-barlow-m sm:h1-barlow-m pb-2 pt-14 pl-7'>{ title }</h1>
       <div className='flex space-x-3 pb-12 pt-12 pl-7'>
         <Button
           size='lg'
