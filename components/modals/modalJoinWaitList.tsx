@@ -111,7 +111,7 @@ const ModalJoinWaitList : React.FC<ModalJoinWaitListProperties> = ( { data, onCl
   const time = data.time.split( ' ' ).join( '' )
   const date = convertDateToEnglish( data.date )
   return(
-    <Modal action={<button className='w-full bg-neutral0 hover:bg-neutral1'><RequestMatch data={data} state={state} stateClass={stateClass} time={time}/></button>} title='Wait List'>
+    <Modal action={<button className='w-full bg-neutral0 hover:bg-neutral1'><RequestMatch data={data} state={state} stateClass={stateClass} time={time} admin={false}/></button>} title='Wait List'>
       <div className='w-full h-fit flex flex-col gap-8 p-6 sm:p-8'>
         <div className='flex flex-col gap-y-3'>
           <div className='w-full flex justify-between items-center'>

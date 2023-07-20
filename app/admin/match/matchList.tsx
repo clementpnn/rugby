@@ -6,6 +6,7 @@ import { Match } from '@/components/modals/modalJoinWaitList'
 import RequestMatch from '@/components/requestMatch/requestMatch'
 import { useFilterStore } from '@/hooks/useFilter'
 import { useAutoAnimate } from '@formkit/auto-animate/react'
+import Link from 'next/link'
 
 // interface MatchListProperties {
 //   matchs: ( Match & { matchTeams: MatchTeam[] } )[]
@@ -67,8 +68,10 @@ const MatchList: React.FC<MatchListProperties> = ( { matchs } ) => {
               </Container>
               <div className='border-y-[1px] border-neutral3 divide-y divide-neutral3'>
                 {matches.map( ( match: Match ) => (
-                  <div key={match.id}>
-                    <RequestMatch data={match} state='disabled' stateClass='disabled' time='25:30'></RequestMatch>
+                  <div key={match.id} className='bg-neutral0 hover:bg-neutral1'>
+                    <Link href={`/admin/match/${match.id}`} key={match.id}>
+                      <RequestMatch data={match} state='disabled' stateClass='disabled' time='25:30' admin={true}></RequestMatch>
+                    </Link>
                   </div>
                 ) )}
               </div>

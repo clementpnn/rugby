@@ -14,14 +14,15 @@ interface MatchProperties {
   state: string
   stateClass: 'accepted_light' | 'rejected_light' | 'progress_light' | 'accepted_dark' | 'rejected_dark' | 'progress_dark' | 'disabled'
   time: string
+  admin: boolean
 }
 
-const RequestMatch: React.FC<MatchProperties> = ( { data, stateClass, state, time } ) => {
+const RequestMatch: React.FC<MatchProperties> = ( { data, stateClass, state, time, admin } ) => {
   const { getByValue } = useCountries()
   const imgCountryLeft = getByValue( data.matchTeams[0].team )
   const imgCountryRight = getByValue( data.matchTeams[1].team )
   return (
-    <div className={`flex justify-between flex-col md:flex-row items-start md:items-center w-full h-fit px-5 md:px-20 py-6 ${data.matchTeams[0].result!==RESULT.NO_PLAYED || data.matchTeams[1].result!==RESULT.NO_PLAYED ? 'opacity-40' : ''}`}>
+    <div className={`flex justify-between flex-col md:flex-row items-start md:items-center w-full h-fit px-5 md:px-20 py-6 ${( data.matchTeams[0].result!==RESULT.NO_PLAYED && admin===false ) || ( data.matchTeams[1].result!==RESULT.NO_PLAYED && admin===false ) ? 'opacity-40' : ''}`}>
       <div className="w-[280px] flex flex-col items-start gap-y-2">
         <div className="md:h4-barlow-m h5-barlow-m text-blue6">{ time }</div>
         <div className="label-sm text-blue6">{ data.stadiumName }</div>
@@ -65,7 +66,7 @@ const RequestMatch: React.FC<MatchProperties> = ( { data, stateClass, state, tim
         </div>
       </div>
       <div className="flex flex-row w-[280px] h-9 justify-end items-center md:mr-0 mr-4 md:mt-0 mt-3 right-0 absolute md:relative">
-        <Badge size='md' variant={stateClass}>{ state }</Badge>
+        {admin===false ? <Badge size='md' variant={stateClass}>{ state }</Badge> : ''}
       </div>
     </div>
 
