@@ -8,7 +8,7 @@ async function main() {
   const states = [ 'IN_PROGRESS', 'REJECTED' ]
 
   for ( let match of matchs ) {
-    const numberOfUsers = Math.floor( Math.random() * ( 10 - 5 + 1 ) ) + 5
+    const numberOfUsers = Math.floor( Math.random() * ( 50 - 30 + 1 ) ) + 30
     const shuffledUsers = users.sort( () => 0.5 - Math.random() )
     const selectedUsers = shuffledUsers.slice( 0, numberOfUsers )
 

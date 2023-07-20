@@ -84,20 +84,23 @@ const CreateMatch: React.FC<CreateMatchProperties> = ( { teams, stadiums } ) => 
         </div>
         <form onSubmit={handleSubmit( onSubmit )} className='mt-8 grid gap-y-3'>
           <Controller name="phase" control={control} render={( { field } ) => <Select id='phase' label='Phase' {...field} errors={errors} disabled={isLoading} options={isPoulePhase ? pouleOptions : knockOutOption} />} />
-          <div className='flex items-end gap-x-4'>
-            <Controller name="teamOne" control={control} render={( { field } ) => <Select id='teamOne' label='Team One' {...field} errors={errors} disabled={isLoading} options={filteredTeams.map( option => ( { ...option, disabled: option.value === '--' ? !!teamOne : option.value === teamTwo } ) )} />} />
-            <Image src={teamOne === '--' ? '/placeholder-image.png' : `/flags/${teamOne.slice( 0, 3 ).toLowerCase()}.svg`} alt='team' width={44} height={44} style={{ boxShadow: '0px 0px 14px rgba(0, 0, 0, 0.1)' }} className='rounded-full aspect-square' />
-          </div>
-          <div className='flex items-end gap-x-4'>
-            <Controller name="teamTwo" control={control} render={( { field } ) => <Select id='teamTwo' label='teamTwo' {...field} errors={errors} disabled={isLoading} options={filteredTeams.map( option => ( { ...option, disabled: option.value === '--' ? !!teamTwo : option.value === teamOne } ) )} />} />
-            <Image src={teamTwo === '--' ? '/placeholder-image.png' : `/flags/${teamTwo.slice( 0, 3 ).toLowerCase()}.svg`} alt='team' width={44} height={44} style={{ boxShadow: '0px 0px 14px rgba(0, 0, 0, 0.1)' }} className='rounded-full aspect-square'/>
+          <div className='flex w-full justify-between items-end h5-barlow-m'>
+            <div className='flex items-end gap-x-2'>
+              <Controller name="teamOne" control={control} render={( { field } ) => <Select id='teamOne' label='Team One' {...field} errors={errors} disabled={isLoading} options={filteredTeams.map( option => ( { ...option, disabled: option.value === '--' ? !!teamOne : option.value === teamTwo } ) )} />} />
+              <Image src={teamOne === '--' ? '/placeholder-image.png' : `/flags/${teamOne.slice( 0, 3 ).toLowerCase()}.svg`} alt='team' width={44} height={44} style={{ boxShadow: '0px 0px 14px rgba(0, 0, 0, 0.1)' }} className='rounded-full aspect-square' />
+            </div>
+            <span className='text-blue6 mb-2'>VS</span>
+            <div className='flex items-end gap-x-2'>
+              <Image src={teamTwo === '--' ? '/placeholder-image.png' : `/flags/${teamTwo.slice( 0, 3 ).toLowerCase()}.svg`} alt='team' width={44} height={44} style={{ boxShadow: '0px 0px 14px rgba(0, 0, 0, 0.1)' }} className='rounded-full aspect-square'/>
+              <Controller name="teamTwo" control={control} render={( { field } ) => <Select id='teamTwo' label='teamTwo' {...field} errors={errors} disabled={isLoading} options={filteredTeams.map( option => ( { ...option, disabled: option.value === '--' ? !!teamTwo : option.value === teamOne } ) )} />} />
+
+            </div>
           </div>
           <Controller name="date" control={control} render={( { field } ) => <Input id='date' label='Date' {...field} errors={errors} disabled={isLoading} />} />
-          <div className='flex gap-x-4'>
+          <div className='flex items-end gap-x-2'>
             <Controller name="hour" control={control} render={( { field } ) => <Select id='hour' label='Hour' {...field} disabled={isLoading} options={hourOptions} />} />
             <Controller name="minute" control={control} render={( { field } ) => <Select id='minute' label='Minute' {...field} disabled={isLoading} options={minuteOptions} />} />
           </div>
-
           <Controller name="stadium" control={control} render={( { field } ) => <Select id='stadium' label='Stadium' {...field} errors={errors} disabled={isLoading} options={stadiumsOptions} />} />
           <div className='mt-6'>
             <Button disabled={isLoading} type='submit' variant='primary' size='md'>
