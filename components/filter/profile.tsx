@@ -43,8 +43,10 @@ const ProfilePageFilter: React.FC<FilterProperties> = () => {
 
   return (
     <div className='bg-neutral0 w-full h-full filter-container flex flex-col'>
-      <h1 className='text-blue6 h2-barlow-m sm:h1-barlow-m pb-2 pt-14 pl-7'>PLANNING</h1>
-      <ProfileCard />
+      <h1 className='text-blue6 h2-barlow-m sm:h1-barlow-m pb-2 pt-14 pl-7'>PROFIL</h1>
+      <div className='flex justify items-start pt-12 pl-7'>
+        <ProfileCard showLogoutButton={false} />
+      </div>
       <div className='flex space-x-3 pb-12 pt-12 pl-7'>
         <Button
           size='lg'
@@ -123,7 +125,6 @@ const ProfilePageFilter: React.FC<FilterProperties> = () => {
         )}
       </div>
     </div>
-
   )
 }
 
