@@ -5,24 +5,27 @@ import { ButtonUI } from '../ui/button'
 import Image from 'next/image'
 import Badge from '../ui/badge'
 import Modal from './dialog'
-import { RESULT, STATE } from '@prisma/client'
+// import { RESULT, STATE } from '@prisma/client'
+import { RESULT } from '@prisma/client'
 import { useEffect, useState } from 'react'
 import RequestMatch from '../requestMatch/requestMatch'
-export interface MatchInformation {
-  date: string
-  time: string
-  state: STATE
-  stadium: string
-  score: {
-    countryA : string
-    scoreA : RESULT
-    countryB : string
-    scoreB : RESULT
-  }
-}
+import { Matchs } from '../listMatch/listPlanning'
+// export interface MatchInformation {
+//   date: string
+//   time: string
+//   state: STATE
+//   stadium: string
+//   score: {
+//     countryA : string
+//     scoreA : RESULT
+//     countryB : string
+//     scoreB : RESULT
+//   }
+// }
 interface ModalJoinWaitListProperties {
   // children: React.ReactNode
-  data: MatchInformation
+  // data: MatchInformation
+  data: Matchs
   onClick: ()=>void
 }
 
@@ -43,8 +46,8 @@ export function formatString( inputString : string ) {
 
 const ModalJoinWaitList : React.FC<ModalJoinWaitListProperties> = ( { data, onClick } ) => {
 
-  const countryLeft = formatString( data.score.countryA )
-  const countryRight = formatString( data.score.countryB )
+  const countryLeft = formatString( data.matchTeams[0].team )
+  const countryRight = formatString( data.matchTeams[1].team )
 
   const state = formatString( data.state )
 

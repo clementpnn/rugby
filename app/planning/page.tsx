@@ -1,12 +1,16 @@
-import Navbar from '@/components/navbar/navbar'
-import Filter from '@/components/filter/filter'
-import Empty from '@/components/containers/empty'
+
 // import getMatch from '@/actions/getMatch'
+import Empty from '@/components/containers/empty'
+import Filter from '@/components/filter/filter'
+import Navbar from '@/components/navbar/navbar'
 
 const page = async () => {
-  // const matchs = await getMatch()
-  // eslint-disable-next-line no-console
-  // console.log( matchs )
+  // const matchs = await getMatch() || []
+  // if( !matchs ){
+  //   return (
+  //     <p>not match</p>
+  //   )
+  // }
   return (
     <div className="flex flex-col h-screen">
       <Navbar />
@@ -18,6 +22,20 @@ const page = async () => {
           <Filter height={0} width={0}/>
         </div>
       </div>
+      {/* { matchs?.map( ( items ) => {
+        return(
+          <div key={items.id} className='pt-3'>
+            <p>{items.date}</p>
+            <p>{items.id}</p>
+            { items.matchTeams?.map( ( match ) => (
+              <div key={match.id}>{match.team} {match.result}</div>
+            ) ) }
+            <p>{items.phase}</p>
+            <p>{items.stadiumId}</p>
+            <p>{items.time}</p>
+          </div>
+        )
+      } ) } */}
     </div>
   )
 }
