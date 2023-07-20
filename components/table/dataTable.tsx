@@ -38,6 +38,7 @@ import { RxMixerHorizontal } from 'react-icons/rx'
 import { styled } from '@stitches/react'
 
 import { Pagination } from './pagination'
+import StatusButton from '../buttons/statusButton'
 
 const ThickRxMixerHorizontal = styled( RxMixerHorizontal, {
   strokeWidth: '0.5px'
@@ -46,11 +47,13 @@ const ThickRxMixerHorizontal = styled( RxMixerHorizontal, {
 interface DataTableProperties<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[]
+  statusButton: boolean
 }
 
 export function DataTable<TData, TValue>( {
   columns,
-  data
+  data,
+  statusButton
 }: DataTableProperties<TData, TValue> ) {
   const [ sorting, setSorting ] = React.useState<SortingState>( [] )
 
@@ -95,7 +98,7 @@ export function DataTable<TData, TValue>( {
         />
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <ButtonUI variant="outline" className="ml-auto focus-visible:ring-0">
+            <ButtonUI variant="outline" className={`btn ${statusButton ? 'focus-visible:ring-0 ml-6' : 'focus-visible:ring-0 ml-auto'}`}>
               <ThickRxMixerHorizontal className='pr-2 w-6'/>
               Columns
             </ButtonUI>
@@ -122,6 +125,7 @@ export function DataTable<TData, TValue>( {
               } )}
           </DropdownMenuContent>
         </DropdownMenu>
+        {statusButton ? <StatusButton/> : ''}
       </div>
       <div className="rounded-md border">
         <Table>
