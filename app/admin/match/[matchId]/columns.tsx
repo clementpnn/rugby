@@ -18,7 +18,6 @@ export type Users = {
     accepted: number
     processing: number
     refused: number
-    statusButton: boolean
 }
 
 export const columns: ColumnDef<Users>[] = [
