@@ -1,10 +1,8 @@
-
-
 import getCurrentUser from '@/actions/getCurrentUser'
 import { getMatchsInfoByUser } from '@/actions/getMatch'
-import Empty from '@/components/containers/empty'
-import Filter from '@/components/filter/filter'
-import Navbar from '@/components/navbar/navbar'
+// import Empty from '@/components/containers/empty'
+// import Filter from '@/components/filter/filter'
+// import Navbar from '@/components/navbar/navbar'
 
 const page = async () => {
   const currentUser = await getCurrentUser()

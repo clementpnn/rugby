@@ -14,6 +14,7 @@ export interface Matchs{
     time: string
     phase: PHASE
     stadiumId: string
+    userDemandStatus: string
     matchTeams: Teams[]
 }
 

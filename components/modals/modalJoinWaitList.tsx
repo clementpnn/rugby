@@ -49,11 +49,11 @@ const ModalJoinWaitList : React.FC<ModalJoinWaitListProperties> = ( { data, onCl
   const countryLeft = formatString( data.matchTeams[0].team )
   const countryRight = formatString( data.matchTeams[1].team )
 
-  const state = formatString( data.state )
+  const state = formatString( data.userDemandStatus )
 
   const [ stateClass, setStateClass ] = useState<'accepted_light' | 'rejected_light' | 'progress_light' | 'accepted_dark' | 'rejected_dark' | 'progress_dark'>( 'accepted_light' )
   useEffect( () => {
-    switch ( data.state ) {
+    switch ( data.userDemandStatus ) {
     case 'ACCEPTED': {
       setStateClass( 'accepted_light' )
       break
@@ -71,11 +71,11 @@ const ModalJoinWaitList : React.FC<ModalJoinWaitListProperties> = ( { data, onCl
       break
     }
     }
-  }, [ data.state ] )
+  }, [ data.userDemandStatus ] )
 
   const { getByValue } = useCountries()
-  const imgCountryLeft = getByValue( data.score.countryA )
-  const imgCountryRight = getByValue( data.score.countryB )
+  const imgCountryLeft = getByValue( data.matchTeams[0].team )
+  const imgCountryRight = getByValue( data.matchTeams[1].team )
   return(
     <Modal action={<button className='w-full bg-neutral0 hover:bg-neutral1'><RequestMatch data={data} state={state} stateClass={stateClass}/></button>} title='Wait List'>
       <div className='w-full h-fit flex flex-col gap-8 p-6 sm:p-8'>
