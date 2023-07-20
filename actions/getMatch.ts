@@ -49,10 +49,15 @@ export async function getMatchsInfoByUser( parameters: IUser ) {
 
   if ( !match ) return
 
-  return match.map( matchItem => {
+  return match.map( async ( matchItem ) => {
     const userDemand = matchItem.demands.find( demand => demand.user?.id === userId )
+    const stadium = await prisma.stadium.findUnique( {
+      where: { id: matchItem.stadiumId }
+    } )
+
     return {
       ...matchItem,
+      stadiumName: stadium?.name || 'No stadium',
       userDemandStatus: userDemand ? userDemand.state : 'NOT_DEMANDED'
     }
   } )
