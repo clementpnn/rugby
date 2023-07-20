@@ -56,8 +56,8 @@ export async function getMatchsInfoByUser( parameters: IUser ) {
     } )
 
     return {
-      matchItem,
-      stadiumName: stadium?.name || 'No stadium',
+      ...matchItem,
+      stadiumName: stadium ? stadium.name : 'No stadium',
       userDemandStatus: userDemand ? userDemand.state : 'NOT_DEMANDED'
     }
   } )
