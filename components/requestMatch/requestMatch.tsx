@@ -5,12 +5,12 @@ import Badge from '@/components/ui/badge'
 // import { MatchInformation } from '../modals/modalJoinWaitList'
 import useCountries from '@/hooks/useCountries'
 import { RESULT } from '@prisma/client'
-import { Matchs } from '../modals/modalJoinWaitList'
+import { Match } from '../modals/modalJoinWaitList'
 // import { formatString } from '../modals/modalJoinWaitList'
 interface MatchProperties {
   // variant: 'accepted_light' | 'rejected_light' | 'progress_light' | 'accepted_dark' | 'rejected_dark' | 'progress_dark'
   // label: string
-  data: Matchs
+  data: Match
   state: string
   stateClass: 'accepted_light' | 'rejected_light' | 'progress_light' | 'accepted_dark' | 'rejected_dark' | 'progress_dark' | 'disabled'
   time: string
@@ -21,7 +21,7 @@ const RequestMatch: React.FC<MatchProperties> = ( { data, stateClass, state, tim
   const imgCountryLeft = getByValue( data.matchTeams[0].team )
   const imgCountryRight = getByValue( data.matchTeams[1].team )
   return (
-    <div className="flex justify-between flex-col md:flex-row items-start md:items-center border-y-[0.5px] w-full h-fit px-5 md:px-20 py-6">
+    <div className={`flex justify-between flex-col md:flex-row items-start md:items-center w-full h-fit px-5 md:px-20 py-6 ${data.matchTeams[0].result!==RESULT.NO_PLAYED || data.matchTeams[1].result!==RESULT.NO_PLAYED ? 'opacity-40' : ''}`}>
       <div className="w-[280px] flex flex-col items-start gap-y-2">
         <div className="md:h4-barlow-m h5-barlow-m text-blue6">{ time }</div>
         <div className="label-sm text-blue6">{ data.stadiumName }</div>
@@ -40,7 +40,7 @@ const RequestMatch: React.FC<MatchProperties> = ( { data, stateClass, state, tim
             { data.matchTeams[0].team.slice( 0, 3 ) }
           </div>
         </div>
-        { data.matchTeams[0].result!==RESULT.WINNER && data.matchTeams[0].result!==RESULT.LOSER && data.matchTeams[0].result!==RESULT.NULL || data.matchTeams[1].result!==RESULT.WINNER && data.matchTeams[1].result!==RESULT.LOSER && data.matchTeams[1].result!==RESULT.NULL ? (
+        { data.matchTeams[0].result===RESULT.NO_PLAYED || data.matchTeams[1].result===RESULT.NO_PLAYED ? (
           <div className="h6-barlow-m text-blue6 flex justify-center w-16">VS</div>
         ) : (
           <div className="flex row w-16 justify-between">
