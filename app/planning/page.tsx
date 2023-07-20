@@ -25,7 +25,7 @@ const page = async () => {
       </div> */}
       { matchs?.map( ( items ) => {
         return(
-          <div key={items.id} className='pt-3'>
+          <div key={items.matchItem.id} className='pt-3'>
             <p>{items.date}</p>
             <p>{items.id}</p>
             <p className='text-red-500'>{items.userDemandStatus}</p>
