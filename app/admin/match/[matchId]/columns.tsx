@@ -7,18 +7,18 @@ import { ColumnHeader } from '@/components/table/columnHeader'
 import { RowActions } from '@/components/table/rowActions'
 
 import { MdVerified } from 'react-icons/md'
-import { JOB } from '@prisma/client'
 
 export type Users = {
     name: string
     company: string
-    status: JOB
+    status: string
     email: string
     emailVerified: boolean
     amount: number
     accepted: number
     processing: number
     refused: number
+    statusButton: boolean
 }
 
 export const columns: ColumnDef<Users>[] = [
