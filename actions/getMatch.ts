@@ -56,7 +56,7 @@ export async function getMatchsInfoByUser( parameters: IUser ) {
     } )
 
     return {
-      ...matchItem,
+      matchItem,
       stadiumName: stadium?.name || 'No stadium',
       userDemandStatus: userDemand ? userDemand.state : 'NOT_DEMANDED'
     }
