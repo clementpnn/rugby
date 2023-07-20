@@ -39,7 +39,7 @@ const RequestMatch: React.FC<MatchProperties> = ( { data, stateClass, state } ) 
             { data.matchTeams[0].team.slice( 0, 3 ) }
           </div>
         </div>
-        { data.matchTeams[0].result===RESULT.WINNER || data.matchTeams[1].result===RESULT.WINNER ? (
+        { data.matchTeams[0].result===RESULT.NO_PLAYED || data.matchTeams[1].result===RESULT.NO_PLAYED ? (
           <div className="h6-barlow-m text-blue6 flex justify-center w-16">VS</div>
         ) : (
           <div className="flex row w-16 justify-between">

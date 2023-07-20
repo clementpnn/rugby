@@ -29,6 +29,18 @@ const page = async () => {
         return(
           <div key={( await items ).id} className='pt-3'>
             <ModalJoinWaitList data={( await items )} />
+            <p className='text-red-500'>{( await items ).userDemandStatus}</p>
+            { ( await items ).matchTeams?.map( ( match ) => (
+              <div key={match.id}>{match.result}</div> ) ) }
+            {/* <p>{( await items ).date}</p>
+            <p>{( await items ).id}</p>
+            <p className='text-red-500'>{( await items ).userDemandStatus}</p>
+            { ( await items ).matchTeams?.map( ( match ) => (
+              <div key={match.id}>{match.team} {match.result}</div>
+            ) ) }
+            <p>{( await items ).phase}</p>
+            <p>{( await items ).stadiumName}</p>
+            <p>{( await items ).time}</p> */}
           </div>
         )
       } ) }
