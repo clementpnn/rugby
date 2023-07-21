@@ -1,6 +1,7 @@
 import { getMatchByIdUser } from '@/actions/getMatch'
 import MatchId from './match'
 import getCurrentUser from '@/actions/getCurrentUser'
+import Navbar from '@/components/navbar/navbar'
 
 interface IParameters {
   matchId: string
@@ -24,6 +25,7 @@ const page = async ( { params }: {params: IParameters} ) => {
 
   return (
     <>
+      <Navbar />
       <MatchId match={match} currentUser={currentUser} />
     </>
   )
