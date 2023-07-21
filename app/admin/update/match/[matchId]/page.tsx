@@ -1,6 +1,7 @@
 import { getMatchUpdateById } from '@/actions/getMatch'
 import getCurrentUser from '@/actions/getCurrentUser'
 import MatchForm from '@/components/forms/matchForm'
+import AdminContainer from '@/components/containers/adminContainer'
 
 interface IParameters {
   matchId: string
@@ -24,7 +25,11 @@ const page = async ( { params }: {params: IParameters} ) => {
 
   return (
     <>
-      <MatchForm match={match} />
+      <AdminContainer>
+        <div className='bg-neutral0 rounded-md w-full h-full overflow-auto'>
+          <MatchForm match={match} />
+        </div>
+      </AdminContainer>
     </>
   )
 }

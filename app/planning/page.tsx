@@ -28,7 +28,7 @@ const page = async () => {
           <ListMatch matchs={matchsByDate}></ListMatch>
         </div>
         <div className="w-full h-full col-span-3">
-          <Filter title='PLANNING'/>
+          <Filter title='PLANNING' showSwitch={true}/>
         </div>
       </div>
     </div>

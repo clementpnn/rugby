@@ -19,11 +19,12 @@ type Pool = {
   teams: Team[]
 }
 
-type FilterProperties = {
+interface FilterProperties {
   title: string
+  showSwitch: boolean
 }
 
-const Filter: React.FC<FilterProperties> = ( { title } ) => {
+const Filter: React.FC<FilterProperties> = ( { title, showSwitch } ) => {
   const { getByValue } = useCountries()
   const [ parent ] = useAutoAnimate()
 
@@ -42,24 +43,26 @@ const Filter: React.FC<FilterProperties> = ( { title } ) => {
   return (
     <div className='bg-neutral0 w-full h-full filter-container flex flex-col'>
       <h1 className='text-blue6 h2-barlow-m sm:h1-barlow-m pb-2 pt-14 pl-7'>{ title }</h1>
-      <div className='flex space-x-3 pb-12 pt-12 pl-7'>
-        <Button
-          size='lg'
-          variant={`${activeTab === 'pools' ? 'primary' : 'outline'}`}
-          className='w-[150px]'
-          onClick={() => handleClickTab( 'pools' )}
-        >
+      { showSwitch===true ? (
+        <div className='flex space-x-3 pb-12 pt-12 pl-7'>
+          <Button
+            size='lg'
+            variant={`${activeTab === 'pools' ? 'primary' : 'outline'}`}
+            className='w-[150px]'
+            onClick={() => handleClickTab( 'pools' )}
+          >
           Pools
-        </Button>
-        <Button
-          size='lg'
-          variant={`${activeTab === 'knock-out' ? 'primary' : 'outline'}`}
-          className='w-[150px]'
-          onClick={() => handleClickTab( 'knock-out' )}
-        >
+          </Button>
+          <Button
+            size='lg'
+            variant={`${activeTab === 'knock-out' ? 'primary' : 'outline'}`}
+            className='w-[150px]'
+            onClick={() => handleClickTab( 'knock-out' )}
+          >
           Knock-out
-        </Button>
-      </div>
+          </Button>
+        </div>
+      ) : ( <div className='h-12 w-full'></div> )}
       <h5 className='text-blue6 h5-barlow-m pb-2 pt-3 pl-7'>FILTER</h5>
       <div className='w-full h-full max-h-[calc(100vh-57px-150px-136px-101px)] overflow-auto scroll-smooth no-scrollbar border-t-[1px]'>
         {activeTab === 'pools' && (
