@@ -45,6 +45,14 @@ npm run dev
 
 **Your app should now be running on [localhost:3000](http://localhost:3000/)**
 
+Example csv for import
+```text
+accreditationId,firstName,lastName,company,job,email
+abC12,Pierre,Martin,Le Figaro,JOURNALIST,pierre.martin@lefigaro.fr
+xyZ34,Julie,Bernard,Le Parisien,JOURNALIST,julie.bernard@leparisien.fr
+efG56,Patrick,Roux,L'Équipe,PHOTOGRAPHER,patrick.roux@lequipe.fr
+```
+
 ## Authors
 
 - Victor Huang ([@theVicoH](https://github.com/theVicoH))
