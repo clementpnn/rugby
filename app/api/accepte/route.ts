@@ -18,13 +18,9 @@ export async function POST( request: Request ) {
 
   await prisma.point.create( {
     data: {
+      demandId,
       x: points[0].x,
-      y: points[0].y,
-      demand: {
-        connect: {
-          id: demandId
-        }
-      }
+      y: points[0].y
     }
   } )
 
