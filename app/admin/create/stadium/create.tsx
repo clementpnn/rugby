@@ -143,38 +143,6 @@ const CreateStadium = () => {
   if ( step === STEPS.THREE ) {
     bodyContent = (
       <>
-        {/* <ImageContainer image={tribuneImage} />
-        <div>
-          <Controller name="nameTribune" control={control} render={( { field } ) => <Input id='nameTribune' label='Name' {...field} errors={errors} disabled={isLoading} />} />
-          <Controller name="type" control={control} render={( { field } ) => <Select id='type' label='type' {...field} errors={errors} disabled={isLoading} options={[ { value: 'JOURNALIST', label: 'JOURNALIST' }, { value: 'PHOTOGRAPHER', label: 'PHOTOGRAPHER' } ]} />} />
-          <Controller name="places" control={control} render={( { field } ) => <Input id='places' label='Number of places' type='number' {...field} errors={errors} disabled={isLoading} />} />
-          <ImageUpload onChange={( value ) => setTribuneImage( value )}> Upload Tribune Image</ImageUpload>
-        </div>
-        <div>
-          <Button type='button' variant='outline' size='md' onClick={() => {
-            setStep( step - 1 as STEPS )
-            setTribuneImage( '' )
-            reset( {
-              nameTribune: '',
-              type: 'JOURNALIST',
-              places: undefined
-            } )
-          }}>
-            Cancel
-          </Button>
-          <Button variant='primary' size='md' onClick={() => {
-            setTribunes( [ ...tribunes, { name: nameTribune, type: type as 'JOURNALIST' | 'PHOTOGRAPHER', places, image: tribuneImage, x: stadiumPoint.x, y: stadiumPoint.y } ] )
-            setStep( step - 1 as STEPS )
-            setTribuneImage( '' )
-            reset( {
-              nameTribune: '',
-              type: 'JOURNALIST',
-              places: undefined
-            } )
-          }}>
-            Valider
-          </Button>
-        </div> */}
         <div className='flex h-full w-full'>
           <div className='bg-neutral0 m-6 mr-0 h-[calc(100%-48px)] w-full flex justify-center items-center rounded-md overflow-hidden' style={{ boxShadow: '0px 0px 14px rgba(0, 0, 0, 0.1)' }} >
             <ImageContainer image={tribuneImage} />

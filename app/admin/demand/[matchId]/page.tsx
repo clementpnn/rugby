@@ -1,6 +1,7 @@
 import getCurrentUser from '@/actions/getCurrentUser'
 import { getMatchDemandById } from '@/actions/getMatch'
 import DemandMatch from './demand'
+import AdminContainer from '@/components/containers/adminContainer'
 
 interface IParameters {
   matchId: string
@@ -22,7 +23,12 @@ const page = async ( { params }: {params: IParameters} ) => {
 
   return (
     <>
-      <DemandMatch matchData={matchData} />
+      <AdminContainer>
+        <div className='w-full h-full bg-neutral0 rounded-md overflow-hidden'>
+          <DemandMatch matchData={matchData} />
+        </div>
+      </AdminContainer>
+
     </>
   )
 }
