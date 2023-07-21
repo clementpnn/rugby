@@ -45,7 +45,8 @@ npm run dev
 
 **Your app should now be running on [localhost:3000](http://localhost:3000/)**
 
-Example csv for import
+**Example csv for import**<br>
+Be careful, emails will be sent
 ```text
 accreditationId,firstName,lastName,company,job,email
 abC12,Pierre,Martin,Le Figaro,JOURNALIST,pierre.martin@lefigaro.fr
