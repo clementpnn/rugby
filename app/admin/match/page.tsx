@@ -10,7 +10,7 @@ import getTeams from '@/actions/getTeams'
 
 const page = async () => {
   const currentUser = await getCurrentUser()
-  const matchs = await getMatchsInfoByUser( { userId : currentUser?.id || '' } ) || []
+  const matchs = await getMatchsInfoByUser( { userId : '64ba334e727f4f5e22820b2b' } ) || []
   const stadiums = await getStadiums() || []
   const teams = await getTeams() || []
 
