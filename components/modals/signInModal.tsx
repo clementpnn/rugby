@@ -22,7 +22,7 @@ const SignInModal: React.FC<SignInModalProperties> = ( { currentUser } ) => {
   useEffect( () => {
     if ( session?.status === 'authenticated' ) {
       if ( currentUser?.role === 'USER' ) {
-        router.push( '/user/dashboard' )
+        router.push( '/user/planning' )
       }
 
       if ( currentUser?.role === 'ADMIN' ) {
