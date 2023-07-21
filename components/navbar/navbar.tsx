@@ -23,17 +23,17 @@ const Navbar = () => {
           />
         </Link>
         <div className='flex flex-row'>
-          <Link href={'/'}>
+          <Link href={'/user/dashboard'}>
             <Button variant='secondary' className={activeButton === 'schedule' ? 'text-blue6' : 'text-blue9'} size={'md'} onClick={() => handleButtonClick( 'schedule' )}>
               Schedule
             </Button>
           </Link>
-          <Link href={'/'}>
+          <Link href={'/user/information'}>
             <Button variant='secondary' className={activeButton === 'Information' ? 'text-blue6' : 'text-blue9'} size={'md'} onClick={() => handleButtonClick( 'Information' )}>
               Information
             </Button>
           </Link>
-          <Link href={'/'}>
+          <Link href={''}>
             <Button variant='secondary' className={activeButton === 'Profile' ? 'text-blue6' : 'text-blue9'} size={'md'} onClick={() => handleButtonClick( 'Profile' )}>
               Profile
             </Button>
