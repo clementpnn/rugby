@@ -4,7 +4,7 @@ import getCurrentUser from '@/actions/getCurrentUser'
 import { Match } from '@/components/modals/modalJoinWaitList'
 import AdminContainer from '@/components/containers/adminContainer'
 import Filter from '@/components/filter/filter'
-import ModalCreateMatch from '@/components/modals/ModalCreateMatch'
+import ModalCreateMatch from '@/components/modals/modalCreateMatch'
 import getStadiums from '@/actions/getStadiums'
 import getTeams from '@/actions/getTeams'
 
