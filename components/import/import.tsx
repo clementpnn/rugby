@@ -2,9 +2,9 @@
 
 import { useEffect } from 'react'
 import Button from '@/components/buttons/button'
-import { CiImport } from 'react-icons/ci'
+import { PiDownloadSimpleBold } from 'react-icons/pi'
 
-const Import = async () => {
+const Import = () => {
   useEffect( () => {
     document.body.style.overflow = 'hidden'
 
@@ -17,12 +17,11 @@ const Import = async () => {
       <div className="uppercase text-blue6 h2-barlow-m">import</div>
       <Button
         size='lg'
-        icon={<CiImport className='w-full h-full ' />}
+        icon={<PiDownloadSimpleBold className='w-full h-full ' />}
         iconPosition='left'
         variant='primary'
-        className="label-md-bold"
       >
-                Import Users
+        Import Users
       </Button>
     </div>
   )
