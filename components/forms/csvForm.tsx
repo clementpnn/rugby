@@ -66,8 +66,8 @@ const CSVForm = () => {
   }
 
   return (
-    <div className="bg-neutral0 w-full h-36 p-10 mr-5 flex justify-between rounded-xl">
-      <div className="uppercase text-blue6 h2-barlow-m">import</div>
+    <div className='bg-neutral0 w-full h-36 p-10 mr-5 flex justify-between rounded-xl'>
+      <div className='uppercase text-blue6 h2-barlow-m'>import</div>
       <form>
         <input onChange={handleFileChange} disabled={isLoading} id={'csvFileInput'} accept={'.csv'} type={'file'} />
         <Button size='lg' icon={<PiDownloadSimpleBold className='w-full h-full ' />} iconPosition='left' variant='primary'onClick={() => {

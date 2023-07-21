@@ -84,23 +84,23 @@ export function DataTable<TData, TValue>( {
 
   return (
     <>
-      <div className="flex items-center py-4">
+      <div className='flex items-center py-4'>
         <InputUI
-          placeholder="Filter emails..."
+          placeholder='Filter emails...'
           value={( table.getColumn( 'name' )?.getFilterValue() as string ) ?? ''}
           onChange={( event ) =>
             table.getColumn( 'name' )?.setFilterValue( event.target.value )
           }
-          className="max-w-sm"
+          className='max-w-sm'
         />
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <ButtonUI variant="outline" className="focus-visible:ring-0 ml-6 ml-auto">
+            <ButtonUI variant='outline' className='focus-visible:ring-0 ml-6 ml-auto'>
               <ThickRxMixerHorizontal className='pr-2 w-6'/>
               Columns
             </ButtonUI>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
+          <DropdownMenuContent align='end'>
             {table
               .getAllColumns()
               .filter(
@@ -110,7 +110,7 @@ export function DataTable<TData, TValue>( {
                 return (
                   <DropdownMenuCheckboxItem
                     key={column.id}
-                    className="capitalize"
+                    className='capitalize'
                     checked={column.getIsVisible()}
                     onCheckedChange={( value ) =>
                       column.toggleVisibility( !!value )
@@ -123,7 +123,7 @@ export function DataTable<TData, TValue>( {
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
-      <div className="rounded-md border">
+      <div className='rounded-md border'>
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map( ( headerGroup ) => (
@@ -159,7 +159,7 @@ export function DataTable<TData, TValue>( {
               ) )
             ) : (
               <TableRow>
-                <TableCell colSpan={columns.length} className="h-24 text-center">
+                <TableCell colSpan={columns.length} className='h-24 text-center'>
                   No results.
                 </TableCell>
               </TableRow>
@@ -167,7 +167,7 @@ export function DataTable<TData, TValue>( {
           </TableBody>
         </Table>
       </div>
-      <div className="flex items-center justify-center pt-4">
+      <div className='flex items-center justify-center pt-4'>
         <Pagination table={table} />
       </div>
     </>
