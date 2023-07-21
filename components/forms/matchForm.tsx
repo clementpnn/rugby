@@ -4,14 +4,14 @@ import { useState } from 'react'
 import { SubmitHandler, useForm, Controller } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { toast } from 'react-hot-toast'
-import Image from 'next/image'
 import Button from '../buttons/button'
 import Input from '../inputs/input'
 import Select from '../inputs/select'
 import { MatchUpdateSchema } from '@/types/forms'
-import Container from '../containers/container'
 import { Match, MatchTeam } from '@prisma/client'
 import { useRouter } from 'next/navigation'
+import Image from 'next/image'
+import useCountries from '@/hooks/useCountries'
 
 interface MatchFormProperties {
     match: ( Match & { matchTeams: MatchTeam[] } )
@@ -93,74 +93,108 @@ const MatchForm: React.FC<MatchFormProperties> = ( { match } ) => {
     }
   }
 
+  const { getByValue } = useCountries()
+  const imgCountryLeft = getByValue( match.matchTeams[0].team )
+  const imgCountryRight = getByValue( match.matchTeams[1].team )
+
+  // eslint-disable-next-line no-console
+  console.log( match.matchTeams )
+
   return (
-    <div className='w-screen h-screen box-border flex justify-center items-center'>
-      <Container>
-        <form onSubmit={handleSubmit( onSubmit )}>
-          <div className='h-fit w-[calc(100vw-40px)] flex flex-col max-w-[400px]'>
-            <Image
-              src={'/images/logoBlueInline.svg'}
-              height={48}
-              width={132}
-              alt='logo blue inline'
-              className='mb-[60px]'
-            />
-            <div className='mb-20'>
-              <p className='text-blue7 h2-barlow-m sm:h1-barlow-m'>azerty</p>
-              <p className='text-blue6 h2-barlow-m sm:h1-barlow-m'>azerty</p>
-            </div>
-            <div className='flex flex-col gap-y-10'>
-              <div className='flex flex-col gap-y-6'>
-                <Controller
-                  name='team1Result'
-                  control={control}
-                  render={( { field } ) => (
-                    <Select
-                      id='team1Result'
-                      label='team1Result'
-                      {...field}
-                      disabled={isLoading}
-                      value={field.value || 'NO_PLAYED'}
-                      options={resultOptions}
-                      onChange={( value ) => {
-                        field.onChange( value )
-                        handleTeam1ResultChange( value )
-                      }}
-                    />
-                  )}
-                />
-                <Controller
-                  name='team2Result'
-                  control={control}
-                  render={( { field } ) => (
-                    <Select
-                      id='team2Result'
-                      label='team2Result'
-                      {...field}
-                      disabled={isLoading}
-                      value={field.value || 'NO_PLAYED'}
-                      options={resultOptions}
-                      onChange={( value ) => {
-                        field.onChange( value )
-                        handleTeam2ResultChange( value )
-                      }}
-                    />
-                  )}
-                />
-                <Controller name="team1Points" control={control} render={( { field } ) => <Input id='team1Points' type='number' className='h-[60px]' {...field} errors={errors} disabled={isLoading} />}/>
-                <Controller name="team2Points" control={control} render={( { field } ) => <Input id='team2Points' type='number' className='h-[60px]' {...field} errors={errors} disabled={isLoading} />}/>
-                <Controller name="team1Bonus" control={control} render={( { field } ) => <Input id='team1Bonus' type='number' className='h-[60px]' {...field} errors={errors} disabled={isLoading} />}/>
-                <Controller name="team2Bonus" control={control} render={( { field } ) => <Input id='team2Bonus' type='number' className='h-[60px]' {...field} errors={errors} disabled={isLoading} />}/>
-                <Controller name="team1DefenseBonus" control={control} render={( { field } ) => <Input id='team1DefenseBonus' type='number' className='h-[60px]' {...field} errors={errors} disabled={isLoading} />}/>
-                <Controller name="team2DefenseBonus" control={control} render={( { field } ) => <Input id='team2DefenseBonus' type='number' className='h-[60px]' {...field} errors={errors} disabled={isLoading} />}/>
+    <div className='flex justify-center items-center'>
+      <form onSubmit={handleSubmit( onSubmit )} className='w-[400px]'>
+        <div className='h-fit flex flex-col max-w-[400px]'>
+          <div className="flex items-center justify-center gap-x-10 mb-10 md:w-hug w-full md:mt-0">
+            <div className="flex items-center justify-end ">
+              <Image
+                src= {imgCountryLeft?.flag || '/placeholder-image.png'}
+                width={56}
+                height={56}
+                alt="flag"
+                className='rounded-full'
+                style={{ boxShadow: '0px 0px 14px rgba(0, 0, 0, 0.1)' }}
+              />
+              <div className="text-blue9 h5-barlow-m uppercase text-left w-14 md:ml-4">
+                { match.matchTeams[0].team.slice( 0, 3 ) }
               </div>
-              <Button className='w-full' disabled={isLoading} type='submit' variant='primary' size='md'>
-                Send reset link
-              </Button>
+            </div>
+            <div className="h6-barlow-m text-blue6 flex justify-center w-16">VS</div>
+            <div className="flex items-center">
+              <div className="text-blue9 h5-barlow-m text-right uppercase w-14 md:mr-4">
+                { match.matchTeams[1].team.slice( 0, 3 ) }
+              </div>
+              <Image
+                src= {imgCountryRight?.flag || '/placeholder-image.png'}
+                width={56}
+                height={56}
+                alt="flag"
+                className='rounded-full'
+                style={{ boxShadow: '0px 0px 14px rgba(0, 0, 0, 0.1)' }}
+              />
             </div>
           </div>
-        </form>
-      </Container>
+        </div>
+        <div className='flex flex-col gap-y-10'>
+          <div className='flex flex-col gap-y-8'>
+            <div className='grid gap-y-2'>
+              <Controller
+                name='team1Result'
+                control={control}
+                render={( { field } ) => (
+                  <Select
+                    id='team1Result'
+                    label={match.matchTeams[0].team}
+                    {...field}
+                    disabled={isLoading}
+                    value={field.value || 'NO_PLAYED'}
+                    options={resultOptions}
+                    onChange={( value ) => {
+                      field.onChange( value )
+                      handleTeam1ResultChange( value )
+                    }}
+                  />
+                )}
+              />
+              <div className='grid grid-cols-3 gap-x-4'>
+                <Controller name="team1Points" control={control} render={( { field } ) => <Input id='team1Points' placeholder='Pts' type='number' {...field} errors={errors} disabled={isLoading} />}/>
+                <Controller name="team1Bonus" control={control} render={( { field } ) => <Input id='team1Bonus' placeholder='B' type='number' {...field} errors={errors} disabled={isLoading} />}/>
+                <Controller name="team1DefenseBonus" control={control} render={( { field } ) => <Input id='team1DefenseBonus' placeholder='DP' type='number' {...field} errors={errors} disabled={isLoading} />}/>
+              </div>
+            </div>
+            <div className='grid gap-y-2'>
+              <Controller
+                name='team2Result'
+                control={control}
+                render={( { field } ) => (
+                  <Select
+                    id='team2Result'
+                    label={match.matchTeams[1].team}
+                    {...field}
+                    disabled={isLoading}
+                    value={field.value || 'NO_PLAYED'}
+                    options={resultOptions}
+                    onChange={( value ) => {
+                      field.onChange( value )
+                      handleTeam2ResultChange( value )
+                    }}
+                  />
+                )}
+              />
+              <div className='grid grid-cols-3 gap-x-4'>
+                <Controller name="team2Points" control={control} render={( { field } ) => <Input id='team2Points' placeholder='Pts' type='number' {...field} errors={errors} disabled={isLoading} />}/>
+                <Controller name="team2Bonus" control={control} render={( { field } ) => <Input id='team2Bonus' placeholder='B' type='number' {...field} errors={errors} disabled={isLoading} />}/>
+                <Controller name="team2DefenseBonus" control={control} render={( { field } ) => <Input id='team2DefenseBonus' placeholder='DP' type='number' {...field} errors={errors} disabled={isLoading} />}/>
+              </div>
+            </div>
+
+          </div>
+
+          <Button className='w-full' disabled={isLoading} type='submit' variant='primary' size='md'>
+            Update
+          </Button>
+        </div>
+
+      </form>
     </div>
   )
 }
