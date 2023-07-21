@@ -1,17 +1,4 @@
-// import { User, Demand } from '@prisma/client'
-
-interface Users {
-  id: number
-  name: string
-  company: string
-  status: string
-  email: string
-  emailVerified: boolean
-  amount: number
-  processing: number
-  refused: number
-  accepted: number
-}
+import { Users } from './columns'
 
 export const data: Users[] = [
   {
@@ -145,4 +132,65 @@ export const data: Users[] = [
     processing: 1,
     refused: 3,
     accepted: 9
-  } ]
+  },
+  {
+    id: 11,
+    name: 'Emma Taylor',
+    company: 'InfoGazette',
+    status: 'Photograph',
+    email: 'emma.taylor@example.com',
+    emailVerified: true,
+    amount: 23,
+    processing: 5,
+    refused: 11,
+    accepted: 7
+  },
+  {
+    id: 12,
+    name: 'Liam Walker',
+    company: 'PressTimes',
+    status: 'Journalist',
+    email: 'liam.walker@example.com',
+    emailVerified: true,
+    amount: 14,
+    processing: 3,
+    refused: 5,
+    accepted: 6
+  },
+  {
+    id: 13,
+    name: 'Ava Hall',
+    company: 'MediaGlobe',
+    status: 'Photograph',
+    email: 'ava.hall@example.com',
+    emailVerified: false,
+    amount: 19,
+    processing: 2,
+    refused: 7,
+    accepted: 10
+  },
+  {
+    id: 14,
+    name: 'Noah Turner',
+    company: 'Acme Inc.',
+    status: 'Journalist',
+    email: 'noah.turner@example.com',
+    emailVerified: true,
+    amount: 16,
+    processing: 4,
+    refused: 8,
+    accepted: 4
+  },
+  {
+    id: 15,
+    name: 'Mia Collins',
+    company: 'TechCo',
+    status: 'Photograph',
+    email: 'mia.collins@example.com',
+    emailVerified: true,
+    amount: 21,
+    processing: 7,
+    refused: 9,
+    accepted: 5
+  }
+]

@@ -70,15 +70,6 @@ export const columns: ColumnDef<Users>[] = [
     cell: ( { row } ) => <div>{row.getValue( 'company' )}</div>
   },
   {
-    accessorKey: 'status',
-    header: ( { column } ) => {
-      return (
-        <ColumnHeader title='Status' column={column} />
-      )
-    },
-    cell: ( { row } ) => <div className="lowercase">{row.getValue( 'status' )}</div>
-  },
-  {
     accessorKey: 'email',
     header: ( { column } ) => {
       return (
