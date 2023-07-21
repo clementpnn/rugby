@@ -30,7 +30,8 @@
 - [Vitest](https://vitest.dev) for test
 - global state management with [Zustand](https://zustand-demo.pmnd.rs)
 - [Mongodb](https://www.mongodb.com/fr-fr) database
-- [ESlint](https://eslint.org) for good practice
+- [Prisma](https://www.prisma.io/) ORM
+- good practice with [ESlint](https://eslint.org)
 
 ## Runing locally
 
