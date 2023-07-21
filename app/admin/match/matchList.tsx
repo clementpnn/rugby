@@ -8,10 +8,6 @@ import { useFilterStore } from '@/hooks/useFilter'
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 import Link from 'next/link'
 
-// interface MatchListProperties {
-//   matchs: ( Match & { matchTeams: MatchTeam[] } )[]
-// }
-
 interface MatchsByDate {
   [date: string]: Match[]
 }

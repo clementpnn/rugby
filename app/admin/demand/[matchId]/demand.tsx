@@ -74,7 +74,6 @@ const DemandMatch: React.FC<DemandMatchProperties> = ( { matchData } ) => {
         }
       } )
   }
-  // eslint-disable-next-line no-console
 
   function countAcceptedDemands( tribune: Tribune, demands: UserDemandInfo[] ): number {
     // eslint-disable-next-line unicorn/no-array-reduce

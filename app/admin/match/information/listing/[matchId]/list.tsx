@@ -31,7 +31,6 @@ interface DemandInfo {
   }
 
 const List: React.FC<ListProperties> = ( { match, ACCEPTED, REJECTED, IN_PROGRESS } ) => {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   let { step, setStep } = useStep()
 
   let data: any[] = []
