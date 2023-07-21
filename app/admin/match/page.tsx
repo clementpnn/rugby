@@ -4,7 +4,7 @@ import getCurrentUser from '@/actions/getCurrentUser'
 import { Match } from '@/components/modals/modalJoinWaitList'
 import AdminContainer from '@/components/containers/adminContainer'
 import Filter from '@/components/filter/filter'
-import ModalCreateMatch from '@/components/modals/modalCreateMatch'
+import ModalCreateMatchs from '@/components/modals/modalCreateMatchs'
 import getStadiums from '@/actions/getStadiums'
 import getTeams from '@/actions/getTeams'
 
@@ -41,7 +41,7 @@ const page = async () => {
         <div className='flex flex-col  w-full h-full gap-y-6'>
           <div className='bg-neutral0 p-10 rounded-md flex justify-between items-center'>
             <span className='text-blue6 h2-barlow-m'>MATCHS</span>
-            <ModalCreateMatch teams={teams} stadiums={stadiums}></ModalCreateMatch>
+            <ModalCreateMatchs teams={teams} stadiums={stadiums}></ModalCreateMatchs>
           </div>
           <div className='w-full h-full grid grid-cols-10 bg-neutral0 rounded-md overflow-hidden'>
             <div className="col-span-7 w-full h-full flex-1 border-r-[1px] max-h-[calc(100vh-101px)] overflow-auto scroll-smooth no-scrollbar">

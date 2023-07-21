@@ -5,12 +5,12 @@ import Button from '../buttons/button'
 import CreateMatch from '@/app/admin/match/create'
 import { PiPlusSquare } from 'react-icons/pi'
 
-interface ModalCreateMatchProperties {
+interface ModalCreateMatchsProperties {
   teams: any
   stadiums: any
 }
 
-const ModalCreateMatch : React.FC<ModalCreateMatchProperties> = ( { teams, stadiums } ) => {
+const ModalCreateMatchs : React.FC<ModalCreateMatchsProperties> = ( { teams, stadiums } ) => {
 
   return (
     <>

@@ -1,5 +1,7 @@
 import getCurrentUser from '@/actions/getCurrentUser'
-import CSVForm from '@/components/forms/csvForm'
+import AdminContainer from '@/components/containers/adminContainer'
+import Import from '@/components/import/import'
+import TableImport from '@/components/import/tableImpot'
 
 export default async function Home() {
   const currentUser = await getCurrentUser()
@@ -12,7 +14,12 @@ export default async function Home() {
 
   return (
     <>
-      <CSVForm />
+      <div>
+        <AdminContainer>
+          <Import/>
+          <TableImport/>
+        </AdminContainer>
+      </div>
     </>
   )
 }
