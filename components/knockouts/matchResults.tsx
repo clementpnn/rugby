@@ -5,7 +5,7 @@ import Knockout from './knockout'
 
 const MatchResults = async () => {
   return(
-    <div className="h-[678px] w-[978px]">
+    <div className='h-[678px] w-[978px]'>
       <div className='flex flex-row h5-barlow-m pb-12'>
         <div className='text-blue-600 ml-[65px]'>QUARTER FINAL</div>
         <div className='text-blue-600 ml-[210px]'>SEMI FINAL</div>

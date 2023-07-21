@@ -4,8 +4,8 @@ import Button from '@/components/buttons/button'
 import { LuLogOut } from 'react-icons/lu'
 
 type ProfileCardProperties = {
-  showLogoutButton: boolean;
-};
+  showLogoutButton: boolean
+}
 
 const ProfileCard: React.FC<ProfileCardProperties> = ( { showLogoutButton } ) => {
   return (

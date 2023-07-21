@@ -73,7 +73,7 @@ const Input: React.FC<InputProperties> = ( {
   return (
     <div className={`${className} grid gap-y-1`}>
       {variant === 'default' && <Label htmlFor={id}>{label}</Label>}
-      <div className="relative items-center">
+      <div className='relative items-center'>
         {icon && iconPosition === 'left' && variant === 'default' && (
           <div
             className={`${size === 'sm' && 'w-9 h-9 left-1'} ${
@@ -83,7 +83,7 @@ const Input: React.FC<InputProperties> = ( {
             } absolute left-2 top-1/2 transform -translate-y-1/2`}
             onClick={handleIconClick}
           >
-            <div className="w-full h-full flex justify-center items-center">
+            <div className='w-full h-full flex justify-center items-center'>
               <div
                 className={`${size === 'sm' && 'w-4 h-4'} ${
                   size === 'md' && 'w-5 h-5'
@@ -97,7 +97,7 @@ const Input: React.FC<InputProperties> = ( {
           </div>
         )}
         {variant === 'code' && !inputValue && !isActive && (
-          <div className="absolute inset-y-0 left-1/2 transform -translate-x-1/2 top-1/2 -translate-y-1/2 w-3 h-3 bg-neutral5 rounded-full"></div>
+          <div className='absolute inset-y-0 left-1/2 transform -translate-x-1/2 top-1/2 -translate-y-1/2 w-3 h-3 bg-neutral5 rounded-full'></div>
         )}
         <InputUI
           id={id}
@@ -129,7 +129,7 @@ const Input: React.FC<InputProperties> = ( {
             } absolute right-0 top-1/2 transform -translate-y-1/2`}
             onClick={handleIconClick}
           >
-            <div className="w-full h-full flex justify-center items-center">
+            <div className='w-full h-full flex justify-center items-center'>
               <div
                 className={`${size === 'sm' && 'w-4 h-4'} ${
                   size === 'md' && 'w-5 h-5'
@@ -143,7 +143,7 @@ const Input: React.FC<InputProperties> = ( {
           </div>
         )}
       </div>
-      {error && variant === 'default' && <p className="text-red6 base-md">{error.message}</p>}
+      {error && variant === 'default' && <p className='text-red6 base-md'>{error.message}</p>}
     </div>
   )
 }

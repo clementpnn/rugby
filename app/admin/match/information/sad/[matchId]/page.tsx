@@ -19,7 +19,7 @@ const page = async ( { params }: {params: IParameters} ) => {
     )
   }
   return (
-    <div className="w-screen h-screen flex flex-row fixed">
+    <div className='w-screen h-screen flex flex-row fixed'>
       <Sidebar/>
       <div className='w-full bg-neutral1 p-6 flex flex-col items-start gap-y-3'>
         <div className='flex flex-col items-start gap-y-6 bg-neutral1 w-full h-full rounded-md'>

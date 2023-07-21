@@ -20,14 +20,14 @@ export const columns: ColumnDef<Users>[] = [
       <Checkbox
         checked={table.getIsAllPageRowsSelected()}
         onCheckedChange={( value ) => table.toggleAllPageRowsSelected( !!value )}
-        aria-label="Select all"
+        aria-label='Select all'
       />
     ),
     cell: ( { row } ) => (
       <Checkbox
         checked={row.getIsSelected()}
         onCheckedChange={( value ) => row.toggleSelected( !!value )}
-        aria-label="Select row"
+        aria-label='Select row'
       />
     ),
     enableSorting: false,
@@ -64,7 +64,7 @@ export const columns: ColumnDef<Users>[] = [
         <ColumnHeader title='Status' column={column} />
       )
     },
-    cell: ( { row } ) => <div className="lowercase">{row.getValue( 'status' )}</div>
+    cell: ( { row } ) => <div className='lowercase'>{row.getValue( 'status' )}</div>
   },
   {
     accessorKey: 'email',
@@ -73,6 +73,6 @@ export const columns: ColumnDef<Users>[] = [
         <ColumnHeader title='Email' column={column} />
       )
     },
-    cell: ( { row } ) => <div className="lowercase">{row.getValue( 'email' )}</div>
+    cell: ( { row } ) => <div className='lowercase'>{row.getValue( 'email' )}</div>
   }
 ]
