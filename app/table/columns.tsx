@@ -8,7 +8,6 @@ import { RowActions } from '@/components/table/rowActions'
 
 import { MdVerified } from 'react-icons/md'
 import { JOB } from '@prisma/client'
-// import { User, Demand } from '@prisma/client'
 
 export type Users = {
   id: string
@@ -22,10 +21,6 @@ export type Users = {
   refused: number
   accepted: number
 }
-
-// type Users = {
-//     user: User & { demands: Demand[] }[]
-// }
 
 export const columns: ColumnDef<Users>[] = [
   {

@@ -4,10 +4,6 @@ import { JOB } from '@prisma/client'
 export default async function getMatchs() {
   try {
     const matchs = await prisma.match.findMany( {
-      // orderBy: {
-      //   date: 'desc',
-      //   time: 'desc'
-      // },
       include: {
         matchTeams: true
       }
