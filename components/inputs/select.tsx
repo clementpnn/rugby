@@ -4,14 +4,6 @@ import { ChangeEvent, SelectHTMLAttributes } from 'react'
 import { FieldError, FieldErrors } from 'react-hook-form'
 import { Label } from '@/components/ui/label'
 import { cva } from 'class-variance-authority'
-// import {
-//   SelectUI,
-//   SelectContent,
-//   SelectGroup,
-//   SelectItem,
-//   SelectTrigger,
-//   SelectValue
-// } from '@/components/ui/select'
 
 interface SelectOption {
   value: string
@@ -46,7 +38,7 @@ const selectVariants = cva(
       }
     },
     defaultVariants: {
-      variant: 'primary',
+      variant: 'outline',
       size: 'md'
     }
   }

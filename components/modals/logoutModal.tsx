@@ -1,47 +1,62 @@
-// import {
-//     AlertDialog,
-//     AlertDialogAction,
-//     AlertDialogCancel,
-//     AlertDialogContent,
-//     AlertDialogDescription,
-//     AlertDialogFooter,
-//     AlertDialogHeader,
-//     AlertDialogTitle,
-//     AlertDialogTrigger,
-// } from '@/components/ui/alertDialog'
-// import { Button } from '@/components/ui/button'
-// import { FaBeer } from 'react-icons/fa';
-// import { MdOutlineLogout } from 'react-icons/md';
+'use client'
 
-// export default async function LogoutModal() {
-//   return (
-//     <div>
-//         <AlertDialog>
-//         <AlertDialogTrigger><Button variant={'outline'} size={'sm'} className='text-blue6 flex gap-x-2'><MdOutlineLogout size={18} />Logout</Button></AlertDialogTrigger>
-//         <AlertDialogContent className='flex flex-col gap-y-8'>
-//             <AlertDialogHeader>
-//                 <div className='flex flex-row justify-between items-center'>
-//                     <AlertDialogTitle>LOGOUT</AlertDialogTitle>
-//                     {/* mettre icon */}
-//                     <Button variant={'outline'} size={'sIcon'}>X</Button>
-//                 </div>
-//             </AlertDialogHeader>
-//             <AlertDialogDescription>Voulez-vous vraiment vous déconnecter ?</AlertDialogDescription>
-//             <AlertDialogFooter>
-//             <AlertDialogAction>
-//                 <Button variant={'fill'} size={'lg'} className='label-lg text-neutral0 bg-red6 w-full mx-0'>Logout</Button>
-//             </AlertDialogAction>
-//             <AlertDialogCancel>
-//                 <Button variant={'outline'} size={'lg'} className='label-lg text-blue9 w-full mx-0'>Cancel</Button>
-//             </AlertDialogCancel>
-//             </AlertDialogFooter>
-//         </AlertDialogContent>
-//         </AlertDialog>
-//     </div>
-//   )
-// }
+import * as React from 'react'
 
-// import * as React from 'react'
+import {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogHeader,
+  DialogFooter,
+  DialogTitle
+} from '@/components/ui/dialog'
+import Button from '../buttons/button'
 
-// eslint-disable-next-line unicorn/no-empty-file
-// React.Fragment
+interface ModalProperties {
+  children: React.ReactNode
+  action: React.ReactNode
+  title: string
+}
+
+interface ModalProperties {
+  children: React.ReactNode
+  action: React.ReactNode
+  title: string
+}
+
+const LogoutModal: React.FC<ModalProperties> = ( { children, action, title } ) => {
+  const [ isOpen, setIsOpen ] = React.useState( false )
+
+  const handleConfirmLogout = () => {
+    // logique de déconnexion
+    // eslint-disable-next-line no-console
+    console.log( 'Déconnexion effectuée' )
+    setIsOpen( false )
+  }
+
+  const handleCancelLogout = () => {
+    setIsOpen( false )
+  }
+
+  return (
+    <>
+      <Dialog open={isOpen}>
+        <DialogTrigger asChild>
+          {action}
+        </DialogTrigger>
+        <DialogContent className="w-[calc(100vw-40px)] p-0 rounded-md overflow-hidden gap-0 max-w-xl sm:w-fit">
+          <DialogHeader className='p-8 border-b-[1px] border-neutral3'>
+            <DialogTitle className='h5-barlow-d text-blue6 uppercase'>{title}</DialogTitle>
+          </DialogHeader>
+          {children}
+          <DialogFooter>
+            <Button onClick={handleCancelLogout} className='w-fill'>Cancel</Button>
+            <Button onClick={handleConfirmLogout} className='w-fill'>Logout</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    </>
+  )
+}
+
+export default LogoutModal

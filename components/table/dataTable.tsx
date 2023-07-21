@@ -40,7 +40,7 @@ import { styled } from '@stitches/react'
 import { Pagination } from './pagination'
 
 const ThickRxMixerHorizontal = styled( RxMixerHorizontal, {
-  strokeWidth: '0.5px' // Ajustez la valeur pour définir l'épaisseur du trait
+  strokeWidth: '0.5px'
 } )
 
 interface DataTableProperties<TData, TValue> {
@@ -95,7 +95,7 @@ export function DataTable<TData, TValue>( {
         />
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <ButtonUI variant="outline" className="ml-auto focus-visible:ring-0">
+            <ButtonUI variant="outline" className="focus-visible:ring-0 ml-6 ml-auto">
               <ThickRxMixerHorizontal className='pr-2 w-6'/>
               Columns
             </ButtonUI>

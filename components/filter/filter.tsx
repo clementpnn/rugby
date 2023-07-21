@@ -2,156 +2,125 @@
 
 import * as React from 'react'
 import Button from '../buttons/button'
-import { useState } from 'react'
+import { useAutoAnimate } from '@formkit/auto-animate/react'
+import { formatString } from '../modals/modalJoinWaitList'
 import Image from 'next/image'
-
-// type Pool = {
-//   id: string
-//   name: string
-//   teams: Team[]
-// }
+import useCountries from '@/hooks/useCountries'
+import { useFilterStore } from '@/hooks/useFilter'
 
 type Team = {
-  id: string
-  name: string
-  image: string
+  team: string
+  selected: boolean
+}
+
+type Pool = {
+  poolName: string
+  selected: boolean
+  teams: Team[]
 }
 
 type FilterProperties = {
-  height: number
-  //width: number
+  title: string
 }
 
-const Filter: React.FC<FilterProperties> = ( { height /* width*/ } ) => {
-  const [ activeTab, setActiveTab ] = useState( 'pools' )
-  const [ activePool, setActivePool ] = useState( '' )
+const Filter: React.FC<FilterProperties> = ( { title } ) => {
+  const { getByValue } = useCountries()
+  const [ parent ] = useAutoAnimate()
+
+  const {
+    activeTab,
+    pools,
+    setActiveTab,
+    handlePoolClick,
+    handleTeamClick
+  } = useFilterStore()
 
   const handleClickTab = ( tab: string ) => {
     setActiveTab( tab )
-    setActivePool( '' )
-  }
-
-  const handleClickPool = ( poolId: string ) => {
-    setActivePool( poolId === activePool ? '' : poolId )
-  }
-
-  const generateTeams = ( poolId: string ): Team[] => {
-    switch ( poolId ) {
-    case 'A': {
-      return [
-        { id: 'A1', name: 'Team A1', image: 'https://via.placeholder.com/28x28' },
-        { id: 'A2', name: 'Team A2', image: 'https://via.placeholder.com/28x28' },
-        { id: 'A3', name: 'Team A3', image: 'https://via.placeholder.com/28x28' },
-        { id: 'A4', name: 'Team A4', image: 'https://via.placeholder.com/28x28' },
-        { id: 'A5', name: 'Team A5', image: 'https://via.placeholder.com/28x28' }
-      ]
-    }
-    case 'B': {
-      return [
-        { id: 'B1', name: 'Team B1', image: 'https://via.placeholder.com/28x28' },
-        { id: 'B2', name: 'Team B2', image: 'https://via.placeholder.com/28x28' },
-        { id: 'B3', name: 'Team B3', image: 'https://via.placeholder.com/28x28' },
-        { id: 'B4', name: 'Team B4', image: 'https://via.placeholder.com/28x28' },
-        { id: 'B5', name: 'Team B5', image: 'https://via.placeholder.com/28x28' }
-      ]
-    }
-    case 'C': {
-      return [
-        { id: 'C1', name: 'Team C1', image: 'https://via.placeholder.com/28x28' },
-        { id: 'C2', name: 'Team C2', image: 'https://via.placeholder.com/28x28' },
-        { id: 'C3', name: 'Team C3', image: 'https://via.placeholder.com/28x28' },
-        { id: 'C4', name: 'Team C4', image: 'https://via.placeholder.com/28x28' },
-        { id: 'C5', name: 'Team C5', image: 'https://via.placeholder.com/28x28' }
-      ]
-    }
-    case 'D': {
-      return [
-        { id: 'D1', name: 'Team D1', image: 'https://via.placeholder.com/28x28' },
-        { id: 'D2', name: 'Team D2', image: 'https://via.placeholder.com/28x28' },
-        { id: 'D3', name: 'Team D3', image: 'https://via.placeholder.com/28x28' },
-        { id: 'D4', name: 'Team D4', image: 'https://via.placeholder.com/28x28' },
-        { id: 'D5', name: 'Team D5', image: 'https://via.placeholder.com/28x28' }
-      ]
-    }
-    // No default
-    }
-    return []
   }
 
   return (
-    <div className='filter-container'>
-      <h1 className='text-blue6 h2-barlow-m sm:h1-barlow-m mb-4 pb-2 pt-18 pl-7'>PLANNING</h1>
-      <div className='flex space-x-3 mb-4 pb-2 pt-12 pl-7'>
+    <div className='bg-neutral0 w-full h-full filter-container flex flex-col'>
+      <h1 className='text-blue6 h2-barlow-m sm:h1-barlow-m pb-2 pt-14 pl-7'>{ title }</h1>
+      <div className='flex space-x-3 pb-12 pt-12 pl-7'>
         <Button
-          size={'lg'}
-          className={`h-12 w-40 border-2 ${activeTab === 'pools' ? 'bg-blue6 text-neutral0' : 'bg-neutral0 text-blue6'}`}
+          size='lg'
+          variant={`${activeTab === 'pools' ? 'primary' : 'outline'}`}
+          className='w-[150px]'
           onClick={() => handleClickTab( 'pools' )}
         >
           Pools
         </Button>
         <Button
-          size={'lg'}
-          className={`h-12 w-40 border-2 ${activeTab === 'knock-out' ? 'bg-blue6 text-neutral0' : 'bg-neutral0 text-blue6'}`}
+          size='lg'
+          variant={`${activeTab === 'knock-out' ? 'primary' : 'outline'}`}
+          className='w-[150px]'
           onClick={() => handleClickTab( 'knock-out' )}
         >
           Knock-out
         </Button>
       </div>
-      {activeTab === 'pools' && (
-        <>
-          <h5 className='text-blue6 h5-barlow-m mb-4 pb-2 pt-3 pl-7'>POOLS</h5>
-          <div className='flex flex-col space-y-2 mb-4 pb-2 pt-2 pl-7' style={{ overflow: 'auto', maxHeight: `${height}px` }}>
-            {[ 'A', 'B', 'C', 'D' ].map( ( poolId ) => (
-              <div key={poolId} className='border-2 p-2'>
-                <div
-                  className={`flex items-center space-x-2 cursor-pointer ${
-                    poolId === activePool ? 'text-blue6' : 'text-blue9'
-                  }`}
-                  onClick={() => handleClickPool( poolId )}
-                >
-                  <div className='h2-barlow-m'>{poolId} POOL</div>
-                </div>
-                {poolId === activePool && (
-                  <div className='pl-14'>
-                    {generateTeams( poolId ).map( ( team ) => (
-                      <div key={team.id} className='flex items-center space-x-2'>
-                        <Image src={team.image} alt='team logo' className='h-7 w-7 rounded-full' />
-                        <div className='h6-lato-d'>{team.name}</div>
-                      </div>
-                    ) )}
+      <h5 className='text-blue6 h5-barlow-m pb-2 pt-3 pl-7'>FILTER</h5>
+      <div className='w-full h-full max-h-[calc(100vh-57px-150px-136px-101px)] overflow-auto scroll-smooth no-scrollbar border-t-[1px]'>
+        {activeTab === 'pools' && (
+          <>
+            <div ref={parent} className='flex flex-col divide-y divide-neutral3 bg-neutral0 h-fit'>
+              {pools.map( ( pool : Pool, index: number ) => (
+                <React.Fragment key={index}>
+                  <div key={index} className={`flex items-center cursor-pointer p-5 pl-7 bg-neutral0 hover:bg-neutral1 ${pool.selected === false && 'opacity-30 py-3'}`} onClick={() => handlePoolClick( index )}>
+                    <div className='h2-barlow-m w-10 text-blue6'>{pool.poolName}</div>
+                    <div className='h4-barlow-m text-blue9'>
+                    POOL
+                    </div>
                   </div>
-                )}
+                  {pool.selected === true && (
+                    <div className='divide-y divide-neutral3 cursor-pointer'>
+                      { pool.teams.map( ( team: Team, teamIndex: number ) => (
+                        <div key={teamIndex} className={`pl-7 flex bg-neutral1 gap-x-3 p-5 hover:bg-neutral2 ${team.selected===false && 'opacity-30'}`} onClick={() => handleTeamClick( index, teamIndex )}>
+                          <Image
+                            src= {getByValue( team.team )?.flag || '/placeholder-image.png'}
+                            width={28}
+                            height={28}
+                            alt="flag"
+                          />
+                          <span className='h5-inter-m text-blue9'>{formatString( team.team )}</span>
+                        </div>
+                      ) ) }
+                    </div>
+
+                  )}
+                </React.Fragment>
+
+              ) )}
+            </div>
+
+          </>
+        )}
+        {activeTab === 'knock-out' && (
+          <>
+            <div className='flex flex-col divide-y divide-neutral3 bg-neutral0 h-fit'>
+
+              <div className='flex items-center cursor-pointer p-5 pl-7 bg-neutral0 hover:bg-neutral1 opacity-30 py-3'>
+                <div className='h2-barlow-m w-10 text-blue6'>1</div>
+                <div className='h4-barlow-m text-blue9'>FINAL</div>
               </div>
-            ) )}
-          </div>
-        </>
-      )}
-      {activeTab === 'knock-out' && (
-        <>
-          <h5 className='text-blue6 h5-barlow-m mb-4 pb-2 pt-3 pl-7'>KNOCK-OUT</h5>
-          <div className='flex flex-col space-y-2 mb-4 pb-2 pt-2 pl-7' style={{ overflow: 'auto', maxHeight: `${height}px` }}>
-            <div className='border-2 p-2'>
-              <div className='flex items-center space-x-2'>
-                <div className='h2-barlow-m'>1</div>
-                <div className='h4-barlow-m'>FINAL</div>
+
+              <div className='flex items-center cursor-pointer p-5 pl-7 bg-neutral0 hover:bg-neutral1 opacity-30 py-3'>
+                <div className='h2-barlow-m w-10 text-blue6'>2</div>
+                <div className='h4-barlow-m text-blue9'>SEMI FINAL</div>
+              </div>
+
+              <div className='flex items-center cursor-pointer p-5 pl-7 bg-neutral0 hover:bg-neutral1 opacity-30 py-3'>
+                <div className='h2-barlow-m w-10 text-blue6'>3</div>
+                <div className='h4-barlow-m text-blue9'>QUARTER FINAL</div>
               </div>
             </div>
-            <div className='border-2 p-2'>
-              <div className='flex items-center space-x-2'>
-                <div className='h2-barlow-m'>2</div>
-                <div className='h4-barlow-m'>SEMI FINAL</div>
-              </div>
-            </div>
-            <div className='border-2 p-2'>
-              <div className='flex items-center space-x-2'>
-                <div className='h2-barlow-m'>3</div>
-                <div className='h4-barlow-m'>QUARTER FINAL</div>
-              </div>
-            </div>
-          </div>
-        </>
-      )}
+
+          </>
+        )}
+      </div>
     </div>
+
   )
 }
 

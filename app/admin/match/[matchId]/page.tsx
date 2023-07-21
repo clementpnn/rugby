@@ -2,8 +2,8 @@
 import { getMatchById } from '@/actions/getMatch'
 // import MatchId from './match'
 import getCurrentUser from '@/actions/getCurrentUser'
-import { DataTable } from '@/components/table/dataTable'
-import { columns } from './columns'
+// import { DataTable } from '@/components/table/dataTable'
+// import { columns } from './columns'
 
 interface IParameters {
   matchId: string
@@ -28,15 +28,16 @@ const page = async ( { params }: {params: IParameters} ) => {
   return (
     <>
       {/* <MatchId match={match} /> */}
-      {match.match.matchTeams.map( ( team ) => {
+      {/* {match.match.matchTeams.map( ( team ) => {
         return (
           <div className='mb-6' key={team.id}>
             <p>{team.team}</p>
             <p>{team.result ?? '?'}</p>
           </div>
         )
-      } ) }
-      <DataTable columns={columns} data={match.demands}/>
+      } ) } */}
+      Salut
+      {/* <DataTable columns={columns} data={match.demands}/> */}
     </>
   )
 }

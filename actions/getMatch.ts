@@ -26,6 +26,43 @@ interface IParameters {
   matchId?: string
 }
 
+interface IUser {
+  userId: string
+}
+
+export async function getMatchsInfoByUser( parameters: IUser ) {
+  const { userId } = parameters
+
+  const match = await prisma.match.findMany( {
+    include: {
+      matchTeams: true,
+      demands: {
+        where: {
+          userId: userId
+        },
+        include: {
+          user: true
+        }
+      }
+    }
+  } )
+
+  if ( !match ) return
+
+  return match.map( async ( matchItem ) => {
+    const userDemand = matchItem.demands.find( demand => demand.user?.id === userId )
+    const stadium = await prisma.stadium.findUnique( {
+      where: { id: matchItem.stadiumId }
+    } )
+
+    return {
+      ...matchItem,
+      stadiumName: stadium ? stadium.name : 'No stadium',
+      userDemandStatus: userDemand ? userDemand.state : 'NOT_DEMANDED'
+    }
+  } )
+}
+
 export async function getMatchById( parameters: IParameters ) {
 
   const { matchId } = parameters
@@ -95,6 +132,50 @@ export async function getMatchUpdateById( parameters: IParameters ) {
   if ( !match ) return
 
   return match
+}
+
+export async function getMatchDemandById( parameters: IParameters ) {
+  const { matchId } = parameters
+
+  const match = await prisma.match.findUnique( {
+    where: { id: matchId },
+    include: {
+      matchTeams: true,
+      demands: true
+    }
+  } )
+
+  if ( !match ) return
+
+  const stadium = await prisma.stadium.findUnique( {
+    where: { id: match?.stadiumId },
+    include: {
+      tribunes: true
+    }
+  } )
+
+  if ( !stadium ) return
+
+  const demandsWithUserDemandsInfo = await Promise.all( match.demands.map( async ( demand ) => {
+    const userId = demand.userId
+
+    const user = await prisma.user.findUnique( {
+      where: { id: userId }
+    } )
+
+    return {
+      demand, user
+    }
+  } ) )
+
+  return {
+    match: {
+      ...match,
+      matchTeams: match.matchTeams,
+      demands: demandsWithUserDemandsInfo
+    },
+    stadium
+  }
 }
 
 export async function getMatchByIdUser( parameters: IParameters ) {

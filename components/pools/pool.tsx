@@ -1,7 +1,10 @@
+'use client'
+
 import Image from 'next/image'
 import * as React from 'react'
 import useCountries from '@/hooks/useCountries'
-import { Poules } from '@/app/table/poulelayout'
+import { Poules } from '@/app/pool/poolayout'
+import { formatString } from '@/components/modals/modalJoinWaitList'
 
 interface PouleProperties{
   data: Poules
@@ -34,11 +37,11 @@ const Pool: React.FC<PouleProperties> = ( { data } ) => {
           </tr>
         </thead>
         <tbody>
-          <tr className='border-t border-slate-200 h6-lato-d'>
+          <tr className='border-t border-slate-200 h6-inter-d'>
             <td>
               <div className='py-3.5 pl-5 rounded flex md:pl-20'>
                 <Image src={ country1?.flag || '/placeholder-image.png'} alt='Flag' width={'28'} height={'28'} className={'mr-4'}/>
-                <span className='text-blue-900'>{country1?.value}</span>
+                <span className='text-blue-900'>{formatString( data.data[0].teamName )}</span>
               </div>
             </td>
             <td className='invisible md:visible text-blue-900 text-center'>{data.data[0].GP}</td>
@@ -49,11 +52,11 @@ const Pool: React.FC<PouleProperties> = ( { data } ) => {
             <td className='invisible md:visible text-blue-900 text-center'>{data.data[0].B}</td>
             <td className='text-blue-900 text-center'>{data.data[0].Pts}</td>
           </tr>
-          <tr className='border-t border-slate-200 h6-lato-d'>
+          <tr className='border-t border-slate-200 h6-inter-d'>
             <td>
               <div className=' py-3.5 pl-5 rounded flex md:pl-20'>
                 <Image src={country2?.flag || '/placeholder-image.png'} alt='Flag' width={'28'} height={'28'} className={'mr-4'}/>
-                <span className='text-blue-900'>{country2?.value}</span>
+                <span className='text-blue-900'>{formatString( data.data[1].teamName )}</span>
               </div>
             </td>
             <td className='invisible md:visible text-blue-900 text-center'>{data.data[1].GP}</td>
@@ -64,11 +67,11 @@ const Pool: React.FC<PouleProperties> = ( { data } ) => {
             <td className='invisible md:visible text-blue-900 text-center'>{data.data[1].B}</td>
             <td className='text-blue-900 text-center'>0</td>
           </tr>
-          <tr className='border-t border-slate-200 h6-lato-d'>
+          <tr className='border-t border-slate-200 h6-inter-d'>
             <td>
               <div className=' py-3.5 pl-5 rounded flex md:pl-20'>
                 <Image src={country3?.flag || '/placeholder-image.png' } alt='Flag' width={'28'} height={'28'} className={'mr-4'}/>
-                <span className='text-blue-900 '>{country3?.value}</span>
+                <span className='text-blue-900 '>{formatString( data.data[2].teamName )}</span>
               </div>
             </td>
             <td className='invisible md:visible text-blue-900 text-center'>{data.data[2].GP}</td>
@@ -79,11 +82,11 @@ const Pool: React.FC<PouleProperties> = ( { data } ) => {
             <td className='invisible md:visible text-blue-900 text-center'>{data.data[2].B}</td>
             <td className='text-blue-900 text-center'>0</td>
           </tr>
-          <tr className='border-t border-slate-200 h6-lato-d'>
+          <tr className='border-t border-slate-200 h6-inter-d'>
             <td>
               <div className=' py-3.5 pl-5 rounded flex md:pl-20'>
                 <Image src={country4?.flag || '/placeholder-image.png'} alt='Flag' width={'28'} height={'28'} className={'mr-4'}/>
-                <span className='text-blue-900 '>{country4?.value}</span>
+                <span className='text-blue-900 '>{formatString( data.data[3].teamName )}</span>
               </div>
             </td>
             <td className='invisible md:visible text-blue-900 text-center'>{data.data[3].GP}</td>
@@ -94,11 +97,11 @@ const Pool: React.FC<PouleProperties> = ( { data } ) => {
             <td className='invisible md:visible text-blue-900 text-center'>{data.data[3].B}</td>
             <td className='text-blue-900 text-center'>0</td>
           </tr>
-          <tr className='border-t border-slate-200 h6-lato-d'>
+          <tr className='border-t border-slate-200 h6-inter-d'>
             <td>
               <div className=' py-3.5 pl-5 rounded flex md:pl-20'>
                 <Image src={country5?.flag || '/placeholder-image.png'} alt='Flag' width={'28'} height={'28'} className={'mr-4'}/>
-                <span className='text-blue-900 '>{country5?.value}</span>
+                <span className='text-blue-900 '>{formatString( data.data[4].teamName )}</span>
               </div>
             </td>
             <td className='invisible md:visible text-blue-900 text-center'>{data.data[4].GP}</td>

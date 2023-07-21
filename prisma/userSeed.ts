@@ -4,7 +4,7 @@ import bcrypt from 'bcrypt'
 import { v4 as uuid } from 'uuid'
 
 async function main() {
-  for( let index=0; index<20; index++ ) {
+  for( let index=0; index<150; index++ ) {
     const company = faker.helpers.arrayElement( [
       'ESPN',
       'Sky Sports',
@@ -44,16 +44,6 @@ async function main() {
       }
     } )
   }
-  await prisma.user.create( {
-    data: {
-      firstName: 'Victor',
-      lastName: 'Huang',
-      email: 'huang.victor.mail@gmail.com',
-      image: faker.image.avatar(),
-      password: await bcrypt.hash( 'Victor.123456789', 12 ),
-      role: 'ADMIN'
-    }
-  } )
 }
 
 main()

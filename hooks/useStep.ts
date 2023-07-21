@@ -4,7 +4,8 @@ import { create } from 'zustand'
 export enum STEPS {
   ONE = 0,
   TWO = 1,
-  THREE = 2
+  THREE = 2,
+  FOUR = 3,
 }
 
 interface StepsStore {

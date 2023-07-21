@@ -1,10 +1,29 @@
-import getMatchs from '@/actions/getMatch'
+import { getMatchsInfoByUser } from '@/actions/getMatch'
 import MatchList from './matchList'
 import getCurrentUser from '@/actions/getCurrentUser'
+import { Match } from '@/components/modals/modalJoinWaitList'
+import AdminContainer from '@/components/containers/adminContainer'
+import Filter from '@/components/filter/filter'
+import ModalCreateMatch from '@/components/modals/ModalCreateMatch'
+import getStadiums from '@/actions/getStadiums'
+import getTeams from '@/actions/getTeams'
 
 const page = async () => {
-  const matchs = await getMatchs()
   const currentUser = await getCurrentUser()
+  const matchs = await getMatchsInfoByUser( { userId : currentUser?.id || '' } ) || []
+  const stadiums = await getStadiums() || []
+  const teams = await getTeams() || []
+
+  const matchsByDate : { [date: string]: Match[] } = {}
+
+  for ( const match of matchs ) {
+    // eslint-disable-next-line unicorn/no-await-expression-member
+    const matchDate = new Date( ( await match ).date ).toDateString()
+    if ( !matchsByDate[matchDate] ) {
+      matchsByDate[matchDate] = []
+    }
+    matchsByDate[matchDate].push( await match )
+  }
 
   if ( !currentUser || currentUser.role !== 'ADMIN' ) {
     return (
@@ -18,7 +37,22 @@ const page = async () => {
 
   return (
     <>
-      <MatchList matchs={matchs} />
+      <AdminContainer>
+        <div className='flex flex-col  w-full h-full gap-y-6'>
+          <div className='bg-neutral0 p-10 rounded-md flex justify-between items-center'>
+            <span className='text-blue6 h2-barlow-m'>MATCHS</span>
+            <ModalCreateMatch teams={teams} stadiums={stadiums}></ModalCreateMatch>
+          </div>
+          <div className='w-full h-full grid grid-cols-10 bg-neutral0 rounded-md overflow-hidden'>
+            <div className="col-span-7 w-full h-full flex-1 border-r-[1px] max-h-[calc(100vh-101px)] overflow-auto scroll-smooth no-scrollbar">
+              <MatchList matchs={matchsByDate} />
+            </div>
+            <div className="w-full h-full col-span-3">
+              <Filter title='SELECT'/>
+            </div>
+          </div>
+        </div>
+      </AdminContainer>
     </>
   )
 }
