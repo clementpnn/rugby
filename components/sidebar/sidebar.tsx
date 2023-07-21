@@ -59,8 +59,8 @@ const Sidebar = () => {
               <ThickPiPlusSquare className='h-6 w-6'/>
             </Button>
           </Link>
-          <Link href="/admin/score">
-            <Button variant='secondary' size='iconLg' className={`${pathname === '/admin/score' && 'bg-blue1'}`}>
+          <Link href="/admin/update">
+            <Button variant='secondary' size='iconLg' className={`${pathname === '/admin/update' && 'bg-blue1'}`}>
               <ThickMdOutlineScoreboard className='h-6 w-6'/>
             </Button>
           </Link>
