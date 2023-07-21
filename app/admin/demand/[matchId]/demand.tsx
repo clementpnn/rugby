@@ -8,8 +8,9 @@ import { useRouter } from 'next/navigation'
 import useStep, { STEPS } from '@/hooks/useStep'
 import ImageContainer from '@/components/containers/image'
 import Button from '@/components/buttons/button'
-import Select from '@/components/inputs/select'
 import { Demand, Match, MatchTeam, STATE, Stadium, Tribune, User } from '@prisma/client'
+import { BsArrowReturnLeft } from 'react-icons/bs'
+import Select from '@/components/inputs/select'
 
 interface UserDemandInfo {
     demand: Demand
@@ -98,24 +99,26 @@ const DemandMatch: React.FC<DemandMatchProperties> = ( { matchData } ) => {
             tribunes={matchData?.stadium.tribunes as Tribune[]}
           />
         </div>
-        <div className='p-10 w-[480px] h-full'>
+        <div className='p-10 w-[480px] h-full flex flex-col'>
           <h2 className='h2-barlow-m text-blue6 mb-10'>SECTIONS PLACE</h2>
-          {matchData?.stadium.tribunes.map( ( tribune, index ) => {
-            const acceptedDemandsCount = countAcceptedDemands( tribune, matchData.match.demands )
-            return (
-              <div key={index} className='relative group cursor-pointer'>
-                <div className='flex p-8 justify-around border border-spacing-2 m-8' onClick={() => {
-                  setStep( step + 1 as STEPS )
-                  setTribuneImage( tribune.image )
-                  setTribune( tribune.id )
-                }} >
-                  <p> Index : {index + 1}</p>
-                  <p>Name : {tribune.name}</p>
-                  <p>Type : {tribune.type}</p>
-                  <p>Number of places : {acceptedDemandsCount} / {tribune.places.toString()}</p>
+          <div className='w-full h-full bg-neutral1 rounded-md p-2 flex flex-col gap-y-2 overflow-auto scroll-smooth no-scrollbar'>
+            {matchData?.stadium.tribunes.map( ( tribune, index ) => {
+              const acceptedDemandsCount = countAcceptedDemands( tribune, matchData.match.demands )
+              return (
+                <div key={index} className='relative bg-neutral0 group cursor-pointer'>
+                  <div className='flex flex-col p-8 rounded-md' onClick={() => {
+                    setStep( step + 1 as STEPS )
+                    setTribuneImage( tribune.image )
+                    setTribune( tribune.id )
+                  }} >
+                    <p className='h6-barlow-m text-blue6'>TRIBUNE {index + 1}</p>
+                    <p className='h5-inter-m text-blue9 mb-3'>{tribune.name}</p>
+                    <p className='base-sm text-blue9'>For {tribune.type.charAt( 0 ).toUpperCase() + tribune.type.slice( 1 ).toLowerCase()}</p>
+                    <p className='base-sm text-blue9'>Number of places : {acceptedDemandsCount} / {tribune.places.toString()}</p>
+                  </div>
                 </div>
-              </div>
-            ) } ) }
+              ) } ) }
+          </div>
         </div>
       </div>
     )
@@ -135,28 +138,36 @@ const DemandMatch: React.FC<DemandMatchProperties> = ( { matchData } ) => {
   if ( step === STEPS.TWO ) {
     bodyContent = (
       <>
-        <ImageContainer image={tribuneImage} tribunes={points} onClick={ ( event ) => {
-          const pointSize = 30
-          const points = calculatePoint( event, pointSize )
-          setPoints( previousPoints => [ ...previousPoints, { name: 'string', type: 'JOURNALIST', places: 0, image: '', x: points.x, y: points.y } ] )
+        <div className='flex h-full w-full'>
+          <div className='bg-neutral0 m-6 mr-0 h-[calc(100%-48px)] w-full flex justify-center items-center rounded-md overflow-hidden' style={{ boxShadow: '0px 0px 14px rgba(0, 0, 0, 0.1)' }} >
+            <ImageContainer image={tribuneImage} tribunes={points} onClick={ ( event ) => {
+              const pointSize = 30
+              const points = calculatePoint( event, pointSize )
+              setPoints( previousPoints => [ ...previousPoints, { name: 'string', type: 'JOURNALIST', places: 0, image: '', x: points.x, y: points.y } ] )
 
-          setStep( step + 1 as STEPS )
-        }} />
-        <div>
-          {matchData?.match.demands
-            .filter( ( demand ) => demand.demand.state === STATE.IN_PROGRESS )
-            .map( ( demand, index ) => (
-              <div key={index}>
-                <p>{demand.user?.firstName} {demand.user?.lastName}</p>
-              </div>
-            ) )
-          }
-          <Button type='button' variant='outline' size='md' onClick={() => {
-            setStep( step - 1 as STEPS )
-            setTribuneImage( '' )
-          }}>
-            Cancel
-          </Button>
+              setStep( step + 1 as STEPS )
+            }} />
+          </div>
+          <div className='p-10 w-[480px] h-full'>
+            <h2 className='h2-barlow-m text-blue6 mb-10'>VALIDATE USERS</h2>
+            <Button type='button' variant='outline' size='md' iconPosition='left' icon={<BsArrowReturnLeft className="w-full h-full" />} onClick={() => {
+              setStep( step - 1 as STEPS )
+              setTribuneImage( '' )
+            }}>
+              Back
+            </Button>
+            <p className='base-md text-blue9 my-6'>Click on the frame to attribute a place</p>
+            <div className='w-full h-[calc(100%-260px)] bg-neutral1 rounded-md p-2 flex flex-col gap-y-2 overflow-auto scroll-smooth no-scrollbar'>
+              {matchData?.match.demands
+                .filter( ( demand ) => demand.demand.state === STATE.IN_PROGRESS )
+                .map( ( demand, index ) => (
+                  <div key={index} className='bg-neutral0 rounded-md p-4'>
+                    <p className='label-md text-blue9'>{demand.user?.firstName} {demand.user?.lastName}</p>
+                  </div>
+                ) )
+              }
+            </div>
+          </div>
         </div>
       </>
     )
@@ -165,22 +176,30 @@ const DemandMatch: React.FC<DemandMatchProperties> = ( { matchData } ) => {
   if ( step === STEPS.THREE ) {
     bodyContent = (
       <>
-        <div>
-          <Controller name="user" control={control} render={( { field } ) => <Select id='user' label='user' {...field} errors={errors} disabled={isLoading} options={userOptions || ''} />} />
+        <div className='flex h-full w-full'>
+          <div className='bg-neutral0 m-6 mr-0 h-[calc(100%-48px)] w-full flex justify-center items-center rounded-md overflow-hidden' style={{ boxShadow: '0px 0px 14px rgba(0, 0, 0, 0.1)' }} >
+            <ImageContainer image={tribuneImage} tribunes={points} />
+          </div>
+          <div className='p-10 w-[480px] h-full'>
+            <h2 className='h2-barlow-m text-blue6 mb-10'>PLACE ASSIGNATION</h2>
+            <Button type='button' variant='outline' size='md' iconPosition='left' icon={<BsArrowReturnLeft className="w-full h-full" />} onClick={() => {
+              setStep( step - 1 as STEPS )
+            }}>
+                Back
+            </Button>
+            <div className='grid gap-y-6 mt-6'>
+              <Controller name="user" control={control} render={( { field } ) => <Select id='user' label='user' {...field} errors={errors} disabled={isLoading} options={userOptions || ''} />} />
+              <form>
+                <Button type='submit' variant='primary' className='w-full' size='md' onClick={() => {
+                  setStep( step - 1 as STEPS )
+                  submit()
+                }}>
+              Assign
+                </Button>
+              </form>
+            </div>
+          </div>
         </div>
-        <Button type='button' variant='outline' size='md' onClick={() => {
-          setStep( step - 1 as STEPS )
-        }}>
-            Cancel
-        </Button>
-        <form>
-          <Button type='submit' variant='primary' size='md' onClick={() => {
-            setStep( step - 1 as STEPS )
-            submit()
-          }}>
-            Valider
-          </Button>
-        </form>
       </>
     )
   }
