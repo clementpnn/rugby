@@ -1,4 +1,4 @@
-import getCurrentUser from '@/actions/getCurrentUser'
+// import getCurrentUser from '@/actions/getCurrentUser'
 import { getMatchsInfoByUser } from '@/actions/getMatch'
 import Filter from '@/components/filter/filter'
 import Navbar from '@/components/navbar/navbar'
@@ -6,8 +6,8 @@ import { Match } from '@/components/modals/modalJoinWaitList'
 import ListMatch from '@/components/listMatch/listMatch'
 
 const page = async () => {
-  const currentUser = await getCurrentUser()
-  const matchs = await getMatchsInfoByUser( { userId : currentUser?.id || '' } ) || []
+  // const currentUser = await getCurrentUser()
+  const matchs = await getMatchsInfoByUser( { userId : '64ba334e727f4f5e22820b2b' } ) || []
 
   const matchsByDate : { [date: string]: Match[] } = {}
 
