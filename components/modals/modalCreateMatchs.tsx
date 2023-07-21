@@ -23,4 +23,4 @@ const ModalCreateMatchs : React.FC<ModalCreateMatchsProperties> = ( { teams, sta
   )
 }
 
-export default ModalCreateMatch
+export default ModalCreateMatchs
