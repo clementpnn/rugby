@@ -25,10 +25,11 @@ const page = async () => {
   return (
     <>
       <Navbar />
+      Match List
       {matchs.map( ( match ) => {
         return (
           <Link href={`dashboard/${match.id}`} key={match.id}>
-            <div>{match.date}</div>
+            <div className='mt-6'>{match.date}</div>
             <div>{match.time}</div>
             <div>{match.phase}</div>
             {match.matchTeams.map( ( matchTeam ) => {
