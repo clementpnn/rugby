@@ -26,7 +26,7 @@ const SignInModal: React.FC<SignInModalProperties> = ( { currentUser } ) => {
       }
 
       if ( currentUser?.role === 'ADMIN' ) {
-        router.push( '/admin' )
+        router.push( '/admin/match' )
       }
     }
   }, [ session?.status, currentUser?.role, router ] )

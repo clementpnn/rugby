@@ -2,6 +2,7 @@ import Link from 'next/link'
 
 import getMatchs from '@/actions/getMatch'
 import getCurrentUser from '@/actions/getCurrentUser'
+import Navbar from '@/components/navbar/navbar'
 
 const page = async () => {
   const matchs = await getMatchs()
@@ -23,6 +24,7 @@ const page = async () => {
 
   return (
     <>
+      <Navbar />
       {matchs.map( ( match ) => {
         return (
           <Link href={`dashboard/${match.id}`} key={match.id}>
