@@ -10,7 +10,7 @@ const page = () => {
       <div>
         <AdminContainer>
           <Import/>
-          <TableImport/>
+          <TableImport data={undefined}/>
         </AdminContainer>
       </div>
     </>

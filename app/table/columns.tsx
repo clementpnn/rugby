@@ -7,13 +7,14 @@ import { ColumnHeader } from '@/components/table/columnHeader'
 import { RowActions } from '@/components/table/rowActions'
 
 import { MdVerified } from 'react-icons/md'
+import { JOB } from '@prisma/client'
 // import { User, Demand } from '@prisma/client'
 
 export type Users = {
-  id: number
+  id: string
   name: string
   company: string
-  status: 'Journalist' | 'Photograph'
+  status: JOB
   email: string
   emailVerified: boolean
   amount: number
@@ -21,6 +22,7 @@ export type Users = {
   refused: number
   accepted: number
 }
+
 // type Users = {
 //     user: User & { demands: Demand[] }[]
 // }
