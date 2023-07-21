@@ -49,13 +49,13 @@ const Sidebar = () => {
               <ThickPiDownloadSimpleBold className='h-6 w-6'/>
             </Button>
           </Link>
-          <Link href="/admin/stadium">
+          <Link href="/admin/create/stadium">
             <Button variant='secondary' size='iconLg' className={`${pathname === '/admin/create/stadium' && 'bg-blue1'}`}>
               <ThickMdOutlineStadium className='h-6 w-6'/>
             </Button>
           </Link>
           <Link href="/admin/match">
-            <Button variant='secondary' size='iconLg' className={`${pathname === '/admin/create/match' && 'bg-blue1'}`}>
+            <Button variant='secondary' size='iconLg' className={`${pathname === '/admin/match' && 'bg-blue1'}`}>
               <ThickPiPlusSquare className='h-6 w-6'/>
             </Button>
           </Link>
