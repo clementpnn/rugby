@@ -48,6 +48,8 @@ npm run dev
 
 **Your app should now be running on [localhost:3000](http://localhost:3000/)**
 
+**Go to [localhost:3000/adminRegister](http://localhost:3000/adminRegister) to create an admin account**
+
 **Example csv for import**<br>
 Be careful, emails will be sent
 ```text
