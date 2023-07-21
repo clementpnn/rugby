@@ -7,6 +7,8 @@ import useCreatePassword from '@/hooks/useCreatePassword'
 import useCSVFileReader from '@/hooks/useCsvFileReader'
 import toast from 'react-hot-toast'
 import { UserSchema } from '@/types/forms'
+import Button from '../buttons/button'
+import { PiDownloadSimpleBold } from 'react-icons/pi'
 
 const CSVForm = () => {
   const [ file, setFile ] = useState<File | undefined>()
@@ -64,17 +66,19 @@ const CSVForm = () => {
   }
 
   return (
-    <form>
-      <input onChange={handleFileChange} disabled={isLoading} id={'csvFileInput'} accept={'.csv'} type={'file'} />
-      <button onClick={( event ) => {
-        event.preventDefault()
-        if ( file ) {
-          handleOnFileSubmit( file )
-        }
-      }}>
+    <div className="bg-neutral0 w-full h-36 p-10 mr-5 flex justify-between rounded-xl">
+      <div className="uppercase text-blue6 h2-barlow-m">import</div>
+      <form>
+        <input onChange={handleFileChange} disabled={isLoading} id={'csvFileInput'} accept={'.csv'} type={'file'} />
+        <Button size='lg' icon={<PiDownloadSimpleBold className='w-full h-full ' />} iconPosition='left' variant='primary'onClick={() => {
+          if ( file ) {
+            handleOnFileSubmit( file )
+          }
+        }}>
           IMPORT CSV
-      </button>
-    </form>
+        </Button>
+      </form>
+    </div>
   )
 }
 
