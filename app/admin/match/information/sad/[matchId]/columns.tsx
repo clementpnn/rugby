@@ -6,7 +6,7 @@ import { Checkbox } from '@/components/ui/checkbox'
 import { ColumnHeader } from '@/components/table/columnHeader'
 
 export type Users = {
-    id: number
+    id: string
     name: string
     company: string
     status: string
