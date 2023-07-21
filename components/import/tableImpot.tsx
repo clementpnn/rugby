@@ -37,7 +37,7 @@ const TableImport: React.FC<TableImporthProperties> = ( { data } ) => {
   }
 
   return (
-    <div className="mt-6 bg-neutral0 w-full h-[calc(100%-168px)] p-10 rounded-xl overflow-auto no-scrollbar">
+    <div className='mt-6 bg-neutral0 w-full h-[calc(100%-168px)] p-10 rounded-xl overflow-auto no-scrollbar'>
       <DataTable columns={columns} data={data}/>
     </div>
   )

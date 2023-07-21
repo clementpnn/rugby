@@ -86,7 +86,7 @@ const ProfilePageFilter: React.FC<FilterProperties> = () => {
                             src= {getByValue( team.team )?.flag || '/placeholder-image.png'}
                             width={28}
                             height={28}
-                            alt="flag"
+                            alt='flag'
                           />
                           <span className='h5-inter-m text-blue9'>{formatString( team.team )}</span>
                         </div>

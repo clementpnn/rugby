@@ -8,7 +8,6 @@ import { RowActions } from '@/components/table/rowActions'
 
 import { MdVerified } from 'react-icons/md'
 import { JOB } from '@prisma/client'
-// import { User, Demand } from '@prisma/client'
 
 export type Users = {
   id: string
@@ -23,10 +22,6 @@ export type Users = {
   accepted: number
 }
 
-// type Users = {
-//     user: User & { demands: Demand[] }[]
-// }
-
 export const columns: ColumnDef<Users>[] = [
   {
     id: 'select',
@@ -34,14 +29,14 @@ export const columns: ColumnDef<Users>[] = [
       <Checkbox
         checked={table.getIsAllPageRowsSelected()}
         onCheckedChange={( value ) => table.toggleAllPageRowsSelected( !!value )}
-        aria-label="Select all"
+        aria-label='Select all'
       />
     ),
     cell: ( { row } ) => (
       <Checkbox
         checked={row.getIsSelected()}
         onCheckedChange={( value ) => row.toggleSelected( !!value )}
-        aria-label="Select row"
+        aria-label='Select row'
       />
     ),
     enableSorting: false,
@@ -78,7 +73,7 @@ export const columns: ColumnDef<Users>[] = [
         <ColumnHeader title='Email' column={column} />
       )
     },
-    cell: ( { row } ) => <div className="lowercase">{row.getValue( 'email' )}</div>
+    cell: ( { row } ) => <div className='lowercase'>{row.getValue( 'email' )}</div>
   },
   {
     accessorKey: 'amount',
@@ -87,7 +82,7 @@ export const columns: ColumnDef<Users>[] = [
         <ColumnHeader title='Amount' column={column} />
       )
     },
-    cell: ( { row } ) => <div className="lowercase">{row.getValue( 'amount' )}</div>
+    cell: ( { row } ) => <div className='lowercase'>{row.getValue( 'amount' )}</div>
   },
   {
     accessorKey: 'processing',
@@ -96,7 +91,7 @@ export const columns: ColumnDef<Users>[] = [
         <ColumnHeader title='Processing' column={column} />
       )
     },
-    cell: ( { row } ) => <div className="lowercase">{row.getValue( 'processing' )}</div>
+    cell: ( { row } ) => <div className='lowercase'>{row.getValue( 'processing' )}</div>
   },
   {
     accessorKey: 'refused',
@@ -105,7 +100,7 @@ export const columns: ColumnDef<Users>[] = [
         <ColumnHeader title='Refused' column={column} />
       )
     },
-    cell: ( { row } ) => <div className="lowercase">{row.getValue( 'refused' )}</div>
+    cell: ( { row } ) => <div className='lowercase'>{row.getValue( 'refused' )}</div>
   },
   {
     accessorKey: 'accepted',
@@ -114,7 +109,7 @@ export const columns: ColumnDef<Users>[] = [
         <ColumnHeader title='Accepted' column={column} />
       )
     },
-    cell: ( { row } ) => <div className="lowercase">{row.getValue( 'accepted' )}</div>
+    cell: ( { row } ) => <div className='lowercase'>{row.getValue( 'accepted' )}</div>
   },
   {
     id: 'actions',
