@@ -7,7 +7,7 @@ import ListMatch from '@/components/listMatch/listMatch'
 
 const page = async () => {
   // const currentUser = await getCurrentUser()
-  const matchs = await getMatchsInfoByUser( { userId : '64ba334e727f4f5e22820b2b' } ) || []
+  const matchs = await getMatchsInfoByUser( { userId : '64ba334e727f4f5e22820b2b' } ) || [] // fix for biulding
 
   const matchsByDate : { [date: string]: Match[] } = {}
 
