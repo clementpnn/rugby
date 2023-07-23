@@ -4,6 +4,7 @@ import useIsPools from '@/hooks/usePoolsOrKnockouts'
 import InformationDescription from '../informationDescription/informationDescription'
 import Pool from '../pools/pool'
 import { poulesData } from '@/app/pool/poolayout'
+import MatchResults from '../knockouts/matchResults'
 
 const PoolsOrKnockouts = () => {
   const { isPools } = useIsPools()
@@ -62,8 +63,8 @@ const PoolsOrKnockouts = () => {
           </div>
         </div>
       ) : (
-        <div className='bg-blue1 w-full h-full'>
-          Add knockout Component
+        <div className='w-full h-full'>
+          <MatchResults/>
         </div>
       )}
     </div>

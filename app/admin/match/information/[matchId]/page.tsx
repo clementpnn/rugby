@@ -46,11 +46,11 @@ const page = async ( { params }: {params: IParameters} ) => {
               <PiListMagnifyingGlass className='w-20 h-20 text-neutral3'/>
               <p className='h3-barlow-d text-blue6 uppercase'>listing</p>
             </Link>
-            <Link href={`/admin/match/information/place/${match.id}`} className='w-full h-full rounded-md border-[1px] border-neutral3 flex flex-col gap-y-[52px] items-center justify-center hover:bg-neutral1'>
+            <Link href={`/admin/demand/${match.id}`} className='w-full h-full rounded-md border-[1px] border-neutral3 flex flex-col gap-y-[52px] items-center justify-center hover:bg-neutral1'>
               <PiListMagnifyingGlass className='w-20 h-20 text-neutral3'/>
               <p className='h3-barlow-d text-blue6 uppercase'>place</p>
             </Link>
-            <Link href={`/admin/match/information/sad/${match.id}`} className='w-full h-full rounded-md border-[1px] border-neutral3 flex flex-col gap-y-[52px] items-center justify-center hover:bg-neutral1'>
+            <Link href={`/admin/demand/${match.id}`} className='w-full h-full rounded-md border-[1px] border-neutral3 flex flex-col gap-y-[52px] items-center justify-center hover:bg-neutral1'>
               <PiIdentificationCard className='w-20 h-20 text-neutral3'/>
               <p className='h3-barlow-d text-blue6 uppercase'>sad</p>
             </Link>

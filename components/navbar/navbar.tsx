@@ -3,14 +3,15 @@
 import Image from 'next/image'
 import Button from '../buttons/button'
 import Link from 'next/link'
-import { SetStateAction, useState } from 'react'
+import { usePathname } from 'next/navigation'
 
 const Navbar = () => {
-  const [ activeButton, setActiveButton ] = useState( 'Information' )
+  // const [ activeButton, setActiveButton ] = useState( 'Information' )
+  const pathname = usePathname()
 
-  const handleButtonClick = ( buttonName: SetStateAction<string> ) => {
-    setActiveButton( buttonName )
-  }
+  // const handleButtonClick = ( buttonName: SetStateAction<string> ) => {
+  //   setActiveButton( buttonName )
+  // }
   return(
     <div className="bg-neutral0 w-full h-fit px-20 py-6 border-b-[1px] border-neutral3 flex flex-row justify-between items-center">
       <div className='flex flex-row gap-x-12'>
@@ -24,17 +25,17 @@ const Navbar = () => {
         </Link>
         <div className='flex flex-row'>
           <Link href={'/user/planning'}>
-            <Button variant='secondary' className={activeButton === 'schedule' ? 'text-blue6' : 'text-blue9'} size={'md'} onClick={() => handleButtonClick( 'schedule' )}>
+            <Button variant='secondary' className={`${pathname === '/user/planning' ? 'ext-blue6' : 'text-blue9'}`} size={'md'}>
               Schedule
             </Button>
           </Link>
           <Link href={'/user/information'}>
-            <Button variant='secondary' className={activeButton === 'Information' ? 'text-blue6' : 'text-blue9'} size={'md'} onClick={() => handleButtonClick( 'Information' )}>
+            <Button variant='secondary' className={`${pathname === '/user/information' ? 'ext-blue6' : 'text-blue9'}`} size={'md'}>
               Information
             </Button>
           </Link>
           <Link href={''}>
-            <Button variant='secondary' className={activeButton === 'Profile' ? 'text-blue6' : 'text-blue9'} size={'md'} onClick={() => handleButtonClick( 'Profile' )}>
+            <Button variant='secondary' className={`${pathname === '/admin/update' ? 'ext-blue6' : 'text-blue9'}`} size={'md'}>
               Profile
             </Button>
           </Link>

@@ -65,7 +65,7 @@ const MatchList: React.FC<MatchListProperties> = ( { matchs } ) => {
               <div className='border-y-[1px] border-neutral3 divide-y divide-neutral3'>
                 {matches.map( ( match: Match ) => (
                   <div key={match.id} className='bg-neutral0 hover:bg-neutral1'>
-                    <Link href={`/admin/match/${match.id}`} key={match.id}>
+                    <Link href={`/admin/match/information/${match.id}`} key={match.id}>
                       <RequestMatch data={match} state='disabled' stateClass='disabled' time='25:30' admin={true}></RequestMatch>
                     </Link>
                   </div>
