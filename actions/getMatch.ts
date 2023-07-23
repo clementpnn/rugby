@@ -29,6 +29,10 @@ interface IUser {
 export async function getMatchsInfoByUser( parameters: IUser ) {
   const { userId } = parameters
 
+  if ( !userId ) {
+    throw new Error( 'User ID must be provided' )
+  }
+
   const match = await prisma.match.findMany( {
     include: {
       matchTeams: true,
@@ -62,6 +66,10 @@ export async function getMatchsInfoByUser( parameters: IUser ) {
 export async function getMatchById( parameters: IParameters ) {
 
   const { matchId } = parameters
+
+  if ( !matchId ) {
+    throw new Error( 'Match ID must be provided' )
+  }
 
   const match = await prisma.match.findUnique( {
     where: { id: matchId },
@@ -118,6 +126,10 @@ export async function getMatchById( parameters: IParameters ) {
 export async function getMatchUpdateById( parameters: IParameters ) {
   const { matchId } = parameters
 
+  if ( !matchId ) {
+    throw new Error( 'Match ID must be provided' )
+  }
+
   const match = await prisma.match.findUnique( {
     where: { id: matchId },
     include: {
@@ -132,6 +144,10 @@ export async function getMatchUpdateById( parameters: IParameters ) {
 
 export async function getMatchDemandById( parameters: IParameters ) {
   const { matchId } = parameters
+
+  if ( !matchId ) {
+    throw new Error( 'Match ID must be provided' )
+  }
 
   const match = await prisma.match.findUnique( {
     where: { id: matchId },
@@ -175,8 +191,11 @@ export async function getMatchDemandById( parameters: IParameters ) {
 }
 
 export async function getMatchByIdUser( parameters: IParameters ) {
-
   const { matchId } = parameters
+
+  if ( !matchId ) {
+    throw new Error( 'Match ID must be provided' )
+  }
 
   const match = await prisma.match.findUnique( {
     where: { id: matchId },
