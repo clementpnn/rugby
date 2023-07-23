@@ -188,7 +188,7 @@ const DemandMatch: React.FC<DemandMatchProperties> = ( { matchData } ) => {
                 Back
             </Button>
             <div className='grid gap-y-6 mt-6'>
-              <Controller name="name" control={control} render={( { field } ) => <Input id='name' label='name' {...field} errors={errors} disabled={isLoading} />} />
+              <Controller name="name" control={control} render={( { field } ) => <Input id='name' label='Stadium place' {...field} errors={errors} disabled={isLoading} />} />
               <Controller name="user" control={control} render={( { field } ) => <Select id='user' label='user' {...field} errors={errors} disabled={isLoading} options={userOptions || ''} />} />
               <form>
                 <Button type='submit' variant='primary' className='w-full' size='md' onClick={() => {
