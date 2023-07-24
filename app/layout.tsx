@@ -1,8 +1,10 @@
 import AuthProvider from '@/providers/authProvider'
 import ToasterProvider from '@/providers/toasterProvider'
 import './globals.css'
+import { hotjar } from 'react-hotjar'
 
 import { Inter, Barlow_Condensed } from 'next/font/google'
+import { useEffect } from 'react'
 
 const inter = Inter( {
   subsets: [ 'latin' ],
@@ -26,6 +28,12 @@ export default function RootLayout( {
 }: {
   children: React.ReactNode
 } ) {
+
+  useEffect( () => {
+    // eslint-disable-next-line unicorn/numeric-separators-style
+    hotjar.initialize( 3585976, 6 )
+  }, [] )
+
   return (
     <html lang="fr">
       <body className={`${inter.variable} ${barlow.variable}`}>
